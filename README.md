@@ -41,6 +41,8 @@ docs/              the website (GitHub Pages)
 
 - MCP server so agents pull specs and steps directly
 - More game types: tower defense, horror, fighting
+- One-command publishing (a fastlane for Roblox): build, upload, set metadata and go live, callable by agents
+- Store assets: generated game icons, thumbnails and descriptions
 - Cost and reliability benchmarks: frontier model from scratch vs. Baseplate
 
 ## License

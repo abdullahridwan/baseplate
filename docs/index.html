@@ -3,217 +3,694 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baseplate</title>
-<meta name="description" content="The agent-native layer for Roblox. Open implementation specs your agent builds from, so you only pay frontier prices for the part that's yours.">
+<title>Baseplate: the agent-native layer for Roblox</title>
+<meta name="description" content="Open implementation specs your AI agent builds Roblox games from. A fast model lays the foundation, so frontier-model tokens go only to the part that's yours.">
+<meta property="og:title" content="Baseplate: Make better games.">
+<meta property="og:description" content="The agent-native layer for Roblox. Open specs your agent builds from.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
 :root{
-  --blue:#1F4BFF; --ink:#111111; --plate:#F4F2EC; --stone:#55534E; --seam:#DEDBD2; --white:#FFFFFF; --mute:#B9B6AE;
-  --sans:'Inter Tight',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --blue: oklch(0.52 0.25 265);
+  --blue-deep: oklch(0.44 0.22 265);
+  --blue-soft: oklch(0.72 0.14 265);
+  --blue-wash: oklch(0.95 0.03 265);
+  --ink: oklch(0.2 0.006 85);
+  --ink-2: oklch(0.38 0.008 85);
+  --stone: oklch(0.47 0.008 85);
+  --seam: oklch(0.89 0.012 85);
+  --seam-2: oklch(0.8 0.012 85);
+  --plate: oklch(0.965 0.009 85);
+  --paper: oklch(0.988 0.004 85);
+  --term: oklch(0.19 0.006 85);
+  --term-line: oklch(0.29 0.006 85);
+  --term-mute: oklch(0.7 0.01 85);
+  --sans: 'Inter Tight', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gutter: clamp(16px, 4vw, 32px);
+  --section: clamp(72px, 11vw, 144px);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--plate);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
-a{color:var(--blue)}
-.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
-code,.mono{font-family:var(--mono);font-size:.92em}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--plate);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:inherit}
+svg{display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
-/* nav */
-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
-.logo{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;font-weight:600;font-size:22px;letter-spacing:-.045em}
-.logo svg{width:28px;height:28px}
-.navlinks{display:flex;gap:22px;align-items:center;font-size:15px;font-weight:500}
-.navlinks a{color:inherit;text-decoration:none}
-.navlinks a:hover{color:var(--blue)}
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in oklch, var(--plate) 86%, transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.scrolled{border-bottom-color:var(--seam)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;font-size:21px;letter-spacing:-.045em}
+.logo svg{width:24px;height:24px}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500}
+.nav-links a{text-decoration:none;color:var(--ink-2);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
 
-/* hero */
-.hero{background:var(--ink);color:var(--plate);position:relative;overflow:hidden}
-.hero .wrap{position:relative;z-index:1}
-.hero-body{padding:72px 0 120px;max-width:680px}
-.eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:0 0 20px}
-h1{font-size:clamp(48px,8vw,96px);line-height:.96;letter-spacing:-.045em;font-weight:600;margin:0 0 24px}
-.lede{font-size:clamp(18px,2.2vw,22px);color:var(--mute);margin:0 0 36px;max-width:560px}
-.ctas{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid transparent}
-.btn-primary{background:var(--blue);color:var(--white)}
-.btn-primary:hover{background:#1436C4}
-.btn-ghost{border-color:#3A3935;color:var(--plate)}
-.btn-ghost:hover{border-color:var(--plate)}
-.hero-mark{position:absolute;right:-120px;bottom:-160px;width:620px;height:620px;pointer-events:none}
-.hero nav .navlinks a{color:var(--plate)}
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:8px;font:600 15px/1 var(--sans);text-decoration:none;transition:background .2s,border-color .2s,transform .2s var(--ease),box-shadow .3s var(--ease)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:oklch(0.3 0.006 85)}
+.btn-blue{background:var(--blue);color:var(--paper);box-shadow:0 0 0 0 oklch(0.52 0.25 265 / .35)}
+.btn-blue:hover{background:var(--blue-deep);box-shadow:0 0 0 6px oklch(0.52 0.25 265 / .14)}
+.btn-ghost{color:var(--ink);border:1px solid var(--seam);background:var(--paper)}
+.btn-ghost:hover{border-color:var(--ink-2)}
+.btn-lg{min-height:52px;padding:0 24px;font-size:16px;border-radius:10px}
+.btn .arrow{transition:transform .25s var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+.nav .btn{min-height:38px;padding:0 14px;font-size:14px;color:var(--paper)}
 
-/* sections */
-section{padding:96px 0}
-h2{font-size:clamp(34px,5vw,52px);line-height:1.02;letter-spacing:-.03em;font-weight:600;margin:0 0 20px}
-.section-lede{font-size:19px;color:var(--stone);max-width:640px;margin:0 0 48px}
+/* ---------- hero ---------- */
+.hero{padding:clamp(48px,7vw,96px) 0 0}
+.hero-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:end}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border:1px solid var(--seam);border-radius:999px;background:var(--paper);font-size:14px;font-weight:500;color:var(--ink-2);text-decoration:none;transition:border-color .2s}
+.pill:hover{border-color:var(--ink-2)}
+.pill b{background:var(--blue-wash);color:var(--blue-deep);font-weight:600;font-size:12px;letter-spacing:.02em;padding:3px 9px;border-radius:999px}
+h1{font-size:clamp(56px,8.4vw,112px);line-height:.92;letter-spacing:-.055em;font-weight:600;margin:26px 0 0}
+h1 .w{display:inline-block;opacity:0;transform:translateY(.35em);filter:blur(6px)}
+h1.go .w{opacity:1;transform:none;filter:none;transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+h1.go .w:nth-child(2){transition-delay:.08s}
+h1.go .w:nth-child(3){transition-delay:.16s}
+h1 .dot{color:var(--blue)}
+.hero-side{padding-bottom:10px}
+.hero-sub{font-size:clamp(18px,1.7vw,20px);line-height:1.5;color:var(--ink-2);margin:0 0 30px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
 
-/* split */
-.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.half{padding:36px;border:1px solid var(--seam);background:var(--white)}
-.half.dark{background:var(--ink);color:var(--plate);border-color:var(--ink)}
-.half h3{margin:16px 0 8px;font-size:24px;letter-spacing:-.02em}
-.half p{margin:0;color:var(--stone)}
-.half.dark p{color:var(--mute)}
-.tag{display:inline-block;font-family:var(--mono);font-size:13px;padding:4px 10px;border:1px solid currentColor}
+/* ASCII baseplate */
+.plate-wrap{margin:clamp(40px,6vw,72px) 0 0;padding:0}
+.plate-frame{position:relative;background:var(--paper);border:1px solid var(--seam);border-radius:18px;padding:clamp(16px,2.6vw,28px) clamp(14px,2.6vw,32px);overflow:hidden;box-shadow:0 40px 80px -50px oklch(0.3 0.06 265 / .35)}
+.plate-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font:500 12.5px/1 var(--mono);color:var(--stone);margin-bottom:clamp(12px,2vw,20px)}
+.plate-head .legend{display:flex;gap:18px;flex-wrap:wrap}
+.plate-head .legend span{display:flex;align-items:center;gap:8px}
+.plate-head i{width:9px;height:9px;border-radius:50%}
+.plate-head i.s{background:var(--blue)}
+.plate-head i.o{border:1.5px solid var(--ink-2)}
+.plate-head i.y{background:var(--ink)}
+.status{color:var(--ink);display:flex;align-items:center;gap:8px}
+.status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);animation:blink 1.1s steps(2,end) infinite}
+@keyframes blink{50%{opacity:.2}}
+pre.plate{margin:0;font:500 var(--plate-fs,14px)/1.18 var(--mono);color:var(--seam-2);white-space:pre;user-select:none;cursor:crosshair;letter-spacing:0}
+pre.plate .b{color:var(--seam-2)}
+pre.plate .s{color:var(--blue);font-weight:700}
+pre.plate .f{color:var(--blue-soft)}
+pre.plate .y{color:var(--ink);font-weight:700}
+pre.plate .h{color:var(--blue-deep);font-weight:700}
+pre.plate .o{color:var(--ink-2)}
+.plate-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(12px,2vw,18px);font:400 12.5px/1.4 var(--mono);color:var(--stone)}
 
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
-.step{border-top:2px solid var(--ink);padding-top:20px}
-.step b{display:block;font-size:20px;letter-spacing:-.01em;margin-bottom:6px}
-.step p{margin:0;color:var(--stone)}
-.step .n{font-family:var(--mono);font-size:13px;color:var(--blue);display:block;margin-bottom:12px}
-.chat{margin-top:48px;background:var(--ink);color:var(--plate);font-family:var(--mono);font-size:15px;padding:28px;display:grid;gap:10px;overflow-x:auto}
-.chat .you{color:var(--white)}
-.chat .call{color:#8FA6FF}
-.chat .ok{color:var(--mute)}
+.works{margin-top:28px;font-size:14px;color:var(--stone);display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+.works span{color:var(--ink-2);font-weight:500}
+
+/* ---------- strip ---------- */
+.strip{margin-top:clamp(64px,8vw,104px);border-top:1px solid var(--seam);border-bottom:1px solid var(--seam)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.strip div{padding:24px 0;font-size:15px;color:var(--ink-2)}
+.strip div + div{padding-left:24px;border-left:1px solid var(--seam)}
+.strip b{display:block;color:var(--ink);font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:2px}
+
+/* ---------- sections ---------- */
+section{padding:var(--section) 0}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0 0 18px}
+h2{font-size:clamp(36px,4.8vw,60px);line-height:1;letter-spacing:-.04em;font-weight:600;margin:0}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:560px;margin:22px 0 0}
+
+/* problem */
+.problem-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,6vw,96px);align-items:start}
+.rebuilt{list-style:none;margin:0;padding:0;border-top:1px solid var(--seam)}
+.rebuilt li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid var(--seam);font-size:19px;font-weight:500;letter-spacing:-.01em;position:relative}
+.rebuilt li:not(.total)::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--ink-2);transform:scaleX(0);transform-origin:left;opacity:.55}
+.rebuilt.in li:not(.total)::after{transform:scaleX(1);transition:transform .7s var(--ease)}
+.rebuilt.in li:nth-child(1)::after{transition-delay:.35s}
+.rebuilt.in li:nth-child(2)::after{transition-delay:.5s}
+.rebuilt.in li:nth-child(3)::after{transition-delay:.65s}
+.rebuilt.in li:nth-child(4)::after{transition-delay:.8s}
+.rebuilt.in li:nth-child(5)::after{transition-delay:.95s}
+.rebuilt li span{font-size:14px;font-weight:400;color:var(--stone)}
+.rebuilt li.total{border-bottom:none;color:var(--blue-deep)}
+.rebuilt li.total span{color:var(--blue-deep);font-weight:600}
+
+/* halves */
+.halves{margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid var(--seam);border-radius:16px;overflow:hidden;background:var(--paper)}
+.halves > div{padding:clamp(28px,4vw,48px)}
+.halves > div + div{background:var(--ink);color:var(--paper)}
+.halves .model{display:inline-block;font:500 13px/1 var(--mono);padding:7px 10px;border-radius:6px;background:var(--blue-wash);color:var(--blue-deep)}
+.halves > div + div .model{background:oklch(0.3 0.006 85);color:oklch(0.9 0.01 85)}
+.halves h3{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.03em;line-height:1.1;margin:22px 0 12px;font-weight:600}
+.halves p{margin:0;color:var(--ink-2);max-width:420px}
+.halves > div + div p{color:oklch(0.8 0.01 85)}
+.halves ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+.halves li{display:flex;gap:10px;align-items:center}
+.halves li svg{width:14px;height:14px;flex-shrink:0}
+
+/* demo */
+.demo{margin-top:clamp(56px,7vw,88px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:center}
+.steps{display:grid;gap:8px;position:relative}
+.step{display:grid;grid-template-columns:40px 1fr;gap:16px;padding:18px;border-radius:12px;border:1px solid transparent;transition:background .4s var(--ease),border-color .4s var(--ease)}
+.step.active{background:var(--paper);border-color:var(--seam)}
+.step .n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:500 14px/1 var(--mono);background:var(--paper);border:1px solid var(--seam);transition:background .4s,border-color .4s,color .4s}
+.step.active .n{background:var(--blue);border-color:var(--blue);color:var(--paper)}
+.step h3{font-size:20px;letter-spacing:-.02em;margin:5px 0 4px;font-weight:600}
+.step p{margin:0;color:var(--ink-2);font-size:16px}
+.step code{font:500 .86em var(--mono);background:var(--plate);border:1px solid var(--seam);padding:1px 6px;border-radius:5px}
+
+.term{background:var(--term);color:oklch(0.93 0.008 85);border-radius:14px;font:400 13.5px/1.75 var(--mono);box-shadow:0 30px 60px -30px oklch(0.2 0.02 265 / .45),0 12px 24px -12px oklch(0.2 0.006 85 / .3);overflow:hidden}
+.term-bar{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--term-line)}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:var(--term-line)}
+.term-bar span{margin-left:10px;font-size:12.5px;color:var(--term-mute)}
+.term-body{padding:20px 22px 24px;min-height:380px}
+.ln{display:flex;gap:10px;opacity:0;transform:translateY(4px)}
+.ln.on{opacity:1;transform:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.ln .p{color:var(--blue-soft);flex-shrink:0}
+.ln.you{color:oklch(0.98 0.004 85);font-weight:500}
+.ln.dim{color:var(--term-mute)}
+.ln .ok{color:oklch(0.78 0.14 155)}
+.ln .tag{color:var(--blue-soft)}
+.ln .cur::after{content:"";display:inline-block;width:8px;height:15px;margin-left:4px;vertical-align:-2px;background:var(--blue-soft);animation:blink 1s steps(2,end) infinite}
+.gap{height:12px}
 
 /* specs */
-.specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.spec{display:flex;flex-direction:column;gap:10px;padding:28px;background:var(--white);border:1px solid var(--seam);text-decoration:none;color:inherit;min-height:220px}
-.spec:hover{border-color:var(--ink)}
-.spec h3{margin:0;font-size:22px;letter-spacing:-.02em}
-.spec p{margin:0;color:var(--stone);font-size:15px;flex-grow:1}
-.spec .mono{color:var(--blue);font-size:13px}
+.specs-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.spec-list{margin-top:48px;border-top:1px solid var(--ink)}
+.spec{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr) auto;gap:24px;align-items:center;padding:26px 4px;border-bottom:1px solid var(--seam);text-decoration:none;position:relative;isolation:isolate}
+.spec::before{content:"";position:absolute;inset:0;background:var(--paper);z-index:-1;transform:scaleY(0);transform-origin:bottom;transition:transform .35s var(--ease)}
+a.spec:hover::before{transform:scaleY(1)}
+.spec h3{margin:0;font-size:26px;letter-spacing:-.03em;font-weight:600;transition:transform .35s var(--ease)}
+a.spec:hover h3{transform:translateX(10px)}
+.spec p{margin:0;color:var(--ink-2);font-size:16px}
+.spec .go{font-size:14px;font-weight:600;color:var(--blue);white-space:nowrap;display:flex;gap:6px;align-items:center;padding-right:8px}
+.spec .go .arrow{transition:transform .25s var(--ease)}
+a.spec:hover .go .arrow{transform:translateX(4px)}
+.spec.soon h3,.spec.soon p{color:var(--stone)}
+.spec .badge{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--seam);color:var(--stone)}
 
-/* open */
-.open{background:var(--blue);color:var(--white)}
-.open .section-lede{color:#DCE3FF}
-.open .btn{background:var(--white);color:var(--blue)}
-.open .btn:hover{background:var(--plate)}
-.open-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
-.open-grid svg{width:100%;max-width:320px;justify-self:end}
+/* reliability */
+.rel-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(40px,6vw,88px);align-items:center}
+.features{margin:40px 0 0;padding:0;list-style:none;display:grid;gap:26px}
+.features li{display:grid;grid-template-columns:28px 1fr;gap:14px}
+.features svg{width:22px;height:22px;margin-top:2px}
+.features b{display:block;font-size:18px;letter-spacing:-.01em;margin-bottom:2px}
+.features span{color:var(--ink-2);font-size:16px}
+.doc{background:var(--paper);border:1px solid var(--seam);border-radius:14px;overflow:hidden;font:400 13.5px/1.7 var(--mono)}
+.doc-head{display:flex;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--seam);font-size:12.5px;color:var(--stone)}
+.doc-body{padding:22px 24px}
+.doc .h{font-family:var(--sans);font-weight:600;font-size:19px;letter-spacing:-.02em;color:var(--ink);margin-bottom:12px}
+.doc .c{display:block;background:var(--plate);border-radius:8px;padding:14px 16px;margin:12px 0 16px;color:var(--ink-2);white-space:pre;overflow-x:auto}
+.doc .k{color:var(--blue-deep)}
+.doc .dw{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--ink);margin-bottom:6px}
+.doc .chk{display:flex;gap:10px;color:var(--ink-2);font-family:var(--sans);font-size:15px}
+.doc .chk i{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--blue);margin-top:3px;flex-shrink:0;display:grid;place-items:center;transition:background .3s}
+.doc .chk i svg{width:10px;height:10px;opacity:0;transform:scale(.4);transition:opacity .3s var(--ease),transform .4s var(--ease)}
+.doc.in .chk i{background:var(--blue);transition-delay:.9s}
+.doc.in .chk i svg{opacity:1;transform:none;transition-delay:1s}
 
-footer{padding:40px 0;font-size:14px;color:var(--stone)}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+/* faq */
+.faq-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(32px,6vw,96px)}
+details{border-bottom:1px solid var(--seam)}
+details:first-of-type{border-top:1px solid var(--seam)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary .plus{width:14px;height:14px;position:relative;flex-shrink:0}
+summary .plus::before,summary .plus::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:var(--ink);border-radius:1px;transition:transform .3s var(--ease)}
+summary .plus::after{transform:rotate(90deg)}
+details[open] summary .plus::after{transform:rotate(0)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+details[open] .faq-a{grid-template-rows:1fr}
+.faq-a > div{overflow:hidden}
+details p{margin:0 0 24px;color:var(--ink-2);max-width:620px}
 
-@media (max-width:900px){
-  .specs{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .steps{grid-template-columns:1fr}
-  .open-grid{grid-template-columns:1fr}
-  .open-grid svg{justify-self:start;max-width:160px}
+/* final cta */
+.cta{padding:0 0 var(--section)}
+.cta-box{position:relative;overflow:hidden;background:var(--blue);color:var(--paper);border-radius:20px;padding:clamp(40px,7vw,88px)}
+.cta-box h2{max-width:640px;position:relative}
+.cta-box p{font-size:clamp(17px,1.6vw,20px);color:oklch(0.92 0.04 265);max-width:520px;margin:20px 0 34px;position:relative}
+.cta-box .hero-ctas{position:relative}
+.cta-box .btn-primary{background:var(--paper);color:var(--ink)}
+.cta-box .btn-primary:hover{background:var(--plate)}
+.cta-box .btn-ghost{background:transparent;color:var(--paper);border-color:oklch(0.75 0.12 265)}
+.cta-box .btn-ghost:hover{border-color:var(--paper)}
+pre.cta-ascii{position:absolute;right:-2%;top:50%;transform:translateY(-50%);margin:0;font:700 15px/1.18 var(--mono);color:oklch(0.66 0.18 265);white-space:pre;pointer-events:none;user-select:none}
+pre.cta-ascii .s{color:var(--paper)}
+
+footer{border-top:1px solid var(--seam);padding:32px 0 48px;font-size:14px;color:var(--stone)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer nav{display:flex;gap:22px}
+footer a{text-decoration:none;color:var(--ink-2)}
+footer a:hover{color:var(--ink)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px)}
+.rv.in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.d1.in{transition-delay:.08s}.rv.d2.in{transition-delay:.16s}.rv.d3.in{transition-delay:.24s}.rv.d4.in{transition-delay:.32s}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  .rv,.ln,h1 .w{opacity:1!important;transform:none!important;filter:none!important}
 }
-@media (max-width:640px){
-  .wrap{padding:0 16px}
-  .split,.specs{grid-template-columns:1fr}
-  .navlinks a:not(.gh){display:none}
-  .hero-body{padding:48px 0 96px}
-  .hero-mark{width:360px;height:360px;right:-120px;bottom:-120px}
-  section{padding:64px 0}
+
+@media (max-width: 960px){
+  .hero-top,.problem-grid,.rel-grid,.faq-grid,.demo{grid-template-columns:1fr}
+  .strip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .strip div:nth-child(3){padding-left:0;border-left:none}
+  .strip div:nth-child(n+3){border-top:1px solid var(--seam)}
+  pre.cta-ascii{opacity:.35}
+}
+@media (max-width: 720px){
+  .nav-links a:not(.btn){display:none}
+  .halves{grid-template-columns:1fr}
+  .spec{grid-template-columns:1fr;gap:8px}
+  .term-body{min-height:0;font-size:12.5px}
+  .plate-foot span:last-child{display:none}
 }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <svg class="hero-mark" viewBox="0 0 100 100" aria-hidden="true"><g fill="#1F4BFF"><circle cx="30" cy="70" r="16"/><circle cx="70" cy="70" r="16"/></g><g fill="none" stroke="#2A2A28" stroke-width="8"><circle cx="30" cy="30" r="12"/><circle cx="70" cy="30" r="12"/></g></svg>
+<header class="nav" id="nav">
   <div class="wrap">
-    <nav>
-      <a class="logo" href="#top" aria-label="Baseplate home">
-        <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#F4F2EC"><circle cx="30" cy="70" r="16"/><circle cx="70" cy="70" r="16"/></g><g fill="none" stroke="#F4F2EC" stroke-width="8"><circle cx="30" cy="30" r="12"/><circle cx="70" cy="30" r="12"/></g></svg>
-        baseplate
-      </a>
-      <div class="navlinks">
-        <a href="#how">How it works</a>
-        <a href="#specs">Specs</a>
-        <a class="gh" href="https://github.com/abdullahridwan/baseplate">GitHub</a>
-      </div>
+    <a class="logo" href="#top" aria-label="Baseplate home">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="currentColor" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
+      baseplate
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#specs">Specs</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="https://github.com/abdullahridwan/baseplate">GitHub</a>
     </nav>
-    <div class="hero-body" id="top">
-      <p class="eyebrow">The agent-native layer for Roblox</p>
-      <h1>Make better games.</h1>
-      <p class="lede">Open implementation specs your AI agent builds from. A cheap model lays the foundation, so you only pay frontier prices for the part that's yours.</p>
-      <div class="ctas">
-        <a class="btn btn-primary" href="#specs">Browse the specs</a>
-        <a class="btn btn-ghost" href="https://github.com/abdullahridwan/baseplate">View on GitHub</a>
-      </div>
-    </div>
   </div>
 </header>
 
-<main>
-<section>
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
   <div class="wrap">
-    <h2>Every game is half generic.</h2>
-    <p class="section-lede">Saves, checkpoints, cash, remotes, leaderboards. Agents rewrite the same foundation from scratch every time, at full price. Baseplate splits the work.</p>
-    <div class="split">
-      <div class="half">
-        <span class="tag">Haiku</span>
-        <h3>The first 50%: the foundation</h3>
-        <p>Your agent pulls an IMPLEMENTATION.md and a fast, cheap model follows it step by step: project layout, data that saves, secure remotes, core game systems. Predictable, correct, pennies.</p>
+    <div class="hero-top">
+      <div>
+        <a class="pill rv in" href="https://github.com/abdullahridwan/baseplate"><b>Open source</b> Obby, tycoon and simulator specs are live</a>
+        <h1 id="hero-title"><span class="w">Make</span> <span class="w">better</span> <span class="w">games<span class="dot">.</span></span></h1>
       </div>
-      <div class="half dark">
-        <span class="tag">Opus</span>
-        <h3>The last 50%: your game</h3>
-        <p>The theme, the mechanics, the level design, the feel. A frontier model spends its tokens only on what makes your game different.</p>
+      <div class="hero-side">
+        <p class="hero-sub rv d2">The agent-native layer for Roblox. Your agent builds the generic half of your game from our specs with a fast, cheap model, so the frontier model only works on what makes it yours.</p>
+        <div class="hero-ctas rv d3">
+          <a class="btn btn-blue btn-lg" href="#specs">Get the specs <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-ghost btn-lg" href="#how">How it works</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="how" style="padding-top:0">
-  <div class="wrap">
-    <h2>How it works</h2>
-    <p class="section-lede">Every spec is written with Claude Opus, once, so every build after that can be cheap.</p>
-    <div class="steps">
-      <div class="step"><span class="n">01</span><b>Pick a game type</b><p>Obby, tycoon or simulator. Each spec starts from the shared core.</p></div>
-      <div class="step"><span class="n">02</span><b>Your agent builds the base</b><p>Steps run in order, each with a "done when" check, so a small model can't drift.</p></div>
-      <div class="step"><span class="n">03</span><b>You build the rest</b><p>Every spec ends with extension points: exactly where your 50% plugs in.</p></div>
-    </div>
-    <div class="chat" aria-label="Example agent session">
-      <span class="you">&gt; build me an obby from the baseplate spec</span>
-      <span class="call">reading implementations/core/IMPLEMENTATION.md</span>
-      <span class="call">reading implementations/obby/IMPLEMENTATION.md</span>
-      <span class="ok">core: 6 of 6 steps done. obby: 6 of 6 steps done. acceptance test passed.</span>
-      <span class="you">&gt; now make it lava themed with a speed-run timer</span>
-    </div>
-  </div>
-</section>
+    <figure class="plate-wrap rv d3" aria-label="Animated ASCII baseplate. The bottom half of the studs fills in as the foundation is built from a spec. The top half stays open, then your game is built on it.">
+      <div class="plate-frame">
+        <div class="plate-head" aria-hidden="true">
+          <div class="legend">
+            <span><i class="s"></i>foundation, from spec</span>
+            <span><i class="o"></i>open for your game</span>
+            <span><i class="y"></i>your game</span>
+          </div>
+          <span class="status" id="plate-status">placing core</span>
+        </div>
+        <pre class="plate" id="plate" aria-hidden="true"></pre>
+        <div class="plate-foot" aria-hidden="true"><span id="plate-count">0 / 0 studs placed</span><span>move your cursor over the plate</span></div>
+      </div>
+    </figure>
 
-<section id="specs" style="padding-top:0">
-  <div class="wrap">
-    <h2>The specs</h2>
-    <p class="section-lede">Plain Markdown. Point any agent at them: Claude Code, Cursor, Codex. Copy them, fork them, ship with them.</p>
-    <div class="specs">
-      <a class="spec" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/core/IMPLEMENTATION.md">
-        <span class="mono">core/</span><h3>Core</h3>
-        <p>Rojo layout, DataStore saves with retries, rate-limited remotes, service and controller loaders.</p>
-      </a>
-      <a class="spec" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/obby/IMPLEMENTATION.md">
-        <span class="mono">obby/</span><h3>Obby</h3>
-        <p>Saved stages, anti-skip checkpoints, kill bricks, respawn on your stage, stage HUD.</p>
-      </a>
-      <a class="spec" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/tycoon/IMPLEMENTATION.md">
-        <span class="mono">tycoon/</span><h3>Tycoon</h3>
-        <p>Claimable plots, cash, purchase buttons with prerequisites, droppers, a collector, saved progress.</p>
-      </a>
-      <a class="spec" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/simulator/IMPLEMENTATION.md">
-        <span class="mono">simulator/</span><h3>Simulator</h3>
-        <p>Click to collect, backpack capacity, sell zones, upgrades, rebirths and a multiplier.</p>
-      </a>
+    <p class="works rv d4">Works with <span>Claude Code</span><span>Cursor</span><span>Codex</span><span>any agent that reads Markdown</span></p>
+  </div>
+
+  <div class="strip">
+    <div class="wrap">
+      <div><b>4 specs</b>core, obby, tycoon, simulator</div>
+      <div><b>Step by step</b>a check after every step</div>
+      <div><b>Server-side</b>remotes validated and rate limited</div>
+      <div><b>MIT</b>copy it, fork it, ship it</div>
     </div>
   </div>
 </section>
 
-<section class="open">
-  <div class="wrap open-grid">
+<!-- PROBLEM -->
+<section aria-labelledby="problem-title">
+  <div class="wrap problem-grid">
     <div>
-      <h2>Free and open. Copy it.</h2>
-      <p class="section-lede">Every spec is MIT licensed. Use it, change it, build a business on it. An MCP server is next, so agents can pull specs directly.</p>
-      <a class="btn" href="https://github.com/abdullahridwan/baseplate">Star on GitHub</a>
+      <p class="kicker rv">The problem</p>
+      <h2 id="problem-title" class="rv d1">Your agent rebuilds the same game every time.</h2>
+      <p class="lead rv d2">Ask a frontier model to "build me an obby" and it spends most of its effort writing systems every obby already has. You pay premium prices for boilerplate, and it comes out a little different, and a little broken, each time.</p>
     </div>
-    <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#FFFFFF"><circle cx="30" cy="70" r="16"/><circle cx="70" cy="70" r="16"/></g><g fill="none" stroke="#FFFFFF" stroke-width="8"><circle cx="30" cy="30" r="12"/><circle cx="70" cy="30" r="12"/></g></svg>
+    <ul class="rebuilt rv d2" aria-label="What gets rebuilt from scratch">
+      <li>Project layout and loaders <span>every game</span></li>
+      <li>Saving player data safely <span>every game</span></li>
+      <li>Secure client to server remotes <span>every game</span></li>
+      <li>Leaderstats and HUD <span>every game</span></li>
+      <li>Checkpoints, plots or backpacks <span>every genre</span></li>
+      <li class="total">What actually makes your game different <span>the part that matters</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how" aria-labelledby="how-title" style="padding-top:0">
+  <div class="wrap">
+    <p class="kicker rv">How it works</p>
+    <h2 id="how-title" class="rv d1">Split the work in half.</h2>
+    <p class="lead rv d2">Every spec is written once with Claude Opus, so every build after it can run on a fast model.</p>
+
+    <div class="halves rv d2">
+      <div>
+        <span class="model">fast model + Baseplate spec</span>
+        <h3>The first 50%: the foundation</h3>
+        <p>Your agent follows an IMPLEMENTATION.md step by step. It doesn't have to design anything, just follow instructions, so a small model gets it right.</p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Data that saves and never wipes</li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Server-side security by default</li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Core genre systems, playable end to end</li>
+        </ul>
+      </div>
+      <div>
+        <span class="model">frontier model</span>
+        <h3>The last 50%: your game</h3>
+        <p>Theme, mechanics, level design, feel. The expensive model only spends tokens on the part nobody else has built.</p>
+        <ul>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Built on clear extension points</li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Nothing in the foundation to rewrite</li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Any model, any agent</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div class="steps" id="steps">
+        <div class="step active rv"><span class="n">1</span><div><h3>Pick a game type</h3><p>Obby, tycoon or simulator. Each starts from the shared <code>core</code> spec.</p></div></div>
+        <div class="step rv d1"><span class="n">2</span><div><h3>Your agent builds the base</h3><p>Steps run in order, each with a <code>Done when</code> check, then a full acceptance test.</p></div></div>
+        <div class="step rv d2"><span class="n">3</span><div><h3>You build the rest</h3><p>The spec stops at the generic half and lists exactly where your game plugs in.</p></div></div>
+      </div>
+      <div class="term rv d2" role="img" aria-label="An agent builds an obby from the Baseplate spec with a fast model, then a frontier model builds the custom half">
+        <div class="term-bar"><i></i><i></i><i></i><span>my-obby</span></div>
+        <div class="term-body" id="term">
+          <div class="ln you" data-step="0"><span class="p">&gt;</span><span>build me an obby from the baseplate spec</span></div>
+          <div class="gap"></div>
+          <div class="ln dim" data-step="1"><span class="tag">fast</span><span>reading core/IMPLEMENTATION.md</span></div>
+          <div class="ln"><span class="ok">&#10003;</span><span>project layout, config, remotes</span></div>
+          <div class="ln"><span class="ok">&#10003;</span><span>DataService: saves, retries, shutdown</span></div>
+          <div class="ln dim"><span class="tag">fast</span><span>reading obby/IMPLEMENTATION.md</span></div>
+          <div class="ln"><span class="ok">&#10003;</span><span>checkpoints, kill bricks, respawn</span></div>
+          <div class="ln"><span class="ok">&#10003;</span><span>stage HUD, test stages</span></div>
+          <div class="ln"><span class="ok">&#10003;</span><span>acceptance test: 7 of 7</span></div>
+          <div class="ln dim"><span>foundation done. the rest is yours.</span></div>
+          <div class="gap"></div>
+          <div class="ln you" data-step="2"><span class="p">&gt;</span><span>make it lava themed with a speed-run timer</span></div>
+          <div class="ln dim"><span class="tag">frontier</span><span class="cur">building your half</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section id="specs" aria-labelledby="specs-title" style="padding-top:0">
+  <div class="wrap">
+    <div class="specs-head">
+      <div>
+        <p class="kicker rv">The specs</p>
+        <h2 id="specs-title" class="rv d1">Start from a foundation.</h2>
+      </div>
+      <a class="btn btn-ghost rv d2" href="https://github.com/abdullahridwan/baseplate/tree/main/implementations">All specs on GitHub <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="spec-list">
+      <a class="spec rv" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/core/IMPLEMENTATION.md">
+        <h3>Core</h3><p>Rojo layout, DataStore saves with retries, rate-limited remotes, service and controller loaders. Every game starts here.</p><span class="go">Read spec <span class="arrow" aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a class="spec rv" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/obby/IMPLEMENTATION.md">
+        <h3>Obby</h3><p>Saved stages, checkpoints you can't skip, kill bricks, respawn on your stage, a stage HUD.</p><span class="go">Read spec <span class="arrow" aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a class="spec rv" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/tycoon/IMPLEMENTATION.md">
+        <h3>Tycoon</h3><p>Claimable plots, cash, purchase buttons with prerequisites, droppers, a collector, saved progress.</p><span class="go">Read spec <span class="arrow" aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a class="spec rv" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/simulator/IMPLEMENTATION.md">
+        <h3>Simulator</h3><p>Click to collect, backpack capacity, sell zones, upgrades, rebirths with a multiplier.</p><span class="go">Read spec <span class="arrow" aria-hidden="true">&rarr;</span></span>
+      </a>
+      <div class="spec soon rv">
+        <h3>Next</h3><p>Tower defense, horror, fighting, and an MCP server so agents pull specs directly.</p><span class="badge">In progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELIABILITY -->
+<section aria-labelledby="rel-title" style="padding-top:0">
+  <div class="wrap rel-grid">
+    <div>
+      <p class="kicker rv">Built for small models</p>
+      <h2 id="rel-title" class="rv d1">Specs a cheap model can't get wrong.</h2>
+      <ul class="features">
+        <li class="rv d1"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="var(--blue)"><circle cx="7" cy="17" r="4"/><circle cx="17" cy="17" r="4"/></g><g fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/></g></svg><div><b>Strict step order</b><span>Exact paths, exact code, no room to improvise.</span></div></li>
+        <li class="rv d2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="var(--blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>A check after every step</b><span>The agent verifies before moving on, so mistakes don't stack.</span></div></li>
+        <li class="rv d3"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="var(--blue)" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="var(--blue)" stroke-width="2"/></svg><div><b>Secure by default</b><span>The server decides everything. Clients only send intent.</span></div></li>
+        <li class="rv d4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" fill="none" stroke="var(--blue)" stroke-width="2.2" stroke-linecap="round"/></svg><div><b>Clear extension points</b><span>Every spec ends where your 50% begins.</span></div></li>
+      </ul>
+    </div>
+    <div class="doc rv d2" aria-label="Excerpt from the obby spec">
+      <div class="doc-head"><span>obby/IMPLEMENTATION.md</span><span>Step 4 of 6</span></div>
+      <div class="doc-body">
+        <div class="h">Step 4: Register the services</div>
+        <span class="c"><span class="k">local</span> SERVICES = {
+	"DataService",
+	"CheckpointService",
+	"HazardService",
+}</span>
+        <div class="dw">Done when</div>
+        <div class="chk"><i><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.3 2.3 4.7-5" fill="none" stroke="oklch(0.988 0.004 85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Playing in Studio shows no errors in Output.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" aria-labelledby="faq-title" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="kicker rv">FAQ</p>
+      <h2 id="faq-title" class="rv d1">Questions.</h2>
+    </div>
+    <div class="rv d1">
+      <details><summary>What is an IMPLEMENTATION.md?<span class="plus" aria-hidden="true"></span></summary><div class="faq-a"><div><p>A Markdown spec your agent follows to build a game system: files to create, the exact Luau to write, and a check after each step. It covers the generic half of a game type and stops where your custom work begins.</p></div></div></details>
+      <details><summary>Which agents does it work with?<span class="plus" aria-hidden="true"></span></summary><div class="faq-a"><div><p>Any agent that can read a file or a URL: Claude Code, Cursor, Codex and others. An MCP server is coming next, so agents can pull specs and steps directly.</p></div></div></details>
+      <details><summary>Why use a cheaper model for the first half?<span class="plus" aria-hidden="true"></span></summary><div class="faq-a"><div><p>Because the design work is already done. Following a precise spec is an easy task, and fast models handle it well at a fraction of the cost. Save the frontier model for the decisions only you can make.</p></div></div></details>
+      <details><summary>What do I need to get started?<span class="plus" aria-hidden="true"></span></summary><div class="faq-a"><div><p>Roblox Studio with API Services enabled, and Rojo 7 or newer to sync code into Studio.</p></div></div></details>
+      <details><summary>Is it really free?<span class="plus" aria-hidden="true"></span></summary><div class="faq-a"><div><p>Yes. Every spec is MIT licensed. Use it, change it, and ship games with it.</p></div></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta" aria-labelledby="cta-title">
+  <div class="wrap">
+    <div class="cta-box rv">
+      <pre class="cta-ascii" id="cta-ascii" aria-hidden="true"></pre>
+      <h2 id="cta-title">Stop paying for boilerplate.</h2>
+      <p>Point your agent at a spec and build what makes your game yours.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="#specs">Get the specs <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/abdullahridwan/baseplate">Star on GitHub</a>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>baseplate. Make better games.</span>
+    <a class="logo" href="#top" aria-label="Back to top" style="font-size:18px">
+      <svg viewBox="0 0 100 100" aria-hidden="true" style="width:20px;height:20px"><g fill="currentColor"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="currentColor" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
+      baseplate
+    </a>
+    <nav aria-label="Footer">
+      <a href="https://github.com/abdullahridwan/baseplate">GitHub</a>
+      <a href="https://github.com/abdullahridwan/baseplate/blob/main/brand/BRAND.md">Brand</a>
+      <a href="https://github.com/abdullahridwan/baseplate/blob/main/LICENSE">MIT License</a>
+    </nav>
     <span>Not affiliated with Roblox Corporation.</span>
   </div>
 </footer>
 
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav border */
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 8); }, {passive:true});
+
+  /* headline */
+  requestAnimationFrame(function(){ document.getElementById('hero-title').classList.add('go'); });
+
+  /* scroll reveals */
+  var els = document.querySelectorAll('.rv:not(.in), .rebuilt, .doc');
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- ASCII baseplate ---------- */
+  var pre = document.getElementById('plate');
+  var statusEl = document.getElementById('plate-status');
+  var countEl = document.getElementById('plate-count');
+  var CELL = 5;            // chars per stud: " (@) "
+  var cols = 0, rows = 0, total = 0, order = [], yours = {};
+  var mouse = {c:-99, r:-99, at:0};
+  var CYCLE = 11000;       // ms per build loop
+  var start = performance.now();
+
+  function measure(){
+    var w = pre.parentElement.clientWidth - parseFloat(getComputedStyle(pre.parentElement).paddingLeft) * 2;
+    var fs = w < 520 ? 10 : w < 800 ? 12 : 14;
+    pre.style.setProperty('--plate-fs', fs + 'px');
+    var probe = document.createElement('span');
+    probe.textContent = '0000000000';
+    pre.appendChild(probe);
+    var cw = probe.getBoundingClientRect().width / 10;
+    pre.removeChild(probe);
+    cols = Math.max(6, Math.floor((w / cw - 2) / CELL));
+    rows = w < 520 ? 8 : 10;
+    if (rows % 2) rows++;
+    total = cols * rows;
+    // foundation fills the bottom half, bottom-left first, in a diagonal sweep
+    order = [];
+    for (var r = rows - 1; r >= rows / 2; r--)
+      for (var c = 0; c < cols; c++)
+        order.push({r:r, c:c, k:(rows - 1 - r) * 1.6 + c + Math.random() * 1.5});
+    order.sort(function(a,b){ return a.k - b.k; });
+    // "your game": a few top-half studs get built after the foundation
+    yours = {};
+    var picks = Math.round(cols * (rows / 2) * 0.38);
+    var seeds = [];
+    for (var i = 0; i < picks; i++) seeds.push({r: Math.floor(Math.random() * rows / 2), c: Math.floor(Math.random() * cols), t: Math.random()});
+    seeds.forEach(function(s){ yours[s.r + ',' + s.c] = s.t; });
+  }
+
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function frame(now){
+    var t = ((now - start) % CYCLE) / CYCLE;
+    var BUILD = 0.42, YOURS0 = 0.5, YOURS1 = 0.82;
+    var placedN = reduce ? order.length : Math.floor(Math.min(1, t / BUILD) * order.length);
+    var placed = {}, front = {};
+    for (var i = 0; i < placedN; i++) placed[order[i].r + ',' + order[i].c] = 1;
+    for (var j = placedN; j < Math.min(order.length, placedN + 3); j++) front[order[j].r + ',' + order[j].c] = 1;
+    var yt = reduce ? 1 : Math.max(0, Math.min(1, (t - YOURS0) / (YOURS1 - YOURS0)));
+
+    var status = placedN < order.length ? (placedN < order.length * 0.5 ? 'placing core' : 'placing genre systems')
+               : yt <= 0 ? 'foundation done: acceptance test passed'
+               : yt < 1 ? 'building your game' : 'ready to ship';
+    if (statusEl.textContent !== status) statusEl.textContent = status;
+    var yourCount = 0;
+
+    var hover = (now - mouse.at) < 1600;
+    var html = '';
+    var edge = ' +' + '-'.repeat(cols * CELL) + '+';
+    html += '<span class="b">' + edge + '</span>\n';
+    for (var r = 0; r < rows; r++) {
+      html += '<span class="b"> |</span>';
+      for (var c = 0; c < cols; c++) {
+        var key = r + ',' + c, cls = 'o', g = '( )';
+        if (placed[key]) { cls = 's'; g = '(@)'; }
+        else if (front[key]) { cls = 'f'; g = '(*)'; }
+        else if (r < rows / 2 && yours[key] !== undefined && yours[key] < yt) { cls = 'y'; g = '[#]'; yourCount++; }
+        if (hover) {
+          var d = Math.hypot((c - mouse.c) * 0.55, r - mouse.r);
+          if (d < 2.4) { cls = 'h'; g = d < 1 ? '(@)' : g === '( )' ? '(o)' : g; }
+        }
+        if (!reduce && cls === 'o' && r < rows / 2) {
+          // slow shimmer across the open half
+          var wave = Math.sin(now / 900 + c * 0.45 - r * 0.8);
+          if (wave > 0.985) { g = '(.)'; }
+        }
+        html += ' <span class="' + cls + '">' + esc(g) + '</span> ';
+      }
+      html += '<span class="b">|</span>\n';
+      if (r === rows / 2 - 1) {
+        var mid = ' |' + '- '.repeat(Math.floor(cols * CELL / 2)) + (cols * CELL % 2 ? '-' : '') + '|';
+        html += '<span class="b">' + mid + '</span>\n';
+      }
+    }
+    html += '<span class="b">' + edge + '</span>';
+    pre.innerHTML = html;
+    countEl.textContent = placedN + ' / ' + order.length + ' foundation studs placed' + (yourCount ? ', ' + yourCount + ' of yours' : '');
+    if (!reduce) requestAnimationFrame(throttled);
+  }
+
+  var last = 0;
+  function throttled(now){
+    if (now - last < 50) { requestAnimationFrame(throttled); return; }
+    last = now; frame(now);
+  }
+
+  pre.addEventListener('pointermove', function(e){
+    var rect = pre.getBoundingClientRect();
+    var lineH = rect.height / (rows + 3);
+    var charW = rect.width / (cols * CELL + 4);
+    mouse.c = (e.clientX - rect.left - charW * 2) / (charW * CELL) - 0.5;
+    var rr = (e.clientY - rect.top) / lineH - 1;
+    if (rr > rows / 2) rr -= 1;
+    mouse.r = rr - 0.5;
+    mouse.at = performance.now();
+  });
+  pre.addEventListener('pointerleave', function(){ mouse.at = 0; });
+
+  measure();
+  var rz; addEventListener('resize', function(){ clearTimeout(rz); rz = setTimeout(measure, 150); });
+  requestAnimationFrame(reduce ? frame : throttled);
+
+  /* ---------- CTA ascii mark ---------- */
+  var cta = document.getElementById('cta-ascii');
+  var ctaArt = [
+    '   .-----.     .-----.   ',
+    '  /       \\   /       \\  ',
+    ' |         | |         | ',
+    '  \\       /   \\       /  ',
+    "   '-----'     '-----'   ",
+    '                         ',
+    '   .#####.     .#####.   ',
+    '  /#######\\   /#######\\  ',
+    ' |#########| |#########| ',
+    '  \\#######/   \\#######/  ',
+    "   '#####'     '#####'   "
+  ];
+  cta.innerHTML = ctaArt.map(function(line, i){
+    return i > 5 ? '<span class="s">' + esc(line) + '</span>' : esc(line);
+  }).join('\n');
+
+  /* ---------- terminal demo, synced to steps ---------- */
+  var termEl = document.getElementById('term');
+  var lines = termEl.querySelectorAll('.ln');
+  var steps = document.querySelectorAll('#steps .step');
+  function setStep(n){ steps.forEach(function(s, i){ s.classList.toggle('active', i === n); }); }
+  function play(){
+    lines.forEach(function(l){ l.classList.remove('on'); });
+    var i = 0;
+    (function next(){
+      if (i >= lines.length) { setTimeout(play, 4200); return; }
+      var l = lines[i++];
+      if (l.dataset.step) setStep(+l.dataset.step);
+      l.classList.add('on');
+      setTimeout(next, l.classList.contains('you') ? 900 : 420);
+    })();
+  }
+  if (reduce) { lines.forEach(function(l){ l.classList.add('on'); }); setStep(2); }
+  else {
+    var started = false;
+    new IntersectionObserver(function(entries, obs){
+      if (entries[0].isIntersecting && !started){ started = true; play(); obs.disconnect(); }
+    }, {threshold:.35}).observe(termEl);
+  }
+})();
+</script>
 </body>
 </html>
