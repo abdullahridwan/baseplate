@@ -10,7 +10,6 @@ export type SoundDef = {
 }
 
 local Sounds: { [string]: SoundDef } = {
-	-- coin_pickup = { id = "", volume = 0.5, pitchVariance = 0.05 },
 }
 
 return Sounds

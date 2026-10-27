@@ -1,0 +1,23 @@
+{
+  "name": "baseplate-cli",
+  "version": "0.1.0",
+  "description": "Add Baseplate VFX and sounds to your Roblox game. Like shadcn/ui: the files are copied in and you own them.",
+  "type": "module",
+  "bin": {
+    "baseplate": "bin/baseplate.js"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "roblox",
+    "rojo",
+    "vfx",
+    "sfx",
+    "luau"
+  ],
+  "license": "MIT"
+}

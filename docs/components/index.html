@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Components · Baseplate</title>
+<meta name="description" content="VFX and sounds for Roblox games. Copy them into your project and own them.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --stud-blue:#1F4BFF;
+  --stud-blue-deep:#1436C4;
+  --ink:#111111;
+  --ink-raised:#1B1B1A;
+  --ring:#2A2A28;
+  --plate:#F4F2EC;
+  --stone:#55534E;
+  --stone-light:#B9B6AE;
+  --seam:#DEDBD2;
+  --white:#FFFFFF;
+  --ease:cubic-bezier(0.22, 1, 0.36, 1);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--stud-blue);outline-offset:2px;border-radius:6px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--seam)}
+.top-in{max-width:1400px;margin:0 auto;height:60px;padding:0 24px;display:flex;align-items:center;gap:28px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:19px;letter-spacing:-.045em}
+.logo svg{width:20px;height:20px}
+.top nav{display:flex;gap:4px;font-size:14px;font-weight:500}
+.top nav a{padding:7px 12px;border-radius:999px;color:var(--stone)}
+.top nav a:hover{color:var(--ink);background:var(--plate)}
+.top nav a.on{color:var(--ink)}
+
+/* layout */
+.layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px;padding:0 24px}
+.side{position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:32px 0 48px}
+.side h4{margin:0 0 6px;padding:0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.side ul{list-style:none;margin:0 0 24px;padding:0}
+.side a{display:block;padding:5px 10px;border-radius:8px;font-size:14px;color:var(--stone)}
+.side a:hover{color:var(--ink);background:var(--plate)}
+.side a.on{color:var(--ink);font-weight:600;background:var(--plate)}
+main{padding:40px 0 96px;min-width:0;max-width:820px}
+
+.crumb{font-size:14px;color:var(--stone);margin-bottom:10px}
+h1{font-size:36px;line-height:1.1;letter-spacing:-.04em;font-weight:600;margin:0 0 10px}
+.lead{font-size:18px;color:var(--stone);margin:0 0 32px}
+h2{font-size:22px;letter-spacing:-.03em;font-weight:600;margin:48px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--seam)}
+h3{font-size:17px;font-weight:600;margin:28px 0 8px}
+p{margin:0 0 14px}
+main ol,main ul{padding-left:22px;margin:0 0 14px}
+main li{margin:4px 0}
+code{font-family:var(--mono);font-size:.86em;background:var(--plate);padding:2px 6px;border-radius:5px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--plate);color:var(--stone);margin-right:6px}
+
+/* tabs */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--seam);margin-bottom:16px}
+.tabs button{border:0;background:none;padding:8px 14px;font-size:14px;font-weight:500;color:var(--stone);border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* preview */
+.stage{position:relative;height:360px;border-radius:16px;background:radial-gradient(120% 90% at 50% 100%,#22221f 0%,var(--ink) 60%);overflow:hidden}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.stage .hint{position:absolute;left:16px;bottom:14px;font-size:13px;color:#8c8a84}
+.stage .replay{position:absolute;right:14px;bottom:12px;border:0;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;background:rgba(244,242,236,.1);color:var(--plate)}
+.stage .replay:hover{background:rgba(244,242,236,.18)}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border:0;border-radius:50%;background:var(--stud-blue);display:grid;place-items:center;transition:transform .2s var(--ease),background .2s}
+.play:hover{background:var(--stud-blue-deep);transform:translate(-50%,-50%) scale(1.05)}
+.play svg{width:28px;height:28px;fill:#fff}
+
+/* code */
+.code{position:relative;border-radius:12px;background:var(--ink);color:#e9e7e1;margin:0 0 16px}
+.code pre{margin:0;padding:16px 56px 16px 18px;overflow:auto;font-family:var(--mono);font-size:13.5px;line-height:1.6;max-height:520px;tab-size:2}
+.code .copy{position:absolute;top:10px;right:10px;width:32px;height:32px;border:0;border-radius:8px;background:rgba(244,242,236,.08);display:grid;place-items:center}
+.code .copy:hover{background:rgba(244,242,236,.16)}
+.code .copy svg{width:15px;height:15px;stroke:#e9e7e1;fill:none;stroke-width:2}
+.k{color:#ff7b72}.s{color:#a5d6ff}.n{color:#ffa657}.c{color:#8b949e}.f{color:#d2a8ff}
+
+/* grid on overview */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-bottom:12px}
+.card{display:block;border-radius:14px;box-shadow:0 0 0 1px var(--seam);overflow:hidden;transition:box-shadow .2s,transform .2s var(--ease)}
+.card:hover{box-shadow:0 0 0 1px var(--stone-light);transform:translateY(-2px)}
+.card .thumb{height:120px;background:var(--ink);position:relative}
+.card .thumb canvas{position:absolute;inset:0;width:100%;height:100%}
+.card .thumb.snd{display:grid;place-items:center}
+.card .thumb.snd svg{width:40px;height:40px;stroke:var(--stone-light);fill:none;stroke-width:1.6}
+.card .meta{padding:12px 14px}
+.card b{display:block;font-family:var(--mono);font-size:14px;font-weight:500}
+.card span{font-size:13px;color:var(--stone)}
+
+.pager{display:flex;justify-content:space-between;margin-top:56px;gap:12px}
+.pager a{padding:10px 16px;border-radius:10px;box-shadow:0 0 0 1px var(--seam);font-size:14px;font-weight:500}
+.pager a:hover{box-shadow:0 0 0 1px var(--stone-light)}
+
+.menu{display:none}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:0;padding:0 16px}
+  .side{position:static;height:auto;padding:16px 0 0;display:none}
+  .side.open{display:block}
+  .menu{display:inline-flex;margin-left:auto;border:0;background:var(--plate);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:500}
+  .top nav{display:none}
+  .top-in{padding:0 16px}
+  main{padding-top:24px}
+  .stage{height:280px}
+  h1{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="logo" href="../" aria-label="Baseplate home">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="currentColor" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
+      baseplate
+    </a>
+    <nav aria-label="Main">
+      <a href="../">Games</a>
+      <a class="on" href="./">Components</a>
+    </nav>
+    <button class="menu" id="menu" aria-expanded="false" aria-controls="side">Menu</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="side" id="side" aria-label="Components"></aside>
+  <main id="main"><p class="lead">Loading…</p></main>
+</div>
+
+<script>
+const REGISTRY = "../r/";
+const SITE_REGISTRY = "https://abdullahridwan.github.io/baseplate/r/index.json";
+const ICON_COPY = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+const ICON_CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>';
+const ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+const ICON_WAVE = '<svg viewBox="0 0 48 48"><path d="M4 24h4M12 16v16M18 10v28M24 18v12M30 6v36M36 14v20M42 22v4"/></svg>';
+
+let index = null;
+const $ = (s) => document.querySelector(s);
+const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+
+/* ---------- Luau highlighting (just enough for our files) ---------- */
+function highlight(src, lang) {
+  if (lang === "sh") return esc(src).replace(/^(npx|baseplate)/gm, '<span class="f">$1</span>');
+  if (lang === "text") return esc(src);
+  const re = /(--[^\n]*)|("(?:[^"\\]|\\.)*")|\b(local|function|return|end|if|then|else|elseif|for|in|do|while|not|and|or|nil|true|false)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Z][A-Za-z0-9]+)(?=\.)/g;
+  let out = "", last = 0, m;
+  while ((m = re.exec(src))) {
+    out += esc(src.slice(last, m.index));
+    const cls = m[1] ? "c" : m[2] ? "s" : m[3] ? "k" : m[4] ? "n" : "f";
+    out += `<span class="${cls}">${esc(m[0])}</span>`;
+    last = re.lastIndex;
+  }
+  return out + esc(src.slice(last));
+}
+
+function codeBlock(src, lang = "lua") {
+  const id = "c" + Math.random().toString(36).slice(2);
+  codeStore[id] = src;
+  return `<div class="code"><pre>${highlight(src, lang)}</pre><button class="copy" data-copy="${id}" aria-label="Copy">${ICON_COPY}</button></div>`;
+}
+const codeStore = {};
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-copy]");
+  if (!btn) return;
+  try { await navigator.clipboard.writeText(codeStore[btn.dataset.copy]); } catch {}
+  btn.innerHTML = ICON_CHECK;
+  setTimeout(() => (btn.innerHTML = ICON_COPY), 1400);
+});
+
+function tabs(panels) {
+  const id = "t" + Math.random().toString(36).slice(2);
+  const heads = panels.map((p, i) => `<button role="tab" aria-selected="${i === 0}" data-tabs="${id}" data-i="${i}">${p.label}</button>`).join("");
+  const bodies = panels.map((p, i) => `<div role="tabpanel" data-panel="${id}" ${i ? "hidden" : ""}>${p.html}</div>`).join("");
+  return `<div class="tabs" role="tablist">${heads}</div>${bodies}`;
+}
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-tabs]");
+  if (!b) return;
+  document.querySelectorAll(`[data-tabs="${b.dataset.tabs}"]`).forEach((x) => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll(`[data-panel="${b.dataset.tabs}"]`).forEach((p, i) => (p.hidden = String(i) !== b.dataset.i));
+  window.dispatchEvent(new Event("resize"));
+});
+
+/* ---------- particle preview ----------
+   A 2D stand-in for each effect's ParticleEmitter settings in r/vfx/*.luau.
+   Units are studs; keep these in step when an effect is retuned. */
+const PRESETS = {
+  coin_pickup: [
+    { n: 14, life: [0.35, 0.6], speed: [8, 14], spread: 180, drag: 6, acc: [0, 6], size: [[0, 0.6], [1, 0]], alpha: [[0, 1], [0.7, 0.8], [1, 0]], colors: ["#ffec8c", "#ffb020"], add: true, spin: true },
+    { n: 1, life: [0.25, 0.25], speed: [0, 0], size: [[0, 1.5], [1, 3.5]], alpha: [[0, 0.7], [1, 0]], colors: ["#ffd65a"], add: true, glow: true },
+  ],
+  hit: [
+    { n: 10, life: [0.15, 0.3], speed: [20, 32], spread: 180, drag: 10, size: [[0, 0.4], [1, 0]], alpha: [[0, 1], [1, 1]], colors: ["#ffffff", "#ff8c28"], add: true, streak: 2.5 },
+    { n: 1, life: [0.1, 0.1], speed: [0, 0], size: [[0, 2], [1, 3]], alpha: [[0, 0.9], [1, 0]], colors: ["#fff5dc"], add: true, glow: true },
+  ],
+  level_up: [
+    { n: 30, life: [0.9, 1.4], speed: [4, 9], spread: 25, up: true, acc: [0, 4], size: [[0, 0.2], [0.3, 0.7], [1, 0]], alpha: [[0, 1], [1, 0]], colors: ["#96e6ff", "#3c78ff"], add: true, spin: true, origin: -3 },
+    { n: 1, life: [0.5, 0.5], speed: [0, 0], size: [[0, 1], [1, 8]], alpha: [[0, 0.8], [1, 0]], colors: ["#aadcff"], add: true, ring: true, origin: -3 },
+  ],
+  confetti: [
+    { n: 60, life: [1.8, 2.6], speed: [25, 40], spread: 35, up: true, acc: [0, -30], drag: 2.5, size: [[0, 0.45], [1, 0.45]], alpha: [[0, 1], [0.85, 1], [1, 0]], pick: ["#ff506e", "#ffc828", "#3cdc78", "#3ca0ff", "#be5aff"], confetti: true, origin: -5 },
+  ],
+  heal: [
+    { n: 18, life: [1, 1.6], speed: [1, 3], spread: 180, acc: [0, 5], drag: 1, size: [[0, 0], [0.3, 0.6], [1, 0]], alpha: [[0, 0.8], [1, 0]], colors: ["#aaffaa", "#28c85a"], add: true },
+  ],
+  explosion: [
+    { n: 10, life: [1.5, 2.5], speed: [3, 8], spread: 180, acc: [0, 3], drag: 2, size: [[0, 3], [1, 8]], alpha: [[0, 0.6], [1, 0]], colors: ["#5a5550", "#282624"], smoke: true },
+    { n: 12, life: [0.35, 0.6], speed: [6, 14], spread: 180, drag: 5, size: [[0, 2], [1, 5]], alpha: [[0, 1], [1, 0]], grad: ["#fffac8", "#ff8c1e", "#781e0a"], add: true, glow: true },
+    { n: 20, life: [0.6, 1.1], speed: [25, 45], spread: 180, acc: [0, -25], drag: 3, size: [[0, 0.35], [1, 0]], alpha: [[0, 1], [1, 1]], colors: ["#ffc850", "#ff5014"], add: true, streak: 1.6 },
+  ],
+};
+
+const rand = (a, b) => a + Math.random() * (b - a);
+const curve = (pts, t) => {
+  for (let i = 1; i < pts.length; i++) if (t <= pts[i][0]) {
+    const [t0, v0] = pts[i - 1], [t1, v1] = pts[i];
+    return v0 + (v1 - v0) * ((t - t0) / (t1 - t0 || 1));
+  }
+  return pts[pts.length - 1][1];
+};
+const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const mixc = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+const gradAt = (stops, t) => {
+  const s = stops.map(hex), x = t * (s.length - 1), i = Math.min(Math.floor(x), s.length - 2);
+  return mixc(s[i], s[i + 1], x - i);
+};
+
+class Preview {
+  constructor(canvas, name, { scale = 1 } = {}) {
+    this.c = canvas; this.ctx = canvas.getContext("2d"); this.name = name;
+    // replay shortly after the longest particle dies, so quick effects don't leave a long empty gap
+    this.loop = Math.max(...(PRESETS[name] || []).map((e) => e.life[1])) + 0.7; this.scale = scale; this.parts = []; this.t = 0; this.alive = true;
+    this.burst();
+    this.last = performance.now();
+    const tick = (now) => {
+      if (!this.alive || !this.c.isConnected) return;
+      const dt = Math.max(0, Math.min((now - this.last) / 1000, 0.05)); this.last = now; // rAF's first timestamp can predate performance.now()
+      this.t += dt;
+      if (this.t > this.loop) { this.t = 0; this.burst(); }
+      this.step(dt); this.draw();
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  burst() {
+    for (const e of PRESETS[this.name] || []) {
+      for (let i = 0; i < e.n; i++) {
+        // y is up. `up` emitters fan out from straight up by `spread` degrees; the rest go every way.
+        const sp = rand(...e.speed);
+        const a = e.up ? Math.PI / 2 + rand(-1, 1) * (e.spread * Math.PI / 180) : rand(0, Math.PI * 2);
+        this.parts.push({
+          e, x: 0, y: e.origin || 0, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+          age: 0, life: rand(...e.life), rot: rand(0, Math.PI * 2), vr: e.spin || e.confetti ? rand(-6, 6) : 0,
+          col: e.pick ? hex(e.pick[i % e.pick.length]) : null, flip: rand(0, 6),
+        });
+      }
+    }
+  }
+  step(dt) {
+    for (const p of this.parts) {
+      const e = p.e, drag = Math.exp(-(e.drag || 0) * dt);
+      p.vx *= drag; p.vy *= drag;
+      if (e.acc) { p.vx += e.acc[0] * dt; p.vy += e.acc[1] * dt; }
+      p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt; p.age += dt;
+    }
+    this.parts = this.parts.filter((p) => p.age < p.life);
+  }
+  draw() {
+    const { c, ctx } = this, dpr = window.devicePixelRatio || 1;
+    const w = c.clientWidth, h = c.clientHeight;
+    if (c.width !== w * dpr) { c.width = w * dpr; c.height = h * dpr; }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    const px = Math.min(w, h) / 15 * this.scale; // pixels per stud
+    const cx = w / 2, cy = h * 0.56;
+    for (const p of this.parts) {
+      const e = p.e, t = p.age / p.life;
+      const size = curve(e.size, t) * px, alpha = curve(e.alpha, t);
+      if (size <= 0 || alpha <= 0.002) continue;
+      const rgb = p.col || (e.grad ? gradAt(e.grad, t) : e.colors.length > 1 ? mixc(hex(e.colors[0]), hex(e.colors[1]), t) : hex(e.colors[0]));
+      const rgba = (a) => `rgba(${rgb},${a.toFixed(3)})`, col = rgba(alpha);
+      const x = cx + p.x * px, y = cy - p.y * px;
+      ctx.globalCompositeOperation = e.add ? "lighter" : "source-over";
+      ctx.save(); ctx.translate(x, y);
+      if (e.ring) {
+        ctx.scale(1, 0.32); ctx.strokeStyle = col; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(0, 0, size / 2, 0, Math.PI * 2); ctx.stroke();
+      } else if (e.confetti) {
+        ctx.rotate(p.rot); ctx.scale(1, Math.cos(p.age * 9 + p.flip));
+        ctx.fillStyle = col; ctx.fillRect(-size / 2, -size / 3, size, size * 0.66);
+      } else if (e.streak) {
+        const ang = Math.atan2(-p.vy, p.vx), len = size * (1 + e.streak * Math.hypot(p.vx, p.vy) / 12);
+        ctx.rotate(ang); ctx.fillStyle = col;
+        ctx.beginPath(); ctx.ellipse(0, 0, len / 2, size / 4, 0, 0, Math.PI * 2); ctx.fill();
+      } else {
+        const g = ctx.createRadialGradient(0, 0, 0, 0, 0, size / 2);
+        const soft = e.smoke || e.glow;
+        g.addColorStop(0, col); g.addColorStop(soft ? 0.35 : 0.2, rgba(alpha * (soft ? 0.5 : 0.6)));
+        g.addColorStop(1, rgba(0));
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, size / 2, 0, Math.PI * 2); ctx.fill();
+        if (!soft) { // the sparkle's star cross
+          ctx.rotate(p.rot); ctx.fillStyle = col;
+          ctx.fillRect(-size * 0.6, -size * 0.04, size * 1.2, size * 0.08);
+          ctx.fillRect(-size * 0.04, -size * 0.6, size * 0.08, size * 1.2);
+        }
+      }
+      ctx.restore();
+    }
+    ctx.globalCompositeOperation = "source-over";
+  }
+  replay() { this.t = 0; this.burst(); }
+}
+let previews = [];
+const stopPreviews = () => { previews.forEach((p) => (p.alive = false)); previews = []; };
+
+/* ---------- sound preview ---------- */
+let audioCtx = null;
+const buffers = {};
+async function playSound(name) {
+  audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+  if (!buffers[name]) {
+    const data = await (await fetch(`${REGISTRY}sfx/${name}.ogg`)).arrayBuffer();
+    buffers[name] = await audioCtx.decodeAudioData(data);
+  }
+  const src = audioCtx.createBufferSource();
+  src.buffer = buffers[name]; src.connect(audioCtx.destination); src.start();
+}
+
+/* ---------- pages ---------- */
+const byKind = (k) => index.items.filter((i) => i.kind === k);
+const label = { vfx: "Effects", sfx: "Sounds" };
+const route = () => location.hash.replace(/^#\/?/, "") || "intro";
+
+function sidebar() {
+  const r = route();
+  const link = (href, text) => `<li><a href="#/${href}" class="${r === href ? "on" : ""}">${text}</a></li>`;
+  $("#side").innerHTML =
+    `<h4>Getting started</h4><ul>${link("intro", "Introduction")}${link("installation", "Installation")}${link("all", "All components")}</ul>` +
+    ["vfx", "sfx"].map((k) => `<h4>${label[k]}</h4><ul>${byKind(k).map((i) => link(`${k}/${i.name}`, i.name)).join("")}</ul>`).join("");
+}
+
+function introPage() {
+  return `
+    <div class="crumb">Docs</div>
+    <h1>Introduction</h1>
+    <p class="lead">Effects and sounds for Roblox games, ready for a v0. This isn't a package you install. You copy the files into your game and they're yours to change.</p>
+    <p>Every Roblox game needs juice: a sparkle when you grab a coin, a click when you press a button, music that isn't silence. The usual options are community assets of mixed quality and unclear licenses, or building it all yourself. Baseplate gives you one consistent set that your AI agent can add in seconds.</p>
+    <h3>How it's different</h3>
+    <ul>
+      <li><b>You own the code.</b> Effects are plain Luau files with the particle settings spelled out. Tweak anything.</li>
+      <li><b>Nothing shared to break.</b> Sounds are uploaded to your own Roblox account, so nobody can delete them out from under your game.</li>
+      <li><b>Clean licenses.</b> Every sound is original and CC0. Effects and code are MIT.</li>
+      <li><b>Agent-native.</b> One file, <code>r/index.json</code>, describes everything. Point any agent at it.</li>
+    </ul>
+    <h3>Use it</h3>
+    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)
+
+Juice.play("coin_pickup", coinPart) -- effect + sound together
+Juice.vfx("explosion", Vector3.new(0, 5, 0))
+Juice.sfx("ui_click") -- no target: plays flat (2D)`)}
+    <div class="pager"><span></span><a href="#/installation">Installation →</a></div>`;
+}
+
+function installPage() {
+  return `
+    <div class="crumb">Docs</div>
+    <h1>Installation</h1>
+    <p class="lead">Works with any Rojo project. If you built your game from a Baseplate recipe, you're already set up.</p>
+    <h3>With your AI agent</h3>
+    <p>Paste this into Claude Code, Cursor or Codex:</p>
+    ${codeBlock(`Add coin_pickup and confetti from ${SITE_REGISTRY}`, "text")}
+    <h3>With the CLI</h3>
+    <p>From your project root (next to <code>default.project.json</code>):</p>
+    ${codeBlock("npx baseplate-cli add coin_pickup confetti", "sh")}
+    <p>See everything with <code>npx baseplate-cli list</code>.</p>
+    <h3>What gets added</h3>
+    ${codeBlock(`src/shared/Juice/init.luau          the runtime (once)
+src/shared/Juice/Sounds.luau        your sound IDs (once)
+src/shared/Juice/Effects/<name>.luau one per effect
+assets/sfx/<name>.ogg               one per sound, for you to upload`, "text")}
+    <h3>Sounds: one step from you</h3>
+    <p>Roblox only plays audio that's been uploaded as an asset. For each sound:</p>
+    <ol>
+      <li>Upload <code>assets/sfx/&lt;name&gt;.ogg</code> at <a href="https://create.roblox.com/dashboard/creations" style="text-decoration:underline">Creator Hub</a> (Upload asset → Audio).</li>
+      <li>Paste the asset ID into its <code>id = ""</code> in <code>Sounds.luau</code>.</li>
+    </ol>
+    <p>Until then, Juice skips that sound with a single warning, so nothing breaks.</p>
+    <div class="pager"><a href="#/intro">← Introduction</a><a href="#/all">All components →</a></div>`;
+}
+
+function allPage() {
+  const card = (i) => `<a class="card" href="#/${i.kind}/${i.name}">
+      <div class="thumb ${i.kind === "sfx" ? "snd" : ""}">${i.kind === "vfx" ? `<canvas data-fx="${i.name}"></canvas>` : ICON_WAVE}</div>
+      <div class="meta"><b>${i.name}</b><span>${i.description}</span></div></a>`;
+  return `
+    <div class="crumb">Docs</div>
+    <h1>All components</h1>
+    <p class="lead">${byKind("vfx").length} effects and ${byKind("sfx").length} sounds. Items with the same name pair up: <code>Juice.play</code> fires both.</p>
+    <h2>Effects</h2><div class="grid">${byKind("vfx").map(card).join("")}</div>
+    <h2>Sounds</h2><div class="grid">${byKind("sfx").map(card).join("")}</div>`;
+}
+
+async function itemPage(kind, name) {
+  const item = index.items.find((i) => i.kind === kind && i.name === name);
+  if (!item) return `<h1>Not found</h1><p>No ${kind} named <code>${esc(name)}</code>. <a href="#/all" style="text-decoration:underline">See all components</a>.</p>`;
+  const twin = index.items.find((i) => i.name === name && i.kind !== kind && i.kind !== "runtime");
+  const src = item.files[0].src;
+  const source = kind === "vfx" ? await (await fetch(REGISTRY + src)).text() : null;
+
+  const preview = kind === "vfx"
+    ? `<div class="stage"><canvas id="fx"></canvas><span class="hint">Approximate 2D preview</span><button class="replay" id="replay">Replay</button></div>`
+    : `<div class="stage"><button class="play" id="play" aria-label="Play ${name}">${ICON_PLAY}</button><span class="hint">${item.description}</span></div>`;
+  const panels = [{ label: "Preview", html: preview }];
+  if (source) panels.push({ label: "Code", html: codeBlock(source) });
+
+  const usage = kind === "vfx"
+    ? `Juice.vfx("${name}", part) -- a BasePart, Model or Vector3`
+    : `Juice.sfx("${name}") -- 2D, or pass a part for 3D sound`;
+  const all = [...byKind("vfx"), ...byKind("sfx")];
+  const at = all.indexOf(item), prev = all[at - 1], next = all[at + 1];
+
+  return `
+    <div class="crumb">${label[kind]}</div>
+    <h1>${name}</h1>
+    <p class="lead">${item.description}</p>
+    <p>${item.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</p>
+    ${tabs(panels)}
+    <h2>Installation</h2>
+    ${tabs([
+      { label: "CLI", html: codeBlock(`npx baseplate-cli add ${name}`, "sh") },
+      { label: "Agent", html: codeBlock(`Add ${name} from ${SITE_REGISTRY}`, "text") },
+    ])}
+    ${kind === "sfx" ? `<p>Then upload <code>assets/sfx/${name}.ogg</code> to your Roblox account and paste its asset ID into <code>Sounds.luau</code>. <a href="#/installation" style="text-decoration:underline">How</a>.</p>` : ""}
+    <h2>Usage</h2>
+    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)\n\n${usage}${twin ? `\nJuice.play("${name}", part) -- with the matching ${twin.kind === "vfx" ? "effect" : "sound"}` : ""}`)}
+    ${twin ? `<p>Pairs with the <a href="#/${twin.kind}/${name}" style="text-decoration:underline">${name} ${twin.kind === "vfx" ? "effect" : "sound"}</a>.</p>` : ""}
+    <div class="pager">${prev ? `<a href="#/${prev.kind}/${prev.name}">← ${prev.name}</a>` : "<span></span>"}${next ? `<a href="#/${next.kind}/${next.name}">${next.name} →</a>` : ""}</div>`;
+}
+
+async function render() {
+  stopPreviews();
+  sidebar();
+  $("#side").classList.remove("open");
+  const r = route();
+  const [kind, name] = r.split("/");
+  $("#main").innerHTML =
+    r === "intro" ? introPage() : r === "installation" ? installPage() : r === "all" ? allPage()
+    : (kind === "vfx" || kind === "sfx") && name ? await itemPage(kind, name) : introPage();
+  document.title = (name || { intro: "Components", installation: "Installation", all: "All components" }[r] || "Components") + " · Baseplate";
+  window.scrollTo(0, 0);
+
+  const fx = $("#fx");
+  if (fx) {
+    const p = new Preview(fx, name);
+    previews.push(p);
+    $("#replay").onclick = () => p.replay();
+  }
+  document.querySelectorAll("[data-fx]").forEach((c) => previews.push(new Preview(c, c.dataset.fx, { scale: 1.2 })));
+  const play = $("#play");
+  if (play) play.onclick = () => playSound(name).catch(() => (play.title = "Couldn't load audio"));
+}
+
+$("#menu").onclick = () => {
+  const open = $("#side").classList.toggle("open");
+  $("#menu").setAttribute("aria-expanded", open);
+};
+
+fetch(REGISTRY + "index.json")
+  .then((r) => r.json())
+  .then((data) => { index = data; window.addEventListener("hashchange", render); render(); })
+  .catch(() => ($("#main").innerHTML = "<h1>Couldn't load the registry</h1><p>Try reloading the page.</p>"));
+</script>
+</body>
+</html>
