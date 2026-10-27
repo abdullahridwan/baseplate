@@ -3,170 +3,456 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baseplate: build Roblox games with AI, faster and cheaper</title>
-<meta name="description" content="Free recipes that let AI build the basics of your Roblox game, so you can spend your time on the fun part.">
+<title>Baseplate: build Roblox games with AI</title>
+<meta name="description" content="Baseplate lets AI build the basics of your Roblox game, fast and cheap, so you can spend your time on the fun part.">
 <meta property="og:title" content="Baseplate: Make better games.">
-<meta property="og:description" content="Free recipes that let AI build the basics of your Roblox game.">
+<meta property="og:description" content="Let AI build the basics of your Roblox game. You build the fun part.">
+<meta property="og:image" content="https://abdullahridwan.github.io/baseplate/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap">
 <style>
 :root{
   --blue: oklch(0.52 0.25 265);
-  --blue-deep: oklch(0.44 0.22 265);
+  --blue-deep: oklch(0.45 0.23 265);
+  --blue-wash: oklch(0.95 0.035 265);
   --ink: oklch(0.2 0.006 85);
-  --ink-2: oklch(0.4 0.008 85);
-  --seam: oklch(0.89 0.012 85);
-  --plate: oklch(0.965 0.009 85);
-  --paper: oklch(0.99 0.004 85);
+  --ink-2: oklch(0.42 0.008 85);
+  --ink-3: oklch(0.56 0.008 85);
+  --seam: oklch(0.9 0.01 85);
+  --plate: oklch(0.97 0.008 85);
+  --paper: oklch(0.993 0.003 85);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --r-lg: 28px;
+  --r-md: 18px;
+  --shadow: 0 1px 1px oklch(0.2 0.01 85 / .04), 0 8px 24px -12px oklch(0.2 0.02 265 / .12), 0 40px 80px -48px oklch(0.25 0.05 265 / .25);
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--plate);color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
-a{color:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--plate);color:var(--ink);font-family:'Inter Tight',system-ui,sans-serif;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
 svg{display:block}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
 
-/* nav */
-nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;font-size:22px;letter-spacing:-.045em}
-.logo svg{width:24px;height:24px}
-.nav-link{font-size:15px;font-weight:500;text-decoration:none;color:var(--ink-2)}
-.nav-link:hover{color:var(--ink)}
+/* ---------- nav ---------- */
+.nav{position:fixed;top:16px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 16px;pointer-events:none}
+.nav-in{pointer-events:auto;display:flex;align-items:center;gap:6px;padding:7px 7px 7px 18px;border-radius:999px;background:color-mix(in oklch,var(--paper) 78%,transparent);backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);border:1px solid color-mix(in oklch,var(--seam) 80%,transparent);box-shadow:0 8px 30px -14px oklch(0.2 0.02 265 / .25);width:min(720px,100%);justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;font-weight:600;font-size:19px;letter-spacing:-.045em}
+.logo svg{width:20px;height:20px}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a:not(.btn){padding:9px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--ink-2);transition:color .2s,background .2s}
+.nav-links a:not(.btn):hover{color:var(--ink);background:oklch(0.2 0.006 85 / .05)}
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;gap:8px;min-height:54px;padding:0 26px;border-radius:12px;font:600 17px/1 'Inter Tight',sans-serif;text-decoration:none;transition:background .2s,border-color .2s}
-.btn-main{background:var(--blue);color:var(--paper)}
-.btn-main:hover{background:var(--blue-deep)}
-.btn-plain{border:1px solid var(--seam);background:var(--paper)}
-.btn-plain:hover{border-color:var(--ink-2)}
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:999px;font:600 16px/1 'Inter Tight',sans-serif;letter-spacing:-.01em;transition:transform .25s var(--ease),background .2s,box-shadow .25s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-blue{background:var(--blue);color:var(--paper);box-shadow:inset 0 1px 0 oklch(1 0 0 / .18),0 6px 16px -6px oklch(0.52 0.25 265 / .6)}
+.btn-blue:hover{background:var(--blue-deep);transform:translateY(-1px);box-shadow:inset 0 1px 0 oklch(1 0 0 / .18),0 10px 22px -8px oklch(0.52 0.25 265 / .7)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:oklch(0.3 0.006 85)}
+.btn-soft{background:var(--paper);color:var(--ink);box-shadow:0 0 0 1px var(--seam)}
+.btn-soft:hover{box-shadow:0 0 0 1px var(--ink-3);transform:translateY(-1px)}
+.btn-sm{height:38px;padding:0 16px;font-size:14px}
 .btn .arrow{transition:transform .25s var(--ease)}
 .btn:hover .arrow{transform:translateX(3px)}
 
-/* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;align-items:center;padding:clamp(48px,9vw,120px) 0 clamp(72px,10vw,128px)}
-h1{font-size:clamp(52px,7.5vw,92px);line-height:.95;letter-spacing:-.05em;font-weight:600;margin:0 0 24px}
-.hero p{font-size:clamp(19px,2vw,22px);color:var(--ink-2);margin:0 0 36px;max-width:480px}
-.buttons{display:flex;flex-wrap:wrap;gap:12px}
-.note{margin-top:20px;font-size:15px;color:var(--ink-2)}
+/* ---------- hero ---------- */
+.hero{position:relative;padding:150px 0 0;text-align:center}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:900px;z-index:-1;background-image:radial-gradient(oklch(0.2 0.006 85 / .09) 1.2px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%)}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:5px 14px 5px 5px;border-radius:999px;background:var(--paper);box-shadow:0 0 0 1px var(--seam);font-size:14px;font-weight:500;color:var(--ink-2);transition:box-shadow .2s}
+.pill:hover{box-shadow:0 0 0 1px var(--ink-3)}
+.pill b{background:var(--blue);color:var(--paper);font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+h1{font-size:clamp(56px,9vw,120px);line-height:.9;letter-spacing:-.06em;font-weight:600;margin:28px auto 26px;max-width:11ch}
+.hero-sub{font-size:clamp(19px,2vw,22px);line-height:1.45;color:var(--ink-2);max-width:520px;margin:0 auto 36px}
+.ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}
+.free{margin-top:18px;font-size:14px;color:var(--ink-3)}
 
-/* hero visual: the mark, explained */
-.visual{background:var(--paper);border:1px solid var(--seam);border-radius:24px;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:auto 1fr;gap:20px 28px;align-items:center}
-.visual svg{width:clamp(120px,16vw,180px);height:auto;grid-row:span 2}
-.label{display:flex;flex-direction:column;gap:2px}
-.label b{font-size:20px;letter-spacing:-.02em}
-.label span{font-size:16px;color:var(--ink-2)}
-.label i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:1px}
-.label .you i{border:2.5px solid var(--ink)}
-.label .us i{background:var(--blue)}
+/* hero stage */
+.stage{position:relative;margin:clamp(56px,7vw,88px) auto 0;max-width:1060px;aspect-ratio:16/9.2;border-radius:var(--r-lg);background:linear-gradient(180deg,var(--paper),color-mix(in oklch,var(--paper) 60%,var(--blue-wash)));box-shadow:var(--shadow),0 0 0 1px var(--seam);overflow:hidden}
+.stage svg{position:absolute;left:50%;top:52%;width:78%;height:auto;transform:translate(-50%,-50%)}
+.chip{position:absolute;display:flex;align-items:center;gap:8px;padding:9px 14px 9px 10px;border-radius:999px;background:var(--paper);box-shadow:0 0 0 1px var(--seam),0 10px 24px -14px oklch(0.2 0.02 265 / .35);font-size:15px;font-weight:600;white-space:nowrap;opacity:0;transform:translateY(10px) scale(.96)}
+.chip i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--blue);color:var(--paper)}
+.chip i svg{width:12px;height:12px}
+.chip.idea i{background:var(--ink)}
+.chip.on{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.chip.float{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-6px)}}
+.c1{left:6%;top:58%}.c2{left:15%;top:78%}.c3{left:38%;bottom:6%}.c4{right:7%;top:14%}
 
-/* sections */
-section{padding:clamp(72px,10vw,120px) 0;border-top:1px solid var(--seam)}
-h2{font-size:clamp(36px,4.6vw,52px);line-height:1.02;letter-spacing:-.04em;font-weight:600;margin:0 0 48px;max-width:640px}
+/* iso pieces */
+.drop{opacity:0;transform:translateY(-26px);transform-box:fill-box}
+.drop.in{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .7s var(--ease)}
+.fade{opacity:0}
+.fade.in{opacity:1;transition:opacity .6s var(--ease)}
 
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
-.steps .n{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--paper);font-weight:600;font-size:17px;margin-bottom:20px}
-.steps h3{font-size:22px;letter-spacing:-.02em;margin:0 0 6px;font-weight:600}
-.steps p{margin:0;color:var(--ink-2)}
+/* ---------- works with ---------- */
+.works{padding:56px 0 0;text-align:center}
+.works p{margin:0 0 18px;font-size:14px;color:var(--ink-3)}
+.works ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;flex-wrap:wrap;gap:12px 44px}
+.works li{font-size:20px;font-weight:600;letter-spacing:-.03em;color:var(--ink-2)}
 
-.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.game{display:flex;flex-direction:column;gap:8px;padding:28px;background:var(--paper);border:1px solid var(--seam);border-radius:18px;text-decoration:none;transition:border-color .2s,transform .3s var(--ease)}
-.game:hover{border-color:var(--ink);transform:translateY(-3px)}
-.game h3{margin:0;font-size:26px;letter-spacing:-.03em;font-weight:600}
-.game p{margin:0;color:var(--ink-2);flex-grow:1}
-.game span{margin-top:12px;font-size:16px;font-weight:600;color:var(--blue)}
-.more{margin-top:24px;color:var(--ink-2);font-size:16px}
+/* ---------- sections ---------- */
+section{padding:clamp(96px,12vw,160px) 0 0}
+.head{max-width:620px;margin-bottom:48px}
+.kicker{display:inline-block;font-size:14px;font-weight:600;color:var(--blue);margin-bottom:14px}
+h2{font-size:clamp(40px,5.2vw,64px);line-height:.98;letter-spacing:-.045em;font-weight:600;margin:0}
+.head p{margin:18px 0 0;font-size:19px;color:var(--ink-2)}
 
-.end{text-align:left;background:var(--ink);color:var(--paper);border-radius:28px;padding:clamp(40px,7vw,80px);margin:0 0 clamp(72px,10vw,120px)}
-.end h2{margin-bottom:16px}
-.end p{color:oklch(0.8 0.01 85);margin:0 0 32px;font-size:20px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:var(--paper);border-radius:var(--r-lg);box-shadow:0 0 0 1px var(--seam);padding:28px;display:flex;flex-direction:column;gap:6px;overflow:hidden;transition:box-shadow .3s var(--ease),transform .4s var(--ease)}
+.card:hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--seam),0 24px 48px -28px oklch(0.25 0.05 265 / .35)}
+.card .viz{height:190px;margin:-8px -8px 18px;border-radius:var(--r-md);background:var(--plate);display:grid;place-items:center;position:relative;overflow:hidden}
+.card .num{font-size:14px;font-weight:600;color:var(--ink-3)}
+.card h3{margin:0;font-size:24px;letter-spacing:-.03em;font-weight:600}
+.card p{margin:0;color:var(--ink-2);font-size:17px}
 
-footer{padding:28px 0 48px;font-size:14px;color:var(--ink-2);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-footer a{text-decoration:none}
+.pick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 16px}
+.pick span{padding:10px 16px;border-radius:999px;background:var(--paper);box-shadow:0 0 0 1px var(--seam);font-size:15px;font-weight:600;color:var(--ink-2)}
+.pick span.sel{background:var(--blue);color:var(--paper);box-shadow:0 6px 14px -6px oklch(0.52 0.25 265 / .6)}
+
+.checks{display:grid;gap:10px;width:76%}
+.checks div{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;background:var(--paper);box-shadow:0 0 0 1px var(--seam);font-size:15px;font-weight:500}
+.checks i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--seam);flex-shrink:0;animation:tick 7s var(--ease) infinite}
+.checks i svg{width:11px;height:11px;opacity:0;animation:tickmark 7s var(--ease) infinite}
+.checks div:nth-child(2) i,.checks div:nth-child(2) i svg{animation-delay:.6s}
+.checks div:nth-child(3) i,.checks div:nth-child(3) i svg{animation-delay:1.2s}
+.checks div:nth-child(4) i,.checks div:nth-child(4) i svg{animation-delay:1.8s}
+@keyframes tick{0%,8%{background:transparent;box-shadow:inset 0 0 0 1.5px var(--seam)}14%,86%{background:var(--blue);box-shadow:inset 0 0 0 1.5px var(--blue)}94%,100%{background:transparent;box-shadow:inset 0 0 0 1.5px var(--seam)}}
+@keyframes tickmark{0%,10%{opacity:0;transform:scale(.4)}16%,86%{opacity:1;transform:none}94%,100%{opacity:0}}
+
+.chat{display:grid;gap:10px;width:82%}
+.bubble{padding:11px 15px;border-radius:18px;font-size:15px;line-height:1.35;max-width:88%}
+.bubble.me{justify-self:end;background:var(--ink);color:var(--paper);border-bottom-right-radius:6px}
+.bubble.ai{justify-self:start;background:var(--paper);box-shadow:0 0 0 1px var(--seam);border-bottom-left-radius:6px;display:flex;align-items:center;gap:8px}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:dot 1.2s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.25}30%{opacity:1}}
+
+/* games */
+.games{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:16px}
+.game{position:relative;background:var(--paper);border-radius:var(--r-lg);box-shadow:0 0 0 1px var(--seam);padding:32px;display:flex;flex-direction:column;overflow:hidden;transition:box-shadow .3s var(--ease),transform .4s var(--ease);min-height:300px}
+.game:hover{transform:translateY(-4px);box-shadow:0 0 0 1px var(--seam),0 30px 60px -34px oklch(0.25 0.05 265 / .45)}
+.game.big{grid-row:span 2;min-height:620px}
+.game h3{margin:0;font-size:32px;letter-spacing:-.04em;font-weight:600}
+.game p{margin:6px 0 0;color:var(--ink-2);max-width:300px}
+.game .go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:16px;color:var(--blue);position:relative;z-index:1}
+.game .go .arrow{transition:transform .3s var(--ease)}
+.game:hover .go .arrow{transform:translateX(4px)}
+.game svg{position:absolute;right:-4%;bottom:-2%;width:62%;height:auto;transition:transform .6s var(--ease)}
+.game.big svg{width:86%;right:-6%;bottom:-3%}
+.game:hover svg{transform:translateY(-6px)}
+.soon{margin-top:20px;font-size:16px;color:var(--ink-3)}
+
+/* final */
+.final{margin:clamp(96px,12vw,160px) 0 0;position:relative;overflow:hidden;border-radius:36px;background:var(--blue);color:var(--paper);padding:clamp(48px,8vw,96px) clamp(28px,6vw,80px);text-align:center}
+.final h2{max-width:12ch;margin:0 auto}
+.final p{margin:20px auto 34px;font-size:20px;color:oklch(0.92 0.04 265);max-width:420px}
+.final .btn-ink{background:var(--paper);color:var(--ink)}
+.final .btn-ink:hover{background:var(--plate)}
+.final .bg{position:absolute;inset:0;opacity:.18;background-image:radial-gradient(oklch(0.99 0.004 85) 1.6px,transparent 1.6px);background-size:26px 26px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 50% 100%,#000,transparent 70%);mask-image:radial-gradient(ellipse 60% 70% at 50% 100%,#000,transparent 70%)}
+.final > *:not(.bg){position:relative}
+
+footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:40px 0 56px;font-size:14px;color:var(--ink-3)}
+footer nav{display:flex;gap:24px}
 footer a:hover{color:var(--ink)}
 
-@media (max-width:860px){
-  .hero{grid-template-columns:1fr;gap:40px}
-  .steps,.games{grid-template-columns:1fr}
-  .steps{gap:32px}
+/* reveal */
+.rv{opacity:0;transform:translateY(22px)}
+.rv.in{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.d1.in{transition-delay:.08s}.rv.d2.in{transition-delay:.16s}.rv.d3.in{transition-delay:.24s}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv,.drop,.fade,.chip{opacity:1!important;transform:none!important}
+  .checks i{background:var(--blue)!important;box-shadow:none!important}
+  .checks i svg{opacity:1!important}
 }
-@media (max-width:480px){
+@media (max-width:900px){
+  .steps{grid-template-columns:1fr}
+  .games{grid-template-columns:1fr}
+  .game.big{grid-row:auto;min-height:440px}
+  .chip{font-size:13px;padding:7px 11px 7px 8px}
+  .chip i{width:18px;height:18px}
+  .c2,.c3{display:none}
+}
+@media (max-width:560px){
   .wrap{padding:0 16px}
-  .visual{grid-template-columns:1fr}
-  .visual svg{grid-row:auto}
-  .btn{width:100%;justify-content:center}
+  .nav-links a:not(.btn){display:none}
+  .hero{padding-top:128px}
+  .stage{aspect-ratio:4/4.2}
+  .stage svg{width:104%}
+  .c1{left:4%;top:auto;bottom:6%}
+  .c4{right:4%;top:6%}
+  .game{min-height:320px}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<nav aria-label="Main">
-  <a class="logo" href="#" aria-label="Baseplate home">
-    <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="currentColor" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
-    baseplate
-  </a>
-  <a class="nav-link" href="https://github.com/abdullahridwan/baseplate">GitHub</a>
-</nav>
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="#" aria-label="Baseplate home">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="currentColor" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
+      baseplate
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#games">Games</a>
+      <a class="btn btn-ink btn-sm" href="https://github.com/abdullahridwan/baseplate">GitHub</a>
+    </nav>
+  </div>
+</header>
 
 <main>
-  <header class="hero">
-    <div>
-      <h1>Make better games.</h1>
-      <p>Baseplate lets AI build the basics of your Roblox game for you, fast and cheap. You spend your time on the fun part.</p>
-      <div class="buttons">
-        <a class="btn btn-main" href="#games">Pick a game <span class="arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="btn btn-plain" href="#how">How it works</a>
+  <section class="hero" style="padding-top:150px" aria-labelledby="hero-title">
+    <div class="wrap">
+      <a class="pill rv" href="https://github.com/abdullahridwan/baseplate"><b>New</b> Obby, tycoon and simulator are live <span aria-hidden="true">&rarr;</span></a>
+      <h1 id="hero-title" class="rv d1">Make better games.</h1>
+      <p class="hero-sub rv d2">Let AI build the basics of your Roblox game in minutes. You spend your time on the fun part.</p>
+      <div class="ctas rv d3">
+        <a class="btn btn-blue" href="#games">Start building <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn-soft" href="#how">See how it works</a>
       </div>
-      <p class="note">Free and open source.</p>
-    </div>
+      <p class="free rv d3">Free and open source</p>
 
-    <div class="visual" role="img" aria-label="The Baseplate logo explained: the bottom half is done for you, the top half is yours">
-      <svg viewBox="14 14 72 72" aria-hidden="true"><g fill="var(--blue)"><circle cx="30" cy="70" r="16"/><circle cx="70" cy="70" r="16"/></g><g fill="none" stroke="var(--ink)" stroke-width="8"><circle cx="30" cy="30" r="12"/><circle cx="70" cy="30" r="12"/></g></svg>
-      <div class="label"><b class="you"><i></i>Your ideas</b><span>The world, the story, the fun.</span></div>
-      <div class="label"><b class="us"><i></i>The basics</b><span>Saving, levels, money. Done for you.</span></div>
+      <div class="stage rv d2" role="img" aria-label="A Roblox baseplate. The front half fills with blue studs: the basics, done for you. Then your own builds appear on the open half.">
+        <svg id="hero-iso" aria-hidden="true"></svg>
+        <div class="chip c1" data-at="1500"><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Saves progress</div>
+        <div class="chip c2" data-at="1800"><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Checkpoints</div>
+        <div class="chip c3" data-at="2100"><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Leaderboard</div>
+        <div class="chip idea c4" data-at="2900"><i><svg viewBox="0 0 12 12"><path d="M6 2.5v7M2.5 6h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i>Your ideas go here</div>
+      </div>
     </div>
-  </header>
+  </section>
+
+  <div class="works wrap rv">
+    <p>Works with the AI tools you already use</p>
+    <ul><li>Claude Code</li><li>Cursor</li><li>Codex</li><li>Roblox Studio</li></ul>
+  </div>
 
   <section id="how" aria-labelledby="how-title">
-    <h2 id="how-title">Three steps.</h2>
-    <div class="steps">
-      <div><span class="n">1</span><h3>Pick a game</h3><p>Choose what you want to make: an obby, a tycoon or a simulator.</p></div>
-      <div><span class="n">2</span><h3>AI builds the basics</h3><p>Give the recipe to your AI. It builds the parts every game needs, in minutes.</p></div>
-      <div><span class="n">3</span><h3>Add your ideas</h3><p>Tell your AI what makes your game special. It builds on top, not from scratch.</p></div>
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker rv">How it works</span>
+        <h2 id="how-title" class="rv d1">From idea to game in three steps.</h2>
+      </div>
+      <div class="steps">
+        <div class="card rv">
+          <div class="viz"><div class="pick"><span class="sel">Obby</span><span>Tycoon</span><span>Simulator</span></div></div>
+          <span class="num">01</span><h3>Pick a game</h3><p>Choose what you want to make.</p>
+        </div>
+        <div class="card rv d1">
+          <div class="viz">
+            <div class="checks">
+              <div><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="oklch(0.993 0.003 85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Saving</div>
+              <div><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="oklch(0.993 0.003 85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Levels</div>
+              <div><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="oklch(0.993 0.003 85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Leaderboard</div>
+              <div><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="oklch(0.993 0.003 85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Game screen</div>
+            </div>
+          </div>
+          <span class="num">02</span><h3>AI builds the basics</h3><p>The parts every game needs, done for you.</p>
+        </div>
+        <div class="card rv d2">
+          <div class="viz">
+            <div class="chat">
+              <div class="bubble me">Make it a lava world with a timer</div>
+              <div class="bubble ai"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>Building on your base</div>
+            </div>
+          </div>
+          <span class="num">03</span><h3>Add your ideas</h3><p>Describe what makes your game yours.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="games" aria-labelledby="games-title">
-    <h2 id="games-title">Pick a game to start.</h2>
-    <div class="games">
-      <a class="game" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/obby/IMPLEMENTATION.md">
-        <h3>Obby</h3><p>Stages, checkpoints that save, and traps.</p><span>Get the recipe &rarr;</span>
-      </a>
-      <a class="game" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/tycoon/IMPLEMENTATION.md">
-        <h3>Tycoon</h3><p>Plots to claim, money, and things to buy.</p><span>Get the recipe &rarr;</span>
-      </a>
-      <a class="game" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/simulator/IMPLEMENTATION.md">
-        <h3>Simulator</h3><p>Click to collect, sell, upgrade and rebirth.</p><span>Get the recipe &rarr;</span>
-      </a>
-    </div>
-    <p class="more">More games coming soon. Works with Claude Code, Cursor and Codex.</p>
-  </section>
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker rv">Games</span>
+        <h2 id="games-title" class="rv d1">Pick one to start.</h2>
+      </div>
+      <div class="games">
+        <a class="game big rv" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/obby/IMPLEMENTATION.md">
+          <h3>Obby</h3><p>Stages, checkpoints that save, and traps.</p>
+          <span class="go">Start an obby <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          <svg id="iso-obby" aria-hidden="true"></svg>
+        </a>
+        <a class="game rv d1" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/tycoon/IMPLEMENTATION.md">
+          <h3>Tycoon</h3><p>Claim a plot, earn money, buy upgrades.</p>
+          <span class="go">Start a tycoon <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          <svg id="iso-tycoon" aria-hidden="true"></svg>
+        </a>
+        <a class="game rv d2" href="https://github.com/abdullahridwan/baseplate/blob/main/implementations/simulator/IMPLEMENTATION.md">
+          <h3>Simulator</h3><p>Collect, sell, upgrade and rebirth.</p>
+          <span class="go">Start a simulator <span class="arrow" aria-hidden="true">&rarr;</span></span>
+          <svg id="iso-sim" aria-hidden="true"></svg>
+        </a>
+      </div>
+      <p class="soon rv">More games coming soon.</p>
 
-  <div class="end">
-    <h2>Start your game today.</h2>
-    <p>It's free. Copy it, change it, ship it.</p>
-    <a class="btn btn-main" href="#games">Pick a game <span class="arrow" aria-hidden="true">&rarr;</span></a>
-  </div>
+      <div class="final rv">
+        <div class="bg" aria-hidden="true"></div>
+        <h2>Start building your game today.</h2>
+        <p>Free, open source, and works with your AI.</p>
+        <a class="btn btn-ink" href="#games">Start building <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer>
-  <span>baseplate. Make better games.</span>
-  <span><a href="https://github.com/abdullahridwan/baseplate">GitHub</a> &nbsp;·&nbsp; Not affiliated with Roblox.</span>
-</footer>
-
+<div class="wrap">
+  <footer>
+    <a class="logo" href="#" aria-label="Back to top" style="font-size:17px;color:var(--ink)">
+      <svg viewBox="0 0 100 100" aria-hidden="true" style="width:18px;height:18px"><g fill="currentColor"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="currentColor" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
+      baseplate
+    </a>
+    <nav aria-label="Footer"><a href="https://github.com/abdullahridwan/baseplate">GitHub</a><a href="https://github.com/abdullahridwan/baseplate/blob/main/LICENSE">License</a></nav>
+    <span>Not affiliated with Roblox.</span>
+  </footer>
 </div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS = 'http://www.w3.org/2000/svg';
+  var C = {
+    plateTop:'#FBFAF6', plateL:'#E7E3D9', plateR:'#DAD6CB', seam:'#D6D1C5',
+    blueTop:'#4A6DFF', blueL:'#1F4BFF', blueR:'#1636C2',
+    inkTop:'#3B3A37', inkL:'#1C1C1B', inkR:'#121211',
+    openTop:'#FDFCF9', openSide:'#E4E0D6', hole:'#D9D4C8'
+  };
+
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function pts(list){ return list.map(function(p){ return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '); }
+  function up(p, d){ return [p[0], p[1] - d]; }
+
+  // An isometric plate of cols x rows cells. Returns a projector for cell coordinates.
+  function plate(svg, cols, rows, o){
+    var W = o.w || 56, H = W * 0.5774, T = o.t || 16, pad = o.pad || 6, top = o.top || 60;
+    var ox = pad + rows * W / 2, oy = pad + top;
+    function P(c, r){ return [ox + (c - r) * W / 2, oy + (c + r) * H / 2]; }
+    svg.setAttribute('viewBox', '0 0 ' + ((cols + rows) * W / 2 + pad * 2) + ' ' + (oy + (cols + rows) * H / 2 + T + pad));
+    var a = P(0,0), b = P(cols,0), c = P(cols,rows), d = P(0,rows);
+    var base = el('g', {}, svg);
+    el('polygon', {points: pts([d, c, [c[0], c[1] + T], [d[0], d[1] + T]]), fill: C.plateL}, base);
+    el('polygon', {points: pts([c, b, [b[0], b[1] + T], [c[0], c[1] + T]]), fill: C.plateR}, base);
+    el('polygon', {points: pts([a, b, c, d]), fill: C.plateTop, stroke: C.seam, 'stroke-width': 1}, base);
+    return {P: P, W: W, H: H};
+  }
+
+  function stud(parent, iso, c, r, solid){
+    var g = el('g', {}, parent);
+    var p = iso.P(c + .5, r + .5), rx = iso.W * .27, ry = rx * .5774, h = iso.W * .15;
+    el('ellipse', {cx: p[0], cy: p[1], rx: rx, ry: ry, fill: solid ? C.blueR : C.openSide}, g);
+    el('rect', {x: p[0] - rx, y: p[1] - h, width: rx * 2, height: h, fill: solid ? C.blueL : C.openSide}, g);
+    el('ellipse', {cx: p[0], cy: p[1] - h, rx: rx, ry: ry, fill: solid ? C.blueTop : C.openTop, stroke: solid ? 'none' : C.seam, 'stroke-width': 1}, g);
+    if (!solid) el('ellipse', {cx: p[0], cy: p[1] - h, rx: rx * .52, ry: ry * .52, fill: C.hole}, g);
+    return g;
+  }
+
+  function block(parent, iso, c, r, hgt, tone, inset){
+    var g = el('g', {}, parent), i = inset == null ? .08 : inset;
+    var A = iso.P(c + i, r + i), B = iso.P(c + 1 - i, r + i), D = iso.P(c + 1 - i, r + 1 - i), E = iso.P(c + i, r + 1 - i);
+    el('polygon', {points: pts([up(E, hgt), up(D, hgt), D, E]), fill: C[tone + 'L']}, g);
+    el('polygon', {points: pts([up(D, hgt), up(B, hgt), B, D]), fill: C[tone + 'R']}, g);
+    el('polygon', {points: pts([up(A, hgt), up(B, hgt), up(D, hgt), up(E, hgt)]), fill: C[tone + 'Top']}, g);
+    return g;
+  }
+
+  // Draws items back to front. items: [{c, r, kind:'stud'|'block', solid, h, tone}]
+  function scene(svg, cols, rows, opts, items){
+    var iso = plate(svg, cols, rows, opts);
+    var layer = el('g', {}, svg);
+    items.sort(function(a, b){ return (a.c + a.r) - (b.c + b.r) || a.r - b.r; });
+    return items.map(function(it){
+      var g = it.kind === 'block' ? block(layer, iso, it.c, it.r, it.h, it.tone) : stud(layer, iso, it.c, it.r, it.solid);
+      it.g = g;
+      return it;
+    });
+  }
+
+  function reveal(items, cls, delayFn){
+    items.forEach(function(it, i){
+      it.g.classList.add(cls);
+      if (reduce) { it.g.classList.add('in'); return; }
+      setTimeout(function(){ it.g.classList.add('in'); }, delayFn(it, i));
+    });
+  }
+
+  /* ---------- hero: the baseplate builds itself ---------- */
+  var COLS = 10, ROWS = 8;
+  var ideas = {'2,1':54, '3,1':30, '6,0':72, '7,2':40, '5,2':22, '8,1':26};
+  var heroItems = [];
+  for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) {
+    var key = c + ',' + r;
+    if (ideas[key]) heroItems.push({c: c, r: r, kind: 'block', h: ideas[key], tone: 'ink', idea: true});
+    else heroItems.push({c: c, r: r, kind: 'stud', solid: r >= ROWS / 2});
+  }
+  scene(document.getElementById('hero-iso'), COLS, ROWS, {w: 56, t: 18, top: 90}, heroItems);
+  var openOnes = heroItems.filter(function(it){ return it.kind === 'stud' && !it.solid; });
+  var solidOnes = heroItems.filter(function(it){ return it.solid; });
+  var ideaOnes = heroItems.filter(function(it){ return it.idea; });
+  var t0 = 500;
+  reveal(openOnes, 'fade', function(it){ return t0 + (it.c + it.r) * 18; });
+  reveal(solidOnes, 'drop', function(it){ return t0 + 300 + (it.c + (ROWS - it.r)) * 55; });
+  reveal(ideaOnes, 'drop', function(it, i){ return t0 + 2300 + i * 160; });
+  document.querySelectorAll('.chip').forEach(function(chip){
+    var at = reduce ? 0 : +chip.dataset.at + t0;
+    setTimeout(function(){
+      chip.classList.add('on');
+      setTimeout(function(){ chip.classList.add('float'); chip.style.animationDelay = (Math.random() * -5).toFixed(2) + 's'; }, 700);
+    }, at);
+  });
+
+  /* ---------- game card scenes ---------- */
+  scene(document.getElementById('iso-obby'), 6, 4, {w: 60, t: 16, top: 150}, [
+    {c:0, r:3, kind:'block', h:14, tone:'blue'},
+    {c:1, r:3, kind:'block', h:34, tone:'blue'},
+    {c:2, r:2, kind:'block', h:56, tone:'blue'},
+    {c:3, r:2, kind:'block', h:80, tone:'blue'},
+    {c:4, r:1, kind:'block', h:104, tone:'blue'},
+    {c:5, r:0, kind:'block', h:132, tone:'blue'},
+    {c:2, r:3, kind:'block', h:6, tone:'ink'},
+    {c:4, r:2, kind:'block', h:6, tone:'ink'},
+    {c:0, r:0, kind:'stud', solid:false}, {c:1, r:0, kind:'stud', solid:false}, {c:0, r:1, kind:'stud', solid:false},
+    {c:3, r:0, kind:'stud', solid:false}, {c:1, r:2, kind:'stud', solid:false}, {c:5, r:3, kind:'stud', solid:false}
+  ]);
+  scene(document.getElementById('iso-tycoon'), 4, 4, {w: 52, t: 14, top: 90}, [
+    {c:0, r:0, kind:'block', h:78, tone:'ink'},
+    {c:1, r:0, kind:'block', h:48, tone:'ink'},
+    {c:0, r:1, kind:'block', h:36, tone:'ink'},
+    {c:2, r:2, kind:'block', h:22, tone:'blue'},
+    {c:3, r:2, kind:'block', h:22, tone:'blue'},
+    {c:2, r:3, kind:'stud', solid:true}, {c:3, r:3, kind:'stud', solid:true},
+    {c:3, r:0, kind:'stud', solid:false}, {c:1, r:3, kind:'stud', solid:false}, {c:0, r:3, kind:'stud', solid:false}
+  ]);
+  scene(document.getElementById('iso-sim'), 4, 4, {w: 52, t: 14, top: 110}, [
+    {c:1, r:1, kind:'block', h:96, tone:'blue'},
+    {c:2, r:1, kind:'block', h:64, tone:'blue'},
+    {c:1, r:2, kind:'block', h:40, tone:'blue'},
+    {c:3, r:3, kind:'block', h:18, tone:'ink'},
+    {c:0, r:0, kind:'stud', solid:true}, {c:3, r:0, kind:'stud', solid:true}, {c:0, r:3, kind:'stud', solid:true},
+    {c:2, r:3, kind:'stud', solid:false}, {c:3, r:2, kind:'stud', solid:false}
+  ]);
+
+  /* ---------- scroll reveals ---------- */
+  var els = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {rootMargin: '0px 0px -6% 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 </body>
 </html>
