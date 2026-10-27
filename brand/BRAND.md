@@ -15,6 +15,27 @@ Four studs on a 2 x 2 plate. The bottom pair is solid: the generic 50% that agen
 | `baseplate-app-icon.svg` | App, plugin and directory tiles |
 | `favicon.svg` | Browser tab |
 
+## Logos
+
+In `logo/`, each as SVG (text outlined, no font needed) and PNG, in `ink`, `white` and `blue`:
+
+| File | Use |
+|---|---|
+| `baseplate-logo-horizontal-*` | Default logo: mark plus wordmark |
+| `baseplate-logo-stacked-*` | Square spaces: mark above wordmark |
+| `baseplate-wordmark-*` | When the mark already appears nearby |
+
+## Social
+
+In `social/`:
+
+| File | Size | Use |
+|---|---|---|
+| `x-profile.png` | 400 x 400 | X profile picture (white mark on Stud Blue) |
+| `x-profile-ink.png` | 400 x 400 | Alternate profile picture (on Ink) |
+| `x-header.png` | 1500 x 500 | X header |
+| `x-header@2x.png` | 3000 x 1000 | X header, high resolution |
+
 ## Construction
 
 - 100 unit grid. Stud centers at 30 and 70 on both axes.
