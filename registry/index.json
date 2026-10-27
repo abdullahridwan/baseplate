@@ -1,0 +1,438 @@
+{
+  "name": "baseplate",
+  "version": 1,
+  "baseUrl": "https://raw.githubusercontent.com/abdullahridwan/baseplate/main/registry/",
+  "about": "Agent-native VFX and sounds for Roblox. Copy files from baseUrl+src to dest in the user's project, then do each 'after' step. Install 'requires' first.",
+  "items": [
+    {
+      "name": "juice",
+      "kind": "runtime",
+      "description": "The runtime every item needs: Juice.play, Juice.vfx, Juice.sfx, Juice.music.",
+      "tags": [
+        "runtime"
+      ],
+      "requires": [],
+      "files": [
+        {
+          "src": "juice/init.luau",
+          "dest": "src/shared/Juice/init.luau"
+        },
+        {
+          "src": "juice/Sounds.luau",
+          "dest": "src/shared/Juice/Sounds.luau"
+        }
+      ],
+      "after": [
+        "Skip copying a file that already exists; never overwrite the user's Sounds.luau."
+      ],
+      "license": "MIT"
+    },
+    {
+      "name": "coin_pickup",
+      "kind": "vfx",
+      "description": "Gold sparkle burst with a soft glow.",
+      "tags": [
+        "coin",
+        "pickup",
+        "collect",
+        "gold",
+        "sparkle"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/coin_pickup.luau",
+          "dest": "src/shared/Juice/Effects/coin_pickup.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"coin_pickup\", target)",
+      "after": [],
+      "license": "MIT"
+    },
+    {
+      "name": "hit",
+      "kind": "vfx",
+      "description": "Sharp white-orange impact sparks with a flash.",
+      "tags": [
+        "hit",
+        "impact",
+        "damage",
+        "combat",
+        "spark"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/hit.luau",
+          "dest": "src/shared/Juice/Effects/hit.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"hit\", target)",
+      "after": [],
+      "license": "MIT"
+    },
+    {
+      "name": "level_up",
+      "kind": "vfx",
+      "description": "Rising column of blue sparkles with an expanding ring.",
+      "tags": [
+        "level",
+        "upgrade",
+        "rank",
+        "sparkle"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/level_up.luau",
+          "dest": "src/shared/Juice/Effects/level_up.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"level_up\", target)",
+      "after": [],
+      "license": "MIT"
+    },
+    {
+      "name": "confetti",
+      "kind": "vfx",
+      "description": "Colourful confetti that pops up and flutters down.",
+      "tags": [
+        "win",
+        "celebrate",
+        "purchase",
+        "unlock",
+        "reward"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/confetti.luau",
+          "dest": "src/shared/Juice/Effects/confetti.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"confetti\", target)",
+      "after": [],
+      "license": "MIT"
+    },
+    {
+      "name": "heal",
+      "kind": "vfx",
+      "description": "Soft green motes drifting upward.",
+      "tags": [
+        "heal",
+        "health",
+        "regen",
+        "buff"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/heal.luau",
+          "dest": "src/shared/Juice/Effects/heal.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"heal\", target)",
+      "after": [],
+      "license": "MIT"
+    },
+    {
+      "name": "explosion",
+      "kind": "vfx",
+      "description": "Fireball, flying embers and lingering smoke. Visual only.",
+      "tags": [
+        "explosion",
+        "bomb",
+        "fire",
+        "smoke",
+        "boom"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/explosion.luau",
+          "dest": "src/shared/Juice/Effects/explosion.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"explosion\", target)",
+      "after": [],
+      "license": "MIT"
+    },
+    {
+      "name": "coin_pickup",
+      "kind": "sfx",
+      "description": "Two-note bright coin blip.",
+      "tags": [
+        "coin",
+        "pickup",
+        "collect"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/coin_pickup.ogg",
+          "dest": "assets/sfx/coin_pickup.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.05
+      },
+      "usage": "Juice.sfx(\"coin_pickup\")",
+      "after": [
+        "Ask the user to upload assets/sfx/coin_pickup.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: coin_pickup = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.05 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "hit",
+      "kind": "sfx",
+      "description": "Punchy thump with a noise crack.",
+      "tags": [
+        "hit",
+        "impact",
+        "damage",
+        "combat"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/hit.ogg",
+          "dest": "assets/sfx/hit.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.6,
+        "pitchVariance": 0.08
+      },
+      "usage": "Juice.sfx(\"hit\")",
+      "after": [
+        "Ask the user to upload assets/sfx/hit.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: hit = { id = \"ASSET_ID\", volume = 0.6, pitchVariance = 0.08 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "level_up",
+      "kind": "sfx",
+      "description": "Rising arpeggio ending on a held chord.",
+      "tags": [
+        "level",
+        "upgrade",
+        "rank"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/level_up.ogg",
+          "dest": "assets/sfx/level_up.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0
+      },
+      "usage": "Juice.sfx(\"level_up\")",
+      "after": [
+        "Ask the user to upload assets/sfx/level_up.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: level_up = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "ui_click",
+      "kind": "sfx",
+      "description": "Short, crisp button click.",
+      "tags": [
+        "ui",
+        "click",
+        "button",
+        "tap"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/ui_click.ogg",
+          "dest": "assets/sfx/ui_click.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.4,
+        "pitchVariance": 0.04
+      },
+      "usage": "Juice.sfx(\"ui_click\")",
+      "after": [
+        "Ask the user to upload assets/sfx/ui_click.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: ui_click = { id = \"ASSET_ID\", volume = 0.4, pitchVariance = 0.04 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "ui_hover",
+      "kind": "sfx",
+      "description": "Very soft hover tick.",
+      "tags": [
+        "ui",
+        "hover"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/ui_hover.ogg",
+          "dest": "assets/sfx/ui_hover.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.25,
+        "pitchVariance": 0.03
+      },
+      "usage": "Juice.sfx(\"ui_hover\")",
+      "after": [
+        "Ask the user to upload assets/sfx/ui_hover.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: ui_hover = { id = \"ASSET_ID\", volume = 0.25, pitchVariance = 0.03 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "purchase",
+      "kind": "sfx",
+      "description": "Three-note cha-ching for buying things.",
+      "tags": [
+        "ui",
+        "purchase",
+        "buy",
+        "shop",
+        "cash"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/purchase.ogg",
+          "dest": "assets/sfx/purchase.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0
+      },
+      "usage": "Juice.sfx(\"purchase\")",
+      "after": [
+        "Ask the user to upload assets/sfx/purchase.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: purchase = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "error",
+      "kind": "sfx",
+      "description": "Two descending low notes for denied actions.",
+      "tags": [
+        "ui",
+        "error",
+        "denied",
+        "fail"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/error.ogg",
+          "dest": "assets/sfx/error.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0
+      },
+      "usage": "Juice.sfx(\"error\")",
+      "after": [
+        "Ask the user to upload assets/sfx/error.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: error = { id = \"ASSET_ID\", volume = 0.45 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "jump",
+      "kind": "sfx",
+      "description": "Quick upward chirp.",
+      "tags": [
+        "jump",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/jump.ogg",
+          "dest": "assets/sfx/jump.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.35,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"jump\")",
+      "after": [
+        "Ask the user to upload assets/sfx/jump.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: jump = { id = \"ASSET_ID\", volume = 0.35, pitchVariance = 0.06 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "checkpoint",
+      "kind": "sfx",
+      "description": "Two-note chime for reaching a checkpoint.",
+      "tags": [
+        "checkpoint",
+        "save",
+        "stage",
+        "obby"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/checkpoint.ogg",
+          "dest": "assets/sfx/checkpoint.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0
+      },
+      "usage": "Juice.sfx(\"checkpoint\")",
+      "after": [
+        "Ask the user to upload assets/sfx/checkpoint.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: checkpoint = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    }
+  ]
+}
