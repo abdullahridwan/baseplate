@@ -1,7 +1,7 @@
 <p align="center"><img src="brand/baseplate-mark-ink.svg" width="96" alt="Baseplate"></p>
 
 <h1 align="center">baseplate</h1>
-<p align="center"><b>Make better games.</b> The agent-native layer for Roblox.</p>
+<p align="center"><b>Build better Roblox games.</b> The agent-native layer for Roblox.</p>
 <p align="center"><a href="https://abdullahridwan.github.io/baseplate/">Website</a></p>
 
 ---
