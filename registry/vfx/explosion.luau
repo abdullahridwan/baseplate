@@ -1,0 +1,78 @@
+-- explosion: fireball core, flying embers and lingering smoke. Visual only; no damage or force.
+local FIRE = "rbxasset://textures/particles/fire_main.dds"
+local SMOKE = "rbxasset://textures/particles/smoke_main.dds"
+local SPARKLE = "rbxasset://textures/particles/sparkles_main.dds"
+
+return {
+	emitters = {
+		{
+			emit = 12,
+			properties = {
+				Name = "Fireball",
+				Texture = FIRE,
+				Color = ColorSequence.new({
+					ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 250, 200)),
+					ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255, 140, 30)),
+					ColorSequenceKeypoint.new(1, Color3.fromRGB(120, 30, 10)),
+				}),
+				LightEmission = 1,
+				Lifetime = NumberRange.new(0.35, 0.6),
+				Speed = NumberRange.new(6, 14),
+				SpreadAngle = Vector2.new(180, 180),
+				Drag = 5,
+				Rotation = NumberRange.new(0, 360),
+				Size = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 2),
+					NumberSequenceKeypoint.new(1, 5),
+				}),
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0),
+					NumberSequenceKeypoint.new(1, 1),
+				}),
+			},
+		},
+		{
+			emit = 20,
+			properties = {
+				Name = "Embers",
+				Texture = SPARKLE,
+				Color = ColorSequence.new(Color3.fromRGB(255, 200, 80), Color3.fromRGB(255, 80, 20)),
+				LightEmission = 1,
+				Lifetime = NumberRange.new(0.6, 1.1),
+				Speed = NumberRange.new(25, 45),
+				SpreadAngle = Vector2.new(180, 180),
+				Acceleration = Vector3.new(0, -25, 0),
+				Drag = 3,
+				Squash = NumberSequence.new(-1),
+				Size = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0.35),
+					NumberSequenceKeypoint.new(1, 0),
+				}),
+			},
+		},
+		{
+			emit = 10,
+			properties = {
+				Name = "Smoke",
+				Texture = SMOKE,
+				Color = ColorSequence.new(Color3.fromRGB(90, 85, 80), Color3.fromRGB(40, 38, 36)),
+				LightEmission = 0,
+				Lifetime = NumberRange.new(1.5, 2.5),
+				Speed = NumberRange.new(3, 8),
+				SpreadAngle = Vector2.new(180, 180),
+				Acceleration = Vector3.new(0, 3, 0),
+				Drag = 2,
+				Rotation = NumberRange.new(0, 360),
+				RotSpeed = NumberRange.new(-30, 30),
+				Size = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 3),
+					NumberSequenceKeypoint.new(1, 8),
+				}),
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0.4),
+					NumberSequenceKeypoint.new(1, 1),
+				}),
+			},
+		},
+	},
+}
