@@ -35,10 +35,10 @@ p.lead{font-size:20px;color:var(--ink);margin:0 0 28px}
 .logos{margin-top:56px;border-top:1px solid var(--seam);padding-top:28px}
 .logos p{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px;color:var(--stone)}
 .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent);mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent)}
-.marquee-track{display:flex;width:max-content;align-items:center;animation:marquee 70s linear infinite}
+.marquee-track{display:flex;width:max-content;align-items:center;animation:marquee 40s linear infinite}
 .marquee-group{display:flex;align-items:center;gap:16px 48px;padding-right:48px}
 .marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes marquee{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes marquee{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
 .logos-row span{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap;flex:none}
 .logos-row img{height:32px;width:auto;flex:none}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto}}
@@ -108,16 +108,16 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
 <main>
   <section class="hero">
     <div class="wrap">
-      <h1>VFX and sounds your agent can actually use.</h1>
-      <p class="lead">Search by description. Add only safe packs. Copy the files and own them.</p>
+      <h1>Build a Roblox game, even if you have never made one.</h1>
+      <p class="lead">Your AI finds the effects and sounds you need in seconds, in plain text, instead of hunting through thumbnails. That saves tokens, money, and time, which matters on a limited budget.</p>
       <div class="ctas">
-        <a class="btn blue" href="#connect">Connect your agent</a>
-        <a class="btn ghost" href="components/">Browse the library</a>
+        <a class="btn blue" href="#connect">Add Baseplate to your AI</a>
+        <a class="btn ghost" href="#example">See an example</a>
       </div>
       <div class="logos">
         <p>Works with any MCP client</p>
         <div class="marquee" aria-label="Agents that work with Baseplate">
-          <div class="marquee-track"><div class="marquee-group logos-row"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae-color.svg" alt="Trae logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro-color.svg" alt="Kiro logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode-color.svg" alt="OpenCode logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity-color.svg" alt="Antigravity logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity.svg'}else{this.style.display='none'}"></div><div class="marquee-group logos-row" aria-hidden="true"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae-color.svg" alt="Trae logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro-color.svg" alt="Kiro logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode-color.svg" alt="OpenCode logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity-color.svg" alt="Antigravity logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity.svg'}else{this.style.display='none'}"></div></div></div>
+          <div class="marquee-track"><div class="marquee-group logos-row"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae-color.svg" alt="Trae logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro-color.svg" alt="Kiro logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode-color.svg" alt="OpenCode logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity-color.svg" alt="Antigravity logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity.svg'}else{this.style.display='none'}"></div></div></div>
       </div>
     </div>
   </section>
@@ -126,54 +126,36 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
     <div class="wrap">
       <div class="sec-head">
         <h2>How it works</h2>
-        <p>Three steps. No thumbnail hunting, no guessing from a title.</p>
+        <p>Three steps. No Roblox experience needed.</p>
       </div>
       <div class="grid">
-        <div class="card"><span class="num">01</span><p><b>Connect once</b></p><p>Add Baseplate as an MCP server to Claude Code, Cursor, Codex, or Windsurf.</p></div>
-        <div class="card"><span class="num">02</span><p><b>Search by description</b></p><p>Ask for what it is for, for example "fire explosion" or "coin pickup". You get a text description, tags, and use cases.</p></div>
-        <div class="card"><span class="num">03</span><p><b>Add and own it</b></p><p>Your agent copies the effect or sound into your project. Once copied, it is yours.</p></div>
+        <div class="card"><span class="num">01</span><p><b>Describe it</b></p><p>Tell your AI what you want in plain English, like "a coin sound when I pick up a coin".</p></div>
+        <div class="card"><span class="num">02</span><p><b>Your AI finds it fast</b></p><p>Baseplate searches by description, in text, not thumbnails. Fewer tokens, less money, less waiting.</p></div>
+        <div class="card"><span class="num">03</span><p><b>Add it and play</b></p><p>Your AI adds it safely. The files are yours, and you do not need Roblox experience to use them.</p></div>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="example">
     <div class="wrap">
       <div class="sec-head">
-        <h2>What is in the library</h2>
-        <p>53 effects and 50 sounds from the own Baseplate registry. A few examples:</p>
+        <h2>One example</h2>
+        <p>You say it. Your AI does the rest.</p>
       </div>
-      <div class="grid">
-        <div class="card"><b>coin_pickup</b><p>Gold sparkle burst with a soft glow.</p></div>
-        <div class="card"><b>gem_pickup</b><p>Cool cyan glints that pop and spin.</p></div>
-        <div class="card"><b>cash_burst</b><p>Green cash sparks fountain up and fall.</p></div>
-        <div class="card"><b>confetti</b><p>Colourful confetti that pops up and flutters down.</p></div>
-        <div class="card"><b>level_up</b><p>Rising blue sparkles with an expanding ring.</p></div>
-        <div class="card"><b>rebirth</b><p>Purple-gold column and double ring. For rebirths and prestige.</p></div>
+      <div class="copybox">
+        <p style="margin:0 0 12px;color:var(--ink)"><b>You:</b> Add a coin sound when I pick up a coin.</p>
+        <p style="margin:0;color:var(--ink)"><b>Your AI:</b> Found coin_pickup, a bright coin sound. Added it, no thumbnail review, no extra tokens spent hunting for it.</p>
+        <p style="margin-top:16px"><a href="components/">Browse all effects and sounds</a> if you want to see what else is in the library, and <a href="vfx-report.html">read how scanned packs are checked</a>.</p>
       </div>
-      <p style="margin-top:20px"><a href="components/">See all 53 effects and 50 sounds</a>, with previews, code, and install steps.</p>
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Safe VFX, not just any VFX</h2>
-        <p>Scanned Creator Store packs are a separate list from the own library above.</p>
-        <ul class="clean">
-          <li><code>find_vfx</code> returns only packs with status safe, with a pinned asset ID and version and a scan date.</li>
-          <li>Flagged packs are never offered by the MCP. They are shown only as warnings on the report page.</li>
-          <li>For scanned packs, <code>add_vfx</code> writes a <code>vfx.json</code> lockfile, then the agent inserts that exact pinned version and strips any scripts.</li>
-        </ul>
-        <p style="margin-top:16px"><a href="vfx-report.html">Read the VFX report</a>, including scan rules and how to request a re-check.</p>
-      </div>
-    </div>
-  </section>
 
   <section id="connect">
     <div class="wrap">
       <div class="sec-head">
         <h2>Connect your agent</h2>
-        <p>One line, no manual steps beyond that.</p>
+        <p>One line, no manual steps beyond that. After that, your AI can find assets the fast, low token way.</p>
       </div>
       <div class="copybox">
         <h3>Claude Code</h3>
