@@ -46,7 +46,7 @@ Code:  Juice.play("coin_pickup", part)
 - [ ] Music pack: 5–10 tracks (commission, or CC0 / CC-BY with credit)
 - [ ] Own particle textures (replace the built-in ones), uploaded like sounds
 - [ ] Packs per game type (`obby-pack`, `tycoon-pack`, `simulator-pack`), wired into the specs so every game ships with sound and effects by default
-- [ ] MCP server tools: `search`, `get`, `add`
+- [x] MCP server (`npx baseplate-cli mcp`): `list_recipes`, `get_recipe`, `list_components`, `search_components`, `get_component`, `add_component` (built in `cli/lib/mcp.js`; not yet published to npm)
 - [x] CLI: `npx baseplate-cli add coin_pickup` (built in `cli/`; not yet published to npm)
 
 ## 2. Store assets: icons and thumbnails

@@ -43,6 +43,16 @@ Each spec runs in strict order, with a **Done when** check after every step and 
 
 **Requirements:** Roblox Studio with API Services enabled, and [Rojo](https://rojo.space) 7+.
 
+## Connect your AI (MCP)
+
+Baseplate runs as an MCP server, so Claude Code (or any MCP client) can pull recipes and add components itself:
+
+```
+claude mcp add baseplate -- npx -y baseplate-cli mcp
+```
+
+Tools: `list_recipes`, `get_recipe`, `list_components`, `search_components`, `get_component`, `add_component`.
+
 ## Repo
 
 ```
