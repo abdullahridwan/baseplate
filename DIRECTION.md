@@ -71,8 +71,10 @@ That means, in order:
   `search_components` for own effects and sounds, and `find_vfx` for scanned
   VFX, reads descriptions, tags, and use cases, and picks the right pack.
   The human does not need to describe each effect or sound themselves.
-- The agent adds what it finds, with `add_component` or `add_vfx`, pinned
-  to a version, and strips scripts for scanned packs before use.
+- The agent just adds what it finds, with `add_component` or `add_vfx`.
+  Baseplate already did the safety work: it scanned the pack and pinned
+  it to a version. The agent does not do extra safety work itself, it
+  just uses the safe, pinned result Baseplate returns.
 - The site, docs, and report page exist so a human can understand, trust,
   and connect the agent. They are not the product interface. The product
   interface is the MCP server and the CLI, for agents.
