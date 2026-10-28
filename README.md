@@ -68,7 +68,6 @@ docs/              the website (GitHub Pages)
 Full plan in [PLAN.md](PLAN.md).
 
 - Music pack, effect previews, and packs per game type for the registry
-- MCP server so agents pull specs and steps directly
 - More game types: tower defense, horror, fighting
 - One-command publishing (a fastlane for Roblox): build, upload, set metadata and go live, callable by agents
 - Store assets: generated game icons, thumbnails and descriptions
