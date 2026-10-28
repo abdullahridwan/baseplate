@@ -41,6 +41,7 @@ Code:  Juice.play("coin_pickup", part)
 **Milestones**
 
 - [x] v0: runtime, 6 effects, 9 UI and gameplay sounds, index format, install guide
+- [x] v1: 53 effects and 50 sounds weighted by the top games of October 2026, looping effects (`Juice.attach`), categories
 - [x] Components site (`docs/components/`): browse, live 2D previews, playable sounds, copy-to-install
 - [ ] Real Studio recordings to replace the 2D effect previews
 - [ ] Music pack: 5–10 tracks (commission, or CC0 / CC-BY with credit)

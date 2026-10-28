@@ -1,13 +1,14 @@
 {
   "name": "baseplate",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://abdullahridwan.github.io/baseplate/r/",
   "about": "Agent-native VFX and sounds for Roblox. Copy files from baseUrl+src to dest in the user's project, then do each 'after' step. Install 'requires' first.",
   "items": [
     {
       "name": "juice",
       "kind": "runtime",
-      "description": "The runtime every item needs: Juice.play, Juice.vfx, Juice.sfx, Juice.music.",
+      "category": "Runtime",
+      "description": "The runtime every item needs: Juice.play, Juice.vfx, Juice.attach, Juice.sfx, Juice.music.",
       "tags": [
         "runtime"
       ],
@@ -30,13 +31,13 @@
     {
       "name": "coin_pickup",
       "kind": "vfx",
+      "category": "Rewards",
       "description": "Gold sparkle burst with a soft glow.",
       "tags": [
         "coin",
         "pickup",
         "collect",
-        "gold",
-        "sparkle"
+        "gold"
       ],
       "requires": [
         "juice"
@@ -49,63 +50,365 @@
       ],
       "usage": "Juice.vfx(\"coin_pickup\", target)",
       "after": [],
-      "license": "MIT"
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 14,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffec8c",
+              "#ffb020"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 6,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffd65a"
+            ],
+            "add": true,
+            "life": [
+              0.25,
+              0.25
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                3.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
     },
     {
-      "name": "hit",
+      "name": "gem_pickup",
       "kind": "vfx",
-      "description": "Sharp white-orange impact sparks with a flash.",
+      "category": "Rewards",
+      "description": "Cool cyan glints that pop and spin.",
       "tags": [
-        "hit",
-        "impact",
-        "damage",
-        "combat",
-        "spark"
+        "gem",
+        "diamond",
+        "pickup",
+        "currency"
       ],
       "requires": [
         "juice"
       ],
       "files": [
         {
-          "src": "vfx/hit.luau",
-          "dest": "src/shared/Juice/Effects/hit.luau"
+          "src": "vfx/gem_pickup.luau",
+          "dest": "src/shared/Juice/Effects/gem_pickup.luau"
         }
       ],
-      "usage": "Juice.vfx(\"hit\", target)",
+      "usage": "Juice.vfx(\"gem_pickup\", target)",
       "after": [],
-      "license": "MIT"
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#bff6ff",
+              "#28b4ff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#7fe3ff"
+            ],
+            "add": true,
+            "life": [
+              0.25,
+              0.25
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
     },
     {
-      "name": "level_up",
+      "name": "cash_burst",
       "kind": "vfx",
-      "description": "Rising column of blue sparkles with an expanding ring.",
+      "category": "Rewards",
+      "description": "Green cash sparks fountain up and fall.",
       "tags": [
-        "level",
-        "upgrade",
-        "rank",
-        "sparkle"
+        "cash",
+        "money",
+        "income",
+        "tycoon",
+        "steal"
       ],
       "requires": [
         "juice"
       ],
       "files": [
         {
-          "src": "vfx/level_up.luau",
-          "dest": "src/shared/Juice/Effects/level_up.luau"
+          "src": "vfx/cash_burst.luau",
+          "dest": "src/shared/Juice/Effects/cash_burst.luau"
         }
       ],
-      "usage": "Juice.vfx(\"level_up\", target)",
+      "usage": "Juice.vfx(\"cash_burst\", target)",
       "after": [],
-      "license": "MIT"
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 18,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#9dff8a",
+              "#2fbf4a"
+            ],
+            "add": false,
+            "life": [
+              0.8,
+              1.2
+            ],
+            "speed": [
+              12,
+              20
+            ],
+            "spread": 30,
+            "direction": "Top",
+            "acc": -35,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0.4
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.8,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#7dff8a"
+            ],
+            "add": true,
+            "life": [
+              0.25,
+              0.25
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
     },
     {
       "name": "confetti",
       "kind": "vfx",
+      "category": "Rewards",
       "description": "Colourful confetti that pops up and flutters down.",
       "tags": [
         "win",
         "celebrate",
-        "purchase",
         "unlock",
         "reward"
       ],
@@ -120,40 +423,3427 @@
       ],
       "usage": "Juice.vfx(\"confetti\", target)",
       "after": [],
-      "license": "MIT"
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ff506e"
+            ],
+            "add": false,
+            "life": [
+              1.8,
+              2.6
+            ],
+            "speed": [
+              25,
+              40
+            ],
+            "spread": 35,
+            "direction": "Top",
+            "acc": -30,
+            "drag": 2.5,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.45
+              ],
+              [
+                1,
+                0.45
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.85,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffc828"
+            ],
+            "add": false,
+            "life": [
+              1.8,
+              2.6
+            ],
+            "speed": [
+              25,
+              40
+            ],
+            "spread": 35,
+            "direction": "Top",
+            "acc": -30,
+            "drag": 2.5,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.45
+              ],
+              [
+                1,
+                0.45
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.85,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#3cdc78"
+            ],
+            "add": false,
+            "life": [
+              1.8,
+              2.6
+            ],
+            "speed": [
+              25,
+              40
+            ],
+            "spread": 35,
+            "direction": "Top",
+            "acc": -30,
+            "drag": 2.5,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.45
+              ],
+              [
+                1,
+                0.45
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.85,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#3ca0ff"
+            ],
+            "add": false,
+            "life": [
+              1.8,
+              2.6
+            ],
+            "speed": [
+              25,
+              40
+            ],
+            "spread": 35,
+            "direction": "Top",
+            "acc": -30,
+            "drag": 2.5,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.45
+              ],
+              [
+                1,
+                0.45
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.85,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#be5aff"
+            ],
+            "add": false,
+            "life": [
+              1.8,
+              2.6
+            ],
+            "speed": [
+              25,
+              40
+            ],
+            "spread": 35,
+            "direction": "Top",
+            "acc": -30,
+            "drag": 2.5,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.45
+              ],
+              [
+                1,
+                0.45
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.85,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
     },
     {
-      "name": "heal",
+      "name": "level_up",
       "kind": "vfx",
-      "description": "Soft green motes drifting upward.",
+      "category": "Rewards",
+      "description": "Rising blue sparkles with an expanding ring.",
       "tags": [
-        "heal",
-        "health",
-        "regen",
-        "buff"
+        "level",
+        "upgrade",
+        "rank",
+        "xp"
       ],
       "requires": [
         "juice"
       ],
       "files": [
         {
-          "src": "vfx/heal.luau",
-          "dest": "src/shared/Juice/Effects/heal.luau"
+          "src": "vfx/level_up.luau",
+          "dest": "src/shared/Juice/Effects/level_up.luau"
         }
       ],
-      "usage": "Juice.vfx(\"heal\", target)",
+      "usage": "Juice.vfx(\"level_up\", target)",
       "after": [],
-      "license": "MIT"
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 30,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#96e6ff",
+              "#3c78ff"
+            ],
+            "add": true,
+            "life": [
+              0.9,
+              1.4
+            ],
+            "speed": [
+              4,
+              9
+            ],
+            "spread": 25,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                0.3,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#aadcff"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.5
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                8
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "rebirth",
+      "kind": "vfx",
+      "category": "Rewards",
+      "description": "Purple-gold column and double ring. For rebirths and prestige.",
+      "tags": [
+        "rebirth",
+        "prestige",
+        "simulator"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/rebirth.luau",
+          "dest": "src/shared/Juice/Effects/rebirth.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"rebirth\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#c58bff",
+        "emitters": [
+          {
+            "emit": 40,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffe680",
+              "#a050ff"
+            ],
+            "add": true,
+            "life": [
+              0.9,
+              1.4
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 15,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                0.3,
+                0.9
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d9a6ff"
+            ],
+            "add": true,
+            "life": [
+              0.7,
+              0.7
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                12
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffe680"
+            ],
+            "add": true,
+            "life": [
+              0.45,
+              0.45
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                7
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "purchase",
+      "kind": "vfx",
+      "category": "Rewards",
+      "description": "Quick white-gold pop for a successful buy.",
+      "tags": [
+        "purchase",
+        "buy",
+        "shop",
+        "upgrade"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/purchase.luau",
+          "dest": "src/shared/Juice/Effects/purchase.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"purchase\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#ffd65a"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              6,
+              10
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#fff2b0"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.35
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "chest_open",
+      "kind": "vfx",
+      "category": "Rewards",
+      "description": "Golden light bursting upward out of a chest.",
+      "tags": [
+        "chest",
+        "loot",
+        "crate",
+        "open"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/chest_open.luau",
+          "dest": "src/shared/Juice/Effects/chest_open.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"chest_open\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#ffcf5a",
+        "emitters": [
+          {
+            "emit": 26,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#fff3b0",
+              "#ffb020"
+            ],
+            "add": true,
+            "life": [
+              0.9,
+              1.4
+            ],
+            "speed": [
+              10,
+              16
+            ],
+            "spread": 20,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                0.3,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffd65a"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.4
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "firework",
+      "kind": "vfx",
+      "category": "Rewards",
+      "description": "A firework burst in the sky with falling sparks.",
+      "tags": [
+        "firework",
+        "win",
+        "celebrate",
+        "event"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/firework.luau",
+          "dest": "src/shared/Juice/Effects/firework.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"firework\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 40,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#ff5a8c"
+            ],
+            "add": true,
+            "life": [
+              0.8,
+              1.2
+            ],
+            "speed": [
+              24,
+              30
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": -8,
+            "drag": 3,
+            "spin": false,
+            "streak": 0.8,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffd0e0"
+            ],
+            "add": true,
+            "life": [
+              0.2,
+              0.2
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                7
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "egg_hatch",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Shell-white puff and sparkles as an egg cracks open.",
+      "tags": [
+        "egg",
+        "hatch",
+        "pet",
+        "steal an egg"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/egg_hatch.luau",
+          "dest": "src/shared/Juice/Effects/egg_hatch.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"egg_hatch\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#fffaf0",
+              "#e8e0d0"
+            ],
+            "add": false,
+            "life": [
+              0.5,
+              0.8
+            ],
+            "speed": [
+              6,
+              10
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 2,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 16,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#fff0a0"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              10,
+              16
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff"
+            ],
+            "add": true,
+            "life": [
+              0.3,
+              0.3
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "rarity_rare",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Blue reveal for a rare drop.",
+      "tags": [
+        "rarity",
+        "rare",
+        "reveal",
+        "pet",
+        "unbox"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/rarity_rare.luau",
+          "dest": "src/shared/Juice/Effects/rarity_rare.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"rarity_rare\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 16,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#6ab4ff",
+              "#2f6bff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#6ab4ff"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.5
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "rarity_epic",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Purple reveal with a rising swirl for an epic drop.",
+      "tags": [
+        "rarity",
+        "epic",
+        "reveal",
+        "pet",
+        "unbox"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/rarity_epic.luau",
+          "dest": "src/shared/Juice/Effects/rarity_epic.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"rarity_epic\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#b46bff",
+        "emitters": [
+          {
+            "emit": 20,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d58cff",
+              "#8a2bff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 14,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d58cff",
+              "#8a2bff"
+            ],
+            "add": true,
+            "life": [
+              0.9,
+              1.4
+            ],
+            "speed": [
+              4,
+              9
+            ],
+            "spread": 25,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                0.3,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d58cff"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.5
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                7
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "rarity_legendary",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Gold rays, sparkles and a big ring for a legendary.",
+      "tags": [
+        "rarity",
+        "legendary",
+        "reveal",
+        "pet",
+        "unbox"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/rarity_legendary.luau",
+          "dest": "src/shared/Juice/Effects/rarity_legendary.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"rarity_legendary\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#ffc04a",
+        "emitters": [
+          {
+            "emit": 16,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffe680",
+              "#ff9a1f"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.7
+            ],
+            "speed": [
+              14,
+              20
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 4,
+            "spin": false,
+            "streak": 2.5,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 24,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffe680",
+              "#ff9a1f"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              10,
+              18
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffe680"
+            ],
+            "add": true,
+            "life": [
+              0.6,
+              0.6
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                10
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "rarity_mythic",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Rainbow burst and rings for the rarest drops.",
+      "tags": [
+        "rarity",
+        "mythic",
+        "secret",
+        "rainbow",
+        "reveal"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/rarity_mythic.luau",
+          "dest": "src/shared/Juice/Effects/rarity_mythic.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"rarity_mythic\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#ffffff",
+        "emitters": [
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ff506e"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              12,
+              20
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffc828"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              12,
+              20
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#3cdc78"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              12,
+              20
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#3ca0ff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              12,
+              20
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#be5aff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              12,
+              20
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ff9ad5"
+            ],
+            "add": true,
+            "life": [
+              0.7,
+              0.7
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                12
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#9ad5ff"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.5
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                8
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "pet_aura",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Gentle sparkles orbiting a pet. Loops.",
+      "tags": [
+        "pet",
+        "aura",
+        "shiny",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/pet_aura.luau",
+          "dest": "src/shared/Juice/Effects/pet_aura.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"pet_aura\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": true,
+        "light": null,
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 6,
+            "texture": "spark",
+            "color": [
+              "#fff6c0",
+              "#ffd65a"
+            ],
+            "add": true,
+            "life": [
+              0.8,
+              1.2
+            ],
+            "speed": [
+              0.5,
+              1.5
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 1,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0
+              ],
+              [
+                0.4,
+                0.35
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.9
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "mutation_shimmer",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Rainbow shimmer for mutated or shiny items. Loops.",
+      "tags": [
+        "mutation",
+        "shiny",
+        "rainbow",
+        "grow a garden",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/mutation_shimmer.luau",
+          "dest": "src/shared/Juice/Effects/mutation_shimmer.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"mutation_shimmer\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": true,
+        "light": null,
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 10,
+            "texture": "spark",
+            "color": [
+              "#ff506e",
+              "#ffc828",
+              "#3cdc78",
+              "#3ca0ff",
+              "#be5aff"
+            ],
+            "add": true,
+            "life": [
+              0.8,
+              1.2
+            ],
+            "speed": [
+              1,
+              2
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 2,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0
+              ],
+              [
+                0.4,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "steal_grab",
+      "kind": "vfx",
+      "category": "Pets & eggs",
+      "description": "Purple swirl that pulls in as you grab someone's item.",
+      "tags": [
+        "steal",
+        "grab",
+        "steal a brainrot",
+        "steal an egg"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/steal_grab.luau",
+          "dest": "src/shared/Juice/Effects/steal_grab.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"steal_grab\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#9a4dff",
+        "emitters": [
+          {
+            "emit": 24,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#e0b0ff",
+              "#7a2cff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.55
+            ],
+            "speed": [
+              6,
+              12
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 8,
+            "drag": 8,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#b070ff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.35
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                0.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "hit",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Sharp white-orange impact sparks with a flash.",
+      "tags": [
+        "hit",
+        "impact",
+        "damage",
+        "combat"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/hit.luau",
+          "dest": "src/shared/Juice/Effects/hit.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"hit\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#ff8c28"
+            ],
+            "add": true,
+            "life": [
+              0.15,
+              0.3
+            ],
+            "speed": [
+              20,
+              32
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 10,
+            "spin": false,
+            "streak": 1.5,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#fff5dc"
+            ],
+            "add": true,
+            "life": [
+              0.1,
+              0.1
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.9
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "crit_hit",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Bigger red-gold impact with a shock ring.",
+      "tags": [
+        "critical",
+        "crit",
+        "hit",
+        "combat"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/crit_hit.luau",
+          "dest": "src/shared/Juice/Effects/crit_hit.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"crit_hit\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#ff7a3b",
+        "emitters": [
+          {
+            "emit": 16,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#ff3b3b"
+            ],
+            "add": true,
+            "life": [
+              0.15,
+              0.3
+            ],
+            "speed": [
+              28,
+              40
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 10,
+            "spin": false,
+            "streak": 1.5,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.55
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffe0a0"
+            ],
+            "add": true,
+            "life": [
+              0.12,
+              0.12
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.95
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffd080"
+            ],
+            "add": true,
+            "life": [
+              0.25,
+              0.25
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                7
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "slash",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "A fast arc of white streaks for sword swings.",
+      "tags": [
+        "slash",
+        "sword",
+        "swing",
+        "melee",
+        "knife"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/slash.luau",
+          "dest": "src/shared/Juice/Effects/slash.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"slash\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 14,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#9fd8ff"
+            ],
+            "add": true,
+            "life": [
+              0.12,
+              0.2
+            ],
+            "speed": [
+              30,
+              40
+            ],
+            "spread": 40,
+            "direction": "Front",
+            "acc": 0,
+            "drag": 10,
+            "spin": false,
+            "streak": 3,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "block",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Blue-white sparks off a blocked hit.",
+      "tags": [
+        "block",
+        "parry",
+        "shield",
+        "combat"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/block.luau",
+          "dest": "src/shared/Juice/Effects/block.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"block\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#e0f4ff",
+              "#3c9cff"
+            ],
+            "add": true,
+            "life": [
+              0.15,
+              0.3
+            ],
+            "speed": [
+              18,
+              26
+            ],
+            "spread": 60,
+            "direction": "Front",
+            "acc": 0,
+            "drag": 10,
+            "spin": false,
+            "streak": 1.5,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#bfe4ff"
+            ],
+            "add": true,
+            "life": [
+              0.12,
+              0.12
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                2.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "muzzle_flash",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Short yellow flash and smoke wisp for guns and blasters.",
+      "tags": [
+        "gun",
+        "muzzle",
+        "shoot",
+        "blaster",
+        "murder mystery"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/muzzle_flash.luau",
+          "dest": "src/shared/Juice/Effects/muzzle_flash.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"muzzle_flash\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#ffd27a",
+        "emitters": [
+          {
+            "emit": 3,
+            "rate": null,
+            "texture": "fire",
+            "color": [
+              "#fff6c0",
+              "#ffb020"
+            ],
+            "add": true,
+            "life": [
+              0.06,
+              0.08
+            ],
+            "speed": [
+              4,
+              8
+            ],
+            "spread": 10,
+            "direction": "Front",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.2
+              ],
+              [
+                1,
+                0.4
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 3,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#bdbab3"
+            ],
+            "add": false,
+            "life": [
+              0.3,
+              0.5
+            ],
+            "speed": [
+              2,
+              4
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 2,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                1.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ground_slam",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Dust wave, rocks and a ring when something hits the ground hard.",
+      "tags": [
+        "slam",
+        "stomp",
+        "ground",
+        "impact",
+        "boss"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/ground_slam.luau",
+          "dest": "src/shared/Juice/Effects/ground_slam.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"ground_slam\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d8cbb4"
+            ],
+            "add": true,
+            "life": [
+              0.45,
+              0.45
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                14
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.9
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#c8b9a0",
+              "#8a7f6c"
+            ],
+            "add": false,
+            "life": [
+              1,
+              1.8
+            ],
+            "speed": [
+              12,
+              18
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#8a7f6c"
+            ],
+            "add": false,
+            "life": [
+              0.5,
+              0.9
+            ],
+            "speed": [
+              10,
+              18
+            ],
+            "spread": 60,
+            "direction": "Top",
+            "acc": -40,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0.3
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.8,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "shockwave",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "A clean expanding energy ring.",
+      "tags": [
+        "shockwave",
+        "pulse",
+        "wave",
+        "ability"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/shockwave.luau",
+          "dest": "src/shared/Juice/Effects/shockwave.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"shockwave\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#bfe6ff"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.5
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                16
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.35
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                10
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "stun_stars",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Little yellow stars circling above a stunned head.",
+      "tags": [
+        "stun",
+        "dizzy",
+        "daze",
+        "combat"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/stun_stars.luau",
+          "dest": "src/shared/Juice/Effects/stun_stars.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"stun_stars\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 6,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#fff3a0",
+              "#ffd65a"
+            ],
+            "add": true,
+            "life": [
+              1.2,
+              1.5
+            ],
+            "speed": [
+              2,
+              3
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0.5,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0
+              ],
+              [
+                0.2,
+                0.5
+              ],
+              [
+                0.8,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0.8
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "death",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Soft grey poof when a character is eliminated.",
+      "tags": [
+        "death",
+        "eliminate",
+        "poof",
+        "respawn",
+        "murder mystery"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/death.luau",
+          "dest": "src/shared/Juice/Effects/death.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"death\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 14,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#f2f0ea",
+              "#9c9890"
+            ],
+            "add": false,
+            "life": [
+              0.6,
+              1
+            ],
+            "speed": [
+              6,
+              10
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 2,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                4.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              6,
+              10
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "charge_up",
+      "kind": "vfx",
+      "category": "Combat",
+      "description": "Energy sparks pulling into a point before a big move.",
+      "tags": [
+        "charge",
+        "power",
+        "ability",
+        "cast"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/charge_up.luau",
+          "dest": "src/shared/Juice/Effects/charge_up.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"charge_up\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#6fb0ff",
+        "emitters": [
+          {
+            "emit": 24,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#c8f0ff",
+              "#3c8cff"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.7
+            ],
+            "speed": [
+              3,
+              6
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 4,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.1
+              ],
+              [
+                0.6,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#9fd0ff"
+            ],
+            "add": true,
+            "life": [
+              0.6,
+              0.6
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
     },
     {
       "name": "explosion",
       "kind": "vfx",
+      "category": "Combat",
       "description": "Fireball, flying embers and lingering smoke. Visual only.",
       "tags": [
         "explosion",
         "bomb",
-        "fire",
-        "smoke",
         "boom"
       ],
       "requires": [
@@ -167,11 +3857,2889 @@
       ],
       "usage": "Juice.vfx(\"explosion\", target)",
       "after": [],
-      "license": "MIT"
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#ff9a3b",
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "fire",
+            "color": [
+              "#fffac8",
+              "#ff8c1e",
+              "#781e0a"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              6,
+              14
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 5,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 20,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffc850",
+              "#ff5014"
+            ],
+            "add": true,
+            "life": [
+              0.6,
+              1.1
+            ],
+            "speed": [
+              25,
+              45
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": -25,
+            "drag": 3,
+            "spin": false,
+            "streak": 1,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.35
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#5a5550",
+              "#282624"
+            ],
+            "add": false,
+            "life": [
+              1.5,
+              2.5
+            ],
+            "speed": [
+              3,
+              8
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 3,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                8
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "fire_burst",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "A whoosh of flame bursting outward.",
+      "tags": [
+        "fire",
+        "flame",
+        "burn",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/fire_burst.luau",
+          "dest": "src/shared/Juice/Effects/fire_burst.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"fire_burst\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#ff8a3b",
+        "emitters": [
+          {
+            "emit": 16,
+            "rate": null,
+            "texture": "fire",
+            "color": [
+              "#fff2a0",
+              "#ff7a1a",
+              "#a8200a"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.7
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 6,
+            "drag": 4,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffcc66",
+              "#ff5a14"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              10,
+              16
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 8,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ice_shatter",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "Icy shards and frost mist.",
+      "tags": [
+        "ice",
+        "freeze",
+        "frost",
+        "shatter",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/ice_shatter.luau",
+          "dest": "src/shared/Juice/Effects/ice_shatter.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"ice_shatter\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 14,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#8fdcff"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.6
+            ],
+            "speed": [
+              14,
+              22
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": -20,
+            "drag": 4,
+            "spin": false,
+            "streak": 1,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#e8f8ff",
+              "#a6defa"
+            ],
+            "add": false,
+            "life": [
+              0.8,
+              1.2
+            ],
+            "speed": [
+              3,
+              6
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "lightning_strike",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "A bright flash with crackling blue sparks.",
+      "tags": [
+        "lightning",
+        "electric",
+        "zap",
+        "thunder",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/lightning_strike.luau",
+          "dest": "src/shared/Juice/Effects/lightning_strike.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"lightning_strike\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#9fd8ff",
+        "emitters": [
+          {
+            "emit": 18,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#7ec8ff"
+            ],
+            "add": true,
+            "life": [
+              0.08,
+              0.18
+            ],
+            "speed": [
+              30,
+              45
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 2,
+            "spin": false,
+            "streak": 3,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d8f0ff"
+            ],
+            "add": true,
+            "life": [
+              0.1,
+              0.1
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "splash",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "Water droplets and a splash ring.",
+      "tags": [
+        "water",
+        "splash",
+        "swim",
+        "rain",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/splash.luau",
+          "dest": "src/shared/Juice/Effects/splash.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"splash\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 20,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#e6f7ff",
+              "#5ab4ff"
+            ],
+            "add": false,
+            "life": [
+              0.5,
+              0.8
+            ],
+            "speed": [
+              12,
+              18
+            ],
+            "spread": 35,
+            "direction": "Top",
+            "acc": -45,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.35
+              ],
+              [
+                1,
+                0.2
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0.4
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#cfeeff"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.4
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "poison_cloud",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "Sickly green bubbling cloud.",
+      "tags": [
+        "poison",
+        "toxic",
+        "acid",
+        "debuff",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/poison_cloud.luau",
+          "dest": "src/shared/Juice/Effects/poison_cloud.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"poison_cloud\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#9dff6a",
+              "#3d8a1e"
+            ],
+            "add": false,
+            "life": [
+              1,
+              1.6
+            ],
+            "speed": [
+              2,
+              4
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 1,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d4ff9a"
+            ],
+            "add": true,
+            "life": [
+              0.8,
+              1.2
+            ],
+            "speed": [
+              2,
+              4
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 3,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "dark_burst",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "Purple-black void energy blasting out.",
+      "tags": [
+        "dark",
+        "shadow",
+        "void",
+        "curse",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/dark_burst.luau",
+          "dest": "src/shared/Juice/Effects/dark_burst.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"dark_burst\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#5a2a8a",
+              "#120a1e"
+            ],
+            "add": false,
+            "life": [
+              0.6,
+              1
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#e0b0ff",
+              "#6a1aff"
+            ],
+            "add": true,
+            "life": [
+              0.15,
+              0.3
+            ],
+            "speed": [
+              18,
+              26
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 10,
+            "spin": false,
+            "streak": 1.5,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "holy_light",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "Warm beams of light rising from the ground.",
+      "tags": [
+        "holy",
+        "light",
+        "divine",
+        "bless",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/holy_light.luau",
+          "dest": "src/shared/Juice/Effects/holy_light.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"holy_light\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#fff0b0",
+        "emitters": [
+          {
+            "emit": 20,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#fffbe6",
+              "#ffd65a"
+            ],
+            "add": true,
+            "life": [
+              0.9,
+              1.4
+            ],
+            "speed": [
+              10,
+              16
+            ],
+            "spread": 8,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                0.3,
+                0.9
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#fff2b0"
+            ],
+            "add": true,
+            "life": [
+              0.6,
+              0.6
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                3
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "wind_gust",
+      "kind": "vfx",
+      "category": "Elements",
+      "description": "Pale streaks whipping past in one direction.",
+      "tags": [
+        "wind",
+        "gust",
+        "air",
+        "dash",
+        "element"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/wind_gust.luau",
+          "dest": "src/shared/Juice/Effects/wind_gust.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"wind_gust\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#d8f0f0"
+            ],
+            "add": true,
+            "life": [
+              0.25,
+              0.4
+            ],
+            "speed": [
+              30,
+              40
+            ],
+            "spread": 10,
+            "direction": "Front",
+            "acc": 0,
+            "drag": 2,
+            "spin": false,
+            "streak": 4,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.3
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "jump",
+      "kind": "vfx",
+      "category": "Movement",
+      "description": "Small dust puff at your feet when you jump.",
+      "tags": [
+        "jump",
+        "dust",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/jump.luau",
+          "dest": "src/shared/Juice/Effects/jump.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"jump\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 6,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#e8e2d6"
+            ],
+            "add": false,
+            "life": [
+              0.3,
+              0.5
+            ],
+            "speed": [
+              4,
+              6
+            ],
+            "spread": 80,
+            "direction": "Bottom",
+            "acc": 0,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "land",
+      "kind": "vfx",
+      "category": "Movement",
+      "description": "Dust ring when you land.",
+      "tags": [
+        "land",
+        "dust",
+        "fall",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/land.luau",
+          "dest": "src/shared/Juice/Effects/land.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"land\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#e8e2d6"
+            ],
+            "add": false,
+            "life": [
+              0.4,
+              0.6
+            ],
+            "speed": [
+              8,
+              12
+            ],
+            "spread": 90,
+            "direction": "Bottom",
+            "acc": 0,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#e8e2d6"
+            ],
+            "add": true,
+            "life": [
+              0.3,
+              0.3
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "double_jump",
+      "kind": "vfx",
+      "category": "Movement",
+      "description": "A ring of air under your feet for a second jump.",
+      "tags": [
+        "double jump",
+        "air",
+        "movement",
+        "obby"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/double_jump.luau",
+          "dest": "src/shared/Juice/Effects/double_jump.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"double_jump\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff"
+            ],
+            "add": true,
+            "life": [
+              0.3,
+              0.3
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#bfe6ff"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              6,
+              10
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "dash",
+      "kind": "vfx",
+      "category": "Movement",
+      "description": "Speed streaks left behind on a dash.",
+      "tags": [
+        "dash",
+        "speed",
+        "boost",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/dash.luau",
+          "dest": "src/shared/Juice/Effects/dash.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"dash\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#9fd0ff"
+            ],
+            "add": true,
+            "life": [
+              0.2,
+              0.35
+            ],
+            "speed": [
+              12,
+              18
+            ],
+            "spread": 15,
+            "direction": "Back",
+            "acc": 0,
+            "drag": 10,
+            "spin": false,
+            "streak": 4,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.35
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "teleport",
+      "kind": "vfx",
+      "category": "Movement",
+      "description": "Blue column of light for teleports and portals.",
+      "tags": [
+        "teleport",
+        "warp",
+        "portal",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/teleport.luau",
+          "dest": "src/shared/Juice/Effects/teleport.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"teleport\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": "#7fc0ff",
+        "emitters": [
+          {
+            "emit": 30,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#e0f4ff",
+              "#3c9cff"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.7
+            ],
+            "speed": [
+              10,
+              18
+            ],
+            "spread": 5,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                0.3,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#bfe6ff"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.4
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                6
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "checkpoint",
+      "kind": "vfx",
+      "category": "Movement",
+      "description": "Green rising sparkles and ring when you hit a checkpoint.",
+      "tags": [
+        "checkpoint",
+        "stage",
+        "save",
+        "obby"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/checkpoint.luau",
+          "dest": "src/shared/Juice/Effects/checkpoint.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"checkpoint\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 20,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#d0ffd8",
+              "#2fd06a"
+            ],
+            "add": true,
+            "life": [
+              0.9,
+              1.4
+            ],
+            "speed": [
+              4,
+              9
+            ],
+            "spread": 25,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                0.3,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 1,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#a6f5be"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.5
+            ],
+            "speed": [
+              0.01,
+              0.01
+            ],
+            "spread": 0,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": true,
+            "size": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                7
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "plant",
+      "kind": "vfx",
+      "category": "Farming",
+      "description": "Soil puff and green sparkle as a seed goes in.",
+      "tags": [
+        "plant",
+        "seed",
+        "farm",
+        "grow a garden"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/plant.luau",
+          "dest": "src/shared/Juice/Effects/plant.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"plant\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 6,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#7a5a3a"
+            ],
+            "add": false,
+            "life": [
+              0.5,
+              0.9
+            ],
+            "speed": [
+              4,
+              8
+            ],
+            "spread": 60,
+            "direction": "Top",
+            "acc": -40,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0.24
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.8,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#c8ffb0",
+              "#4cc84a"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              3,
+              6
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 4,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "harvest",
+      "kind": "vfx",
+      "category": "Farming",
+      "description": "Leafy pop when a crop is collected.",
+      "tags": [
+        "harvest",
+        "crop",
+        "farm",
+        "collect",
+        "grow a garden"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/harvest.luau",
+          "dest": "src/shared/Juice/Effects/harvest.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"harvest\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 12,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#a8f07a",
+              "#3a9a2a"
+            ],
+            "add": false,
+            "life": [
+              0.6,
+              1
+            ],
+            "speed": [
+              8,
+              14
+            ],
+            "spread": 50,
+            "direction": "Top",
+            "acc": -25,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0.4
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.8,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": 8,
+            "rate": null,
+            "texture": "spark",
+            "color": [
+              "#fff6c0"
+            ],
+            "add": true,
+            "life": [
+              0.35,
+              0.6
+            ],
+            "speed": [
+              6,
+              10
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.7,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "smoke_puff",
+      "kind": "vfx",
+      "category": "Farming",
+      "description": "Neutral grey puff for things appearing or disappearing.",
+      "tags": [
+        "smoke",
+        "poof",
+        "appear",
+        "despawn",
+        "build"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/smoke_puff.luau",
+          "dest": "src/shared/Juice/Effects/smoke_puff.luau"
+        }
+      ],
+      "usage": "Juice.vfx(\"smoke_puff\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": false,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": 10,
+            "rate": null,
+            "texture": "smoke",
+            "color": [
+              "#e6e3dc",
+              "#a6a299"
+            ],
+            "add": false,
+            "life": [
+              0.5,
+              0.8
+            ],
+            "speed": [
+              5,
+              8
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 2,
+            "drag": 2,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.2
+              ],
+              [
+                1,
+                3.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.7
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "aura_fire",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Flames licking up around a character. Loops.",
+      "tags": [
+        "aura",
+        "fire",
+        "buff",
+        "anime",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/aura_fire.luau",
+          "dest": "src/shared/Juice/Effects/aura_fire.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"aura_fire\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": true,
+        "light": "#ff8a3b",
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 20,
+            "texture": "fire",
+            "color": [
+              "#fff2a0",
+              "#ff6a14",
+              "#a8200a"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.8
+            ],
+            "speed": [
+              2,
+              4
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 8,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.2
+              ],
+              [
+                1,
+                0.2
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.8
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "aura_electric",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Blue sparks crackling around a character. Loops.",
+      "tags": [
+        "aura",
+        "electric",
+        "lightning",
+        "anime",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/aura_electric.luau",
+          "dest": "src/shared/Juice/Effects/aura_electric.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"aura_electric\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": true,
+        "light": "#7fc0ff",
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 45,
+            "texture": "spark",
+            "color": [
+              "#ffffff",
+              "#5ab4ff"
+            ],
+            "add": true,
+            "life": [
+              0.12,
+              0.25
+            ],
+            "speed": [
+              6,
+              10
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 2,
+            "spin": false,
+            "streak": 2.5,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.35
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "aura_holy",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Soft golden motes drifting up. Loops.",
+      "tags": [
+        "aura",
+        "holy",
+        "gold",
+        "vip",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/aura_holy.luau",
+          "dest": "src/shared/Juice/Effects/aura_holy.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"aura_holy\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": true,
+        "light": "#ffe7a0",
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 12,
+            "texture": "spark",
+            "color": [
+              "#fffbe0",
+              "#ffd65a"
+            ],
+            "add": true,
+            "life": [
+              1,
+              1.6
+            ],
+            "speed": [
+              1,
+              2
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 3,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0
+              ],
+              [
+                0.3,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.9
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "shield_bubble",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Pulsing blue shield ring and glints. Loops.",
+      "tags": [
+        "shield",
+        "bubble",
+        "protect",
+        "base lock",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/shield_bubble.luau",
+          "dest": "src/shared/Juice/Effects/shield_bubble.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"shield_bubble\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 2,
+            "texture": "spark",
+            "color": [
+              "#bfe6ff"
+            ],
+            "add": true,
+            "life": [
+              0.8,
+              0.8
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                6
+              ],
+              [
+                1,
+                7
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.4
+              ],
+              [
+                0.5,
+                0.25
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": null,
+            "rate": 6,
+            "texture": "spark",
+            "color": [
+              "#e6f6ff",
+              "#5ab4ff"
+            ],
+            "add": true,
+            "life": [
+              0.4,
+              0.6
+            ],
+            "speed": [
+              3,
+              4
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 6,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.3
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "campfire",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Campfire flames, embers and smoke. Loops.",
+      "tags": [
+        "campfire",
+        "fire",
+        "survival",
+        "99 nights",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/campfire.luau",
+          "dest": "src/shared/Juice/Effects/campfire.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"campfire\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": false,
+        "light": "#ff9a4a",
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 18,
+            "texture": "fire",
+            "color": [
+              "#fff2a0",
+              "#ff6a14",
+              "#a8200a"
+            ],
+            "add": true,
+            "life": [
+              0.5,
+              0.9
+            ],
+            "speed": [
+              1,
+              3
+            ],
+            "spread": 15,
+            "direction": "Top",
+            "acc": 6,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.6
+              ],
+              [
+                1,
+                0.4
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.9
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": null,
+            "rate": 5,
+            "texture": "spark",
+            "color": [
+              "#ffcc66",
+              "#ff5a14"
+            ],
+            "add": true,
+            "life": [
+              1.2,
+              2
+            ],
+            "speed": [
+              3,
+              6
+            ],
+            "spread": 20,
+            "direction": "Top",
+            "acc": 3,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.2
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0.7
+              ]
+            ]
+          },
+          {
+            "emit": null,
+            "rate": 3,
+            "texture": "smoke",
+            "color": [
+              "#8a8680",
+              "#3a3834"
+            ],
+            "add": false,
+            "life": [
+              2.5,
+              3.5
+            ],
+            "speed": [
+              3,
+              5
+            ],
+            "spread": 10,
+            "direction": "Top",
+            "acc": 1,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                1.5
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "fireflies",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Slow glowing fireflies for night scenes. Loops.",
+      "tags": [
+        "fireflies",
+        "night",
+        "ambient",
+        "forest",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/fireflies.luau",
+          "dest": "src/shared/Juice/Effects/fireflies.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"fireflies\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 3,
+            "texture": "spark",
+            "color": [
+              "#f6ff9a",
+              "#b8ff4a"
+            ],
+            "add": true,
+            "life": [
+              3,
+              5
+            ],
+            "speed": [
+              0.5,
+              1.5
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0.3,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0
+              ],
+              [
+                0.2,
+                0.3
+              ],
+              [
+                0.8,
+                0.3
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.5,
+                0.6
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "portal",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Swirling purple portal energy. Loops.",
+      "tags": [
+        "portal",
+        "gate",
+        "teleport",
+        "world",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/portal.luau",
+          "dest": "src/shared/Juice/Effects/portal.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"portal\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": false,
+        "light": "#a060ff",
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 30,
+            "texture": "spark",
+            "color": [
+              "#f0d0ff",
+              "#7a2cff"
+            ],
+            "add": true,
+            "life": [
+              0.6,
+              0.9
+            ],
+            "speed": [
+              3,
+              5
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 3,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.6
+              ],
+              [
+                1,
+                0.1
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          },
+          {
+            "emit": null,
+            "rate": 4,
+            "texture": "spark",
+            "color": [
+              "#c890ff"
+            ],
+            "add": true,
+            "life": [
+              0.6,
+              0.6
+            ],
+            "speed": [
+              0,
+              0
+            ],
+            "spread": 180,
+            "direction": "Top",
+            "acc": 0,
+            "drag": 0,
+            "spin": false,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "falling_leaves",
+      "kind": "vfx",
+      "category": "Auras & ambient",
+      "description": "Autumn leaves drifting down. Loops.",
+      "tags": [
+        "leaves",
+        "autumn",
+        "ambient",
+        "tree",
+        "loop"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "vfx/falling_leaves.luau",
+          "dest": "src/shared/Juice/Effects/falling_leaves.luau"
+        }
+      ],
+      "usage": "local stop = Juice.attach(\"falling_leaves\", target)",
+      "after": [],
+      "license": "MIT",
+      "preview": {
+        "loop": true,
+        "surface": false,
+        "light": null,
+        "emitters": [
+          {
+            "emit": null,
+            "rate": 3,
+            "texture": "spark",
+            "color": [
+              "#ffb347",
+              "#c8501e"
+            ],
+            "add": false,
+            "life": [
+              3,
+              4
+            ],
+            "speed": [
+              1,
+              2
+            ],
+            "spread": 60,
+            "direction": "Bottom",
+            "acc": -1.5,
+            "drag": 0,
+            "spin": true,
+            "streak": 0,
+            "ring": false,
+            "size": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0.5
+              ]
+            ],
+            "alpha": [
+              [
+                0,
+                1
+              ],
+              [
+                0.9,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          }
+        ]
+      }
     },
     {
       "name": "coin_pickup",
       "kind": "sfx",
+      "category": "Rewards",
       "description": "Two-note bright coin blip.",
       "tags": [
         "coin",
@@ -201,12 +6769,13 @@
     {
       "name": "hit",
       "kind": "sfx",
+      "category": "Combat",
       "description": "Punchy thump with a noise crack.",
       "tags": [
         "hit",
         "impact",
         "damage",
-        "combat"
+        "punch"
       ],
       "requires": [
         "juice"
@@ -231,11 +6800,13 @@
     {
       "name": "level_up",
       "kind": "sfx",
+      "category": "Rewards",
       "description": "Rising arpeggio ending on a held chord.",
       "tags": [
         "level",
         "upgrade",
-        "rank"
+        "rank",
+        "xp"
       ],
       "requires": [
         "juice"
@@ -248,7 +6819,7 @@
       ],
       "sound": {
         "volume": 0.5,
-        "pitchVariance": 0
+        "pitchVariance": 0.0
       },
       "usage": "Juice.sfx(\"level_up\")",
       "after": [
@@ -260,6 +6831,7 @@
     {
       "name": "ui_click",
       "kind": "sfx",
+      "category": "UI",
       "description": "Short, crisp button click.",
       "tags": [
         "ui",
@@ -290,6 +6862,7 @@
     {
       "name": "ui_hover",
       "kind": "sfx",
+      "category": "UI",
       "description": "Very soft hover tick.",
       "tags": [
         "ui",
@@ -318,9 +6891,9 @@
     {
       "name": "purchase",
       "kind": "sfx",
+      "category": "Rewards",
       "description": "Three-note cha-ching for buying things.",
       "tags": [
-        "ui",
         "purchase",
         "buy",
         "shop",
@@ -337,7 +6910,7 @@
       ],
       "sound": {
         "volume": 0.5,
-        "pitchVariance": 0
+        "pitchVariance": 0.0
       },
       "usage": "Juice.sfx(\"purchase\")",
       "after": [
@@ -349,6 +6922,7 @@
     {
       "name": "error",
       "kind": "sfx",
+      "category": "UI",
       "description": "Two descending low notes for denied actions.",
       "tags": [
         "ui",
@@ -367,7 +6941,7 @@
       ],
       "sound": {
         "volume": 0.45,
-        "pitchVariance": 0
+        "pitchVariance": 0.0
       },
       "usage": "Juice.sfx(\"error\")",
       "after": [
@@ -379,10 +6953,12 @@
     {
       "name": "jump",
       "kind": "sfx",
+      "category": "Movement",
       "description": "Quick upward chirp.",
       "tags": [
         "jump",
-        "movement"
+        "movement",
+        "obby"
       ],
       "requires": [
         "juice"
@@ -407,6 +6983,7 @@
     {
       "name": "checkpoint",
       "kind": "sfx",
+      "category": "Game flow",
       "description": "Two-note chime for reaching a checkpoint.",
       "tags": [
         "checkpoint",
@@ -425,12 +7002,1291 @@
       ],
       "sound": {
         "volume": 0.5,
-        "pitchVariance": 0
+        "pitchVariance": 0.0
       },
       "usage": "Juice.sfx(\"checkpoint\")",
       "after": [
         "Ask the user to upload assets/sfx/checkpoint.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
         "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: checkpoint = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "ui_open",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Soft rising pop when a menu opens.",
+      "tags": [
+        "ui",
+        "open",
+        "menu",
+        "panel"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/ui_open.ogg",
+          "dest": "assets/sfx/ui_open.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.4,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"ui_open\")",
+      "after": [
+        "Ask the user to upload assets/sfx/ui_open.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: ui_open = { id = \"ASSET_ID\", volume = 0.4 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "ui_close",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Soft falling pop when a menu closes.",
+      "tags": [
+        "ui",
+        "close",
+        "menu",
+        "back"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/ui_close.ogg",
+          "dest": "assets/sfx/ui_close.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.4,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"ui_close\")",
+      "after": [
+        "Ask the user to upload assets/sfx/ui_close.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: ui_close = { id = \"ASSET_ID\", volume = 0.4 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "notification",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Two-tone ping for a new notification or message.",
+      "tags": [
+        "ui",
+        "notification",
+        "alert",
+        "message"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/notification.ogg",
+          "dest": "assets/sfx/notification.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"notification\")",
+      "after": [
+        "Ask the user to upload assets/sfx/notification.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: notification = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "success",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Bright major chime for a task done right.",
+      "tags": [
+        "ui",
+        "success",
+        "complete",
+        "quest"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/success.ogg",
+          "dest": "assets/sfx/success.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"success\")",
+      "after": [
+        "Ask the user to upload assets/sfx/success.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: success = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "countdown_tick",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Woodblock tick for each second of a countdown.",
+      "tags": [
+        "countdown",
+        "tick",
+        "timer",
+        "round"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/countdown_tick.ogg",
+          "dest": "assets/sfx/countdown_tick.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"countdown_tick\")",
+      "after": [
+        "Ask the user to upload assets/sfx/countdown_tick.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: countdown_tick = { id = \"ASSET_ID\", volume = 0.45 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "countdown_go",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Higher, longer beep for GO at the end of a countdown.",
+      "tags": [
+        "countdown",
+        "go",
+        "start",
+        "race"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/countdown_go.ogg",
+          "dest": "assets/sfx/countdown_go.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"countdown_go\")",
+      "after": [
+        "Ask the user to upload assets/sfx/countdown_go.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: countdown_go = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "timer_warning",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Urgent double beep for time running out.",
+      "tags": [
+        "timer",
+        "warning",
+        "hurry",
+        "low time"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/timer_warning.ogg",
+          "dest": "assets/sfx/timer_warning.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"timer_warning\")",
+      "after": [
+        "Ask the user to upload assets/sfx/timer_warning.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: timer_warning = { id = \"ASSET_ID\", volume = 0.45 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "reward_claim",
+      "kind": "sfx",
+      "category": "UI",
+      "description": "Sparkly ascending run for claiming a reward.",
+      "tags": [
+        "reward",
+        "claim",
+        "daily",
+        "gift",
+        "quest"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/reward_claim.ogg",
+          "dest": "assets/sfx/reward_claim.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"reward_claim\")",
+      "after": [
+        "Ask the user to upload assets/sfx/reward_claim.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: reward_claim = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "gem_pickup",
+      "kind": "sfx",
+      "category": "Rewards",
+      "description": "Glassy high glint for gems and diamonds.",
+      "tags": [
+        "gem",
+        "diamond",
+        "pickup",
+        "currency"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/gem_pickup.ogg",
+          "dest": "assets/sfx/gem_pickup.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.05
+      },
+      "usage": "Juice.sfx(\"gem_pickup\")",
+      "after": [
+        "Ask the user to upload assets/sfx/gem_pickup.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: gem_pickup = { id = \"ASSET_ID\", volume = 0.45, pitchVariance = 0.05 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "cash_burst",
+      "kind": "sfx",
+      "category": "Rewards",
+      "description": "Quick coin cascade for collecting cash or income.",
+      "tags": [
+        "cash",
+        "money",
+        "collect",
+        "tycoon",
+        "steal"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/cash_burst.ogg",
+          "dest": "assets/sfx/cash_burst.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.04
+      },
+      "usage": "Juice.sfx(\"cash_burst\")",
+      "after": [
+        "Ask the user to upload assets/sfx/cash_burst.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: cash_burst = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.04 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "rebirth",
+      "kind": "sfx",
+      "category": "Rewards",
+      "description": "Big whoosh-up and chord for rebirth or prestige.",
+      "tags": [
+        "rebirth",
+        "prestige",
+        "simulator"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/rebirth.ogg",
+          "dest": "assets/sfx/rebirth.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"rebirth\")",
+      "after": [
+        "Ask the user to upload assets/sfx/rebirth.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: rebirth = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "chest_open",
+      "kind": "sfx",
+      "category": "Rewards",
+      "description": "Creak and sparkle of a chest opening.",
+      "tags": [
+        "chest",
+        "loot",
+        "crate",
+        "open"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/chest_open.ogg",
+          "dest": "assets/sfx/chest_open.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"chest_open\")",
+      "after": [
+        "Ask the user to upload assets/sfx/chest_open.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: chest_open = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "firework",
+      "kind": "sfx",
+      "category": "Rewards",
+      "description": "Launch whistle and pop of a firework.",
+      "tags": [
+        "firework",
+        "win",
+        "celebrate",
+        "event"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/firework.ogg",
+          "dest": "assets/sfx/firework.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"firework\")",
+      "after": [
+        "Ask the user to upload assets/sfx/firework.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: firework = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.06 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "spin_tick",
+      "kind": "sfx",
+      "category": "Rewards",
+      "description": "Fast clicky tick for spinning wheels and crate rolls.",
+      "tags": [
+        "spin",
+        "wheel",
+        "crate",
+        "unbox",
+        "roll"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/spin_tick.ogg",
+          "dest": "assets/sfx/spin_tick.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.35,
+        "pitchVariance": 0.03
+      },
+      "usage": "Juice.sfx(\"spin_tick\")",
+      "after": [
+        "Ask the user to upload assets/sfx/spin_tick.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: spin_tick = { id = \"ASSET_ID\", volume = 0.35, pitchVariance = 0.03 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "egg_crack",
+      "kind": "sfx",
+      "category": "Pets & eggs",
+      "description": "Shell crack for an egg starting to hatch.",
+      "tags": [
+        "egg",
+        "crack",
+        "hatch",
+        "pet"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/egg_crack.ogg",
+          "dest": "assets/sfx/egg_crack.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"egg_crack\")",
+      "after": [
+        "Ask the user to upload assets/sfx/egg_crack.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: egg_crack = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.06 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "egg_hatch",
+      "kind": "sfx",
+      "category": "Pets & eggs",
+      "description": "Magical shimmer and pop as the pet appears.",
+      "tags": [
+        "egg",
+        "hatch",
+        "pet",
+        "reveal",
+        "steal an egg"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/egg_hatch.ogg",
+          "dest": "assets/sfx/egg_hatch.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"egg_hatch\")",
+      "after": [
+        "Ask the user to upload assets/sfx/egg_hatch.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: egg_hatch = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "rarity_legendary",
+      "kind": "sfx",
+      "category": "Pets & eggs",
+      "description": "Triumphant fanfare stab for a legendary pull.",
+      "tags": [
+        "rarity",
+        "legendary",
+        "reveal",
+        "unbox"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/rarity_legendary.ogg",
+          "dest": "assets/sfx/rarity_legendary.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.55,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"rarity_legendary\")",
+      "after": [
+        "Ask the user to upload assets/sfx/rarity_legendary.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: rarity_legendary = { id = \"ASSET_ID\", volume = 0.55 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "steal_grab",
+      "kind": "sfx",
+      "category": "Pets & eggs",
+      "description": "Sneaky swoosh-and-snag for grabbing someone's item.",
+      "tags": [
+        "steal",
+        "grab",
+        "steal a brainrot",
+        "steal an egg"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/steal_grab.ogg",
+          "dest": "assets/sfx/steal_grab.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.05
+      },
+      "usage": "Juice.sfx(\"steal_grab\")",
+      "after": [
+        "Ask the user to upload assets/sfx/steal_grab.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: steal_grab = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.05 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "crit_hit",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Bigger impact with a high ring for critical hits.",
+      "tags": [
+        "critical",
+        "crit",
+        "hit",
+        "damage"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/crit_hit.ogg",
+          "dest": "assets/sfx/crit_hit.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.6,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"crit_hit\")",
+      "after": [
+        "Ask the user to upload assets/sfx/crit_hit.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: crit_hit = { id = \"ASSET_ID\", volume = 0.6, pitchVariance = 0.06 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "swing",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Airy whoosh of a swing or punch.",
+      "tags": [
+        "swing",
+        "whoosh",
+        "melee",
+        "punch",
+        "attack"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/swing.ogg",
+          "dest": "assets/sfx/swing.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.1
+      },
+      "usage": "Juice.sfx(\"swing\")",
+      "after": [
+        "Ask the user to upload assets/sfx/swing.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: swing = { id = \"ASSET_ID\", volume = 0.45, pitchVariance = 0.1 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "slash",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Sharp metallic slash for swords and knives.",
+      "tags": [
+        "slash",
+        "sword",
+        "knife",
+        "blade",
+        "murder mystery"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/slash.ogg",
+          "dest": "assets/sfx/slash.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.08
+      },
+      "usage": "Juice.sfx(\"slash\")",
+      "after": [
+        "Ask the user to upload assets/sfx/slash.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: slash = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.08 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "block",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Dull clang of a blocked attack.",
+      "tags": [
+        "block",
+        "parry",
+        "shield",
+        "clang"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/block.ogg",
+          "dest": "assets/sfx/block.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"block\")",
+      "after": [
+        "Ask the user to upload assets/sfx/block.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: block = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.06 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "muzzle_flash",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Punchy pew for guns and blasters. Not a realistic gunshot.",
+      "tags": [
+        "gun",
+        "blaster",
+        "shoot",
+        "pew",
+        "murder mystery"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/muzzle_flash.ogg",
+          "dest": "assets/sfx/muzzle_flash.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"muzzle_flash\")",
+      "after": [
+        "Ask the user to upload assets/sfx/muzzle_flash.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: muzzle_flash = { id = \"ASSET_ID\", volume = 0.45, pitchVariance = 0.06 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "explosion",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Deep boom with a rumbling tail.",
+      "tags": [
+        "explosion",
+        "bomb",
+        "boom"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/explosion.ogg",
+          "dest": "assets/sfx/explosion.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.6,
+        "pitchVariance": 0.05
+      },
+      "usage": "Juice.sfx(\"explosion\")",
+      "after": [
+        "Ask the user to upload assets/sfx/explosion.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: explosion = { id = \"ASSET_ID\", volume = 0.6, pitchVariance = 0.05 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "death",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Soft descending blip when a character is eliminated.",
+      "tags": [
+        "death",
+        "eliminate",
+        "lose life",
+        "respawn"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/death.ogg",
+          "dest": "assets/sfx/death.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"death\")",
+      "after": [
+        "Ask the user to upload assets/sfx/death.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: death = { id = \"ASSET_ID\", volume = 0.45 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "heal",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Gentle rising shimmer for healing.",
+      "tags": [
+        "heal",
+        "health",
+        "regen",
+        "potion"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/heal.ogg",
+          "dest": "assets/sfx/heal.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"heal\")",
+      "after": [
+        "Ask the user to upload assets/sfx/heal.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: heal = { id = \"ASSET_ID\", volume = 0.45 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "charge_up",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Rising hum that builds before a big move.",
+      "tags": [
+        "charge",
+        "power",
+        "ability",
+        "cast"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/charge_up.ogg",
+          "dest": "assets/sfx/charge_up.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.35,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"charge_up\")",
+      "after": [
+        "Ask the user to upload assets/sfx/charge_up.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: charge_up = { id = \"ASSET_ID\", volume = 0.35 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "lightning_strike",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Crackling electric zap.",
+      "tags": [
+        "lightning",
+        "electric",
+        "zap",
+        "shock"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/lightning_strike.ogg",
+          "dest": "assets/sfx/lightning_strike.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"lightning_strike\")",
+      "after": [
+        "Ask the user to upload assets/sfx/lightning_strike.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: lightning_strike = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.06 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "ice_shatter",
+      "kind": "sfx",
+      "category": "Combat",
+      "description": "Glassy shatter for ice and freeze effects.",
+      "tags": [
+        "ice",
+        "freeze",
+        "shatter",
+        "glass"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/ice_shatter.ogg",
+          "dest": "assets/sfx/ice_shatter.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.05
+      },
+      "usage": "Juice.sfx(\"ice_shatter\")",
+      "after": [
+        "Ask the user to upload assets/sfx/ice_shatter.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: ice_shatter = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.05 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "land",
+      "kind": "sfx",
+      "category": "Movement",
+      "description": "Soft thud when you land.",
+      "tags": [
+        "land",
+        "fall",
+        "thud",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/land.ogg",
+          "dest": "assets/sfx/land.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.4,
+        "pitchVariance": 0.08
+      },
+      "usage": "Juice.sfx(\"land\")",
+      "after": [
+        "Ask the user to upload assets/sfx/land.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: land = { id = \"ASSET_ID\", volume = 0.4, pitchVariance = 0.08 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "double_jump",
+      "kind": "sfx",
+      "category": "Movement",
+      "description": "Airy bounce for a second jump.",
+      "tags": [
+        "double jump",
+        "air",
+        "movement",
+        "obby"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/double_jump.ogg",
+          "dest": "assets/sfx/double_jump.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.35,
+        "pitchVariance": 0.05
+      },
+      "usage": "Juice.sfx(\"double_jump\")",
+      "after": [
+        "Ask the user to upload assets/sfx/double_jump.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: double_jump = { id = \"ASSET_ID\", volume = 0.35, pitchVariance = 0.05 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "dash",
+      "kind": "sfx",
+      "category": "Movement",
+      "description": "Fast whoosh for a dash or speed boost.",
+      "tags": [
+        "dash",
+        "speed",
+        "boost",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/dash.ogg",
+          "dest": "assets/sfx/dash.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.08
+      },
+      "usage": "Juice.sfx(\"dash\")",
+      "after": [
+        "Ask the user to upload assets/sfx/dash.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: dash = { id = \"ASSET_ID\", volume = 0.45, pitchVariance = 0.08 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "teleport",
+      "kind": "sfx",
+      "category": "Movement",
+      "description": "Warbling warp for teleports and portals.",
+      "tags": [
+        "teleport",
+        "warp",
+        "portal",
+        "movement"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/teleport.ogg",
+          "dest": "assets/sfx/teleport.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"teleport\")",
+      "after": [
+        "Ask the user to upload assets/sfx/teleport.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: teleport = { id = \"ASSET_ID\", volume = 0.45 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "splash",
+      "kind": "sfx",
+      "category": "Movement",
+      "description": "Water splash.",
+      "tags": [
+        "water",
+        "splash",
+        "swim",
+        "pool"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/splash.ogg",
+          "dest": "assets/sfx/splash.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.08
+      },
+      "usage": "Juice.sfx(\"splash\")",
+      "after": [
+        "Ask the user to upload assets/sfx/splash.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: splash = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.08 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "round_start",
+      "kind": "sfx",
+      "category": "Game flow",
+      "description": "Three rising tones to start a round.",
+      "tags": [
+        "round",
+        "start",
+        "match",
+        "murder mystery"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/round_start.ogg",
+          "dest": "assets/sfx/round_start.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"round_start\")",
+      "after": [
+        "Ask the user to upload assets/sfx/round_start.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: round_start = { id = \"ASSET_ID\", volume = 0.5 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "victory",
+      "kind": "sfx",
+      "category": "Game flow",
+      "description": "Short victory fanfare.",
+      "tags": [
+        "win",
+        "victory",
+        "round end",
+        "finish"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/victory.ogg",
+          "dest": "assets/sfx/victory.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.55,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"victory\")",
+      "after": [
+        "Ask the user to upload assets/sfx/victory.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: victory = { id = \"ASSET_ID\", volume = 0.55 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "defeat",
+      "kind": "sfx",
+      "category": "Game flow",
+      "description": "Sad descending trombone-ish phrase.",
+      "tags": [
+        "lose",
+        "defeat",
+        "game over",
+        "fail"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/defeat.ogg",
+          "dest": "assets/sfx/defeat.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.4,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"defeat\")",
+      "after": [
+        "Ask the user to upload assets/sfx/defeat.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: defeat = { id = \"ASSET_ID\", volume = 0.4 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "alarm",
+      "kind": "sfx",
+      "category": "Game flow",
+      "description": "Two-tone alarm loop for intruders and stolen items.",
+      "tags": [
+        "alarm",
+        "alert",
+        "steal",
+        "base",
+        "siren"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/alarm.ogg",
+          "dest": "assets/sfx/alarm.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.3,
+        "pitchVariance": 0.0
+      },
+      "usage": "Juice.sfx(\"alarm\")",
+      "after": [
+        "Ask the user to upload assets/sfx/alarm.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: alarm = { id = \"ASSET_ID\", volume = 0.3 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "lock",
+      "kind": "sfx",
+      "category": "Game flow",
+      "description": "Heavy click of a lock or base door closing.",
+      "tags": [
+        "lock",
+        "door",
+        "base",
+        "close",
+        "steal"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/lock.ogg",
+          "dest": "assets/sfx/lock.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.04
+      },
+      "usage": "Juice.sfx(\"lock\")",
+      "after": [
+        "Ask the user to upload assets/sfx/lock.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: lock = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.04 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "plant",
+      "kind": "sfx",
+      "category": "Game flow",
+      "description": "Soft soil pat for planting a seed.",
+      "tags": [
+        "plant",
+        "seed",
+        "farm",
+        "grow a garden"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/plant.ogg",
+          "dest": "assets/sfx/plant.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.45,
+        "pitchVariance": 0.08
+      },
+      "usage": "Juice.sfx(\"plant\")",
+      "after": [
+        "Ask the user to upload assets/sfx/plant.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: plant = { id = \"ASSET_ID\", volume = 0.45, pitchVariance = 0.08 },"
+      ],
+      "license": "CC0-1.0"
+    },
+    {
+      "name": "harvest",
+      "kind": "sfx",
+      "category": "Game flow",
+      "description": "Leafy rustle and pop for harvesting a crop.",
+      "tags": [
+        "harvest",
+        "crop",
+        "farm",
+        "collect",
+        "grow a garden"
+      ],
+      "requires": [
+        "juice"
+      ],
+      "files": [
+        {
+          "src": "sfx/harvest.ogg",
+          "dest": "assets/sfx/harvest.ogg"
+        }
+      ],
+      "sound": {
+        "volume": 0.5,
+        "pitchVariance": 0.06
+      },
+      "usage": "Juice.sfx(\"harvest\")",
+      "after": [
+        "Ask the user to upload assets/sfx/harvest.ogg as an Audio asset (Creator Hub > Creations > Upload, or Open Cloud Assets API) and give you its asset ID.",
+        "Add this line inside the Sounds table in src/shared/Juice/Sounds.luau, with the real ID: harvest = { id = \"ASSET_ID\", volume = 0.5, pitchVariance = 0.06 },"
       ],
       "license": "CC0-1.0"
     }
