@@ -58,9 +58,15 @@ for the creative work that makes a game yours.
 
 ## V1: what we ship first
 
-V1 is a safe, searchable component library for VFX and sounds, delivered
-through a drop-in MCP server. It is the cleanest first ship because it is
-one promise, one install, and one proof point.
+V1 is the component library only: a safe, searchable library for VFX and
+sounds, delivered through a drop-in MCP server. It is the cleanest first
+ship because it is one promise, one install, and one proof point.
+Recipes and implementation.md specs are NOT V1. They stay in the repo
+under implementations/, but they are not the V1 promise, not the V1
+homepage, and not a V1 blocker. The homepage leads with the component
+library, not with recipes, copy-prompt game building, or implementation
+specs. The site was simplified on 2026-10-28 for exactly this reason:
+it was doing too much.
 
 ### V1 includes
 
@@ -81,12 +87,8 @@ one promise, one install, and one proof point.
   and flag any pack that changes after it was scanned. Pinning is what
   protects a user from a pack turning bad later.
 - The site Connect your agent section: the one install line for Claude Code,
-  plus config snippets for Codex and Cursor. The current site is only the
-  copy-a-prompt flow, so this section is a V1 blocker.
-- The obby recipe as the one working recipe, tested once in Studio.
-  Tycoon and simulator are labeled beta until they are tested the same way,
-  because they still need a hand-built map. One recipe that works beats
-  three that half work.
+  plus config snippets for Codex and Cursor. The simplified homepage leads
+  with this and with the component library, not with recipes.
 - The legal and report page made safe to share: a contact email for
   request a re-check, and the old demo artifact updated or deleted if it
   still says "lie" or shows creator names without a verified basis.
@@ -104,6 +106,9 @@ one promise, one install, and one proof point.
 
 ### V1 does not include
 
+- Recipes and implementation.md specs. The obby, tycoon, and simulator
+  specs in implementations/ are not V1, and the obby Studio test is not
+  a V1 blocker. They are later work, after the component library ships.
 - Fastlane shipping (`baseplate ship`), image generation for icons and
   thumbnails, music packs, a creator marketplace, or a full paid tier.
   Those are V2. They are in PLAN.md and stay there until V1 ships.
@@ -156,9 +161,7 @@ In order, after V1 is live and measured:
 
 Keep it free for hobbyists. Charge for awesome stuff on top.
 
-- Free forever: core recipe, the working obby recipe, the own 53 effects
-  and 50 sounds, basic MCP search and add, and the safe search for the
-  core safe set.
+- Free forever: the own 53 effects and 50 sounds, basic MCP search and add, and the safe search for the core safe set. Recipes are not part of the free V1 promise.
 - Paid later, not on day one: premium packs, music, expanded safe database
   updates, fastlane shipping, store assets, and team use. Start with a
   one-time paid pack before a subscription, because a one-time purchase
@@ -201,12 +204,11 @@ discovery that makes paid possible later.
   Claude's plan are not in this repo at last check. `find_vfx` cannot ship
   real data until that scan data, or a new scan, lands here in the format
   above.
-- Studio test: the obby recipe still needs a run in Studio, about 10
-  minutes, by the owner. Muse cannot run Roblox Studio from here.
 - Contact email: needed for request a re-check on the report and legal page.
 - The fourth ask in Claude's plan: the plan said four things were needed
-  from the owner, but only three owner items were listed: npm login,
-  Studio obby run, and contact email. That fourth item is still unclear.
+  from the owner, but only two owner items were listed: npm login and
+  contact email. The Studio obby run was removed on 2026-10-28, because
+  recipes are not V1. That fourth item is still unclear.
 
 ## Success measures for V1
 

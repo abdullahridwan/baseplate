@@ -3,449 +3,96 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baseplate: build better Roblox games</title>
-<meta name="description" content="Copy one prompt into your AI and it builds the basics of your Roblox game. You spend your time on the fun part.">
-<meta property="og:title" content="Baseplate: Build better Roblox games.">
-<meta property="og:description" content="Copy one prompt into your AI and it builds the basics of your Roblox game.">
-<meta property="og:image" content="https://abdullahridwan.github.io/baseplate/og.png">
-<meta name="twitter:card" content="summary_large_image">
+<title>Baseplate: VFX and sounds your agent can actually use</title>
+<meta name="description" content="A component library for Roblox games. Search VFX and sounds by description, add only safe packs, and own the files you copy.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Baseplate brand kit: Stud Blue, Ink, Plate, Stone, Seam. Inter Tight + JetBrains Mono, Instrument Serif for accents. */
-:root{
-  --blue:#1F4BFF;
-  --blue-deep:#1436C4;
-  --blue-wash:#EEF1FF;
-  --ink:#111111;
-  --ink-2:#1B1B1A;
-  --ring:#2A2A28;
-  --plate:#F4F2EC;
-  --stone:#55534E;
-  --stone-light:#B9B6AE;
-  --seam:#E6E3DB;
-  --white:#FFFFFF;
-  --mist:#F7F7F5;
-  --ease:cubic-bezier(0.22, 1, 0.36, 1);
-  --serif:'Instrument Serif', Georgia, serif;
-  --sans:'Inter Tight', system-ui, sans-serif;
-  --mono:'JetBrains Mono', ui-monospace, monospace;
-}
+:root{--blue:#1F4BFF;--ink:#111111;--stone:#55534E;--seam:#E6E3DB;--plate:#F4F2EC;--mist:#F7F7F5;--white:#FFFFFF}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-svg{display:block}
-.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
-:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
-.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.02em}
-
-/* ---------- nav ---------- */
-.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid transparent;transition:border-color .3s}
-.nav.scrolled{border-bottom-color:var(--seam)}
-.nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:72px}
-.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:21px;letter-spacing:-.045em;justify-self:start}
-.logo svg{width:22px;height:22px}
-.nav-mid{display:flex;gap:4px}
-.nav-mid a{padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--stone);transition:color .2s,background .2s}
-.nav-mid a:hover{color:var(--ink);background:var(--mist)}
-.nav-end{justify-self:end}
-
-/* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 22px;border-radius:12px;font:600 16px/1 var(--sans);letter-spacing:-.01em;transition:transform .25s var(--ease),background .2s,box-shadow .25s var(--ease)}
-.btn:active{transform:scale(.97)}
-.btn-ink{background:var(--ink);color:var(--white);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 6px 16px -8px rgba(17,17,17,.6)}
-.btn-ink:hover{background:#262624;transform:translateY(-1px)}
-.btn-blue{background:var(--blue);color:var(--white);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 20px -10px rgba(31,75,255,.8)}
-.btn-blue:hover{background:var(--blue-deep);transform:translateY(-1px)}
-.btn-ghost{background:var(--mist);color:var(--ink);box-shadow:inset 0 0 0 1px var(--seam)}
-.btn-ghost:hover{background:#EFEFEC}
-.btn-sm{height:40px;padding:0 16px;font-size:14px;border-radius:10px}
-.btn .arrow{transition:transform .25s var(--ease)}
-.btn:hover .arrow{transform:translateX(3px)}
-
-/* ---------- hero ---------- */
-.hero{text-align:center;padding:72px 0 0}
-.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--mist);box-shadow:inset 0 0 0 1px var(--seam);font-size:13px;font-weight:500;color:var(--stone)}
-.badge i{display:grid;place-items:center;width:18px;height:18px;border-radius:5px;background:var(--blue)}
-.badge i svg{width:11px;height:11px}
-h1{margin:30px auto 24px;font-weight:500;font-size:clamp(46px,7.4vw,100px);line-height:1;letter-spacing:-.055em;display:flex;align-items:center;justify-content:center;gap:.18em;flex-wrap:nowrap}
-h1 .paren{font-family:var(--sans);font-weight:200;color:var(--stone-light);font-size:1.1em;transform:translateX(var(--px,0));transition:transform 1.4s var(--ease)}
-h1 .paren.l{--px:.6em}
-h1 .paren.r{--px:-.6em}
-h1.go .paren{--px:0}
-h1 .serif{font-size:1.08em;color:var(--blue)}
-h1 .line{white-space:nowrap}
-.hero-sub{max-width:540px;margin:0 auto 32px;font-size:clamp(17px,1.6vw,19px);color:var(--stone);line-height:1.55}
-.hero-ctas{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-
-/* ---------- product window ---------- */
-.showcase{position:relative;margin-top:64px;padding:56px 0 0}
-.backdrop{position:absolute;left:0;right:0;top:0;height:78%;background:var(--ink);overflow:hidden}
-.backdrop svg{position:absolute;inset:-20px;width:calc(100% + 40px);height:calc(100% + 40px)}
-.backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.0) 40%,rgba(17,17,17,.55))}
-.window{position:relative;z-index:1;max-width:1100px;margin:0 auto;background:var(--white);border-radius:18px;box-shadow:0 0 0 1px rgba(17,17,17,.08),0 2px 4px rgba(17,17,17,.04),0 40px 80px -30px rgba(17,17,17,.45);overflow:hidden}
-.chrome{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-bottom:1px solid var(--seam);background:var(--mist)}
-.chrome i{width:11px;height:11px;border-radius:50%;background:#DDDAD2}
-.chrome span{margin:0 auto;padding:4px 14px;border-radius:7px;background:var(--white);box-shadow:inset 0 0 0 1px var(--seam);font:500 12px/1 var(--mono);color:var(--stone)}
-.app{display:grid;grid-template-columns:230px minmax(0,1fr) 360px;height:540px}
-.side{border-right:1px solid var(--seam);padding:18px 14px;background:#FCFCFB;overflow:hidden}
-.side h4{margin:0 0 10px;padding:0 8px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone-light)}
-.side h4 + ul{margin-bottom:20px}
-.side ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
-.side li{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:8px;font-size:14px;color:var(--stone);transition:background .3s,color .3s}
-.side li.active{background:var(--blue-wash);color:var(--ink);font-weight:500}
-.side li.done{color:var(--ink)}
-.st{width:16px;height:16px;border-radius:50%;flex-shrink:0;box-shadow:inset 0 0 0 1.5px #D6D3CB;display:grid;place-items:center;transition:background .3s,box-shadow .3s}
-.st svg{width:9px;height:9px;opacity:0;transition:opacity .3s}
-li.done .st{background:var(--blue);box-shadow:none}
-li.done .st svg{opacity:1}
-li.active .st{box-shadow:inset 0 0 0 2px var(--blue);border-right-color:transparent;animation:spin .9s linear infinite;background:conic-gradient(var(--blue) 0 25%,transparent 0)}
-li.active .st{box-shadow:none;-webkit-mask:radial-gradient(circle,transparent 4.5px,#000 5px);mask:radial-gradient(circle,transparent 4.5px,#000 5px);background:conic-gradient(var(--blue) 0 70%,#D6D3CB 0)}
-@keyframes spin{to{transform:rotate(1turn)}}
-.main{display:flex;flex-direction:column;min-width:0}
-.main-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--seam)}
-.main-head b{font-size:15px;font-weight:600}
-.status{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:999px;background:var(--blue-wash);color:var(--blue-deep);font-size:12px;font-weight:600}
-.status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;animation:blink 1.2s steps(2,end) infinite}
-.status.ok{background:#E8F5EE;color:#0A7A3E}
-.status.ok::before{animation:none}
-@keyframes blink{50%{opacity:.25}}
-.log{flex:1;overflow:hidden;padding:20px 22px;display:flex;flex-direction:column;gap:10px;justify-content:flex-end}
-.msg{max-width:84%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.45;opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
-.msg.in{opacity:1;transform:none}
-.msg.me{align-self:flex-end;background:var(--ink);color:var(--white);border-bottom-right-radius:5px}
-.msg.ai{align-self:flex-start;background:var(--mist);box-shadow:inset 0 0 0 1px var(--seam);border-bottom-left-radius:5px}
-.msg.step{align-self:flex-start;display:flex;align-items:center;gap:8px;padding:6px 0;background:none;box-shadow:none;font-size:13.5px;color:var(--stone)}
-.msg.step i{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--blue)}
-.msg.step i svg{width:9px;height:9px}
-.msg.step code{font:500 12.5px var(--mono);color:var(--ink)}
-.composer{margin:0 22px 18px;display:flex;align-items:center;gap:10px;padding:10px 10px 10px 16px;border-radius:12px;box-shadow:inset 0 0 0 1px var(--seam);color:var(--stone-light);font-size:14px}
-.composer span{flex:1}
-.composer b{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--ink)}
-.composer b svg{width:13px;height:13px}
-.preview{border-left:1px solid var(--seam);padding:16px;display:flex;flex-direction:column;gap:12px;background:#FCFCFB}
-.preview-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--stone-light)}
-.screen{flex:1;border-radius:12px;background:var(--ink);position:relative;overflow:hidden}
-.screen svg{position:absolute;left:50%;top:54%;width:88%;transform:translate(-50%,-50%)}
-.hud{position:absolute;left:50%;top:14px;transform:translateX(-50%);padding:6px 14px;border-radius:9px;background:rgba(17,17,17,.75);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);color:var(--white);font-size:13px;font-weight:700;opacity:0;transition:opacity .5s}
-.hud.on{opacity:1}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.stats div{padding:10px 12px;border-radius:10px;background:var(--white);box-shadow:inset 0 0 0 1px var(--seam)}
-.stats small{display:block;font-size:11px;color:var(--stone-light);font-weight:500}
-.stats b{font-size:18px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.try{position:relative;z-index:1;max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.try h3{margin:0 0 4px;font-size:20px;letter-spacing:-.02em;font-weight:600}
-.try p{margin:0;color:var(--stone);font-size:16px}
-.try div:last-child{display:flex;gap:10px;flex-wrap:wrap}
-
-/* ---------- sections ---------- */
-section{padding-top:clamp(112px,13vw,168px)}
-.sec-head{text-align:center;max-width:720px;margin:0 auto 64px}
-h2{margin:0;font-size:clamp(38px,5vw,64px);line-height:1.02;letter-spacing:-.05em;font-weight:500}
-h2 .serif{font-size:1.08em}
-.sec-head p{margin:20px auto 0;max-width:520px;font-size:18px;color:var(--stone)}
-
-/* features accordion */
-.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:stretch}
-.flist{display:flex;flex-direction:column}
-.fitem{cursor:pointer;border-top:1px solid var(--seam);text-align:left;width:100%;padding:24px 0;display:grid;grid-template-columns:44px 1fr;gap:0 8px;position:relative}
-.fitem:last-child{border-bottom:1px solid var(--seam)}
-.fitem .n{font:500 13px/1.9 var(--mono);color:var(--stone-light);transition:color .3s}
-.fitem h3{margin:0;font-size:22px;line-height:1.25;letter-spacing:-.03em;font-weight:500;color:var(--stone);transition:color .3s}
-.fitem .body{grid-column:2;display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
-.fitem .body > div{overflow:hidden}
-.fitem p{margin:10px 0 0;color:var(--stone);font-size:16px}
-.fitem ul{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;font-size:15px}
-.fitem li{display:flex;align-items:center;gap:10px}
-.fitem li i{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--blue)}
-.fitem li i svg{width:9px;height:9px}
-.fitem .bar{position:absolute;left:0;top:-1px;height:1px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left}
-.fitem.on .n{color:var(--blue)}
-.fitem.on h3{color:var(--ink)}
-.fitem.on .body{grid-template-rows:1fr}
-.fitem.on .bar{transform:scaleX(1);transition:transform 6s linear}
-.fart{position:relative;border-radius:24px;background:var(--ink);overflow:hidden;min-height:520px}
-.fart .pat{position:absolute;inset:0;opacity:.55}
-.fart .pat svg{width:100%;height:100%}
-.panel{position:absolute;inset:0;display:grid;place-items:center;padding:40px;opacity:0;transform:scale(.97);transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.panel.on{opacity:1;transform:none}
-.ui{width:min(100%,380px);background:var(--white);border-radius:16px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);padding:18px;display:grid;gap:10px}
-.ui-h{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}
-.ui-h span{font-weight:500;color:var(--stone-light);font-size:12px}
-.row{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;border-radius:10px;background:var(--mist);font-size:14px}
-.row b{font-variant-numeric:tabular-nums}
-.ok{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#0A7A3E}
-.ok::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.no{color:#B42318}
-.no::before{background:#B42318}
-.ui .chips{display:flex;flex-wrap:wrap;gap:6px}
-.ui .chips span{padding:7px 11px;border-radius:999px;font-size:13px;font-weight:600;background:var(--blue-wash);color:var(--blue-deep)}
-.ui .bubble{padding:10px 14px;border-radius:14px;font-size:14px;max-width:88%}
-.ui .bubble.me{justify-self:end;background:var(--ink);color:var(--white);border-bottom-right-radius:5px}
-.ui .bubble.ai{justify-self:start;background:var(--mist);border-bottom-left-radius:5px}
-
-/* games + prompt */
-.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.game{display:flex;flex-direction:column;text-align:left;padding:8px 8px 22px;border-radius:22px;background:var(--white);box-shadow:inset 0 0 0 1px var(--seam);transition:box-shadow .3s var(--ease),transform .4s var(--ease)}
-.game:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--stone-light),0 24px 48px -32px rgba(17,17,17,.35)}
-.game[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--blue),0 24px 48px -32px rgba(31,75,255,.55)}
-.art{display:block;height:190px;border-radius:16px;background:var(--ink);overflow:hidden;position:relative}
-.art svg{position:absolute;left:50%;top:50%;width:84%;height:auto;transform:translate(-50%,-50%);transition:transform .6s var(--ease)}
-.game:hover .art svg{transform:translate(-50%,-50%) scale(1.04)}
-.game .top{display:flex;justify-content:space-between;align-items:center;padding:20px 14px 0}
-.game .t{font-size:24px;letter-spacing:-.035em;font-weight:600}
-.game .d{display:block;padding:4px 14px 0;color:var(--stone);font-size:16px}
-.radio{width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #D6D3CB;display:grid;place-items:center;transition:box-shadow .3s,background .3s}
-.radio::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--white);transform:scale(0);transition:transform .3s var(--ease)}
-.game[aria-pressed="true"] .radio{background:var(--blue);box-shadow:none}
-.game[aria-pressed="true"] .radio::after{transform:scale(1)}
-.copybox{margin-top:16px;border-radius:22px;background:var(--ink);color:var(--plate);padding:clamp(22px,3vw,32px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 28px;align-items:center}
-.copybox .label{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--stone-light)}
-.copybox .label b{color:var(--white);font-weight:600}
-.copybox .label a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--stone)}
-.copybox .label a:hover{color:var(--white)}
-.prompt{margin:0;font:400 14.5px/1.7 var(--mono);color:#E8E6E0;white-space:pre-wrap;word-break:break-word;background:var(--ink-2);border-radius:14px;padding:18px 20px;box-shadow:inset 0 0 0 1px var(--ring)}
-.prompt .u{color:#8FA6FF}
-.copy-btn{height:56px;padding:0 28px;font-size:16px;min-width:176px}
-.copy-btn.done{background:#0A7A3E;box-shadow:none}
-.howto{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:14px;color:var(--stone-light)}
-.howto span{display:flex;align-items:center;gap:9px}
-.howto i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ring);color:var(--white);font-style:normal;font-size:12px;font-weight:600}
-
-/* split: your ideas, our basics */
-.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.tile{border-radius:24px;padding:clamp(28px,4vw,44px);background:var(--mist);box-shadow:inset 0 0 0 1px var(--seam);display:flex;flex-direction:column;gap:12px;min-height:300px}
-.tile.dark{background:var(--blue);color:var(--white);box-shadow:none}
-.tile .mk{width:44px;height:44px;margin-bottom:auto}
-.tile h3{margin:0;font-size:28px;letter-spacing:-.035em;font-weight:500;line-height:1.1}
-.tile p{margin:0;color:var(--stone);font-size:17px;max-width:420px}
-.tile.dark p{color:#DCE3FF}
-
-/* final */
-.final{text-align:center;padding:clamp(112px,13vw,168px) 0 clamp(96px,11vw,140px)}
-.final h2{max-width:16ch;margin:0 auto}
-.final p{margin:20px auto 32px;max-width:520px;font-size:18px;color:var(--stone)}
-
-footer{border-top:1px solid var(--seam);background:var(--mist)}
-.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;padding-top:56px;padding-bottom:40px}
-.foot p{margin:14px 0 0;max-width:300px;color:var(--stone);font-size:15px}
-.foot h5{margin:0 0 14px;font-size:13px;font-weight:600;color:var(--ink)}
-.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:15px;color:var(--stone)}
-.foot a:hover{color:var(--ink)}
-.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;padding-bottom:36px;border-top:1px solid var(--seam);font-size:13px;color:var(--stone)}
-
-.rv{opacity:0;transform:translateY(18px)}
-.rv.in{opacity:1;transform:none;transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.rv.d1.in{transition-delay:.08s}.rv.d2.in{transition-delay:.16s}.rv.d3.in{transition-delay:.24s}
-
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .rv,.msg,.panel.on{opacity:1!important;transform:none!important}
-  h1 .paren{--px:0!important}
-}
-@media (max-width:1040px){
-  .app{grid-template-columns:200px minmax(0,1fr)}
-  .preview{display:none}
-}
-@media (max-width:900px){
-  .nav-mid{display:none}
-  .nav .wrap{grid-template-columns:1fr auto}
-  h1{flex-wrap:wrap;gap:0 .15em}
-  h1 .paren{display:none}
-  .feat{grid-template-columns:1fr}
-  .fart{min-height:420px}
-  .games,.split{grid-template-columns:1fr}
-  .copybox{grid-template-columns:1fr}
-  .copy-btn{width:100%}
-  .foot{grid-template-columns:1fr 1fr}
-  .foot > div:first-child{grid-column:1 / -1}
-}
-@media (max-width:640px){
-  .wrap{padding:0 20px}
-  .app{grid-template-columns:1fr;height:460px}
-  .side{display:none}
-  .showcase{padding-top:28px}
-  .try{flex-direction:column;align-items:flex-start}
-  .hero-ctas .btn{flex:1}
-}
+body{margin:0;background:var(--white);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:17px;line-height:1.55}
+a{color:var(--blue)}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+nav{border-bottom:1px solid var(--seam)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
+nav a.link{margin-left:18px;color:var(--stone);text-decoration:none;font-size:15px}
+nav a.link:hover{color:var(--ink)}
+.hero{padding:72px 0 32px}
+h1{font-size:44px;line-height:1.1;letter-spacing:-0.03em;margin:0 0 16px}
+h2{font-size:28px;letter-spacing:-0.02em;margin:48px 0 12px}
+p{color:var(--stone)}
+p.lead{font-size:20px;color:var(--ink)}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:600;margin-right:12px}
+.btn.blue{background:var(--blue)}
+.btn.ghost{background:var(--mist);color:var(--ink);border:1px solid var(--seam)}
+pre{background:var(--ink);color:#fff;padding:16px;border-radius:12px;overflow:auto;font-size:14px;line-height:1.5}
+code{background:var(--plate);padding:2px 6px;border-radius:6px;font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--seam);border-radius:16px;padding:18px;background:var(--white)}
+.card b{font-size:17px}
+.card p{margin:6px 0 0;font-size:15px}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{border:1px solid var(--seam);border-radius:16px;padding:18px}
+.steps li b{display:block;color:var(--ink)}
+footer{border-top:1px solid var(--seam);margin-top:64px;padding:28px 0;color:var(--stone);font-size:14px}
+footer a{color:var(--stone);margin-right:16px}
+@media(max-width:640px){h1{font-size:34px}.grid{grid-template-columns:1fr}nav a.link{margin-left:10px}}
 </style>
 </head>
 <body>
+<nav><div class="wrap"><a class="logo" href="./">baseplate</a><div><a class="link" href="components/">Components</a><a class="link" href="vfx-report.html">VFX report</a><a class="link" href="#connect">Connect</a></div></div></nav>
+<main class="wrap">
+<section class="hero">
+<h1>VFX and sounds your agent can actually use.</h1>
+<p class="lead">Search by description. Add only safe packs. Copy the files and own them.</p>
+<p>No thumbnail hunting. No guessing from a title. No malicious pack slipped in by an agent working blind.</p>
+<a class="btn blue" href="#connect">Connect your agent</a>
+<a class="btn ghost" href="components/">Browse all components</a>
+</section>
 
-<header class="nav" id="nav">
-  <div class="wrap">
-    <a class="logo" href="#" aria-label="Baseplate home">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#1F4BFF"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="#111111" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
-      baseplate
-    </a>
-    <nav class="nav-mid" aria-label="Main">
-      <a href="#how">How it works</a>
-      <a href="#features">What you get</a>
-      <a href="#start">Games</a>
-      <a href="components/">Components</a>
-    </nav>
-    <div class="nav-end"><a class="btn btn-ink btn-sm" href="#start">Start building</a></div>
-  </div>
-</header>
+<section>
+<h2>How it works</h2>
+<ol class="steps">
+<li><b>1. Connect once.</b> Add Baseplate as an MCP server to Claude Code, Cursor, or Codex.</li>
+<li><b>2. Search by description.</b> Ask for what it is for, for example "fire explosion" or "coin pickup". The agent gets a text description, tags, and use cases, not a pile of thumbnails to review.</li>
+<li><b>3. Add and own it.</b> The agent copies the effect or sound into your project. Once copied, it is yours. You are not dependent on Baseplate staying up.</li>
+</ol>
+</section>
 
-<main>
-  <section class="hero" style="padding-top:72px" aria-labelledby="hero-title">
-    <div class="wrap">
-      <span class="badge rv"><i><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#FFFFFF"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="#FFFFFF" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg></i>Free and open source</span>
-      <h1 id="hero-title"><span class="paren l" aria-hidden="true">(</span><span class="line">Build better <span class="serif">Roblox</span> games</span><span class="paren r" aria-hidden="true">)</span></h1>
-      <p class="hero-sub rv d1">Copy one prompt into your AI. It builds the basics of your Roblox game in minutes, so you can spend your time on the fun part.</p>
-      <div class="hero-ctas rv d2">
-        <a class="btn btn-ink" href="#start">Start building <span class="arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="btn btn-ghost" href="#how">Watch it work</a>
-      </div>
-    </div>
+<section>
+<h2>What is in the library</h2>
+<p>53 effects and 50 sounds, from the own Baseplate registry. A few examples:</p>
+<div class="grid">
+<div class="card"><b>coin_pickup</b><p>Gold sparkle burst with a soft glow.</p></div>
+<div class="card"><b>gem_pickup</b><p>Cool cyan glints that pop and spin.</p></div>
+<div class="card"><b>cash_burst</b><p>Green cash sparks fountain up and fall.</p></div>
+<div class="card"><b>confetti</b><p>Colourful confetti that pops up and flutters down.</p></div>
+<div class="card"><b>level_up</b><p>Rising blue sparkles with an expanding ring.</p></div>
+<div class="card"><b>rebirth</b><p>Purple-gold column and double ring. For rebirths and prestige.</p></div>
+<div class="card"><b>ui_click</b><p>Short, crisp button click.</p></div>
+<div class="card"><b>purchase</b><p>Three-note cha-ching for buying things.</p></div>
+</div>
+<p><a href="components/">See all 53 effects and 50 sounds</a>, with previews, code, and install steps.</p>
+</section>
 
-    <div class="showcase" id="how">
-      <div class="backdrop" aria-hidden="true"><svg id="backdrop"></svg></div>
-      <div class="wrap">
-        <div class="window rv d2" role="img" aria-label="An AI assistant building an obby from the Baseplate recipe, step by step, with a live game preview">
-          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>my-obby</span></div>
-          <div class="app" aria-hidden="true">
-            <aside class="side">
-              <h4>Core recipe</h4>
-              <ul id="steps-core">
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Project layout</li>
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Settings</li>
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Safe messaging</li>
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Saving data</li>
-              </ul>
-              <h4>Obby recipe</h4>
-              <ul id="steps-game">
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Checkpoints</li>
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Kill bricks</li>
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Stage counter</li>
-                <li><span class="st"><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Test run</li>
-              </ul>
-            </aside>
-            <div class="main">
-              <div class="main-head"><b>Building your obby</b><span class="status" id="status">Working</span></div>
-              <div class="log" id="log"></div>
-              <div class="composer"><span>Ask for anything...</span><b><svg viewBox="0 0 12 12"><path d="M6 10V2M2.5 5.5L6 2l3.5 3.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></b></div>
-            </div>
-            <div class="preview">
-              <div class="preview-head"><span>Game preview</span><span id="pct">0%</span></div>
-              <div class="screen"><span class="hud" id="hud">Stage 1</span><svg id="screen-art"></svg></div>
-              <div class="stats"><div><small>Players saved</small><b id="saved">0</b></div><div><small>Stages</small><b id="stages">0</b></div></div>
-            </div>
-          </div>
-        </div>
+<section>
+<h2>Safe VFX, not just any VFX</h2>
+<p>Scanned Creator Store packs are a separate list from the own library above. <code>find_vfx</code> returns only packs with status safe, with a pinned asset ID and version and a scan date.</p>
+<p>Flagged packs are never offered by the MCP. They are shown only as warnings on the report page.</p>
+<p><a href="vfx-report.html">Read the VFX report</a>, including scan rules and how to request a re-check.</p>
+</section>
 
-        <div class="try rv">
-          <div><h3>Want to build your own?</h3><p>Pick a game, copy one prompt, and paste it into your AI.</p></div>
-          <div><a class="btn btn-blue" href="#start">Pick a game <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="features" aria-labelledby="feat-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="feat-title" class="rv">Hours of work, <span class="serif">done in minutes</span></h2>
-        <p class="rv d1">Every game needs the same foundation. Baseplate gives your AI a tested recipe for it, so it gets it right the first time.</p>
-      </div>
-      <div class="feat">
-        <div class="flist" id="flist">
-          <div class="fitem on" role="button" tabindex="0" data-i="0"><span class="bar"></span><span class="n">01</span><h3>Progress that never gets lost</h3><span class="body"><div><p>Players leave and come back to exactly where they were.</p><ul><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Saves when players leave</li><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Retries when Roblox hiccups</li></ul></div></span></div>
-          <div class="fitem" role="button" tabindex="0" data-i="1"><span class="bar"></span><span class="n">02</span><h3>The game parts every genre needs</h3><span class="body"><div><p>Checkpoints, money, shops, leaderboards. Built and working.</p><ul><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Playable from start to finish</li><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Tested before you touch it</li></ul></div></span></div>
-          <div class="fitem" role="button" tabindex="0" data-i="2"><span class="bar"></span><span class="n">03</span><h3>Safe from cheaters by default</h3><span class="body"><div><p>The game checks every request, so exploiters can't give themselves free stuff.</p><ul><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>The server decides everything</li><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Spam-clicking is blocked</li></ul></div></span></div>
-          <div class="fitem" role="button" tabindex="0" data-i="3"><span class="bar"></span><span class="n">04</span><h3>Stops right where your ideas begin</h3><span class="body"><div><p>When the basics are done, your AI asks what you want to add.</p><ul><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Nothing to rewrite</li><li><i><svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#1F4BFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Works with any AI</li></ul></div></span></div>
-        </div>
-        <div class="fart rv d1" aria-hidden="true">
-          <div class="pat"><svg id="fart-pat"></svg></div>
-          <div class="panel on" data-p="0"><div class="ui"><div class="ui-h">Player data <span>Saved just now</span></div><div class="row">Stage <b>7</b></div><div class="row">Coins <b>1,240</b></div><div class="row">Last seen <span class="ok">Saved</span></div></div></div>
-          <div class="panel" data-p="1"><div class="ui"><div class="ui-h">Obby systems <span>4 of 4 ready</span></div><div class="chips"><span>Checkpoints</span><span>Kill bricks</span><span>Leaderboard</span><span>Stage counter</span></div><div class="row">Test run <span class="ok">Passed</span></div></div></div>
-          <div class="panel" data-p="2"><div class="ui"><div class="ui-h">Requests <span>Checked by the server</span></div><div class="row">Buy upgrade, 25 coins <span class="ok">Allowed</span></div><div class="row">Give me 99,999 coins <span class="ok no">Blocked</span></div><div class="row">40 clicks in 1 second <span class="ok no">Slowed</span></div></div></div>
-          <div class="panel" data-p="3"><div class="ui"><div class="ui-h">Your AI <span>Basics done</span></div><div class="bubble ai">The obby works. What do you want to add?</div><div class="bubble me">A lava world with a speed-run timer</div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="start" aria-labelledby="start-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="start-title" class="rv">Pick a game. <span class="serif">Copy. Paste.</span></h2>
-        <p class="rv d1">Choose what you want to make, copy the prompt, and paste it into Claude Code, Cursor or Codex.</p>
-      </div>
-      <div class="games" role="group" aria-label="Choose a game">
-        <button class="game rv" type="button" data-game="obby" aria-pressed="true">
-          <span class="art"><svg data-art="obby" aria-hidden="true"></svg></span>
-          <span class="top"><span class="t">Obby</span><span class="radio" aria-hidden="true"></span></span>
-          <span class="d">Stages, checkpoints that save, and traps.</span>
-        </button>
-        <button class="game rv d1" type="button" data-game="tycoon" aria-pressed="false">
-          <span class="art"><svg data-art="tycoon" aria-hidden="true"></svg></span>
-          <span class="top"><span class="t">Tycoon (beta)</span><span class="radio" aria-hidden="true"></span></span>
-          <span class="d">Claim a plot, earn money, buy upgrades.</span>
-        </button>
-        <button class="game rv d2" type="button" data-game="simulator" aria-pressed="false">
-          <span class="art"><svg data-art="simulator" aria-hidden="true"></svg></span>
-          <span class="top"><span class="t">Simulator (beta)</span><span class="radio" aria-hidden="true"></span></span>
-          <span class="d">Collect, sell, upgrade and rebirth.</span>
-        </button>
-      </div>
-      <div class="copybox rv">
-        <div class="label"><span>Your prompt for <b id="game-name">an obby</b></span><a id="recipe-link" href="recipes/obby.md">Read the full recipe</a></div>
-        <pre class="prompt" id="prompt"></pre>
-        <button class="btn btn-blue copy-btn" id="copy" type="button"><span id="copy-label">Copy prompt</span></button>
-        <div class="howto"><span><i>1</i>Copy</span><span><i>2</i>Paste into Claude Code, Cursor or Codex</span><span><i>3</i>Watch it build</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="split-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="split-title" class="rv">Our basics, <span class="serif">your ideas</span></h2>
-      </div>
-      <div class="split">
-        <div class="tile dark rv">
-          <svg class="mk" viewBox="14 14 72 72" aria-hidden="true"><g fill="#FFFFFF"><circle cx="30" cy="70" r="16"/><circle cx="70" cy="70" r="16"/></g><g fill="none" stroke="rgba(255,255,255,.35)" stroke-width="8"><circle cx="30" cy="30" r="12"/><circle cx="70" cy="30" r="12"/></g></svg>
-          <h3>The bottom half is ours</h3>
-          <p>Saving, levels, money and safety. The boring parts every game needs, built the same reliable way every time.</p>
-        </div>
-        <div class="tile rv d1">
-          <svg class="mk" viewBox="14 14 72 72" aria-hidden="true"><g fill="#DEDBD2"><circle cx="30" cy="70" r="16"/><circle cx="70" cy="70" r="16"/></g><g fill="none" stroke="#1F4BFF" stroke-width="8"><circle cx="30" cy="30" r="12"/><circle cx="70" cy="30" r="12"/></g></svg>
-          <h3>The top half is yours</h3>
-          <p>The world, the story, the style, the fun. Everything that makes players come back to your game.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="final wrap">
-    <h2 class="rv">Leave the boring parts behind. <span class="serif">Build the fun.</span></h2>
-    <p class="rv d1">Free and open source. Works with the AI you already use.</p>
-    <div class="hero-ctas rv d2"><a class="btn btn-ink" href="#start">Start building <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
-  </div>
-
-  <section id="connect" aria-labelledby="connect-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="connect-title" class="rv">Connect your agent. <span class="serif">One line.</span></h2>
-        <p class="rv d1">Instead of copying a prompt, connect Baseplate as an MCP server. Your agent can then list recipes, get the full spec, and search and add safe VFX and sounds by description.</p>
-      </div>
-      <div class="copybox rv">
-        <div class="label"><span>Claude Code</span></div>
-        <pre class="prompt">claude mcp add baseplate -- npx -y baseplate-cli mcp</pre>
-        <p>Note: this install line requires baseplate-cli 0.3.0 or later on npm. Until it is published, the MCP code is in this repo under cli/.</p>
-        <div class="label"><span>Codex</span></div>
-        <pre class="prompt">[mcp_servers.baseplate]
+<section id="connect">
+<h2>Connect your agent</h2>
+<p>Claude Code:</p>
+<pre>claude mcp add baseplate -- npx -y baseplate-cli mcp</pre>
+<p>Note: this install line requires baseplate-cli 0.3.0 or later on npm. Until it is published, the MCP code is in this repo under cli/.</p>
+<p>Codex:</p>
+<pre>[mcp_servers.baseplate]
 command = "npx"
 args = ["-y", "baseplate-cli", "mcp"]</pre>
-        <p>Put that in your Codex MCP config. The exact config file location depends on your Codex setup, so check your Codex docs if it does not pick it up.</p>
-        <div class="label"><span>Cursor</span></div>
-        <pre class="prompt">{
+<p>Cursor:</p>
+<pre>{
   "mcpServers": {
     "baseplate": {
       "command": "npx",
@@ -453,257 +100,15 @@ args = ["-y", "baseplate-cli", "mcp"]</pre>
     }
   }
 }</pre>
-        <p>Put that in your Cursor MCP settings file. After connecting, ask your agent to call find_vfx, for example: find a safe fire explosion VFX.</p>
-        <p>Safe VFX only: find_vfx returns only packs with status safe, with a pinned asset ID and version. Malicious packs are never offered by the MCP. See the <a href="vfx-report.html">VFX report</a> for how scanning works.</p>
-      </div>
-    </div>
-  </section>
+<p>After connecting, ask your agent to call <code>find_vfx</code>, for example: find a safe fire explosion VFX. For scanned packs, <code>add_vfx</code> writes a <code>vfx.json</code> lockfile, then the agent inserts that exact pinned version with the Roblox Studio MCP and strips any scripts.</p>
+</section>
 
+<section>
+<h2>Free for hobbyists</h2>
+<p>The component library above is free and open source. Paid premium packs and automation are planned later, not part of V1.</p>
+<p>Recipes and implementation specs for building a full game are in the repo under implementations/, but they are not V1 and are not featured here. V1 is the component library.</p>
+</section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div>
-      <a class="logo" href="#" aria-label="Back to top">
-        <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#1F4BFF"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="#111111" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
-        baseplate
-      </a>
-      <p>The agent-native layer for Roblox. Build better Roblox games.</p>
-    </div>
-    <div>
-      <h5>Product</h5>
-      <ul><li><a href="#how">How it works</a></li><li><a href="#features">What you get</a></li><li><a href="#start">Start building</a></li><li><a href="#connect">Connect your agent</a></li><li><a href="vfx-report.html">VFX report</a></li></ul>
-    </div>
-    <div>
-      <h5>Recipes</h5>
-      <ul><li><a href="recipes/obby.md">Obby</a></li><li><a href="recipes/tycoon.md">Tycoon (beta)</a></li><li><a href="recipes/simulator.md">Simulator (beta)</a></li><li><a href="recipes/core.md">Core</a></li></ul>
-    </div>
-  </div>
-  <div class="wrap legal"><span>&copy; 2026 Baseplate. Free and open source.</span><span>Not affiliated with Roblox.</span></div>
-</footer>
-
-<script>
-(function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var NS = 'http://www.w3.org/2000/svg';
-  var BLUE = '#1F4BFF', RING = '#2A2A28', PLATE = '#F4F2EC';
-  var CHECK = '<svg viewBox="0 0 12 12"><path d="M2.5 6.3l2.3 2.3 4.7-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-  function el(tag, attrs, parent){
-    var e = document.createElementNS(NS, tag);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    if (parent) parent.appendChild(e);
-    return e;
-  }
-
-  /* nav border on scroll */
-  var nav = document.getElementById('nav');
-  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 4); }, {passive: true});
-
-  /* ---------- brand stud grid ---------- */
-  var STEP = 58;
-  function cell(parent, x, y, kind){
-    if (kind === 'S') return el('circle', {cx: x, cy: y, r: 18, fill: BLUE}, parent);
-    if (kind === 'P') return el('rect', {x: x - 18, y: y - 18, width: 36, height: 36, rx: 5, fill: PLATE}, parent);
-    if (kind === 'o') return el('circle', {cx: x, cy: y, r: 13.5, fill: 'none', stroke: RING, 'stroke-width': 9}, parent);
-    return null;
-  }
-  function drawMap(svg, map){
-    var cols = map[0].length, rows = map.length, cells = [];
-    svg.setAttribute('viewBox', '0 0 ' + (cols * STEP) + ' ' + (rows * STEP));
-    map.forEach(function(line, r){
-      line.split('').forEach(function(k, c){ cells.push({r: r, c: c, k: k, el: cell(svg, c * STEP + STEP / 2, r * STEP + STEP / 2, k)}); });
-    });
-    return cells;
-  }
-  function pattern(svg, cols, rows, seed){
-    var map = [];
-    for (var r = 0; r < rows; r++) {
-      var line = '';
-      for (var c = 0; c < cols; c++) {
-        var v = Math.sin((c + 1) * 12.9898 + (r + 1) * 78.233 + seed) * 43758.5453; v -= Math.floor(v);
-        line += r >= rows * 0.55 ? 'S' : (v < 0.12 ? 'P' : 'o');
-      }
-      map.push(line);
-    }
-    var svgMap = drawMap(svg, map);
-    svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-    return svgMap;
-  }
-  pattern(document.getElementById('backdrop'), 26, 9, 1);
-  pattern(document.getElementById('fart-pat'), 12, 12, 7);
-
-  var ART = {
-    obby:      ['ooooooP', 'ooooSSS', 'ooSSSSS', 'SSSSSSS'],
-    tycoon:    ['oPPoooo', 'oPPoPoo', 'SSSSSSS', 'SSSSSSS'],
-    simulator: ['oooPooo', 'ooSSSoo', 'oSSSSSo', 'SSSSSSS']
-  };
-  document.querySelectorAll('svg[data-art]').forEach(function(svg){ drawMap(svg, ART[svg.dataset.art]); });
-
-  /* ---------- hero headline ---------- */
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.getElementById('hero-title').classList.add('go'); }); });
-
-  /* ---------- product window: the AI builds an obby ---------- */
-  var steps = Array.prototype.slice.call(document.querySelectorAll('#steps-core li, #steps-game li'));
-  var LOG = ['project layout', 'settings', 'safe messaging', 'saving data', 'checkpoints', 'kill bricks', 'stage counter', 'test run passed'];
-  var logEl = document.getElementById('log'), statusEl = document.getElementById('status');
-  var hud = document.getElementById('hud'), pct = document.getElementById('pct');
-  var savedEl = document.getElementById('saved'), stagesEl = document.getElementById('stages');
-  var screenCells = drawMap(document.getElementById('screen-art'), ['oooooo', 'oooooo', 'oooooo', 'oooooo', 'oooooo', 'oooooo']);
-
-  function msg(cls, html){
-    var m = document.createElement('div');
-    m.className = 'msg ' + cls;
-    m.innerHTML = html;
-    logEl.appendChild(m);
-    while (logEl.children.length > 9) logEl.removeChild(logEl.firstChild);
-    requestAnimationFrame(function(){ requestAnimationFrame(function(){ m.classList.add('in'); }); });
-  }
-  function paint(progress){
-    // Fill the preview plate from the bottom up as the recipe progresses; the top stays open.
-    var lit = Math.round(progress * 18);
-    var order = screenCells.filter(function(c){ return c.r >= 3; }).sort(function(a, b){ return (b.r - a.r) || (a.c - b.c); });
-    order.forEach(function(c, i){
-      var on = i < lit;
-      c.el.setAttribute('r', on ? 18 : 13.5);
-      c.el.setAttribute('fill', on ? BLUE : 'none');
-      c.el.setAttribute('stroke-width', on ? 0 : 9);
-    });
-  }
-  function reset(){
-    logEl.innerHTML = '';
-    steps.forEach(function(s){ s.className = ''; });
-    statusEl.textContent = 'Working'; statusEl.classList.remove('ok');
-    hud.classList.remove('on'); pct.textContent = '0%';
-    savedEl.textContent = '0'; stagesEl.textContent = '0';
-    screenCells.forEach(function(c){ if (c.sq) { c.sq.remove(); c.sq = null; } c.el.setAttribute('opacity', 1); });
-    paint(0);
-  }
-  function run(){
-    reset();
-    msg('me', 'Build an obby in Roblox using Baseplate.');
-    var i = 0;
-    setTimeout(function(){ msg('ai', 'Reading the core recipe, then the obby recipe.'); }, 700);
-    function next(){
-      if (i > 0) { steps[i - 1].className = 'done'; msg('step', '<i>' + CHECK + '</i><span>Done: <code>' + LOG[i - 1] + '</code></span>'); }
-      var p = i / steps.length;
-      pct.textContent = Math.round(p * 100) + '%';
-      paint(p);
-      if (i >= 4) { hud.classList.add('on'); hud.textContent = 'Stage ' + Math.max(1, i - 3); stagesEl.textContent = String(Math.max(1, i - 3)); }
-      if (i >= 4) savedEl.textContent = String((i - 3) * 3);
-      if (i === steps.length) {
-        statusEl.textContent = 'Basics done'; statusEl.classList.add('ok');
-        setTimeout(function(){ msg('ai', 'Your obby works. What do you want to add?'); }, 500);
-        setTimeout(function(){ msg('me', 'Make it a lava world with a speed-run timer'); }, 1700);
-        setTimeout(function(){
-          // "your ideas" appear on the open top half of the preview
-          [[0,1],[1,4],[2,2],[0,5],[1,0]].forEach(function(rc, k){
-            setTimeout(function(){
-              var c = screenCells.filter(function(x){ return x.r === rc[0] && x.c === rc[1]; })[0];
-              c.el.setAttribute('opacity', 0);
-              c.sq = el('rect', {x: c.c * STEP + STEP / 2 - 18, y: c.r * STEP + STEP / 2 - 18, width: 36, height: 36, rx: 5, fill: PLATE}, document.getElementById('screen-art'));
-            }, k * 220);
-          });
-        }, 2300);
-        setTimeout(run, 7200);
-        return;
-      }
-      steps[i].className = 'active';
-      i++;
-      setTimeout(next, 900);
-    }
-    setTimeout(next, 1500);
-  }
-  if (reduce) {
-    steps.forEach(function(s){ s.className = 'done'; });
-    msg('me', 'Build an obby in Roblox using Baseplate.');
-    msg('ai', 'Your obby works. What do you want to add?');
-    statusEl.textContent = 'Basics done'; statusEl.classList.add('ok');
-    paint(1); pct.textContent = '100%'; hud.classList.add('on'); hud.textContent = 'Stage 4'; stagesEl.textContent = '4'; savedEl.textContent = '12';
-  } else {
-    var started = false;
-    new IntersectionObserver(function(entries, obs){
-      if (entries[0].isIntersecting && !started) { started = true; run(); obs.disconnect(); }
-    }, {threshold: .25}).observe(document.querySelector('.window'));
-  }
-
-  /* ---------- features accordion ---------- */
-  var items = document.querySelectorAll('.fitem'), panels = document.querySelectorAll('.panel');
-  var active = 0, timer;
-  function show(i){
-    active = i;
-    items.forEach(function(it, k){ it.classList.toggle('on', k === i); it.setAttribute('aria-expanded', k === i ? 'true' : 'false'); });
-    panels.forEach(function(p, k){ p.classList.toggle('on', k === i); });
-    clearTimeout(timer);
-    if (!reduce) timer = setTimeout(function(){ show((active + 1) % items.length); }, 6000);
-  }
-  items.forEach(function(it, k){
-    it.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); it.click(); } });
-    it.addEventListener('click', function(){
-      // restart the progress bar
-      it.classList.remove('on'); void it.offsetWidth;
-      show(k);
-    });
-  });
-  var featStarted = false;
-  new IntersectionObserver(function(entries, obs){
-    if (entries[0].isIntersecting && !featStarted) { featStarted = true; items[0].classList.remove('on'); void items[0].offsetWidth; show(0); obs.disconnect(); }
-  }, {threshold: .3}).observe(document.getElementById('flist'));
-
-  /* ---------- prompt + copy ---------- */
-  var BASE = new URL('recipes/', location.href).href;
-  var NAMES = {obby: 'an obby', tycoon: 'a tycoon', simulator: 'a simulator'};
-  var current = 'obby';
-  var promptEl = document.getElementById('prompt');
-  function promptText(game){
-    return 'Build ' + NAMES[game] + ' in Roblox using Baseplate.\n\n' +
-      '1. Read ' + BASE + 'core.md and follow every step in order.\n' +
-      '2. Then read ' + BASE + game + '.md and follow every step in order.\n' +
-      '3. Check each "Done when" before moving on.\n\n' +
-      'When the basics are done, stop and ask me what I want to add.';
-  }
-  function renderPrompt(){
-    promptEl.textContent = '';
-    promptText(current).split(/(https?:\/\/\S+)/).forEach(function(part, i){
-      if (i % 2) { var s = document.createElement('span'); s.className = 'u'; s.textContent = part; promptEl.appendChild(s); }
-      else promptEl.appendChild(document.createTextNode(part));
-    });
-    document.getElementById('game-name').textContent = NAMES[current];
-    document.getElementById('recipe-link').href = 'recipes/' + current + '.md';
-  }
-  document.querySelectorAll('.game').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      current = btn.dataset.game;
-      document.querySelectorAll('.game').forEach(function(b){ b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
-      renderPrompt();
-    });
-  });
-  var copyBtn = document.getElementById('copy'), copyLabel = document.getElementById('copy-label'), resetT;
-  copyBtn.addEventListener('click', function(){
-    var text = promptText(current);
-    function done(){
-      copyBtn.classList.add('done'); copyLabel.textContent = 'Copied. Now paste it';
-      clearTimeout(resetT); resetT = setTimeout(function(){ copyBtn.classList.remove('done'); copyLabel.textContent = 'Copy prompt'; }, 2600);
-    }
-    function fallback(){
-      var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); done(); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
-    else fallback();
-  });
-  renderPrompt();
-
-  /* ---------- scroll reveals ---------- */
-  var els = document.querySelectorAll('.rv');
-  if (reduce || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {rootMargin: '0px 0px -6% 0px'});
-  els.forEach(function(e){ io.observe(e); });
-})();
-</script>
+<footer><div class="wrap"><a href="components/">Components</a><a href="vfx-report.html">VFX report</a><a href="#connect">Connect</a><a href="https://github.com/abdullahridwan/baseplate">GitHub</a><p>Baseplate is not affiliated with Roblox.</p></div></footer>
 </body>
 </html>

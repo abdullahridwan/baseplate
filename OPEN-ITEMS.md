@@ -1,6 +1,6 @@
 # Open items: what has not been done yet
 
-Last updated: 2026-10-28, after main commit 5a59cd4f.
+Last updated: 2026-10-28, after the simplified component-library homepage. V1 is the component library only. Recipes and implementation.md specs are not V1.
 Source of truth: this repo. This file is the list, not a claim that the
 items below are done.
 
@@ -12,7 +12,10 @@ items below are done.
   and refusal of flagged or unknown packs, tested locally with a test index
 - Safe VFX index format: registry/safe-vfx.json and docs/r/safe-vfx.json
 - Site: Connect your agent section, VFX report page template, tycoon and
-  simulator labeled beta in the MCP list_recipes and on the site
+  simulator labeled beta in the MCP list_recipes and on the old site
+- Simplified homepage 2026-10-28: homepage now leads with the component
+  library only, with no pick-a-game, no showcase, and no implementation.md
+  flow. Recipes stay in implementations/ in the repo, but are not V1.
 - Existing work carried over: 53 effects, 50 sounds, Juice runtime, core,
   obby, tycoon, and simulator recipes, and the existing MCP tools
 
@@ -32,29 +35,29 @@ items below are done.
 - Build and run the weekly scan job. The scan rules are written down,
   but there is no scheduled scan, no Roblox API key job, and no
   re-scan on pack change yet.
-- Run the obby recipe once in Roblox Studio, about 10 minutes, by the
-  owner. Muse cannot run Roblox Studio from here.
 - Give a contact email for request a re-check, and add it to the VFX
   report page. The report page currently says contact email to be added.
 - Update or delete the old demo artifact that still says "lie" and shows
   creator names. Its location is not in this repo at last check, so it
   has not been updated or deleted yet.
 - Clarify the fourth ask from Claude's plan. The plan said four things
-  were needed from the owner, but only three owner items were listed:
-  npm login, Studio obby run, and contact email.
+  were needed from the owner, but only two owner items were listed:
+  npm login and contact email. The Studio obby run is no longer a V1
+  item, because recipes are not V1.
 
 ## Not done: V1 code and site, not yet built
 
 - Real safe packs in the MCP and on the VFX report page. See scan data above.
 - Verified Codex and Cursor config paths. The site shows config snippets,
   but they have not been tested end to end in Codex or Cursor.
-- Recipes using the Roblox Studio MCP for their Done When checks, so an
-  agent playtests its own work. This was in the can-wait list.
 - A tested end-to-end V1 demo: connect MCP, find_vfx, add_vfx, insert in
   Studio, strip scripts, and play. That chain has been tested locally
   for find_vfx and add_vfx only, not in Studio.
 
 ## Not done: V2, expansion, and monetization
+
+- Recipes and implementation.md specs: obby, tycoon, and simulator specs
+  stay in implementations/, but are not V1 and are not on the V1 homepage.
 
 - Fastlane shipping: `baseplate ship`, build with Rojo, publish a place
   version, upload images, audio, and models through Open Cloud, with a
@@ -91,6 +94,6 @@ items below are done.
 
 The website is live, but it is not finished V1 until: npm is published
 and the clean install works, real safe data is in the MCP and report
-page, the obby recipe has a Studio test, and a re-check contact email
-is published. Until then, the site correctly says the install is not
+page, and a re-check contact email is published. Recipes are not part
+of finished V1. Until then, the site correctly says the install is not
 yet published and the report page has no real packs yet.
