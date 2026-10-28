@@ -56,6 +56,30 @@ for the creative work that makes a game yours.
 6. Free stays useful. Paid must be for premium stuff on top, never for
    taking back something hobbyists already rely on.
 
+## Agents MUST be first class citizens
+
+Agents are the first class citizens of Baseplate, not humans browsing a
+website. The human gives a high level intent, like a game idea or a feeling
+they want. The agent does the rest.
+
+That means, in order:
+
+- The agent connects once, with one line, and then calls MCP tools directly.
+  It does not need a human to copy prompts, browse thumbnails, or describe
+  each asset for it.
+- The agent searches by description, in text, not by images. It calls
+  `search_components` for own effects and sounds, and `find_vfx` for scanned
+  VFX, reads descriptions, tags, and use cases, and picks the right pack.
+  The human does not need to describe each effect or sound themselves.
+- The agent adds what it finds, with `add_component` or `add_vfx`, pinned
+  to a version, and strips scripts for scanned packs before use.
+- The site, docs, and report page exist so a human can understand, trust,
+  and connect the agent. They are not the product interface. The product
+  interface is the MCP server and the CLI, for agents.
+- Any feature that requires a human to manually describe, search
+  thumbnails, copy a prompt, or paste code to get an asset is a failure
+  against this principle, and is not V1.
+
 ## V1: what we ship first
 
 V1 is the component library only: a safe, searchable library for VFX and

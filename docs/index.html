@@ -13,7 +13,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--white);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:var(--blue)}
 .wrap{max-width:960px;margin:0 auto;padding:0 24px}
-header{border-bottom:1px solid var(--seam)}
+header{}
 header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding-top:16px;padding-bottom:16px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
 .logo svg{width:28px;height:28px;flex:none}
@@ -21,7 +21,7 @@ nav{display:flex;flex-wrap:wrap;gap:8px 20px}
 nav a{color:var(--stone);text-decoration:none;font-size:15px}
 nav a:hover{color:var(--ink)}
 .menu-btn{display:none;background:none;border:1px solid var(--seam);padding:8px 12px;font-size:20px;line-height:1;cursor:pointer;color:var(--ink)}
-.hero{padding:72px 0 48px;text-align:center}
+.hero{padding:72px 0 64px;text-align:center}
 .hero .wrap{max-width:760px}
 .badge{display:inline-block;background:var(--plate);border:1px solid var(--seam);border-radius:0;padding:6px 14px;font-size:14px;color:var(--stone)}
 h1{font-size:52px;line-height:1.08;letter-spacing:-0.03em;margin:20px 0 16px}
@@ -32,7 +32,7 @@ p.lead{font-size:20px;color:var(--ink);margin:0 0 28px}
 .btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:13px 22px;border-radius:0;font-weight:600;font-size:16px;border:1px solid var(--ink)}
 .btn.blue{background:var(--blue);border-color:var(--blue)}
 .btn.ghost{background:var(--white);color:var(--ink);border-color:var(--seam)}
-.logos{margin-top:56px;border-top:1px solid var(--seam);padding-top:28px}
+.logos{margin-top:64px;padding-top:0}
 .logos p{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px;color:var(--stone)}
 .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent);mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent)}
 .marquee-track{display:flex;width:max-content;align-items:center;animation:marquee 40s linear infinite}
@@ -60,7 +60,7 @@ code{background:var(--plate);padding:2px 6px;border-radius:0;font-size:14px}
 .copy-row{display:flex;gap:12px;align-items:flex-start}
 .copy-row pre{flex:1;margin:0}
 .copy-btn{flex:none;background:var(--white);border:1px solid var(--seam);border-radius:0;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer}
-footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
+footer{margin-top:64px;padding:48px 0 32px}
 .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px}
 .foot h4{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
 .foot ul{list-style:none;margin:0;padding:0}
@@ -68,7 +68,7 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
 .foot a{color:var(--stone);text-decoration:none;font-size:15px}
 .foot a:hover{color:var(--ink)}
 .foot p{font-size:15px;margin:12px 0 0}
-.legal{border-top:1px solid var(--seam);margin-top:32px;padding-top:20px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:var(--stone)}
+.legal{margin-top:40px;padding-top:0;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:var(--stone)}
 @media(max-width:760px){
   .wrap{padding-left:20px;padding-right:20px}
   .hero{padding:48px 0 32px;text-align:left}
@@ -135,9 +135,9 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
         <p>Three steps. No Roblox experience needed.</p>
       </div>
       <div class="grid">
-        <div class="card"><span class="num">01</span><p><b>Describe it</b></p><p>Tell your AI what you want in plain English, like "a coin sound when I pick up a coin".</p></div>
-        <div class="card"><span class="num">02</span><p><b>Your AI finds it fast</b></p><p>Baseplate searches by description, in text, not thumbnails. Fewer tokens, less money, less waiting.</p></div>
-        <div class="card"><span class="num">03</span><p><b>Add it and play</b></p><p>Your AI adds it safely. The files are yours, and you do not need Roblox experience to use them.</p></div>
+        <div class="card"><span class="num">01</span><p><b>Your agent connects</b></p><p>Your agent connects once, with one line. You do not set anything up for it.</p></div>
+        <div class="card"><span class="num">02</span><p><b>Your agent finds it</b></p><p>Your agent searches Baseplate by description, in text, not thumbnails. You do not need to describe each effect or sound yourself, the agent reads the descriptions, tags, and use cases.</p></div>
+        <div class="card"><span class="num">03</span><p><b>Your agent adds it</b></p><p>Your agent adds it safely, pinned, and strips scripts for scanned packs. The files are yours, and you just play.</p></div>
       </div>
     </div>
   </section>
@@ -149,8 +149,8 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
         <p>You say it. Your AI does the rest.</p>
       </div>
       <div class="copybox">
-        <p style="margin:0 0 12px;color:var(--ink)"><b>You:</b> Add a coin sound when I pick up a coin.</p>
-        <p style="margin:0;color:var(--ink)"><b>Your AI:</b> Found coin_pickup, a bright coin sound. Added it, no thumbnail review, no extra tokens spent hunting for it.</p>
+        <p style="margin:0 0 12px;color:var(--ink)"><b>You:</b> Make my game feel rewarding when I pick up coins.</p>
+        <p style="margin:0;color:var(--ink)"><b>Your AI:</b> Searched the descriptions, found coin_pickup, a bright coin sound, and added it. You did not describe the sound yourself, and there was no thumbnail review and no extra tokens spent hunting for it.</p>
         <p style="margin-top:16px"><a href="components/">Browse all effects and sounds</a> if you want to see what else is in the library, and <a href="vfx-report.html">read how scanned packs are checked</a>.</p>
       </div>
     </div>
