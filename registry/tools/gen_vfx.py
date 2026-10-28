@@ -156,7 +156,7 @@ EFFECTS = {
         E("Shimmer", rate=10, color=RAINBOW, life=(0.8, 1.2), speed=(1, 2), acc=(0, 2, 0), spin=True,
           size=((0, 0), (0.4, 0.4), (1, 0)), transp=((0, 0), (1, 1)), locked=True),
         loop=True, surface=True),
-    "steal_grab": fx("Pets & eggs", "Purple swirl that pulls in as you grab someone's item.", ["steal", "grab", "steal a brainrot", "steal an egg"],
+    "steal_grab": fx("Pets & eggs", "Purple twirl and flash as you grab someone's item.", ["steal", "grab", "steal a brainrot", "steal an egg"],
         E("Twirl", emit=24, color=["#e0b0ff", "#7a2cff"], life=(0.35, 0.55), speed=(6, 12), drag=8,
           acc=(0, 8, 0), spin=True, size=((0, 0.6), (1, 0)), transp=((0, 0), (1, 1))),
         glow(["#b070ff"], start=4, end=0.5, life=0.35), light=light("#9a4dff", 3, 10, 0.5)),

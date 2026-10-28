@@ -6,7 +6,7 @@
 // Run it from the project root (where default.project.json is).
 // BASEPLATE_REGISTRY points at another registry: a URL or a local folder containing index.json.
 
-import { SOUNDS_FILE, install, loadIndex } from "../lib/registry.js";
+import { SOUNDS_FILE, install, loadIndex, resolveItems } from "../lib/registry.js";
 
 const bold = (s) => `\x1b[1m${s}\x1b[0m`;
 const dim = (s) => `\x1b[2m${s}\x1b[0m`;
@@ -23,6 +23,7 @@ async function add(names) {
 
 	console.log("\n" + bold("Done.") + " Use it:");
 	console.log(dim('  local Juice = require(game.ReplicatedStorage.Shared.Juice)'));
+	const items = resolveItems(await loadIndex(), names);
 	for (const name of new Set(names)) {
 		const kinds = items.filter((i) => i.name === name);
 		const loop = kinds.find((i) => i.kind === "vfx" && i.preview?.loop);

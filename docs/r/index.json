@@ -2497,7 +2497,7 @@
       "name": "steal_grab",
       "kind": "vfx",
       "category": "Pets & eggs",
-      "description": "Purple swirl that pulls in as you grab someone's item.",
+      "description": "Purple twirl and flash as you grab someone's item.",
       "tags": [
         "steal",
         "grab",
