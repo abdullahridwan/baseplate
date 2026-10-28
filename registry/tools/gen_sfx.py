@@ -16,6 +16,7 @@ from pathlib import Path
 import numpy as np
 
 RATE = 44100
+MIN_SECONDS = 0.25  # shortest file written; see write()
 OUT = Path(__file__).resolve().parent.parent / "sfx"
 rng = np.random.default_rng(7)  # fixed seed: regenerating gives identical files
 
@@ -120,13 +121,14 @@ def level_up():
 
 def ui_click():
     return mix(
-        tone("sine", 1800, 0.03, attack=0.0005, curve=6) * 0.6,
-        lowpass(noise(0.015), 6000) * env(int(RATE * 0.015), 0.0005, True, 4) * 0.4,
+        tone("sine", 1800, 0.05, attack=0.0005, curve=5) * 0.6,
+        tone("sine", 900, 0.06, attack=0.0005, curve=5) * 0.35,
+        lowpass(noise(0.02), 6000) * env(int(RATE * 0.02), 0.0005, True, 4) * 0.4,
     )
 
 
 def ui_hover():
-    return tone("sine", 1200, 0.04, attack=0.004, curve=3) * 0.25
+    return tone("sine", 1200, 0.06, attack=0.004, curve=3) * 0.25
 
 
 def purchase():
@@ -173,6 +175,9 @@ def write(name, samples):
     samples = samples / peak * 0.89  # about -1 dBFS peak, consistent loudness across the set
     fade = min(len(samples), int(RATE * 0.005))
     samples[-fade:] *= np.linspace(1, 0, fade)  # no click at the end
+    # Vorbis works in blocks of up to 2048 samples; sounds shorter than a block can
+    # decode as silence in browsers, so pad every file with trailing silence.
+    samples = np.pad(samples, (0, max(0, int(RATE * MIN_SECONDS) - len(samples))))
     pcm = (samples * 32767).astype(np.int16)
 
     with tempfile.NamedTemporaryFile(suffix=".wav") as tmp:
