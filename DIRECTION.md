@@ -210,13 +210,22 @@ discovery that makes paid possible later.
   contact email. The Studio obby run was removed on 2026-10-28, because
   recipes are not V1. That fourth item is still unclear.
 
-## Success measures for V1
+## V1 KPIs: keep it simple
 
-- npm installs and clean-folder MCP installs that actually work
-- MCP connections, `find_vfx` searches, and search to add conversion
-- Safe packs added to real projects, not just site visits
-- Report page visits and demo video views that convert to installs
-- Weekly scan runs completed, with flagged changes surfaced, not silent
+V1 is measured by four KPIs only, all public or aggregate. No CLI or MCP
+phone-home telemetry in V1, and no per-user or per-project tracking, because
+that would look suspect for a safety tool.
 
-If V1 does not move those numbers, the next feature is not more catalog.
+1. Weekly npm downloads
+2. Weekly unique site visitors, cookieless aggregate only, no session replay
+   and no fingerprinting
+3. GitHub stars
+4. Install line copies on the site, counted in aggregate
+
+Out of V1: searches, adds, MCP connections, search terms, per-pack counts,
+and retention tracking. Those would need phone-home telemetry, so they are
+not V1. Learn about actual use in V1 from issues, comments, and direct
+feedback instead.
+
+If V1 does not move those four numbers, the next feature is not more catalog.
 It is better search, better descriptions, or a better install.
