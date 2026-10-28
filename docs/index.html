@@ -20,24 +20,25 @@ header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:spac
 nav{display:flex;flex-wrap:wrap;gap:8px 20px}
 nav a{color:var(--stone);text-decoration:none;font-size:15px}
 nav a:hover{color:var(--ink)}
+.menu-btn{display:none;background:none;border:1px solid var(--seam);padding:8px 12px;font-size:20px;line-height:1;cursor:pointer;color:var(--ink)}
 .hero{padding:72px 0 48px;text-align:center}
 .hero .wrap{max-width:760px}
-.badge{display:inline-block;background:var(--plate);border:1px solid var(--seam);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--stone)}
+.badge{display:inline-block;background:var(--plate);border:1px solid var(--seam);border-radius:0;padding:6px 14px;font-size:14px;color:var(--stone)}
 h1{font-size:52px;line-height:1.08;letter-spacing:-0.03em;margin:20px 0 16px}
 h2{font-size:28px;letter-spacing:-0.02em;margin:0 0 12px;line-height:1.25}
 p{color:var(--stone)}
 p.lead{font-size:20px;color:var(--ink);margin:0 0 28px}
 .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
-.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:13px 22px;border-radius:999px;font-weight:600;font-size:16px;border:1px solid var(--ink)}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:13px 22px;border-radius:0;font-weight:600;font-size:16px;border:1px solid var(--ink)}
 .btn.blue{background:var(--blue);border-color:var(--blue)}
 .btn.ghost{background:var(--white);color:var(--ink);border-color:var(--seam)}
 .logos{margin-top:56px;border-top:1px solid var(--seam);padding-top:28px}
 .logos p{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px;color:var(--stone)}
 .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent);mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent)}
-.marquee-track{display:flex;width:max-content;align-items:center;animation:marquee 36s linear infinite}
+.marquee-track{display:flex;width:max-content;align-items:center;animation:marquee 70s linear infinite}
 .marquee-group{display:flex;align-items:center;gap:16px 48px;padding-right:48px}
 .marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes marquee{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .logos-row span{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;color:var(--ink);white-space:nowrap;flex:none}
 .logos-row img{height:32px;width:auto;flex:none}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto}}
@@ -45,20 +46,20 @@ p.lead{font-size:20px;color:var(--ink);margin:0 0 28px}
 section{padding:48px 0}
 section .sec-head{max-width:720px;margin-bottom:28px}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.card{border:1px solid var(--seam);border-radius:16px;padding:20px;background:var(--white)}
+.card{border:1px solid var(--seam);border-radius:0;padding:20px;background:var(--white)}
 .card b{font-size:17px;color:var(--ink)}
 .card p{margin:8px 0 0;font-size:15px}
 .card .num{font-size:13px;color:var(--blue);font-weight:700;letter-spacing:.06em}
 ul.clean{margin:16px 0 0;padding-left:20px;color:var(--stone)}
 ul.clean li{margin-bottom:8px}
-pre{background:var(--ink);color:#fff;padding:16px;border-radius:12px;overflow-x:auto;font-size:14px;line-height:1.5;white-space:pre}
-code{background:var(--plate);padding:2px 6px;border-radius:6px;font-size:14px}
-.copybox{border:1px solid var(--seam);border-radius:16px;padding:24px}
+pre{background:var(--ink);color:#fff;padding:16px;border-radius:0;overflow-x:auto;font-size:14px;line-height:1.5;white-space:pre}
+code{background:var(--plate);padding:2px 6px;border-radius:0;font-size:14px}
+.copybox{border:1px solid var(--seam);border-radius:0;padding:24px}
 .copybox h3{margin:24px 0 8px;font-size:17px}
 .copybox h3:first-child{margin-top:0}
 .copy-row{display:flex;gap:12px;align-items:flex-start}
 .copy-row pre{flex:1;margin:0}
-.copy-btn{flex:none;background:var(--white);border:1px solid var(--seam);border-radius:999px;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer}
+.copy-btn{flex:none;background:var(--white);border:1px solid var(--seam);border-radius:0;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer}
 footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
 .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px}
 .foot h4{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
@@ -80,6 +81,10 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
   .foot{grid-template-columns:1fr}
   .copy-row{flex-direction:column}
   .copy-row pre{width:100%}
+  .menu-btn{display:block}
+  nav{display:none;width:100%;flex-direction:column;gap:12px;padding-bottom:8px}
+  nav.open{display:flex}
+  header .wrap{padding-top:12px;padding-bottom:12px}
 }
 </style>
 </head>
@@ -90,7 +95,8 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
       <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#1F4BFF"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="#111111" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
       baseplate
     </a>
-    <nav aria-label="Main">
+    <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
+    <nav id="main-nav" aria-label="Main">
       <a href="components/">Components</a>
       <a href="vfx-report.html">VFX report</a>
       <a href="#connect">Connect</a>
@@ -102,7 +108,6 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
 <main>
   <section class="hero">
     <div class="wrap">
-      <span class="badge">Free and open source</span>
       <h1>VFX and sounds your agent can actually use.</h1>
       <p class="lead">Search by description. Add only safe packs. Copy the files and own them.</p>
       <div class="ctas">
@@ -112,8 +117,7 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
       <div class="logos">
         <p>Works with any MCP client</p>
         <div class="marquee" aria-label="Agents that work with Baseplate">
-          <div class="marquee-track"><div class="marquee-group logos-row"><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}">Claude Code</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}">Cursor</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}">Codex</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}">Windsurf</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}">GitHub Copilot</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}">Cline</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}">Roo Code</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}">Kilo Code</span></div><div class="marquee-group logos-row" aria-hidden="true"><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}">Claude Code</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}">Cursor</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}">Codex</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}">Windsurf</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}">GitHub Copilot</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}">Cline</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}">Roo Code</span><span><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}">Kilo Code</span></div></div>
-        <p class="logos-note">One line to connect. No manual setup beyond that. If your agent speaks MCP, it works. Logos via the open source Lobe Icons package.</p>
+          <div class="marquee-track"><div class="marquee-group logos-row"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae-color.svg" alt="Trae logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro-color.svg" alt="Kiro logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode-color.svg" alt="OpenCode logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity-color.svg" alt="Antigravity logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity.svg'}else{this.style.display='none'}"></div><div class="marquee-group logos-row" aria-hidden="true"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae-color.svg" alt="Trae logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro-color.svg" alt="Kiro logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode-color.svg" alt="OpenCode logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity-color.svg" alt="Antigravity logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity.svg'}else{this.style.display='none'}"></div></div></div>
       </div>
     </div>
   </section>
@@ -231,6 +235,8 @@ args = ["-y", "baseplate-cli", "mcp"]</pre>
 </footer>
 
 <script>
+var menuBtn=document.querySelector('.menu-btn'), mainNav=document.getElementById('main-nav');
+if(menuBtn && mainNav){ menuBtn.addEventListener('click', function(){ var open=mainNav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); }); }
 document.querySelectorAll('[data-copy]').forEach(function(btn){
   btn.addEventListener('click', function(){
     var text = btn.getAttribute('data-copy');
