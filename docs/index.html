@@ -86,6 +86,12 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
   nav.open{display:flex}
   header .wrap{padding-top:12px;padding-bottom:12px}
 }
+
+.rise{display:inline-block;opacity:0;animation:rise .6s ease forwards;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:rise .6s ease forwards;animation-delay:var(--d,0s)}
+.accent{color:var(--blue)}
+@media(prefers-reduced-motion:reduce){.rise,.fade-up{animation:none;opacity:1;transform:none}.marquee-track{animation:none}}
 </style>
 </head>
 <body>
@@ -108,13 +114,13 @@ footer{border-top:1px solid var(--seam);margin-top:24px;padding:40px 0 32px}
 <main>
   <section class="hero">
     <div class="wrap">
-      <h1>Build a Roblox game, even if you have never made one.</h1>
-      <p class="lead">Your AI finds the effects and sounds you need in seconds, in plain text, instead of hunting through thumbnails. That saves tokens, money, and time, which matters on a limited budget.</p>
-      <div class="ctas">
+      <h1><span class="rise accent" style="--d:0.00s">Supercharge</span> <span class="rise" style="--d:0.06s">your</span> <span class="rise" style="--d:0.12s">AI</span> <span class="rise" style="--d:0.18s">to</span> <span class="rise" style="--d:0.24s">build</span> <span class="rise" style="--d:0.30s">Roblox</span> <span class="rise" style="--d:0.36s">games</span> <span class="rise" style="--d:0.42s">faster.</span></h1>
+      <p class="lead fade-up" style="--d:0.55s">Even if you have never made one. Your AI finds the effects and sounds you need in seconds, in plain text, instead of hunting through thumbnails, saving tokens, money, and time.</p>
+      <div class="ctas fade-up" style="--d:0.7s">
         <a class="btn blue" href="#connect">Add Baseplate to your AI</a>
         <a class="btn ghost" href="#example">See an example</a>
       </div>
-      <div class="logos">
+      <div class="logos fade-up" style="--d:0.85s">
         <p>Works with any MCP client</p>
         <div class="marquee" aria-label="Agents that work with Baseplate">
           <div class="marquee-track"><div class="marquee-group logos-row"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude-color.svg" alt="Claude Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/claude.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor-color.svg" alt="Cursor logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cursor.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex-color.svg" alt="Codex logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/codex.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf-color.svg" alt="Windsurf logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/windsurf.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot-color.svg" alt="GitHub Copilot logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/github-copilot.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline-color.svg" alt="Cline logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/cline.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode-color.svg" alt="Roo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/roocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode-color.svg" alt="Kilo Code logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kilocode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae-color.svg" alt="Trae logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/trae.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro-color.svg" alt="Kiro logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/kiro.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode-color.svg" alt="OpenCode logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/opencode.svg'}else{this.style.display='none'}"><img src="https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity-color.svg" alt="Antigravity logo" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://unpkg.com/@lobehub/icons-static-svg@latest/icons/antigravity.svg'}else{this.style.display='none'}"></div></div></div>
