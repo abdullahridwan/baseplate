@@ -3,14 +3,15 @@
 // Speaks newline-delimited JSON-RPC 2.0 on stdin/stdout. Never write anything else to stdout.
 
 import { createInterface } from "node:readline";
-import { RECIPES, SOUNDS_FILE, install, loadIndex, loadRecipe, fetchFile } from "./registry.js";
+import { RECIPES, SOUNDS_FILE, SAFE_VFX_FILE, install, loadIndex, loadRecipe, fetchFile, loadSafeIndex, searchSafeVfx, writeVfxLock } from "./registry.js";
 
-const SERVER = { name: "baseplate", version: "0.2.0" };
+const SERVER = { name: "baseplate", version: "0.3.0" };
 const SUPPORTED = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
 const INSTRUCTIONS = `Baseplate is the agent-native layer for Roblox: recipes that build the generic half of a game, and components (effects and sounds) to drop in.
 - To build a game: call get_recipe for "core", then for the game type (obby, tycoon, simulator), and follow every step in order, checking each "Done when".
-- To add juice: search_components, then add_component. Sounds must be uploaded to the user's Roblox account; tell them which files to upload and where the IDs go.`;
+- To add juice: search_components, then add_component. Sounds must be uploaded to the user's Roblox account; tell them which files to upload and where the IDs go.
+- To add scanned VFX: find_vfx, then add_vfx. find_vfx returns only safe packs. Never offer or add a flagged pack. add_vfx writes vfx.json with the pinned asset ID and version. After add_vfx, insert the pack with the Roblox Studio MCP at exactly that pinned version and strip any scripts in the pack before use.`;
 
 const TOOLS = [
 	{
@@ -65,6 +66,27 @@ const TOOLS = [
 			required: ["names"],
 		},
 	},
+	{
+		name: "find_vfx",
+		description: "Find safe, scanned Roblox VFX packs by what they are for, e.g. 'fire explosion'. Returns only safe packs, with a description, pinned asset ID and version, and scan date. Search is by description, tags, and use cases, not just title, so the agent does not need to review thumbnails.",
+		inputSchema: {
+			type: "object",
+			properties: { query: { type: "string" } },
+			required: ["query"],
+		},
+	},
+	{
+		name: "add_vfx",
+		description: "Lock safe VFX packs into vfx.json. Writes the pinned asset ID and version for each pack, and tells the agent to insert that exact version with the Roblox Studio MCP and strip any scripts. Refuses flagged or unknown packs; it never adds them.",
+		inputSchema: {
+			type: "object",
+			properties: {
+				names: { type: "array", items: { type: "string" }, minItems: 1, description: "Safe pack names or asset IDs from find_vfx" },
+				project_dir: { type: "string", description: "Rojo project root. Defaults to the current directory." },
+			},
+			required: ["names"],
+		},
+	},
 ];
 
 const summary = (i) => `${i.name} (${i.kind}): ${i.description}`;
@@ -74,8 +96,8 @@ const HANDLERS = {
 		return [
 			"core: project layout, saving player data, safe client/server messaging. Build this first.",
 			"obby: a playable starter course with checkpoints that save, hazards and a stage HUD.",
-			"tycoon: claimable plots, cash, purchase buttons, droppers and a collector.",
-			"simulator: click to collect, backpack capacity, selling, upgrades and rebirths.",
+			"tycoon (beta, needs a hand-built map): claimable plots, cash, purchase buttons, droppers and a collector.",
+			"simulator (beta, needs a hand-built map): click to collect, backpack capacity, selling, upgrades and rebirths.",
 		].join("\n");
 	},
 
@@ -141,6 +163,46 @@ const HANDLERS = {
 				...r.uploads.map((f) => `  ${f}`),
 			);
 		}
+			return out.join("\n");
+	},
+
+	async find_vfx({ query }) {
+		const safe = await loadSafeIndex();
+		const packs = searchSafeVfx(safe, query);
+		if (!safe.packs || safe.packs.length === 0) {
+			return "The safe VFX index is empty. No scan data has landed in safe-vfx.json yet, so no packs can be recommended. Do not invent an asset ID. See DIRECTION.md for the safe VFX data model and scan job.";
+		}
+		if (packs.length === 0) return `Nothing safe matches "${query}". Try a broader description, or call find_vfx with a use case like 'explosion', 'win', or 'damage'.`;
+		return packs.map((p) => [
+			`${p.name}: ${p.description}`,
+			`  Asset ID: ${p.asset_id} (pinned version: ${p.pinned_version})`,
+			`  Scan date: ${p.scan_date || "unknown"} | Tags: ${(p.tags || []).join(", ")} | Use cases: ${(p.use_cases || []).join(", ")}`,
+			`  Insert: use the Roblox Studio MCP at exactly this pinned version, then strip any scripts in the pack.`,
+		].join("\n")).join("\n\n");
+	},
+
+	async add_vfx({ names, project_dir }) {
+		const safe = await loadSafeIndex();
+		const safePacks = (safe.packs || []).filter((p) => p.status === "safe");
+		const picked = [];
+		const rejected = [];
+		for (const n of names) {
+			const match = safePacks.find((p) => p.name === n || String(p.asset_id) === String(n));
+			if (match) picked.push(match);
+			else rejected.push(n);
+		}
+		if (picked.length === 0) throw new Error(`no safe packs found for: ${names.join(", ")}. Call find_vfx first. Flagged or unknown packs are never added.`);
+		const r = await writeVfxLock(project_dir || process.cwd(), picked);
+		const out = [];
+		if (rejected.length) out.push(`Not added (not safe or not found): ${rejected.join(", ")}`, "");
+		if (r.added.length) out.push(`Locked in ${SAFE_VFX_FILE}:`, ...r.added.map((x) => `  ${x}`));
+		if (r.already.length) out.push(`Already locked: ${r.already.join(", ")}`);
+		out.push("", "Next steps for the agent:");
+		for (const p of picked) {
+			out.push(`  - Insert pack '${p.name}' (asset ${p.asset_id}, pinned version ${p.pinned_version}) with the Roblox Studio MCP.`);
+		}
+		out.push("  - Strip any scripts in the pack before use.");
+		out.push("  - Do not use a different version. If the version changes, re-check it first.");
 		return out.join("\n");
 	},
 };
