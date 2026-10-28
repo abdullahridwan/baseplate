@@ -44,7 +44,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px;padding:0 24px}
 .side{position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:32px 0 48px}
 .side h4{margin:0 0 6px;padding:0 10px;font-size:13px;font-weight:600;color:var(--ink)}
-.side ul{list-style:none;margin:0 0 24px;padding:0}
+.side ul{list-style:none;margin:0 0 16px;padding:0}
+.side h5{margin:10px 0 2px;padding:0 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--stone-light)}
+.filter{width:100%;height:44px;padding:0 16px;border:0;border-radius:12px;box-shadow:inset 0 0 0 1px var(--seam);font:inherit;font-size:15px;margin-bottom:8px;background:var(--white);color:var(--ink)}
+.filter:focus{outline:none;box-shadow:inset 0 0 0 2px var(--stud-blue)}
+.group[hidden],.card[hidden]{display:none}
 .side a{display:block;padding:5px 10px;border-radius:8px;font-size:14px;color:var(--stone)}
 .side a:hover{color:var(--ink);background:var(--plate)}
 .side a.on{color:var(--ink);font-weight:600;background:var(--plate)}
@@ -191,34 +195,8 @@ document.addEventListener("click", (e) => {
 });
 
 /* ---------- particle preview ----------
-   A 2D stand-in for each effect's ParticleEmitter settings in r/vfx/*.luau.
-   Units are studs; keep these in step when an effect is retuned. */
-const PRESETS = {
-  coin_pickup: [
-    { n: 14, life: [0.35, 0.6], speed: [8, 14], spread: 180, drag: 6, acc: [0, 6], size: [[0, 0.6], [1, 0]], alpha: [[0, 1], [0.7, 0.8], [1, 0]], colors: ["#ffec8c", "#ffb020"], add: true, spin: true },
-    { n: 1, life: [0.25, 0.25], speed: [0, 0], size: [[0, 1.5], [1, 3.5]], alpha: [[0, 0.7], [1, 0]], colors: ["#ffd65a"], add: true, glow: true },
-  ],
-  hit: [
-    { n: 10, life: [0.15, 0.3], speed: [20, 32], spread: 180, drag: 10, size: [[0, 0.4], [1, 0]], alpha: [[0, 1], [1, 1]], colors: ["#ffffff", "#ff8c28"], add: true, streak: 2.5 },
-    { n: 1, life: [0.1, 0.1], speed: [0, 0], size: [[0, 2], [1, 3]], alpha: [[0, 0.9], [1, 0]], colors: ["#fff5dc"], add: true, glow: true },
-  ],
-  level_up: [
-    { n: 30, life: [0.9, 1.4], speed: [4, 9], spread: 25, up: true, acc: [0, 4], size: [[0, 0.2], [0.3, 0.7], [1, 0]], alpha: [[0, 1], [1, 0]], colors: ["#96e6ff", "#3c78ff"], add: true, spin: true, origin: -3 },
-    { n: 1, life: [0.5, 0.5], speed: [0, 0], size: [[0, 1], [1, 8]], alpha: [[0, 0.8], [1, 0]], colors: ["#aadcff"], add: true, ring: true, origin: -3 },
-  ],
-  confetti: [
-    { n: 60, life: [1.8, 2.6], speed: [25, 40], spread: 35, up: true, acc: [0, -30], drag: 2.5, size: [[0, 0.45], [1, 0.45]], alpha: [[0, 1], [0.85, 1], [1, 0]], pick: ["#ff506e", "#ffc828", "#3cdc78", "#3ca0ff", "#be5aff"], confetti: true, origin: -5 },
-  ],
-  heal: [
-    { n: 18, life: [1, 1.6], speed: [1, 3], spread: 180, acc: [0, 5], drag: 1, size: [[0, 0], [0.3, 0.6], [1, 0]], alpha: [[0, 0.8], [1, 0]], colors: ["#aaffaa", "#28c85a"], add: true },
-  ],
-  explosion: [
-    { n: 10, life: [1.5, 2.5], speed: [3, 8], spread: 180, acc: [0, 3], drag: 2, size: [[0, 3], [1, 8]], alpha: [[0, 0.6], [1, 0]], colors: ["#5a5550", "#282624"], smoke: true },
-    { n: 12, life: [0.35, 0.6], speed: [6, 14], spread: 180, drag: 5, size: [[0, 2], [1, 5]], alpha: [[0, 1], [1, 0]], grad: ["#fffac8", "#ff8c1e", "#781e0a"], add: true, glow: true },
-    { n: 20, life: [0.6, 1.1], speed: [25, 45], spread: 180, acc: [0, -25], drag: 3, size: [[0, 0.35], [1, 0]], alpha: [[0, 1], [1, 1]], colors: ["#ffc850", "#ff5014"], add: true, streak: 1.6 },
-  ],
-};
-
+   Animates each effect's "preview" block from r/index.json: the same numbers
+   gen_vfx.py writes into the Luau file, drawn in 2D. Units are studs. */
 const rand = (a, b) => a + Math.random() * (b - a);
 const curve = (pts, t) => {
   for (let i = 1; i < pts.length; i++) if (t <= pts[i][0]) {
@@ -228,87 +206,105 @@ const curve = (pts, t) => {
   return pts[pts.length - 1][1];
 };
 const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-const mixc = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
 const gradAt = (stops, t) => {
-  const s = stops.map(hex), x = t * (s.length - 1), i = Math.min(Math.floor(x), s.length - 2);
-  return mixc(s[i], s[i + 1], x - i);
+  if (stops.length === 1) return hex(stops[0]);
+  const x = Math.min(Math.max(t, 0), 1) * (stops.length - 1), i = Math.min(Math.floor(x), stops.length - 2);
+  const a = hex(stops[i]), b = hex(stops[i + 1]);
+  return a.map((v, k) => Math.round(v + (b[k] - v) * (x - i)));
 };
+// 2D stand-ins for EmissionDirection: Front/Back/Left/Right all read as sideways
+const DIRS = { Top: Math.PI / 2, Bottom: -Math.PI / 2, Front: 0, Right: 0, Back: Math.PI, Left: Math.PI };
 
 class Preview {
-  constructor(canvas, name, { scale = 1 } = {}) {
-    this.c = canvas; this.ctx = canvas.getContext("2d"); this.name = name;
+  constructor(canvas, item, { scale = 1 } = {}) {
+    this.c = canvas; this.ctx = canvas.getContext("2d"); this.spec = item.preview;
+    this.scale = scale; this.parts = []; this.t = 0; this.flash = 0; this.alive = true;
+    this.carry = this.spec.emitters.map(() => 0);
     // replay shortly after the longest particle dies, so quick effects don't leave a long empty gap
-    this.loop = Math.max(...(PRESETS[name] || []).map((e) => e.life[1])) + 0.7; this.scale = scale; this.parts = []; this.t = 0; this.alive = true;
+    this.period = Math.max(...this.spec.emitters.map((e) => e.life[1])) + 0.35;
     this.burst();
     this.last = performance.now();
     const tick = (now) => {
       if (!this.alive || !this.c.isConnected) return;
       const dt = Math.max(0, Math.min((now - this.last) / 1000, 0.05)); this.last = now; // rAF's first timestamp can predate performance.now()
+      if (this.paused) { requestAnimationFrame(tick); return; }
       this.t += dt;
-      if (this.t > this.loop) { this.t = 0; this.burst(); }
+      if (!this.spec.loop && this.t > this.period) this.replay();
+      this.spec.emitters.forEach((e, i) => {
+        if (!e.rate) return;
+        this.carry[i] += e.rate * dt;
+        for (; this.carry[i] >= 1; this.carry[i]--) this.spawn(e);
+      });
       this.step(dt); this.draw();
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   }
-  burst() {
-    for (const e of PRESETS[this.name] || []) {
-      for (let i = 0; i < e.n; i++) {
-        // y is up. `up` emitters fan out from straight up by `spread` degrees; the rest go every way.
-        const sp = rand(...e.speed);
-        const a = e.up ? Math.PI / 2 + rand(-1, 1) * (e.spread * Math.PI / 180) : rand(0, Math.PI * 2);
-        this.parts.push({
-          e, x: 0, y: e.origin || 0, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
-          age: 0, life: rand(...e.life), rot: rand(0, Math.PI * 2), vr: e.spin || e.confetti ? rand(-6, 6) : 0,
-          col: e.pick ? hex(e.pick[i % e.pick.length]) : null, flip: rand(0, 6),
-        });
-      }
-    }
+  spawn(e) {
+    const spread = e.spread * Math.PI / 180;
+    const a = e.spread >= 180 ? rand(0, Math.PI * 2) : DIRS[e.direction] + rand(-1, 1) * spread;
+    const sp = rand(...e.speed);
+    this.parts.push({
+      // surface effects come from the whole part (a 2x2 stud root part), not its centre
+      e, x: this.spec.surface ? rand(-1, 1) : 0, y: this.spec.surface ? rand(-1, 1) : 0, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, age: 0, life: rand(...e.life),
+      rot: rand(0, Math.PI * 2), vr: e.spin ? rand(-Math.PI, Math.PI) : 0,
+    });
   }
+  burst() {
+    for (const e of this.spec.emitters) if (e.emit) for (let i = 0; i < e.emit; i++) this.spawn(e);
+    this.flash = this.spec.light ? 1 : 0;
+  }
+  replay() { this.t = 0; this.burst(); }
   step(dt) {
     for (const p of this.parts) {
-      const e = p.e, drag = Math.exp(-(e.drag || 0) * dt);
-      p.vx *= drag; p.vy *= drag;
-      if (e.acc) { p.vx += e.acc[0] * dt; p.vy += e.acc[1] * dt; }
+      const drag = Math.exp(-p.e.drag * dt);
+      p.vx *= drag; p.vy *= drag; p.vy += p.e.acc * dt;
       p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt; p.age += dt;
     }
     this.parts = this.parts.filter((p) => p.age < p.life);
+    this.flash = Math.max(0, this.flash - dt * 2.5);
   }
   draw() {
     const { c, ctx } = this, dpr = window.devicePixelRatio || 1;
     const w = c.clientWidth, h = c.clientHeight;
-    if (c.width !== w * dpr) { c.width = w * dpr; c.height = h * dpr; }
+    if (c.width !== Math.round(w * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
     const px = Math.min(w, h) / 15 * this.scale; // pixels per stud
-    const cx = w / 2, cy = h * 0.56;
+    // effects that shoot upward start lower so the whole column stays in frame
+    const rising = this.spec.emitters.some((e) => e.direction === "Top" && e.spread < 45 && e.speed[1] > 3);
+    const cx = w / 2, cy = h * (rising ? 0.86 : 0.58);
+
+    const glowAmt = this.spec.light ? (this.spec.loop ? 0.18 + Math.random() * 0.04 : this.flash * 0.35) : 0;
+    if (glowAmt > 0.01) {
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(w, h) * 0.6);
+      g.addColorStop(0, `rgba(${hex(this.spec.light)},${glowAmt.toFixed(3)})`);
+      g.addColorStop(1, `rgba(${hex(this.spec.light)},0)`);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    }
+
     for (const p of this.parts) {
       const e = p.e, t = p.age / p.life;
       const size = curve(e.size, t) * px, alpha = curve(e.alpha, t);
-      if (size <= 0 || alpha <= 0.002) continue;
-      const rgb = p.col || (e.grad ? gradAt(e.grad, t) : e.colors.length > 1 ? mixc(hex(e.colors[0]), hex(e.colors[1]), t) : hex(e.colors[0]));
-      const rgba = (a) => `rgba(${rgb},${a.toFixed(3)})`, col = rgba(alpha);
-      const x = cx + p.x * px, y = cy - p.y * px;
+      if (size <= 0.2 || alpha <= 0.002) continue;
+      const rgb = gradAt(e.color, t);
+      const rgba = (a) => `rgba(${rgb},${a.toFixed(3)})`;
       ctx.globalCompositeOperation = e.add ? "lighter" : "source-over";
-      ctx.save(); ctx.translate(x, y);
+      ctx.save(); ctx.translate(cx + p.x * px, cy - p.y * px);
       if (e.ring) {
-        ctx.scale(1, 0.32); ctx.strokeStyle = col; ctx.lineWidth = 3;
+        ctx.scale(1, 0.32); ctx.strokeStyle = rgba(alpha); ctx.lineWidth = Math.max(2, size * 0.06);
         ctx.beginPath(); ctx.arc(0, 0, size / 2, 0, Math.PI * 2); ctx.stroke();
-      } else if (e.confetti) {
-        ctx.rotate(p.rot); ctx.scale(1, Math.cos(p.age * 9 + p.flip));
-        ctx.fillStyle = col; ctx.fillRect(-size / 2, -size / 3, size, size * 0.66);
       } else if (e.streak) {
-        const ang = Math.atan2(-p.vy, p.vx), len = size * (1 + e.streak * Math.hypot(p.vx, p.vy) / 12);
-        ctx.rotate(ang); ctx.fillStyle = col;
+        const len = size * (1 + e.streak * Math.hypot(p.vx, p.vy) / 12);
+        ctx.rotate(Math.atan2(-p.vy, p.vx)); ctx.fillStyle = rgba(alpha);
         ctx.beginPath(); ctx.ellipse(0, 0, len / 2, size / 4, 0, 0, Math.PI * 2); ctx.fill();
       } else {
+        const soft = e.texture !== "spark" || (e.emit === 1 && e.speed[1] === 0);
         const g = ctx.createRadialGradient(0, 0, 0, 0, 0, size / 2);
-        const soft = e.smoke || e.glow;
-        g.addColorStop(0, col); g.addColorStop(soft ? 0.35 : 0.2, rgba(alpha * (soft ? 0.5 : 0.6)));
-        g.addColorStop(1, rgba(0));
+        g.addColorStop(0, rgba(alpha)); g.addColorStop(soft ? 0.35 : 0.2, rgba(alpha * (soft ? 0.5 : 0.6))); g.addColorStop(1, rgba(0));
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, size / 2, 0, Math.PI * 2); ctx.fill();
-        if (!soft) { // the sparkle's star cross
-          ctx.rotate(p.rot); ctx.fillStyle = col;
+        if (!soft) { // the sparkle texture's star cross
+          ctx.rotate(p.rot); ctx.fillStyle = rgba(alpha);
           ctx.fillRect(-size * 0.6, -size * 0.04, size * 1.2, size * 0.08);
           ctx.fillRect(-size * 0.04, -size * 0.6, size * 0.08, size * 1.2);
         }
@@ -317,9 +313,10 @@ class Preview {
     }
     ctx.globalCompositeOperation = "source-over";
   }
-  replay() { this.t = 0; this.burst(); }
 }
 let previews = [];
+// only animate thumbnails that are on screen
+const thumbs = new IntersectionObserver((entries) => entries.forEach((en) => { if (en.target._preview) en.target._preview.paused = !en.isIntersecting; }));
 const stopPreviews = () => { previews.forEach((p) => (p.alive = false)); previews = []; };
 
 /* ---------- sound preview ---------- */
@@ -338,6 +335,13 @@ async function playSound(name) {
 /* ---------- pages ---------- */
 const byKind = (k) => index.items.filter((i) => i.kind === k);
 const label = { vfx: "Effects", sfx: "Sounds" };
+// [[category, items]] in catalog order
+const categories = (k) => {
+  const groups = new Map();
+  for (const i of byKind(k)) groups.set(i.category, [...(groups.get(i.category) || []), i]);
+  return [...groups];
+};
+const findItem = (kind, name) => index.items.find((i) => i.kind === kind && i.name === name);
 const route = () => location.hash.replace(/^#\/?/, "") || "intro";
 
 function sidebar() {
@@ -345,7 +349,8 @@ function sidebar() {
   const link = (href, text) => `<li><a href="#/${href}" class="${r === href ? "on" : ""}">${text}</a></li>`;
   $("#side").innerHTML =
     `<h4>Getting started</h4><ul>${link("intro", "Introduction")}${link("installation", "Installation")}${link("all", "All components")}</ul>` +
-    ["vfx", "sfx"].map((k) => `<h4>${label[k]}</h4><ul>${byKind(k).map((i) => link(`${k}/${i.name}`, i.name)).join("")}</ul>`).join("");
+    ["vfx", "sfx"].map((k) => `<h4>${label[k]}</h4>` + categories(k).map(([cat, items]) =>
+      `<h5>${cat}</h5><ul>${items.map((i) => link(`${k}/${i.name}`, i.name)).join("")}</ul>`).join("")).join("");
 }
 
 function introPage() {
@@ -398,38 +403,41 @@ assets/sfx/<name>.ogg               one per sound, for you to upload`, "text")}
 }
 
 function allPage() {
-  const card = (i) => `<a class="card" href="#/${i.kind}/${i.name}">
+  const card = (i) => `<a class="card" href="#/${i.kind}/${i.name}" data-search="${[i.name, i.category, ...i.tags].join(" ").toLowerCase()}">
       <div class="thumb ${i.kind === "sfx" ? "snd" : ""}">${i.kind === "vfx" ? `<canvas data-fx="${i.name}"></canvas>` : ICON_WAVE}</div>
       <div class="meta"><b>${i.name}</b><span>${i.description}</span></div></a>`;
+  const section = (k) => `<h2>${label[k]}</h2>` + categories(k).map(([cat, items]) =>
+    `<div class="group"><h3>${cat}</h3><div class="grid">${items.map(card).join("")}</div></div>`).join("");
   return `
     <div class="crumb">Docs</div>
     <h1>All components</h1>
-    <p class="lead">${byKind("vfx").length} effects and ${byKind("sfx").length} sounds. Items with the same name pair up: <code>Juice.play</code> fires both.</p>
-    <h2>Effects</h2><div class="grid">${byKind("vfx").map(card).join("")}</div>
-    <h2>Sounds</h2><div class="grid">${byKind("sfx").map(card).join("")}</div>`;
+    <p class="lead">${byKind("vfx").length} effects and ${byKind("sfx").length} sounds, picked from what today's top Roblox games use. Items with the same name pair up: <code>Juice.play</code> fires both.</p>
+    <input class="filter" id="filter" type="search" placeholder="Filter: coin, combat, egg, loop…" aria-label="Filter components">
+    <section data-kind="vfx">${section("vfx")}</section>
+    <section data-kind="sfx">${section("sfx")}</section>`;
 }
 
 async function itemPage(kind, name) {
-  const item = index.items.find((i) => i.kind === kind && i.name === name);
+  const item = findItem(kind, name);
   if (!item) return `<h1>Not found</h1><p>No ${kind} named <code>${esc(name)}</code>. <a href="#/all" style="text-decoration:underline">See all components</a>.</p>`;
   const twin = index.items.find((i) => i.name === name && i.kind !== kind && i.kind !== "runtime");
   const src = item.files[0].src;
   const source = kind === "vfx" ? await (await fetch(REGISTRY + src)).text() : null;
 
   const preview = kind === "vfx"
-    ? `<div class="stage"><canvas id="fx"></canvas><span class="hint">Approximate 2D preview</span><button class="replay" id="replay">Replay</button></div>`
+    ? `<div class="stage"><canvas id="fx"></canvas><span class="hint">Approximate 2D preview${item.preview.loop ? " · loops" : ""}</span>${item.preview.loop ? "" : `<button class="replay" id="replay">Replay</button>`}</div>`
     : `<div class="stage"><button class="play" id="play" aria-label="Play ${name}">${ICON_PLAY}</button><span class="hint">${item.description}</span></div>`;
   const panels = [{ label: "Preview", html: preview }];
   if (source) panels.push({ label: "Code", html: codeBlock(source) });
 
-  const usage = kind === "vfx"
-    ? `Juice.vfx("${name}", part) -- a BasePart, Model or Vector3`
-    : `Juice.sfx("${name}") -- 2D, or pass a part for 3D sound`;
-  const all = [...byKind("vfx"), ...byKind("sfx")];
+  const usage = kind === "sfx" ? `Juice.sfx("${name}") -- 2D, or pass a part for 3D sound`
+    : item.preview.loop ? `local stop = Juice.attach("${name}", character) -- stays on\n-- later:\nstop()`
+    : `Juice.vfx("${name}", part) -- a BasePart, Model or Vector3`;
+  const all = ["vfx", "sfx"].flatMap((k) => categories(k).flatMap(([, items]) => items)); // sidebar order
   const at = all.indexOf(item), prev = all[at - 1], next = all[at + 1];
 
   return `
-    <div class="crumb">${label[kind]}</div>
+    <div class="crumb">${label[kind]} / ${item.category}</div>
     <h1>${name}</h1>
     <p class="lead">${item.description}</p>
     <p>${item.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</p>
@@ -460,11 +468,22 @@ async function render() {
 
   const fx = $("#fx");
   if (fx) {
-    const p = new Preview(fx, name);
+    const p = new Preview(fx, findItem("vfx", name));
     previews.push(p);
-    $("#replay").onclick = () => p.replay();
+    if ($("#replay")) $("#replay").onclick = () => p.replay();
   }
-  document.querySelectorAll("[data-fx]").forEach((c) => previews.push(new Preview(c, c.dataset.fx, { scale: 1.2 })));
+  document.querySelectorAll("[data-fx]").forEach((c) => {
+    const p = new Preview(c, findItem("vfx", c.dataset.fx), { scale: 1.2 });
+    p.paused = true;
+    thumbs.observe(c); c._preview = p;
+    previews.push(p);
+  });
+  const filter = $("#filter");
+  if (filter) filter.oninput = () => {
+    const q = filter.value.trim().toLowerCase();
+    document.querySelectorAll(".card").forEach((c) => (c.hidden = q && !c.dataset.search.includes(q)));
+    document.querySelectorAll(".group").forEach((g) => (g.hidden = !g.querySelector(".card:not([hidden])")));
+  };
   const play = $("#play");
   if (play) play.onclick = () => playSound(name).catch(() => (play.title = "Couldn't load audio"));
 }

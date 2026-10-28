@@ -3,6 +3,7 @@
 --   Juice.play("coin_pickup", part)   -- effect + sound with the same name, whichever exist
 --   Juice.vfx("hit", Vector3.new(0, 5, 0))
 --   Juice.sfx("ui_click")             -- no target: plays flat (2D)
+--   local stop = Juice.attach("aura_fire", character)  -- looping effects; call stop() to end
 --   Juice.music("lobby")              -- crossfades to a looping track; Juice.music(nil) stops
 -- Call from the client for best results. Effects live in Effects/, sound IDs in Sounds.luau.
 
@@ -48,23 +49,34 @@ local function resolveHost(target: Target): (BasePart?, boolean)
 	return nil, false
 end
 
-function Juice.vfx(name: string, target: Target)
+local function loadEffect(name: string): any
 	local module = Effects and Effects:FindFirstChild(name)
 	if not module or not module:IsA("ModuleScript") then
 		warnOnce("vfx:" .. name, "no effect named '" .. name .. "'")
-		return
+		return nil
+	end
+	return require(module)
+end
+
+-- Builds the effect on the target. Burst emitters fire once; `rate` emitters keep running until stop() is called.
+local function spawnEffect(name: string, target: Target): (() -> ())?
+	local definition = loadEffect(name)
+	if not definition then
+		return nil
 	end
 	local host, temporary = resolveHost(target)
 	if not host then
-		warnOnce("target:" .. name, "Juice.vfx('" .. name .. "') needs a Vector3, BasePart or Model")
-		return
+		warnOnce("target:" .. name, "effect '" .. name .. "' needs a Vector3, BasePart or Model")
+		return nil
 	end
 
-	local definition = require(module) :: any
 	local attachment = Instance.new("Attachment")
 	attachment.Name = "Juice_" .. name
 	attachment.Parent = host
 
+	-- `surface` effects (auras) sit on the part itself so particles come from its whole volume
+	local emitterParent: Instance = if definition.surface then host else attachment
+	local emitters: { ParticleEmitter } = {}
 	local longest = 0
 	for _, emitterDef in definition.emitters do
 		local emitter = Instance.new("ParticleEmitter")
@@ -72,12 +84,68 @@ function Juice.vfx(name: string, target: Target)
 		for property, value in emitterDef.properties do
 			(emitter :: any)[property] = value
 		end
-		emitter.Parent = attachment
-		emitter:Emit(emitterDef.emit)
+		emitter.Name = "Juice_" .. name .. "_" .. emitter.Name
+		emitter.Parent = emitterParent
+		if emitterDef.rate then
+			emitter.Rate = emitterDef.rate
+			emitter.Enabled = true
+		else
+			emitter:Emit(emitterDef.emit)
+		end
+		table.insert(emitters, emitter)
 		longest = math.max(longest, emitter.Lifetime.Max)
 	end
 
-	Debris:AddItem(if temporary then host else attachment, longest + 0.5)
+	local lightDef = definition.light
+	if lightDef then
+		local light = Instance.new("PointLight")
+		light.Color = lightDef.color
+		light.Range = lightDef.range
+		light.Brightness = lightDef.brightness
+		light.Parent = attachment
+		if not definition.loop then
+			TweenService:Create(light, TweenInfo.new(lightDef.duration), { Brightness = 0 }):Play()
+		end
+	end
+
+	local stopped = false
+	return function()
+		if stopped then
+			return
+		end
+		stopped = true
+		for _, emitter in emitters do
+			emitter.Enabled = false
+		end
+		-- let the last particles finish, then clean up
+		Debris:AddItem(if temporary then host else attachment, longest + 0.5)
+		if definition.surface and not temporary then
+			for _, emitter in emitters do
+				Debris:AddItem(emitter, longest + 0.5)
+			end
+		end
+	end
+end
+
+-- One-shot effect. Looping effects (auras, campfires) play for `duration` seconds; use Juice.attach to keep them on.
+function Juice.vfx(name: string, target: Target)
+	local stop = spawnEffect(name, target)
+	if not stop then
+		return
+	end
+	local definition = loadEffect(name)
+	if definition.loop then
+		task.delay(definition.duration or 2, stop)
+	else
+		stop()
+	end
+end
+
+-- Looping effect that stays on until you call the returned function.
+--   local stop = Juice.attach("aura_fire", character)
+--   stop()
+function Juice.attach(name: string, target: Target): () -> ()
+	return spawnEffect(name, target) or function() end
 end
 
 function Juice.sfx(name: string, target: Target?)

@@ -6,7 +6,7 @@
 // Run it from the project root (where default.project.json is).
 // BASEPLATE_REGISTRY points at another registry: a URL or a local folder containing index.json.
 
-import { SOUNDS_FILE, install, loadIndex } from "../lib/registry.js";
+import { SOUNDS_FILE, install, loadIndex, resolveItems } from "../lib/registry.js";
 
 const bold = (s) => `\x1b[1m${s}\x1b[0m`;
 const dim = (s) => `\x1b[2m${s}\x1b[0m`;
@@ -23,7 +23,13 @@ async function add(names) {
 
 	console.log("\n" + bold("Done.") + " Use it:");
 	console.log(dim('  local Juice = require(game.ReplicatedStorage.Shared.Juice)'));
-	for (const name of new Set(names)) console.log(dim(`  Juice.play("${name}", part)`));
+	const items = resolveItems(await loadIndex(), names);
+	for (const name of new Set(names)) {
+		const kinds = items.filter((i) => i.name === name);
+		const loop = kinds.find((i) => i.kind === "vfx" && i.preview?.loop);
+		const hint = loop ? loop.usage : kinds.length > 1 ? `Juice.play("${name}", part)` : kinds[0].usage;
+		console.log(dim(`  ${hint}`));
+	}
 
 	if (r.uploads.length > 0) {
 		console.log("\n" + bold("One step left for sounds:") + " Roblox only plays uploaded audio.");
@@ -37,8 +43,12 @@ async function list() {
 	const index = await loadIndex();
 	for (const kind of ["vfx", "sfx"]) {
 		console.log(bold(kind === "vfx" ? "Effects" : "Sounds"));
-		for (const item of index.items.filter((i) => i.kind === kind)) {
-			console.log(`  ${item.name.padEnd(14)} ${dim(item.description)}`);
+		const items = index.items.filter((i) => i.kind === kind);
+		for (const category of new Set(items.map((i) => i.category))) {
+			console.log(`  ${dim(category)}`);
+			for (const item of items.filter((i) => i.category === category)) {
+				console.log(`    ${item.name.padEnd(18)} ${dim(item.description)}`);
+			}
 		}
 		console.log();
 	}
