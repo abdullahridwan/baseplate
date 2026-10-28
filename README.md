@@ -43,6 +43,16 @@ Each spec runs in strict order, with a **Done when** check after every step and 
 
 **Requirements:** Roblox Studio with API Services enabled, and [Rojo](https://rojo.space) 7+.
 
+## Connect your AI (MCP)
+
+Baseplate runs as an MCP server, so Claude Code (or any MCP client) can pull recipes and add components itself:
+
+```
+claude mcp add baseplate -- npx -y baseplate-cli mcp
+```
+
+Tools: `list_recipes`, `get_recipe`, `list_components`, `search_components`, `get_component`, `add_component`.
+
 ## Repo
 
 ```
@@ -58,7 +68,6 @@ docs/              the website (GitHub Pages)
 Full plan in [PLAN.md](PLAN.md).
 
 - Music pack, effect previews, and packs per game type for the registry
-- MCP server so agents pull specs and steps directly
 - More game types: tower defense, horror, fighting
 - One-command publishing (a fastlane for Roblox): build, upload, set metadata and go live, callable by agents
 - Store assets: generated game icons, thumbnails and descriptions

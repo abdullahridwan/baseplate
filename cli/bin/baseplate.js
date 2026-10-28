@@ -2,95 +2,24 @@
 // baseplate: copy VFX and sounds from the Baseplate registry into a Roblox (Rojo) project.
 //   npx baseplate-cli list
 //   npx baseplate-cli add coin_pickup confetti
+//   npx baseplate-cli mcp            (run as an MCP server for Claude Code and other agents)
 // Run it from the project root (where default.project.json is).
 // BASEPLATE_REGISTRY points at another registry: a URL or a local folder containing index.json.
 
-import { existsSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { dirname, join, resolve } from "node:path";
-
-const REGISTRY = process.env.BASEPLATE_REGISTRY || "https://abdullahridwan.github.io/baseplate/r/";
-const SOUNDS_FILE = "src/shared/Juice/Sounds.luau";
-const isUrl = (s) => /^https?:\/\//.test(s);
+import { SOUNDS_FILE, install, loadIndex } from "../lib/registry.js";
 
 const bold = (s) => `\x1b[1m${s}\x1b[0m`;
 const dim = (s) => `\x1b[2m${s}\x1b[0m`;
 const green = (s) => `\x1b[32m${s}\x1b[0m`;
 const yellow = (s) => `\x1b[33m${s}\x1b[0m`;
 
-async function fetchFile(rel, { binary = false } = {}) {
-	if (!isUrl(REGISTRY)) {
-		const path = resolve(REGISTRY, rel);
-		return binary ? readFile(path) : readFile(path, "utf8");
-	}
-	const url = new URL(rel, REGISTRY.endsWith("/") ? REGISTRY : REGISTRY + "/");
-	const res = await fetch(url);
-	if (!res.ok) throw new Error(`could not fetch ${url} (${res.status})`);
-	return binary ? Buffer.from(await res.arrayBuffer()) : res.text();
-}
-
-async function loadIndex() {
-	return JSON.parse(await fetchFile("index.json"));
-}
-
-// Items can share a name across kinds (coin_pickup is a vfx and an sfx); `add coin_pickup` installs both.
-function resolveItems(index, names) {
-	const picked = [];
-	const seen = new Set();
-	const visit = (name) => {
-		const matches = index.items.filter((i) => i.name === name);
-		if (matches.length === 0) throw new Error(`no item named '${name}'. Run 'npx baseplate-cli list' to see them all.`);
-		for (const item of matches) {
-			const key = `${item.kind}:${item.name}`;
-			if (seen.has(key)) continue;
-			seen.add(key);
-			item.requires.forEach(visit);
-			picked.push(item);
-		}
-	};
-	names.forEach(visit);
-	return picked;
-}
-
-function soundLine(item) {
-	const { volume, pitchVariance } = item.sound;
-	const pitch = pitchVariance ? `, pitchVariance = ${pitchVariance}` : "";
-	return `\t${item.name} = { id = "", volume = ${volume}${pitch} },`;
-}
-
-// Adds the sound to the Sounds table with an empty id. Juice skips it (with one warning) until the id is filled in.
-async function registerSound(item) {
-	const source = await readFile(SOUNDS_FILE, "utf8");
-	if (new RegExp(`^\\s*${item.name}\\s*=`, "m").test(source)) return false;
-	const marker = "local Sounds: { [string]: SoundDef } = {\n";
-	if (!source.includes(marker)) throw new Error(`couldn't find the Sounds table in ${SOUNDS_FILE}; add ${item.name} by hand`);
-	await writeFile(SOUNDS_FILE, source.replace(marker, marker + soundLine(item) + "\n"));
-	return true;
-}
-
 async function add(names) {
 	if (names.length === 0) throw new Error("name at least one item, e.g. 'baseplate add coin_pickup'");
-	if (!existsSync("default.project.json")) {
-		console.log(yellow("! no default.project.json here. Run this from your Rojo project root.\n"));
-	}
-	const items = resolveItems(await loadIndex(), names);
-	const uploads = [];
-
-	for (const item of items) {
-		for (const file of item.files) {
-			if (existsSync(file.dest)) {
-				console.log(dim(`  skip  ${file.dest} (exists)`));
-				continue;
-			}
-			await mkdir(dirname(file.dest), { recursive: true });
-			await writeFile(file.dest, await fetchFile(file.src, { binary: item.kind === "sfx" }));
-			console.log(green("  add   ") + file.dest);
-		}
-		if (item.kind === "sfx") {
-			if (await registerSound(item)) console.log(green("  edit  ") + `${SOUNDS_FILE} (${item.name})`);
-			uploads.push(item);
-		}
-	}
+	const r = await install(names);
+	for (const w of r.warnings) console.log(yellow(`! ${w}\n`));
+	for (const f of r.skipped) console.log(dim(`  skip  ${f} (exists)`));
+	for (const f of r.added) console.log(green("  add   ") + f);
+	for (const f of r.edited) console.log(green("  edit  ") + f);
 
 	console.log("\n" + bold("Done.") + " Use it:");
 	console.log(dim('  local Juice = require(game.ReplicatedStorage.Shared.Juice)'));
@@ -101,10 +30,10 @@ async function add(names) {
 		console.log(dim(`  ${hint}`));
 	}
 
-	if (uploads.length > 0) {
+	if (r.uploads.length > 0) {
 		console.log("\n" + bold("One step left for sounds:") + " Roblox only plays uploaded audio.");
 		console.log("  1. Upload these at https://create.roblox.com/dashboard/creations (Upload asset > Audio):");
-		for (const item of uploads) console.log(`       ${item.files[0].dest}`);
+		for (const f of r.uploads) console.log(`       ${f}`);
 		console.log(`  2. Paste each asset ID into its id = "" in ${SOUNDS_FILE}`);
 	}
 }
@@ -125,13 +54,19 @@ async function list() {
 	console.log(dim("Add one: npx baseplate-cli add <name>"));
 }
 
+async function mcp() {
+	const { serve } = await import("../lib/mcp.js");
+	serve();
+}
+
 const [command, ...args] = process.argv.slice(2);
-const commands = { add: () => add(args), list };
+const commands = { add: () => add(args), list, mcp };
 
 if (!commands[command]) {
 	console.log(`${bold("baseplate")}: VFX and sounds for Roblox games\n
   npx baseplate-cli list           show every effect and sound
-  npx baseplate-cli add <name...>  copy items into this project\n`);
+  npx baseplate-cli add <name...>  copy items into this project
+  npx baseplate-cli mcp            run as an MCP server for your AI agent\n`);
 	process.exit(command && command !== "help" ? 1 : 0);
 }
 

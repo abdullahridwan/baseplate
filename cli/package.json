@@ -1,13 +1,14 @@
 {
   "name": "baseplate-cli",
-  "version": "0.1.0",
-  "description": "Add Baseplate VFX and sounds to your Roblox game. Like shadcn/ui: the files are copied in and you own them.",
+  "version": "0.2.0",
+  "description": "Add Baseplate recipes, VFX and sounds to your Roblox game, from the terminal or as an MCP server for your AI agent. Like shadcn/ui: the files are copied in and you own them.",
   "type": "module",
   "bin": {
     "baseplate": "bin/baseplate.js"
   },
   "files": [
-    "bin"
+    "bin",
+    "lib"
   ],
   "engines": {
     "node": ">=18"
@@ -17,7 +18,9 @@
     "rojo",
     "vfx",
     "sfx",
-    "luau"
+    "luau",
+    "mcp",
+    "ai-agents"
   ],
   "license": "MIT"
 }
