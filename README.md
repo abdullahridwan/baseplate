@@ -17,6 +17,14 @@ Every Roblox game is half generic: saves, checkpoints, cash, remotes, leaderboar
 | [tycoon](implementations/tycoon/IMPLEMENTATION.md) | Claimable plots, cash, purchase buttons, droppers, collector, saved progress |
 | [simulator](implementations/simulator/IMPLEMENTATION.md) | Click to collect, backpack capacity, sell zones, upgrades, rebirths |
 
+## Registry: VFX and sounds
+
+Good effects and sounds for a v0, like shadcn/ui: your agent copies them into your game and you own them. See [registry](registry/README.md).
+
+```
+Add coin_pickup and confetti from https://raw.githubusercontent.com/abdullahridwan/baseplate/main/registry/index.json
+```
+
 ## Use it
 
 Point your agent (Claude Code, Cursor, Codex) at a spec:
@@ -33,12 +41,16 @@ Each spec runs in strict order, with a **Done when** check after every step and 
 
 ```
 implementations/   the specs, one folder per game type
+registry/          VFX and sounds your agent copies in
 brand/             logo files and brand guidelines
 docs/              the website (GitHub Pages)
 ```
 
 ## Roadmap
 
+Full plan in [PLAN.md](PLAN.md).
+
+- Music pack, effect previews, and packs per game type for the registry
 - MCP server so agents pull specs and steps directly
 - More game types: tower defense, horror, fighting
 - One-command publishing (a fastlane for Roblox): build, upload, set metadata and go live, callable by agents
