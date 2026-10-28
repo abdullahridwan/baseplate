@@ -385,12 +385,12 @@ footer{border-top:1px solid var(--seam);background:var(--mist)}
         </button>
         <button class="game rv d1" type="button" data-game="tycoon" aria-pressed="false">
           <span class="art"><svg data-art="tycoon" aria-hidden="true"></svg></span>
-          <span class="top"><span class="t">Tycoon</span><span class="radio" aria-hidden="true"></span></span>
+          <span class="top"><span class="t">Tycoon (beta)</span><span class="radio" aria-hidden="true"></span></span>
           <span class="d">Claim a plot, earn money, buy upgrades.</span>
         </button>
         <button class="game rv d2" type="button" data-game="simulator" aria-pressed="false">
           <span class="art"><svg data-art="simulator" aria-hidden="true"></svg></span>
-          <span class="top"><span class="t">Simulator</span><span class="radio" aria-hidden="true"></span></span>
+          <span class="top"><span class="t">Simulator (beta)</span><span class="radio" aria-hidden="true"></span></span>
           <span class="d">Collect, sell, upgrade and rebirth.</span>
         </button>
       </div>
@@ -428,6 +428,37 @@ footer{border-top:1px solid var(--seam);background:var(--mist)}
     <p class="rv d1">Free and open source. Works with the AI you already use.</p>
     <div class="hero-ctas rv d2"><a class="btn btn-ink" href="#start">Start building <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
   </div>
+
+  <section id="connect" aria-labelledby="connect-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="connect-title" class="rv">Connect your agent. <span class="serif">One line.</span></h2>
+        <p class="rv d1">Instead of copying a prompt, connect Baseplate as an MCP server. Your agent can then list recipes, get the full spec, and search and add safe VFX and sounds by description.</p>
+      </div>
+      <div class="copybox rv">
+        <div class="label"><span>Claude Code</span></div>
+        <pre class="prompt">claude mcp add baseplate -- npx -y baseplate-cli mcp</pre>
+        <p>Note: this install line requires baseplate-cli 0.3.0 or later on npm. Until it is published, the MCP code is in this repo under cli/.</p>
+        <div class="label"><span>Codex</span></div>
+        <pre class="prompt">[mcp_servers.baseplate]
+command = "npx"
+args = ["-y", "baseplate-cli", "mcp"]</pre>
+        <p>Put that in your Codex MCP config. The exact config file location depends on your Codex setup, so check your Codex docs if it does not pick it up.</p>
+        <div class="label"><span>Cursor</span></div>
+        <pre class="prompt">{
+  "mcpServers": {
+    "baseplate": {
+      "command": "npx",
+      "args": ["-y", "baseplate-cli", "mcp"]
+    }
+  }
+}</pre>
+        <p>Put that in your Cursor MCP settings file. After connecting, ask your agent to call find_vfx, for example: find a safe fire explosion VFX.</p>
+        <p>Safe VFX only: find_vfx returns only packs with status safe, with a pinned asset ID and version. Malicious packs are never offered by the MCP. See the <a href="vfx-report.html">VFX report</a> for how scanning works.</p>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -441,11 +472,11 @@ footer{border-top:1px solid var(--seam);background:var(--mist)}
     </div>
     <div>
       <h5>Product</h5>
-      <ul><li><a href="#how">How it works</a></li><li><a href="#features">What you get</a></li><li><a href="#start">Start building</a></li></ul>
+      <ul><li><a href="#how">How it works</a></li><li><a href="#features">What you get</a></li><li><a href="#start">Start building</a></li><li><a href="#connect">Connect your agent</a></li><li><a href="vfx-report.html">VFX report</a></li></ul>
     </div>
     <div>
       <h5>Recipes</h5>
-      <ul><li><a href="recipes/obby.md">Obby</a></li><li><a href="recipes/tycoon.md">Tycoon</a></li><li><a href="recipes/simulator.md">Simulator</a></li><li><a href="recipes/core.md">Core</a></li></ul>
+      <ul><li><a href="recipes/obby.md">Obby</a></li><li><a href="recipes/tycoon.md">Tycoon (beta)</a></li><li><a href="recipes/simulator.md">Simulator (beta)</a></li><li><a href="recipes/core.md">Core</a></li></ul>
     </div>
   </div>
   <div class="wrap legal"><span>&copy; 2026 Baseplate. Free and open source.</span><span>Not affiliated with Roblox.</span></div>

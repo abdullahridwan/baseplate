@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baseplate VFX report: safe packs, flagged packs, and how scanning works</title>
+<meta name="description" content="How Baseplate scans Roblox VFX packs, what safe means, and how to request a re-check.">
+</head>
+<body>
+<main>
+<h1>VFX report</h1>
+<p>Baseplate scans Roblox VFX packs so an agent does not have to guess from titles and thumbnails, and does not pull in malicious code blind.</p>
+
+<h2>What safe means here</h2>
+<p>A pack is listed as safe only for a pinned version, on a stated scan date, under stated scan rules. If the pack changes after that scan, it must be re-checked before it is used at the new version.</p>
+<p>Scan rules, in plain language:</p>
+<ul>
+<li>Hidden require by ID</li>
+<li>Data exfiltration</li>
+<li>Obfuscated code that phones home</li>
+</ul>
+<p>This list will be updated as scan rules change. A safe result is a scan result for that pinned version, not a guarantee for all future versions.</p>
+
+<h2>Safe packs</h2>
+<p>Safe packs are offered by the Baseplate MCP through find_vfx, with a description, pinned asset ID and version, and scan date. The agent inserts the exact pinned version with the Roblox Studio MCP and strips any scripts in the pack before use.</p>
+<p>Scan data status: the safe VFX index format is live in this repo at registry/safe-vfx.json and docs/r/safe-vfx.json, but real scan data has not landed yet. No asset IDs are listed here until that data lands, so this page does not invent safe packs.</p>
+<p>When scan data lands, safe packs will be listed here with name, description, asset ID, pinned version, and scan date.</p>
+
+<h2>Flagged packs</h2>
+<p>Flagged packs are never offered by the MCP. They are shown here as warnings only, with the behavior pattern found, not as a way to add them to a game.</p>
+<p>Flagged pack details will be listed here when verified scan results land, with the pattern found and the scan date. Creator names are not published from demo artifacts without verified evidence.</p>
+
+<h2>Request a re-check</h2>
+<p>If you think a pack was flagged in error, or a safe pack has changed, request a re-check.</p>
+<p>Contact email: to be added by the owner. Until an email is published here, do not send personal account details anywhere for a re-check.</p>
+
+<h2>How to use safe packs</h2>
+<p>Connect Baseplate as an MCP server, then ask your agent to use find_vfx and add_vfx. add_vfx writes a vfx.json lockfile with the pinned asset ID and version.</p>
+<p><a href="index.html#connect">Back to Connect your agent</a></p>
+<p>Baseplate is not affiliated with Roblox.</p>
+</main>
+</body>
+</html>

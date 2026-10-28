@@ -179,8 +179,11 @@ discovery that makes paid possible later.
 
 ## How Muse works on this repo from now on
 
-- This repo is the source of truth. Work happens in branches, with a pull
-  request per feature, and merges only after the change is checked.
+- This repo is the source of truth. Work is batched into one large push
+  where possible, instead of a pull request per feature, so the owner does
+  not have to press allow for every small change. A large batch still gets
+  checked before it is pushed: code syntax and MCP smoke tests where they
+  apply, and docs updated in the same batch.
 - Every feature ships with code, docs updated in the same change, and a
   note in this file or PLAN.md if the scope changes.
 - No feature is marked done from a chat claim. Done means: code in main,
