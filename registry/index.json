@@ -1,7 +1,7 @@
 {
   "name": "baseplate",
   "version": 1,
-  "baseUrl": "https://raw.githubusercontent.com/abdullahridwan/baseplate/main/registry/",
+  "baseUrl": "https://abdullahridwan.github.io/baseplate/r/",
   "about": "Agent-native VFX and sounds for Roblox. Copy files from baseUrl+src to dest in the user's project, then do each 'after' step. Install 'requires' first.",
   "items": [
     {

@@ -4,10 +4,16 @@ Good effects and sounds for a v0 Roblox game, ready to use. Like shadcn/ui: noth
 
 ## Use it
 
-Tell your agent:
+Browse and preview everything at https://abdullahridwan.github.io/baseplate/components/. Then run, from your Rojo project root:
 
 ```
-Add coin_pickup and confetti from https://raw.githubusercontent.com/abdullahridwan/baseplate/main/registry/index.json
+npx baseplate-cli add coin_pickup confetti
+```
+
+Or tell your agent:
+
+```
+Add coin_pickup and confetti from https://abdullahridwan.github.io/baseplate/r/index.json
 ```
 
 Then in your code:
@@ -66,7 +72,7 @@ tools/          gen_sfx.py makes the sounds, check_registry.py validates index.j
 
 - **Effect:** add `vfx/<name>.luau` (copy one as a template) and its entry in `index.json`.
 - **Sound:** add a recipe to `tools/gen_sfx.py`, run it, then add the entry. Sounds from elsewhere must be CC0 or made by us, with the source noted.
-- Run `python3 registry/tools/check_registry.py` before committing.
+- Run `python3 registry/tools/check_registry.py`, then `python3 registry/tools/build_registry.py` to publish to `docs/r/`, which the website and CLI read from.
 
 The bar is that it fits the set. A few good items beat many uneven ones. See [PLAN.md](../PLAN.md) for what's next (music, previews, packs per game type).
 

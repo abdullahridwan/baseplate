@@ -19,10 +19,16 @@ Every Roblox game is half generic: saves, checkpoints, cash, remotes, leaderboar
 
 ## Registry: VFX and sounds
 
-Good effects and sounds for a v0, like shadcn/ui: your agent copies them into your game and you own them. See [registry](registry/README.md).
+Good effects and sounds for a v0, like shadcn/ui: browse and preview them at [baseplate/components](https://abdullahridwan.github.io/baseplate/components/), then copy them into your game and own them. Details in [registry](registry/README.md).
 
 ```
-Add coin_pickup and confetti from https://raw.githubusercontent.com/abdullahridwan/baseplate/main/registry/index.json
+npx baseplate-cli add coin_pickup confetti
+```
+
+Or tell your agent:
+
+```
+Add coin_pickup and confetti from https://abdullahridwan.github.io/baseplate/r/index.json
 ```
 
 ## Use it
@@ -41,7 +47,8 @@ Each spec runs in strict order, with a **Done when** check after every step and 
 
 ```
 implementations/   the specs, one folder per game type
-registry/          VFX and sounds your agent copies in
+registry/          VFX and sounds (source of truth; published to docs/r/)
+cli/               npx baseplate-cli add
 brand/             logo files and brand guidelines
 docs/              the website (GitHub Pages)
 ```
