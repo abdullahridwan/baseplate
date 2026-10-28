@@ -1,6 +1,6 @@
 {
   "name": "baseplate-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Add Baseplate recipes, VFX and sounds to your Roblox game, from the terminal or as an MCP server for your AI agent. Like shadcn/ui: the files are copied in and you own them.",
   "type": "module",
   "bin": {
