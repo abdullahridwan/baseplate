@@ -9,6 +9,7 @@ import { dirname, resolve } from "node:path";
 export const REGISTRY = process.env.BASEPLATE_REGISTRY || "https://abdullahridwan.github.io/baseplate/r/";
 export const SITE = process.env.BASEPLATE_SITE || "https://abdullahridwan.github.io/baseplate/";
 export const SOUNDS_FILE = "src/shared/Juice/Sounds.luau";
+export const SAFE_VFX_FILE = "vfx.json";
 export const RECIPES = ["core", "obby", "tycoon", "simulator"];
 
 const isUrl = (s) => /^https?:\/\//.test(s);
@@ -29,6 +30,56 @@ export const fetchFile = (rel, opts) => fetchFrom(REGISTRY, rel, opts);
 
 export async function loadIndex() {
 	return JSON.parse(await fetchFile("index.json"));
+}
+
+export async function loadSafeIndex() {
+  return JSON.parse(await fetchFile("safe-vfx.json"));
+}
+
+export function searchSafeVfx(safe, query) {
+  const words = String(query || "").toLowerCase().split(/[\s,_-]+/).filter(Boolean);
+  const packs = (safe.packs || []).filter((p) => p.status === "safe");
+  if (words.length === 0) return packs;
+  const scored = packs
+    .map((p) => {
+      const hay = [p.name, p.description, ...(p.tags || []), ...(p.use_cases || [])].join(" ").toLowerCase();
+      return { p, score: words.filter((w) => hay.includes(w)).length };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score);
+  return scored.map((x) => x.p);
+}
+
+export async function writeVfxLock(root, packs) {
+  const path = resolve(root, SAFE_VFX_FILE);
+  let existing = { version: 1, packs: [] };
+  if (existsSync(path)) {
+    try { existing = JSON.parse(await readFile(path, "utf8")); } catch { existing = { version: 1, packs: [] }; }
+  }
+  if (!Array.isArray(existing.packs)) existing.packs = [];
+  const seen = new Set(existing.packs.map((x) => `${x.asset_id}:${x.pinned_version}`));
+  const added = [];
+  const already = [];
+  for (const p of packs) {
+    const entry = {
+      name: p.name,
+      asset_id: p.asset_id,
+      pinned_version: p.pinned_version,
+      scan_date: p.scan_date || null,
+      description: p.description || "",
+      source: "baseplate safe-vfx",
+    };
+    const key = `${entry.asset_id}:${entry.pinned_version}`;
+    if (seen.has(key)) { already.push(entry.name); continue; }
+    seen.add(key);
+    existing.packs.push(entry);
+    added.push(entry.name);
+  }
+  existing.packs.sort((a, b) => String(a.name).localeCompare(String(b.name)));
+  existing.version = 1;
+  await mkdir(dirname(path), { recursive: true });
+  await writeFile(path, JSON.stringify(existing, null, 2) + "\n");
+  return { added, already, path: SAFE_VFX_FILE };
 }
 
 export async function loadRecipe(name) {

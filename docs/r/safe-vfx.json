@@ -1,0 +1,12 @@
+{
+  "name": "baseplate-safe-vfx",
+  "version": 1,
+  "about": "Scanned Creator Store VFX packs. Only packs with status safe are offered by find_vfx. Flagged packs are never offered by the MCP. Scan data has not landed yet, so packs is empty. Do not invent asset IDs. See DIRECTION.md for the data model.",
+  "scan_rules": [
+    "hidden require by ID",
+    "data exfiltration",
+    "obfuscated code that phones home"
+  ],
+  "scan_date": null,
+  "packs": []
+}
