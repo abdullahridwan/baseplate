@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "baseplate": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "baseplate-cli",
+        "mcp"
+      ]
+    }
+  }
+}

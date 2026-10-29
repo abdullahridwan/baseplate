@@ -1,0 +1,14 @@
+{
+  "name": "baseplate",
+  "owner": {
+    "name": "abdullahridwan"
+  },
+  "plugins": [
+    {
+      "name": "baseplate",
+      "source": "./plugins/baseplate",
+      "description": "Agent-native VFX and sounds for Roblox. Search components by description and add them to your project, safely.",
+      "version": "0.3.0"
+    }
+  ]
+}
