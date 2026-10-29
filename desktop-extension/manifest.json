@@ -1,0 +1,20 @@
+{
+  "dxt_version": "0.1",
+  "name": "baseplate",
+  "version": "0.3.0",
+  "description": "Agent-native VFX and sounds for Roblox. Search components by description and add them to your project, safely.",
+  "author": {
+    "name": "Abdullah Ridwan"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/index.js"
+      ]
+    }
+  },
+  "user_config": {}
+}
