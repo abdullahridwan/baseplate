@@ -7,11 +7,13 @@ return {
 	emitters = {
 		{
 			emit = 10,
+			delay = 0.04,
 			properties = {
 				Name = "Smoke",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(255, 250, 240), Color3.fromRGB(232, 224, 208)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.5, 0.8),
 				Speed = NumberRange.new(6, 10),
 				SpreadAngle = Vector2.new(180, 180),
@@ -20,11 +22,12 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 1.5),
-					NumberSequenceKeypoint.new(1, 4),
+					NumberSequenceKeypoint.new(0, 1.5, 0.45),
+					NumberSequenceKeypoint.new(1, 4, 1.2),
 				}),
 				Transparency = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.2),
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.1, 0.2),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},
@@ -36,14 +39,17 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(255, 240, 160)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.35, 0.6),
 				Speed = NumberRange.new(10, 16),
 				SpreadAngle = Vector2.new(180, 180),
 				Drag = 6,
+				Brightness = 2,
+				ZOffset = 1, -- drawn in front of the layers behind it
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.6),
+					NumberSequenceKeypoint.new(0, 0.6, 0.18),
 					NumberSequenceKeypoint.new(1, 0),
 				}),
 				Transparency = NumberSequence.new({
@@ -60,9 +66,14 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 255, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.3, 0.3),
 				Speed = NumberRange.new(0, 0),
 				SpreadAngle = Vector2.new(180, 180),
+				Brightness = 3,
+				ZOffset = 2, -- drawn in front of the layers behind it
+				Rotation = NumberRange.new(0, 360),
+				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1.5),
 					NumberSequenceKeypoint.new(1, 5),

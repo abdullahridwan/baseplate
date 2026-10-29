@@ -28,52 +28,71 @@ def E(
     name, texture="spark", emit=None, rate=None, color=("#ffffff",), light=1.0,
     life=(0.5, 0.8), speed=(5, 10), spread=180, direction="Top", acc=(0, 0, 0),
     drag=0, spin=False, size=((0, 1), (1, 0)), transp=((0, 0), (1, 1)),
-    squash=None, ring=False, locked=False,
+    squash=None, ring=False, locked=False, streak=False,
+    z=0, brightness=1, delay=0, jitter=0,
 ):
-    """One ParticleEmitter. Use emit= for a burst, rate= for a loop."""
+    """One ParticleEmitter. Use emit= for a burst, rate= for a loop.
+
+    Layering knobs (see plugins/baseplate/skills/roblox-vfx/SKILL.md):
+      z          ZOffset: flashes and cores in front (2 to 3), smoke at the back (0)
+      brightness >1 for flashes and glows
+      delay      seconds before a burst fires, to stagger layers (flash, then sparks, then smoke)
+      jitter     random size per particle, as a fraction of the size (the NumberSequence envelope)
+      streak     fly along the velocity (VelocityParallel), for sparks and shards
+    """
     assert (emit is None) != (rate is None), name
     return dict(
         name=name, texture=texture, emit=emit, rate=rate, color=list(color), light=light,
         life=life, speed=speed, spread=spread, direction=direction, acc=acc, drag=drag,
-        spin=spin, size=size, transp=transp, squash=squash, ring=ring, locked=locked,
+        spin=spin, size=size, transp=transp, squash=squash, ring=ring, locked=locked, streak=streak,
+        z=z, brightness=brightness, delay=delay, jitter=jitter,
     )
 
 
 # ---- building blocks: the same few shapes, recoloured, cover most effects ----
 
 def sparkles(color, n=14, speed=(8, 14), life=(0.35, 0.6), size=0.6, up=0, drag=6, name="Sparkles", **kw):
-    return E(name, emit=n, color=color, life=life, speed=speed, drag=drag, acc=(0, up, 0), spin=True,
-             size=((0, size), (1, 0)), transp=((0, 0), (0.7, 0.2), (1, 1)), **kw)
+    kw.setdefault("z", 1)
+    return E(name, emit=n, color=color, life=life, speed=speed, drag=drag, acc=(0, up, 0), spin=True, jitter=0.3,
+             brightness=2, size=((0, size), (1, 0)), transp=((0, 0), (0.7, 0.2), (1, 1)), **kw)
 
 
 def glow(color, start=1.5, end=3.5, life=0.25, alpha=0.3, name="Glow", **kw):
-    return E(name, emit=1, color=color, life=(life, life), speed=(0, 0),
+    # the flash or core layer: one bright particle, drawn in front of everything else
+    kw.setdefault("z", 2)
+    kw.setdefault("brightness", 3)
+    return E(name, emit=1, color=color, life=(life, life), speed=(0, 0), spin=True,
              size=((0, start), (1, end)), transp=((0, alpha), (1, 1)), **kw)
 
 
 def ring(color, end=8, life=0.5, alpha=0.2, name="Ring", start=1):
     # tiny upward speed so VelocityPerpendicular lays the ring flat on the ground
-    return E(name, emit=1, color=color, life=(life, life), speed=(0.01, 0.01), spread=0,
+    return E(name, emit=1, color=color, life=(life, life), speed=(0.01, 0.01), spread=0, brightness=2,
              size=((0, start), (1, end)), transp=((0, alpha), (1, 1)), ring=True)
 
 
 def streaks(color, n=10, speed=(20, 32), life=(0.15, 0.3), size=0.4, squash=-1.5, drag=10, name="Streaks", **kw):
-    return E(name, emit=n, color=color, life=life, speed=speed, drag=drag,
-             size=((0, size), (1, 0)), transp=((0, 0), (1, 0)), squash=squash, **kw)
+    kw.setdefault("z", 1)
+    return E(name, emit=n, color=color, life=life, speed=speed, drag=drag, streak=True, brightness=2, jitter=0.25,
+             size=((0, size), (1, 0)), transp=((0, 0), (0.7, 0), (1, 1)), squash=squash, **kw)
 
 
 def smoke(color, n=8, start=2, end=6, life=(1, 1.8), speed=(2, 6), up=2, alpha=0.4, name="Smoke", **kw):
-    return E(name, texture="smoke", emit=n, color=color, light=0, life=life, speed=speed, drag=2,
-             acc=(0, up, 0), spin=True, size=((0, start), (1, end)), transp=((0, alpha), (1, 1)), **kw)
+    # the aftermath layer: fades in, sits behind the bright layers, fires just after the flash
+    kw.setdefault("delay", 0.04)
+    return E(name, texture="smoke", emit=n, color=color, light=0, life=life, speed=speed, drag=2, jitter=0.3,
+             acc=(0, up, 0), spin=True, size=((0, start), (1, end)), transp=((0, 1), (0.1, alpha), (1, 1)), **kw)
 
 
 def rise(color, n=24, speed=(4, 9), life=(0.9, 1.4), size=0.7, spread=25, name="Rise", **kw):
-    return E(name, emit=n, color=color, life=life, speed=speed, spread=spread, acc=(0, 4, 0), spin=True,
+    kw.setdefault("z", 1)
+    return E(name, emit=n, color=color, life=life, speed=speed, spread=spread, acc=(0, 4, 0), spin=True, jitter=0.25,
              size=((0, 0.2), (0.3, size), (1, 0)), transp=((0, 0), (1, 1)), **kw)
 
 
 def debris(color, n=10, speed=(10, 18), size=0.5, name="Debris", texture="smoke", **kw):
-    return E(name, texture=texture, emit=n, color=color, light=0, life=(0.5, 0.9), speed=speed, spread=60,
+    kw.setdefault("delay", 0.02)
+    return E(name, texture=texture, emit=n, color=color, light=0, life=(0.5, 0.9), speed=speed, spread=60, jitter=0.3,
              acc=(0, -40, 0), spin=True, size=((0, size), (1, size * 0.6)), transp=((0, 0), (0.8, 0), (1, 1)), **kw)
 
 
@@ -116,7 +135,7 @@ EFFECTS = {
             acc=(0, -30, 0), drag=2.5, spin=True, size=((0, 0.45), (1, 0.45)), transp=((0, 0), (0.85, 0), (1, 1)))
           for i, c in enumerate(RAINBOW)]),
     "level_up": fx("Rewards", "Rising blue sparkles with an expanding ring.", ["level", "upgrade", "rank", "xp"],
-        rise(["#96e6ff", "#3c78ff"], n=30), ring(["#aadcff"])),
+        rise(["#96e6ff", "#3c78ff"], n=30), ring(["#aadcff"]), glow(["#c8ecff"], start=2, end=4, life=0.3)),
     "rebirth": fx("Rewards", "Purple-gold column and double ring. For rebirths and prestige.", ["rebirth", "prestige", "simulator"],
         rise(["#ffe680", "#a050ff"], n=40, speed=(8, 14), size=0.9, spread=15),
         ring(["#d9a6ff"], end=12, life=0.7), ring(["#ffe680"], end=7, life=0.45, name="InnerRing"),
@@ -168,7 +187,8 @@ EFFECTS = {
         streaks([WHITE, "#ff3b3b"], n=16, speed=(28, 40), size=0.55), glow(["#ffe0a0"], start=3, end=5, life=0.12, alpha=0.05, name="Flash"),
         ring(["#ffd080"], end=7, life=0.25), light=light("#ff7a3b", 4, 12, 0.25)),
     "slash": fx("Combat", "A fast arc of white streaks for sword swings.", ["slash", "sword", "swing", "melee", "knife"],
-        streaks(["#ffffff", "#9fd8ff"], n=14, speed=(30, 40), life=(0.12, 0.2), size=0.5, squash=-3, spread=40, direction="Front")),
+        streaks(["#ffffff", "#9fd8ff"], n=14, speed=(30, 40), life=(0.12, 0.2), size=0.5, squash=-3, spread=40, direction="Front"),
+        glow(["#dff2ff"], start=1.5, end=2.5, life=0.1, alpha=0.2, name="Flash")),
     "block": fx("Combat", "Blue-white sparks off a blocked hit.", ["block", "parry", "shield", "combat"],
         streaks(["#e0f4ff", "#3c9cff"], n=12, speed=(18, 26), spread=60, direction="Front"),
         glow(["#bfe4ff"], start=2, end=2.5, life=0.12, alpha=0.2, name="Flash")),
@@ -184,42 +204,47 @@ EFFECTS = {
         ring(["#bfe6ff"], end=16, life=0.5, alpha=0), ring(["#ffffff"], end=10, life=0.35, alpha=0.3, name="InnerRing")),
     "stun_stars": fx("Combat", "Little yellow stars circling above a stunned head.", ["stun", "dizzy", "daze", "combat"],
         E("Stars", emit=6, color=["#fff3a0", GOLD], life=(1.2, 1.5), speed=(2, 3), spread=180, acc=(0, 0.5, 0),
-          spin=True, size=((0, 0), (0.2, 0.5), (0.8, 0.5), (1, 0)), transp=((0, 0), (1, 0.2)))),
+          spin=True, size=((0, 0), (0.2, 0.5), (0.8, 0.5), (1, 0)), transp=((0, 0), (0.8, 0.1), (1, 1)))),
     "death": fx("Combat", "Soft grey poof when a character is eliminated.", ["death", "eliminate", "poof", "respawn", "murder mystery"],
         smoke(["#f2f0ea", "#9c9890"], n=14, start=1.5, end=4.5, life=(0.6, 1), speed=(6, 10), alpha=0.2),
         sparkles([WHITE], n=8, speed=(6, 10), size=0.4)),
     "charge_up": fx("Combat", "Energy sparks pulling into a point before a big move.", ["charge", "power", "ability", "cast"],
         E("Crackle", emit=24, color=["#c8f0ff", "#3c8cff"], life=(0.4, 0.7), speed=(3, 6), drag=4, spin=True,
-          size=((0, 0.1), (0.6, 0.5), (1, 0)), transp=((0, 0.6), (1, 0))),
+          size=((0, 0.1), (0.6, 0.5), (1, 0)), transp=((0, 0.6), (0.8, 0), (1, 1))),
         glow(["#9fd0ff"], start=0.5, end=3, life=0.6, alpha=0.5), light=light("#6fb0ff", 3, 10, 0.6)),
     "explosion": fx("Combat", "Fireball, flying embers and lingering smoke. Visual only.", ["explosion", "bomb", "boom"],
         E("Fireball", texture="fire", emit=12, color=["#fffac8", "#ff8c1e", "#781e0a"], life=(0.35, 0.6), speed=(6, 14),
           drag=5, spin=True, size=((0, 2), (1, 5)), transp=((0, 0), (1, 1))),
         streaks(["#ffc850", "#ff5014"], n=20, speed=(25, 45), life=(0.6, 1.1), size=0.35, squash=-1, drag=3, name="Embers", acc=(0, -25, 0)),
-        smoke(["#5a5550", "#282624"], n=10, start=3, end=8, life=(1.5, 2.5), speed=(3, 8), up=3),
+        smoke(["#5a5550", "#282624"], n=10, start=3, end=8, life=(1.5, 2.5), speed=(3, 8), up=3, delay=0.08),
+        glow(["#fff6d8"], start=4, end=8, life=0.15, alpha=0, brightness=5, z=3, name="Flash"),
+        ring(["#ffd9a0"], end=14, life=0.4, alpha=0.3, name="Shockwave"),
         light=light("#ff9a3b", 6, 20, 0.6)),
 
     # Elements
     "fire_burst": fx("Elements", "A whoosh of flame bursting outward.", ["fire", "flame", "burn", "element"],
         E("Flames", texture="fire", emit=16, color=["#fff2a0", "#ff7a1a", "#a8200a"], life=(0.4, 0.7), speed=(8, 14),
           drag=4, acc=(0, 6, 0), spin=True, size=((0, 1.5), (1, 3)), transp=((0, 0), (1, 1))),
-        sparkles(["#ffcc66", "#ff5a14"], n=10, speed=(10, 16), up=8, name="Embers"), light=light("#ff8a3b", 4, 14, 0.5)),
+        sparkles(["#ffcc66", "#ff5a14"], n=10, speed=(10, 16), up=8, name="Embers"),
+        glow(["#ffd27a"], start=2, end=4, life=0.2, alpha=0.2, name="Core"), light=light("#ff8a3b", 4, 14, 0.5)),
     "ice_shatter": fx("Elements", "Icy shards and frost mist.", ["ice", "freeze", "frost", "shatter", "element"],
         streaks(["#ffffff", "#8fdcff"], n=14, speed=(14, 22), life=(0.4, 0.6), size=0.5, squash=-1, drag=4, name="Shards", acc=(0, -20, 0)),
-        smoke(["#e8f8ff", "#a6defa"], n=8, start=1.5, end=4, life=(0.8, 1.2), speed=(3, 6), up=0, alpha=0.4, name="Frost")),
+        smoke(["#e8f8ff", "#a6defa"], n=8, start=1.5, end=4, life=(0.8, 1.2), speed=(3, 6), up=0, alpha=0.4, name="Frost"),
+        glow(["#e6f8ff"], start=2, end=3.5, life=0.12, alpha=0.1, name="Flash")),
     "lightning_strike": fx("Elements", "A bright flash with crackling blue sparks.", ["lightning", "electric", "zap", "thunder", "element"],
         streaks(["#ffffff", "#7ec8ff"], n=18, speed=(30, 45), life=(0.08, 0.18), size=0.4, squash=-3, drag=2),
         glow(["#d8f0ff"], start=4, end=6, life=0.1, alpha=0, name="Flash"), light=light("#9fd8ff", 8, 24, 0.2)),
     "splash": fx("Elements", "Water droplets and a splash ring.", ["water", "splash", "swim", "rain", "element"],
         E("Droplets", emit=20, color=["#e6f7ff", "#5ab4ff"], light=0.2, life=(0.5, 0.8), speed=(12, 18), spread=35,
-          acc=(0, -45, 0), size=((0, 0.35), (1, 0.2)), transp=((0, 0), (1, 0.6))),
+          acc=(0, -45, 0), jitter=0.3, size=((0, 0.35), (1, 0.2)), transp=((0, 0), (0.7, 0.3), (1, 1))),
         ring(["#cfeeff"], end=6, life=0.4, alpha=0.3)),
     "poison_cloud": fx("Elements", "Sickly green bubbling cloud.", ["poison", "toxic", "acid", "debuff", "element"],
         smoke(["#9dff6a", "#3d8a1e"], n=12, start=2, end=5, life=(1, 1.6), speed=(2, 4), up=1, alpha=0.3),
         sparkles(["#d4ff9a"], n=10, speed=(2, 4), up=3, life=(0.8, 1.2), size=0.4, name="Bubbles")),
     "dark_burst": fx("Elements", "Purple-black void energy blasting out.", ["dark", "shadow", "void", "curse", "element"],
         smoke(["#5a2a8a", "#120a1e"], n=12, start=2, end=5, life=(0.6, 1), speed=(8, 14), up=0, alpha=0.2),
-        streaks(["#e0b0ff", "#6a1aff"], n=12, speed=(18, 26), name="Wisps")),
+        streaks(["#e0b0ff", "#6a1aff"], n=12, speed=(18, 26), name="Wisps"),
+        glow(["#a060ff"], start=2.5, end=4.5, life=0.2, alpha=0.2, name="Core")),
     "holy_light": fx("Elements", "Warm beams of light rising from the ground.", ["holy", "light", "divine", "bless", "element"],
         rise(["#fffbe6", "#ffd65a"], n=20, speed=(10, 16), spread=8, size=0.9),
         glow(["#fff2b0"], start=3, end=6, life=0.6, alpha=0.4), light=light("#fff0b0", 4, 16, 0.8)),
@@ -240,7 +265,7 @@ EFFECTS = {
         rise(["#e0f4ff", "#3c9cff"], n=30, speed=(10, 18), spread=5, life=(0.4, 0.7), size=0.8),
         ring(["#bfe6ff"], end=6, life=0.4), light=light("#7fc0ff", 4, 14, 0.5)),
     "checkpoint": fx("Movement", "Green rising sparkles and ring when you hit a checkpoint.", ["checkpoint", "stage", "save", "obby"],
-        rise(["#d0ffd8", "#2fd06a"], n=20), ring(["#a6f5be"], end=7)),
+        rise(["#d0ffd8", "#2fd06a"], n=20), ring(["#a6f5be"], end=7), glow(["#d0ffd8"], start=2, end=4, life=0.3)),
 
     # Farming
     "plant": fx("Farming", "Soil puff and green sparkle as a seed goes in.", ["plant", "seed", "farm", "grow a garden"],
@@ -259,7 +284,7 @@ EFFECTS = {
         loop=True, surface=True, light=light("#ff8a3b", 2, 10)),
     "aura_electric": fx("Auras & ambient", "Blue sparks crackling around a character. Loops.", ["aura", "electric", "lightning", "anime", "loop"],
         E("Sparks", rate=45, color=["#ffffff", "#5ab4ff"], life=(0.12, 0.25), speed=(6, 10), drag=2,
-          size=((0, 0.35), (1, 0)), transp=((0, 0), (1, 0)), squash=-2.5, locked=True),
+          size=((0, 0.35), (1, 0)), transp=((0, 0), (0.7, 0), (1, 1)), squash=-2.5, streak=True, brightness=2, locked=True),
         loop=True, surface=True, light=light("#7fc0ff", 1.5, 8)),
     "aura_holy": fx("Auras & ambient", "Soft golden motes drifting up. Loops.", ["aura", "holy", "gold", "vip", "loop"],
         E("Motes", rate=12, color=["#fffbe0", GOLD], life=(1, 1.6), speed=(1, 2), acc=(0, 3, 0), spin=True,
@@ -275,18 +300,18 @@ EFFECTS = {
         E("Flames", texture="fire", rate=18, color=["#fff2a0", "#ff6a14", "#a8200a"], life=(0.5, 0.9), speed=(1, 3), spread=15,
           acc=(0, 6, 0), spin=True, size=((0, 1.6), (1, 0.4)), transp=((0, 0.1), (1, 1))),
         E("Embers", rate=5, color=["#ffcc66", "#ff5a14"], life=(1.2, 2), speed=(3, 6), spread=20, acc=(0, 3, 0),
-          size=((0, 0.2), (1, 0)), transp=((0, 0), (1, 0.3))),
+          size=((0, 0.2), (1, 0)), transp=((0, 0), (0.8, 0.3), (1, 1))),
         E("Smoke", texture="smoke", rate=3, color=["#8a8680", "#3a3834"], light=0, life=(2.5, 3.5), speed=(3, 5), spread=10,
-          acc=(0, 1, 0), spin=True, size=((0, 1.5), (1, 5)), transp=((0, 0.6), (1, 1))),
+          acc=(0, 1, 0), spin=True, jitter=0.3, size=((0, 1.5), (1, 5)), transp=((0, 1), (0.1, 0.6), (1, 1))),
         loop=True, light=light("#ff9a4a", 3, 18)),
     "fireflies": fx("Auras & ambient", "Slow glowing fireflies for night scenes. Loops.", ["fireflies", "night", "ambient", "forest", "loop"],
         E("Flies", rate=3, color=["#f6ff9a", "#b8ff4a"], life=(3, 5), speed=(0.5, 1.5), acc=(0, 0.3, 0),
-          size=((0, 0), (0.2, 0.3), (0.8, 0.3), (1, 0)), transp=((0, 0), (0.5, 0.4), (1, 0))),
+          size=((0, 0), (0.2, 0.3), (0.8, 0.3), (1, 0)), transp=((0, 1), (0.15, 0), (0.5, 0.4), (0.85, 0), (1, 1))),
         loop=True),
     "portal": fx("Auras & ambient", "Swirling purple portal energy. Loops.", ["portal", "gate", "teleport", "world", "loop"],
         E("Swirl", rate=30, color=["#f0d0ff", "#7a2cff"], life=(0.6, 0.9), speed=(3, 5), drag=3, spin=True,
           size=((0, 0.6), (1, 0.1)), transp=((0, 0), (1, 1))),
-        E("Core", rate=4, color=["#c890ff"], life=(0.6, 0.6), speed=(0, 0), size=((0, 4), (1, 5)), transp=((0, 0.5), (1, 1))),
+        E("Core", rate=4, color=["#c890ff"], life=(0.6, 0.6), speed=(0, 0), spin=True, z=1, size=((0, 4), (1, 5)), transp=((0, 1), (0.2, 0.5), (1, 1))),
         loop=True, light=light("#a060ff", 2, 12)),
     "falling_leaves": fx("Auras & ambient", "Autumn leaves drifting down. Loops.", ["leaves", "autumn", "ambient", "tree", "loop"],
         E("Leaves", rate=3, color=["#ffb347", "#c8501e"], light=0, life=(3, 4), speed=(1, 2), spread=60, direction="Bottom",
@@ -306,11 +331,15 @@ def lua_color(h):
     return f"Color3.fromRGB({r}, {g}, {b})"
 
 
-def lua_seq(points, indent):
-    if len(points) == 2 and points[0][1] == points[1][1]:
+def lua_seq(points, indent, jitter=0):
+    if len(points) == 2 and points[0][1] == points[1][1] and not jitter:
         return f"NumberSequence.new({lua_num(points[0][1])})"
     pad = "\t" * (indent + 1)
-    keys = "".join(f"{pad}NumberSequenceKeypoint.new({lua_num(t)}, {lua_num(v)}),\n" for t, v in points)
+
+    def key(t, v):
+        env = round(v * jitter, 3)
+        return f"NumberSequenceKeypoint.new({lua_num(t)}, {lua_num(v)}{', ' + lua_num(env) if env else ''})"
+    keys = "".join(f"{pad}{key(t, v)},\n" for t, v in points)
     return "NumberSequence.new({\n" + keys + "\t" * indent + "})"
 
 
@@ -333,6 +362,7 @@ def lua_emitter(e):
         f'Texture = {e["texture"].upper()}',
         f'Color = {lua_colors(e["color"], i)}',
         f'LightEmission = {lua_num(e["light"])}',
+        "LightInfluence = 0 -- looks the same in a dark cave and in daylight",
         f'Lifetime = NumberRange.new({lua_num(e["life"][0])}, {lua_num(e["life"][1])})',
         f'Speed = NumberRange.new({lua_num(e["speed"][0])}, {lua_num(e["speed"][1])})',
         f'SpreadAngle = Vector2.new({lua_num(e["spread"])}, {lua_num(e["spread"])})',
@@ -343,17 +373,27 @@ def lua_emitter(e):
         lines.append("Acceleration = Vector3.new({}, {}, {})".format(*map(lua_num, e["acc"])))
     if e["drag"]:
         lines.append(f'Drag = {lua_num(e["drag"])}')
+    if e["brightness"] != 1:
+        lines.append(f'Brightness = {lua_num(e["brightness"])}')
+    if e["z"]:
+        lines.append(f'ZOffset = {lua_num(e["z"])} -- drawn in front of the layers behind it')
     if e["spin"]:
         lines += ["Rotation = NumberRange.new(0, 360)", "RotSpeed = NumberRange.new(-180, 180)"]
     if e["squash"] is not None:
         lines.append(f'Squash = NumberSequence.new({lua_num(e["squash"])}) -- stretch along motion: streaks, not dots')
+    if e["streak"]:
+        lines.append("Orientation = Enum.ParticleOrientation.VelocityParallel -- points along its flight path")
     if e["ring"]:
         lines.append("Orientation = Enum.ParticleOrientation.VelocityPerpendicular -- lies flat: a ring on the ground")
     if e["locked"]:
         lines.append("LockedToPart = true -- follows the character")
-    lines += [f'Size = {lua_seq(e["size"], i)}', f'Transparency = {lua_seq(e["transp"], i)}']
+    lines += [f'Size = {lua_seq(e["size"], i, e["jitter"])}', f'Transparency = {lua_seq(e["transp"], i)}']
     count = f'rate = {lua_num(e["rate"])},' if e["rate"] is not None else f'emit = {e["emit"]},'
-    body = "".join(f"{p}{line},\n" for line in lines)
+    if e["delay"]:
+        count += f'\n\t\t\tdelay = {lua_num(e["delay"])},'
+    # the comma goes before any trailing comment, or Luau reads it as part of the comment
+    body = "".join(f"{p}{code}, --{note}\n" if note else f"{p}{code},\n"
+                   for code, _, note in (line.partition(" --") for line in lines))
     return f"\t\t{{\n\t\t\t{count}\n\t\t\tproperties = {{\n{body}\t\t\t}},\n\t\t}},\n"
 
 
@@ -389,6 +429,7 @@ def preview(spec):
             acc=e["acc"][1], drag=e["drag"], spin=e["spin"], streak=-e["squash"] if e["squash"] else 0,
             ring=e["ring"], size=[list(k) for k in e["size"]],
             alpha=[[t, round(1 - v, 3)] for t, v in e["transp"]],
+            delay=e["delay"], z=e["z"],
         ) for e in spec["emitters"]],
     )
 
@@ -402,6 +443,8 @@ def validate(name, spec):
             assert len(seq) <= 20, f"{where}: {label} has more than 20 keypoints"
             assert all(a[0] < b[0] for a, b in zip(seq, seq[1:])), f"{where}: {label} times must increase"
         assert all(0 <= v <= 1 for _, v in e["transp"]), f"{where}: transparency must be 0..1"
+        assert e["transp"][-1][1] == 1, f"{where}: particles must fade out to fully transparent, not pop"
+        assert 0 <= e["jitter"] < 1 and 0 <= e["delay"] < 1, f"{where}: jitter and delay must be 0..1"
         assert all(v >= 0 for _, v in e["size"]), f"{where}: size can't be negative"
         for label in ("life", "speed"):
             lo, hi = e[label]

@@ -7,11 +7,13 @@ return {
 	emitters = {
 		{
 			emit = 10,
+			delay = 0.04,
 			properties = {
 				Name = "Smoke",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(232, 226, 214)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.4, 0.6),
 				Speed = NumberRange.new(8, 12),
 				SpreadAngle = Vector2.new(90, 90),
@@ -20,11 +22,12 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 1),
-					NumberSequenceKeypoint.new(1, 2.5),
+					NumberSequenceKeypoint.new(0, 1, 0.3),
+					NumberSequenceKeypoint.new(1, 2.5, 0.75),
 				}),
 				Transparency = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.4),
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.1, 0.4),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},
@@ -36,10 +39,12 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(232, 226, 214)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.3, 0.3),
 				Speed = NumberRange.new(0.01, 0.01),
 				SpreadAngle = Vector2.new(0, 0),
-				Orientation = Enum.ParticleOrientation.VelocityPerpendicular -- lies flat: a ring on the ground,
+				Brightness = 2,
+				Orientation = Enum.ParticleOrientation.VelocityPerpendicular, -- lies flat: a ring on the ground
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1),
 					NumberSequenceKeypoint.new(1, 5),

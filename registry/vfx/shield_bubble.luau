@@ -13,10 +13,11 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(191, 230, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.8, 0.8),
 				Speed = NumberRange.new(0, 0),
 				SpreadAngle = Vector2.new(180, 180),
-				LockedToPart = true -- follows the character,
+				LockedToPart = true, -- follows the character
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 6),
 					NumberSequenceKeypoint.new(1, 7),
@@ -35,11 +36,12 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(230, 246, 255), Color3.fromRGB(90, 180, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.4, 0.6),
 				Speed = NumberRange.new(3, 4),
 				SpreadAngle = Vector2.new(180, 180),
 				Drag = 6,
-				LockedToPart = true -- follows the character,
+				LockedToPart = true, -- follows the character
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0.3),
 					NumberSequenceKeypoint.new(1, 0),

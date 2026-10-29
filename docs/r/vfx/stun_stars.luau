@@ -11,6 +11,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 243, 160), Color3.fromRGB(255, 214, 90)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1.2, 1.5),
 				Speed = NumberRange.new(2, 3),
 				SpreadAngle = Vector2.new(180, 180),
@@ -25,7 +26,8 @@ return {
 				}),
 				Transparency = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0),
-					NumberSequenceKeypoint.new(1, 0.2),
+					NumberSequenceKeypoint.new(0.8, 0.1),
+					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},
 		},

@@ -15,17 +15,24 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(90, 180, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.12, 0.25),
 				Speed = NumberRange.new(6, 10),
 				SpreadAngle = Vector2.new(180, 180),
 				Drag = 2,
-				Squash = NumberSequence.new(-2.5) -- stretch along motion: streaks, not dots,
-				LockedToPart = true -- follows the character,
+				Brightness = 2,
+				Squash = NumberSequence.new(-2.5), -- stretch along motion: streaks, not dots
+				Orientation = Enum.ParticleOrientation.VelocityParallel, -- points along its flight path
+				LockedToPart = true, -- follows the character
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0.35),
 					NumberSequenceKeypoint.new(1, 0),
 				}),
-				Transparency = NumberSequence.new(0),
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0),
+					NumberSequenceKeypoint.new(0.7, 0),
+					NumberSequenceKeypoint.new(1, 1),
+				}),
 			},
 		},
 	},

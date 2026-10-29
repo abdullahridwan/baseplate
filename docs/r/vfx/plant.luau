@@ -7,11 +7,13 @@ return {
 	emitters = {
 		{
 			emit = 6,
+			delay = 0.02,
 			properties = {
 				Name = "Soil",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(122, 90, 58)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.5, 0.9),
 				Speed = NumberRange.new(4, 8),
 				SpreadAngle = Vector2.new(60, 60),
@@ -19,8 +21,8 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.4),
-					NumberSequenceKeypoint.new(1, 0.24),
+					NumberSequenceKeypoint.new(0, 0.4, 0.12),
+					NumberSequenceKeypoint.new(1, 0.24, 0.072),
 				}),
 				Transparency = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0),
@@ -36,15 +38,18 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(200, 255, 176), Color3.fromRGB(76, 200, 74)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.35, 0.6),
 				Speed = NumberRange.new(3, 6),
 				SpreadAngle = Vector2.new(180, 180),
 				Acceleration = Vector3.new(0, 4, 0),
 				Drag = 6,
+				Brightness = 2,
+				ZOffset = 1, -- drawn in front of the layers behind it
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.4),
+					NumberSequenceKeypoint.new(0, 0.4, 0.12),
 					NumberSequenceKeypoint.new(1, 0),
 				}),
 				Transparency = NumberSequence.new({

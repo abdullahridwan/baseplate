@@ -7,11 +7,13 @@ return {
 	emitters = {
 		{
 			emit = 12,
+			delay = 0.04,
 			properties = {
 				Name = "Smoke",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(157, 255, 106), Color3.fromRGB(61, 138, 30)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1, 1.6),
 				Speed = NumberRange.new(2, 4),
 				SpreadAngle = Vector2.new(180, 180),
@@ -20,11 +22,12 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 2),
-					NumberSequenceKeypoint.new(1, 5),
+					NumberSequenceKeypoint.new(0, 2, 0.6),
+					NumberSequenceKeypoint.new(1, 5, 1.5),
 				}),
 				Transparency = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.3),
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.1, 0.3),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},
@@ -36,15 +39,18 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(212, 255, 154)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.8, 1.2),
 				Speed = NumberRange.new(2, 4),
 				SpreadAngle = Vector2.new(180, 180),
 				Acceleration = Vector3.new(0, 3, 0),
 				Drag = 6,
+				Brightness = 2,
+				ZOffset = 1, -- drawn in front of the layers behind it
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.4),
+					NumberSequenceKeypoint.new(0, 0.4, 0.12),
 					NumberSequenceKeypoint.new(1, 0),
 				}),
 				Transparency = NumberSequence.new({

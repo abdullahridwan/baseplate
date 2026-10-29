@@ -13,6 +13,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 179, 71), Color3.fromRGB(200, 80, 30)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(3, 4),
 				Speed = NumberRange.new(1, 2),
 				SpreadAngle = Vector2.new(60, 60),

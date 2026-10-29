@@ -11,12 +11,13 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(255, 90, 140)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.8, 1.2),
 				Speed = NumberRange.new(24, 30),
 				SpreadAngle = Vector2.new(180, 180),
 				Acceleration = Vector3.new(0, -8, 0),
 				Drag = 3,
-				Squash = NumberSequence.new(-0.8) -- stretch along motion: streaks, not dots,
+				Squash = NumberSequence.new(-0.8), -- stretch along motion: streaks, not dots
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0.6),
 					NumberSequenceKeypoint.new(1, 0),
@@ -34,9 +35,14 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 208, 224)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.2, 0.2),
 				Speed = NumberRange.new(0, 0),
 				SpreadAngle = Vector2.new(180, 180),
+				Brightness = 3,
+				ZOffset = 2, -- drawn in front of the layers behind it
+				Rotation = NumberRange.new(0, 360),
+				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 3),
 					NumberSequenceKeypoint.new(1, 7),

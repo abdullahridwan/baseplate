@@ -12,10 +12,12 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(216, 203, 180)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.45, 0.45),
 				Speed = NumberRange.new(0.01, 0.01),
 				SpreadAngle = Vector2.new(0, 0),
-				Orientation = Enum.ParticleOrientation.VelocityPerpendicular -- lies flat: a ring on the ground,
+				Brightness = 2,
+				Orientation = Enum.ParticleOrientation.VelocityPerpendicular, -- lies flat: a ring on the ground
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1),
 					NumberSequenceKeypoint.new(1, 14),
@@ -28,11 +30,13 @@ return {
 		},
 		{
 			emit = 12,
+			delay = 0.04,
 			properties = {
 				Name = "Smoke",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(200, 185, 160), Color3.fromRGB(138, 127, 108)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1, 1.8),
 				Speed = NumberRange.new(12, 18),
 				SpreadAngle = Vector2.new(180, 180),
@@ -40,22 +44,25 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 2),
-					NumberSequenceKeypoint.new(1, 5),
+					NumberSequenceKeypoint.new(0, 2, 0.6),
+					NumberSequenceKeypoint.new(1, 5, 1.5),
 				}),
 				Transparency = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.3),
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.1, 0.3),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},
 		},
 		{
 			emit = 10,
+			delay = 0.02,
 			properties = {
 				Name = "Debris",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(138, 127, 108)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.5, 0.9),
 				Speed = NumberRange.new(10, 18),
 				SpreadAngle = Vector2.new(60, 60),
@@ -63,8 +70,8 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.5),
-					NumberSequenceKeypoint.new(1, 0.3),
+					NumberSequenceKeypoint.new(0, 0.5, 0.15),
+					NumberSequenceKeypoint.new(1, 0.3, 0.09),
 				}),
 				Transparency = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0),

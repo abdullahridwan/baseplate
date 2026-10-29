@@ -11,10 +11,12 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(191, 230, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.5, 0.5),
 				Speed = NumberRange.new(0.01, 0.01),
 				SpreadAngle = Vector2.new(0, 0),
-				Orientation = Enum.ParticleOrientation.VelocityPerpendicular -- lies flat: a ring on the ground,
+				Brightness = 2,
+				Orientation = Enum.ParticleOrientation.VelocityPerpendicular, -- lies flat: a ring on the ground
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1),
 					NumberSequenceKeypoint.new(1, 16),
@@ -32,10 +34,12 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 255, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.35, 0.35),
 				Speed = NumberRange.new(0.01, 0.01),
 				SpreadAngle = Vector2.new(0, 0),
-				Orientation = Enum.ParticleOrientation.VelocityPerpendicular -- lies flat: a ring on the ground,
+				Brightness = 2,
+				Orientation = Enum.ParticleOrientation.VelocityPerpendicular, -- lies flat: a ring on the ground
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1),
 					NumberSequenceKeypoint.new(1, 10),

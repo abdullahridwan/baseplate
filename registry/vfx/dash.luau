@@ -11,17 +11,25 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(159, 208, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.2, 0.35),
 				Speed = NumberRange.new(12, 18),
 				SpreadAngle = Vector2.new(15, 15),
 				EmissionDirection = Enum.NormalId.Back,
 				Drag = 10,
-				Squash = NumberSequence.new(-4) -- stretch along motion: streaks, not dots,
+				Brightness = 2,
+				ZOffset = 1, -- drawn in front of the layers behind it
+				Squash = NumberSequence.new(-4), -- stretch along motion: streaks, not dots
+				Orientation = Enum.ParticleOrientation.VelocityParallel, -- points along its flight path
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.35),
+					NumberSequenceKeypoint.new(0, 0.35, 0.087),
 					NumberSequenceKeypoint.new(1, 0),
 				}),
-				Transparency = NumberSequence.new(0),
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0),
+					NumberSequenceKeypoint.new(0.7, 0),
+					NumberSequenceKeypoint.new(1, 1),
+				}),
 			},
 		},
 	},

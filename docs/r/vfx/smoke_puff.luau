@@ -6,11 +6,13 @@ return {
 	emitters = {
 		{
 			emit = 10,
+			delay = 0.04,
 			properties = {
 				Name = "Smoke",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(230, 227, 220), Color3.fromRGB(166, 162, 153)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.5, 0.8),
 				Speed = NumberRange.new(5, 8),
 				SpreadAngle = Vector2.new(180, 180),
@@ -19,11 +21,12 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 1.2),
-					NumberSequenceKeypoint.new(1, 3.5),
+					NumberSequenceKeypoint.new(0, 1.2, 0.36),
+					NumberSequenceKeypoint.new(1, 3.5, 1.05),
 				}),
 				Transparency = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.3),
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.1, 0.3),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},

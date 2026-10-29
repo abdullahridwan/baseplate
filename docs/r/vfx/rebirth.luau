@@ -12,15 +12,17 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 230, 128), Color3.fromRGB(160, 80, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.9, 1.4),
 				Speed = NumberRange.new(8, 14),
 				SpreadAngle = Vector2.new(15, 15),
 				Acceleration = Vector3.new(0, 4, 0),
+				ZOffset = 1, -- drawn in front of the layers behind it
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.2),
-					NumberSequenceKeypoint.new(0.3, 0.9),
+					NumberSequenceKeypoint.new(0, 0.2, 0.05),
+					NumberSequenceKeypoint.new(0.3, 0.9, 0.225),
 					NumberSequenceKeypoint.new(1, 0),
 				}),
 				Transparency = NumberSequence.new({
@@ -36,10 +38,12 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(217, 166, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.7, 0.7),
 				Speed = NumberRange.new(0.01, 0.01),
 				SpreadAngle = Vector2.new(0, 0),
-				Orientation = Enum.ParticleOrientation.VelocityPerpendicular -- lies flat: a ring on the ground,
+				Brightness = 2,
+				Orientation = Enum.ParticleOrientation.VelocityPerpendicular, -- lies flat: a ring on the ground
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1),
 					NumberSequenceKeypoint.new(1, 12),
@@ -57,10 +61,12 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 230, 128)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.45, 0.45),
 				Speed = NumberRange.new(0.01, 0.01),
 				SpreadAngle = Vector2.new(0, 0),
-				Orientation = Enum.ParticleOrientation.VelocityPerpendicular -- lies flat: a ring on the ground,
+				Brightness = 2,
+				Orientation = Enum.ParticleOrientation.VelocityPerpendicular, -- lies flat: a ring on the ground
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1),
 					NumberSequenceKeypoint.new(1, 7),

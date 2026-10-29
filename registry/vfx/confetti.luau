@@ -11,6 +11,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 80, 110)),
 				LightEmission = 0.3,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1.8, 2.6),
 				Speed = NumberRange.new(25, 40),
 				SpreadAngle = Vector2.new(35, 35),
@@ -33,6 +34,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 200, 40)),
 				LightEmission = 0.3,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1.8, 2.6),
 				Speed = NumberRange.new(25, 40),
 				SpreadAngle = Vector2.new(35, 35),
@@ -55,6 +57,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(60, 220, 120)),
 				LightEmission = 0.3,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1.8, 2.6),
 				Speed = NumberRange.new(25, 40),
 				SpreadAngle = Vector2.new(35, 35),
@@ -77,6 +80,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(60, 160, 255)),
 				LightEmission = 0.3,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1.8, 2.6),
 				Speed = NumberRange.new(25, 40),
 				SpreadAngle = Vector2.new(35, 35),
@@ -99,6 +103,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(190, 90, 255)),
 				LightEmission = 0.3,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1.8, 2.6),
 				Speed = NumberRange.new(25, 40),
 				SpreadAngle = Vector2.new(35, 35),

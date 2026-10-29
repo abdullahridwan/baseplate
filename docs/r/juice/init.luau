@@ -86,14 +86,26 @@ local function spawnEffect(name: string, target: Target): (() -> ())?
 		end
 		emitter.Name = "Juice_" .. name .. "_" .. emitter.Name
 		emitter.Parent = emitterParent
+		local delay = emitterDef.delay or 0
 		if emitterDef.rate then
 			emitter.Rate = emitterDef.rate
 			emitter.Enabled = true
 		else
-			emitter:Emit(emitterDef.emit)
+			-- Same attributes popular Creator Store packs use, so other tools can re-fire the burst.
+			emitter:SetAttribute("EmitCount", emitterDef.emit)
+			emitter:SetAttribute("EmitDelay", delay)
+			if delay > 0 then
+				task.delay(delay, function()
+					if emitter.Parent then
+						emitter:Emit(emitterDef.emit)
+					end
+				end)
+			else
+				emitter:Emit(emitterDef.emit)
+			end
 		end
 		table.insert(emitters, emitter)
-		longest = math.max(longest, emitter.Lifetime.Max)
+		longest = math.max(longest, delay + emitter.Lifetime.Max)
 	end
 
 	local lightDef = definition.light

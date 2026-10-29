@@ -12,26 +12,36 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 255, 255), Color3.fromRGB(143, 220, 255)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.4, 0.6),
 				Speed = NumberRange.new(14, 22),
 				SpreadAngle = Vector2.new(180, 180),
 				Acceleration = Vector3.new(0, -20, 0),
 				Drag = 4,
-				Squash = NumberSequence.new(-1) -- stretch along motion: streaks, not dots,
+				Brightness = 2,
+				ZOffset = 1, -- drawn in front of the layers behind it
+				Squash = NumberSequence.new(-1), -- stretch along motion: streaks, not dots
+				Orientation = Enum.ParticleOrientation.VelocityParallel, -- points along its flight path
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.5),
+					NumberSequenceKeypoint.new(0, 0.5, 0.125),
 					NumberSequenceKeypoint.new(1, 0),
 				}),
-				Transparency = NumberSequence.new(0),
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0),
+					NumberSequenceKeypoint.new(0.7, 0),
+					NumberSequenceKeypoint.new(1, 1),
+				}),
 			},
 		},
 		{
 			emit = 8,
+			delay = 0.04,
 			properties = {
 				Name = "Frost",
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(232, 248, 255), Color3.fromRGB(166, 222, 250)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.8, 1.2),
 				Speed = NumberRange.new(3, 6),
 				SpreadAngle = Vector2.new(180, 180),
@@ -39,11 +49,37 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 1.5),
-					NumberSequenceKeypoint.new(1, 4),
+					NumberSequenceKeypoint.new(0, 1.5, 0.45),
+					NumberSequenceKeypoint.new(1, 4, 1.2),
 				}),
 				Transparency = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.4),
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.1, 0.4),
+					NumberSequenceKeypoint.new(1, 1),
+				}),
+			},
+		},
+		{
+			emit = 1,
+			properties = {
+				Name = "Flash",
+				Texture = SPARK,
+				Color = ColorSequence.new(Color3.fromRGB(230, 248, 255)),
+				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
+				Lifetime = NumberRange.new(0.12, 0.12),
+				Speed = NumberRange.new(0, 0),
+				SpreadAngle = Vector2.new(180, 180),
+				Brightness = 3,
+				ZOffset = 2, -- drawn in front of the layers behind it
+				Rotation = NumberRange.new(0, 360),
+				RotSpeed = NumberRange.new(-180, 180),
+				Size = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 2),
+					NumberSequenceKeypoint.new(1, 3.5),
+				}),
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 0.1),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},

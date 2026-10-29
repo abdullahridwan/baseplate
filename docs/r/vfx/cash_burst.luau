@@ -11,6 +11,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(157, 255, 138), Color3.fromRGB(47, 191, 74)),
 				LightEmission = 0.4,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.8, 1.2),
 				Speed = NumberRange.new(12, 20),
 				SpreadAngle = Vector2.new(30, 30),
@@ -35,9 +36,14 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(125, 255, 138)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.25, 0.25),
 				Speed = NumberRange.new(0, 0),
 				SpreadAngle = Vector2.new(180, 180),
+				Brightness = 3,
+				ZOffset = 2, -- drawn in front of the layers behind it
+				Rotation = NumberRange.new(0, 360),
+				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1.5),
 					NumberSequenceKeypoint.new(1, 3),

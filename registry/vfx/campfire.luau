@@ -20,6 +20,7 @@ return {
 					ColorSequenceKeypoint.new(1, Color3.fromRGB(168, 32, 10)),
 				}),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.5, 0.9),
 				Speed = NumberRange.new(1, 3),
 				SpreadAngle = Vector2.new(15, 15),
@@ -43,6 +44,7 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 204, 102), Color3.fromRGB(255, 90, 20)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1.2, 2),
 				Speed = NumberRange.new(3, 6),
 				SpreadAngle = Vector2.new(20, 20),
@@ -53,7 +55,8 @@ return {
 				}),
 				Transparency = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0),
-					NumberSequenceKeypoint.new(1, 0.3),
+					NumberSequenceKeypoint.new(0.8, 0.3),
+					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},
 		},
@@ -64,6 +67,7 @@ return {
 				Texture = SMOKE,
 				Color = ColorSequence.new(Color3.fromRGB(138, 134, 128), Color3.fromRGB(58, 56, 52)),
 				LightEmission = 0,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(2.5, 3.5),
 				Speed = NumberRange.new(3, 5),
 				SpreadAngle = Vector2.new(10, 10),
@@ -71,11 +75,12 @@ return {
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
 				Size = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 1.5),
-					NumberSequenceKeypoint.new(1, 5),
+					NumberSequenceKeypoint.new(0, 1.5, 0.45),
+					NumberSequenceKeypoint.new(1, 5, 1.5),
 				}),
 				Transparency = NumberSequence.new({
-					NumberSequenceKeypoint.new(0, 0.6),
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.1, 0.6),
 					NumberSequenceKeypoint.new(1, 1),
 				}),
 			},

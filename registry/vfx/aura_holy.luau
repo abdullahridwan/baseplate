@@ -15,13 +15,14 @@ return {
 				Texture = SPARK,
 				Color = ColorSequence.new(Color3.fromRGB(255, 251, 224), Color3.fromRGB(255, 214, 90)),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(1, 1.6),
 				Speed = NumberRange.new(1, 2),
 				SpreadAngle = Vector2.new(180, 180),
 				Acceleration = Vector3.new(0, 3, 0),
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
-				LockedToPart = true -- follows the character,
+				LockedToPart = true, -- follows the character
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 0),
 					NumberSequenceKeypoint.new(0.3, 0.5),

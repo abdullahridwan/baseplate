@@ -251,7 +251,12 @@ class Preview {
     });
   }
   burst() {
-    for (const e of this.spec.emitters) if (e.emit) for (let i = 0; i < e.emit; i++) this.spawn(e);
+    for (const e of this.spec.emitters) {
+      if (!e.emit) continue;
+      const fire = () => { for (let i = 0; i < e.emit; i++) this.spawn(e); };
+      // staggered layers (smoke after the flash), same as Juice in game
+      if (e.delay) setTimeout(fire, e.delay * 1000); else fire();
+    }
     this.flash = this.spec.light ? 1 : 0;
   }
   replay() { this.t = 0; this.burst(); }
@@ -283,7 +288,7 @@ class Preview {
       ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
     }
 
-    for (const p of this.parts) {
+    for (const p of [...this.parts].sort((a, b) => (a.e.z || 0) - (b.e.z || 0))) {
       const e = p.e, t = p.age / p.life;
       const size = curve(e.size, t) * px, alpha = curve(e.alpha, t);
       if (size <= 0.2 || alpha <= 0.002) continue;

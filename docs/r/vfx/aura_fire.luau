@@ -19,13 +19,14 @@ return {
 					ColorSequenceKeypoint.new(1, Color3.fromRGB(168, 32, 10)),
 				}),
 				LightEmission = 1,
+				LightInfluence = 0, -- looks the same in a dark cave and in daylight
 				Lifetime = NumberRange.new(0.5, 0.8),
 				Speed = NumberRange.new(2, 4),
 				SpreadAngle = Vector2.new(180, 180),
 				Acceleration = Vector3.new(0, 8, 0),
 				Rotation = NumberRange.new(0, 360),
 				RotSpeed = NumberRange.new(-180, 180),
-				LockedToPart = true -- follows the character,
+				LockedToPart = true, -- follows the character
 				Size = NumberSequence.new({
 					NumberSequenceKeypoint.new(0, 1.2),
 					NumberSequenceKeypoint.new(1, 0.2),
