@@ -22,3 +22,9 @@ claude mcp add baseplate -- npx -y baseplate-cli mcp
 
 Agents are first class citizens here: the agent searches components by
 description in text, not thumbnails, then adds them. See DIRECTION.md.
+
+## Skills
+
+- `roblox-vfx`: how to build and tune particle effects that look as good as the most
+  popular Creator Store packs. Built from measuring 755 emitters in the 40 most-voted
+  free VFX packs. Claude Code loads it automatically when you work on effects.
