@@ -1,12 +1,5876 @@
 {
-  "name": "baseplate-safe-vfx",
-  "version": 1,
-  "about": "Scanned Creator Store VFX packs. Only packs with status safe are offered by find_vfx. Flagged packs are never offered by the MCP. Scan data has not landed yet, so packs is empty. Do not invent asset IDs. See DIRECTION.md for the data model.",
-  "scan_rules": [
-    "hidden require by ID",
-    "data exfiltration",
-    "obfuscated code that phones home"
-  ],
-  "scan_date": null,
-  "packs": []
+ "name": "baseplate-safe-vfx",
+ "version": 1,
+ "about": "Scanned free Creator Store VFX packs. Only packs with status safe are offered by find_vfx. A pack is safe only at its pinned_version (the store's last-updated time) on its scan_date, under scan_rules. Not affiliated with Roblox Corporation.",
+ "scan_rules": [
+  "hidden require by asset ID, loadstring, getfenv, or encoded code",
+  "code that reaches outside the game (HttpService, InsertService, purchase prompts, teleports)",
+  "a script hidden inside an effect object",
+  "a fake Studio window that asks you to paste a command",
+  "a listing that says no scripts while the pack has scripts",
+  "scripts together with server remotes"
+ ],
+ "scan_date": "2026-10-28",
+ "scanned": 300,
+ "counts": {
+  "safe": 188,
+  "has_scripts": 22,
+  "not_vfx": 20,
+  "flagged": 70
+ },
+ "recheck": "Request a re-check from the VFX report page: https://abdullahridwan.github.io/baseplate/vfx-report.html",
+ "packs": [
+  {
+   "name": "Rei's Particle Pack",
+   "asset_id": 10198615035,
+   "pinned_version": "2023-06-11T17:40:02.337Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "127 effects (6 ParticleEmitter) named CANDLELIGHT, GLOW, FIRE, SPECKS colors #0004FF #FF3503 #FF7410 #FF791A on 76 parts.",
+   "tags": [
+    "fire",
+    "glow",
+    "light",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 127,
+    "parts": 76,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 3,
+    "lights": 0,
+    "sounds": 0,
+    "total": 260
+   },
+   "votes": {
+    "up_percent": 99,
+    "count": 1000
+   },
+   "install": "Insert asset 10198615035 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-06-11T17:40:02.337Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX PACK",
+   "asset_id": 112672322113504,
+   "pinned_version": "2025-07-21T19:01:56.377Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "303 effects (6 ParticleEmitter) named 2, 3, 4, 5, 7 colors #000000 #AC62FF on 239 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 303,
+    "parts": 239,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 1,
+    "total": 941
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 1000
+   },
+   "install": "Insert asset 112672322113504 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-07-21T19:01:56.377Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Dust Particle Effect",
+   "asset_id": 615333766,
+   "pinned_version": "2017-01-16T13:51:47.443Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "dust",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 900
+   },
+   "install": "Insert asset 615333766 with the Roblox Studio MCP. Check the store's last-updated time still equals 2017-01-16T13:51:47.443Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Confetti Particles",
+   "asset_id": 688963157,
+   "pinned_version": "2017-03-10T19:34:15.613Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "5 effects (5 ParticleEmitter) named ParticleEmitter colors #0019FF #00FFE2 #2EFF00 #E6FF00 on 1 part.",
+   "tags": [
+    "confetti",
+    "vfx"
+   ],
+   "use_cases": [
+    "win or celebrate"
+   ],
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 6
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 900
+   },
+   "install": "Insert asset 688963157 with the Roblox Studio MCP. Check the store's last-updated time still equals 2017-03-10T19:34:15.613Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Particle effects",
+   "asset_id": 15261348321,
+   "pinned_version": "2023-11-04T10:11:27.077Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "235 effects (6 ParticleEmitter) named ELECTRIC colors #86C7FF on 106 parts.",
+   "tags": [
+    "lightning",
+    "vfx"
+   ],
+   "use_cases": [
+    "electric attack"
+   ],
+   "contains": {
+    "effects": 235,
+    "parts": 106,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 424
+   },
+   "votes": {
+    "up_percent": 99,
+    "count": 900
+   },
+   "install": "Insert asset 15261348321 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-04T10:11:27.077Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "The Golden Particle Pack",
+   "asset_id": 16354714995,
+   "pinned_version": "2024-12-01T08:24:45.543Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "162 effects (6 ParticleEmitter) named Fire2, Fire1, SmokeDark1, Specks1, Fire3 colors #000000 #737373 #FF2306 #FF7D5C on 122 parts.",
+   "tags": [
+    "dark",
+    "fire",
+    "smoke",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dark power",
+    "dash or wind",
+    "fire attack",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 162,
+    "parts": 122,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 584
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 400
+   },
+   "install": "Insert asset 16354714995 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-12-01T08:24:45.543Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Snow Particles (Realistic)",
+   "asset_id": 243533538,
+   "pinned_version": "2015-04-29T21:48:53.333Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "snow",
+    "vfx"
+   ],
+   "use_cases": [
+    "weather"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 92,
+    "count": 300
+   },
+   "install": "Insert asset 243533538 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-04-29T21:48:53.333Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Heart Particle",
+   "asset_id": 688891762,
+   "pinned_version": "2017-03-10T18:33:55.32Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Hearts colors #FFFFFF on 1 part.",
+   "tags": [
+    "hearts",
+    "vfx"
+   ],
+   "use_cases": [
+    "love or friend"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 300
+   },
+   "install": "Insert asset 688891762 with the Roblox Studio MCP. Check the store's last-updated time still equals 2017-03-10T18:33:55.32Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Fireflies Particle",
+   "asset_id": 3347717118,
+   "pinned_version": "2019-06-22T11:37:49.76Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFF7F on 1 part.",
+   "tags": [
+    "fire",
+    "fireflies",
+    "vfx"
+   ],
+   "use_cases": [
+    "ambient",
+    "fire attack"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 300
+   },
+   "install": "Insert asset 3347717118 with the Roblox Studio MCP. Check the store's last-updated time still equals 2019-06-22T11:37:49.76Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "BIG VFX PACK",
+   "asset_id": 17290956157,
+   "pinned_version": "2024-04-26T12:52:05.603Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "278 effects (6 ParticleEmitter) named Fire2, Fire1, SmokeDark1, Specks1, Fire3 colors #000000 #737373 #FF2306 #FF7D5C on 11173 parts.",
+   "tags": [
+    "dark",
+    "fire",
+    "smoke",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dark power",
+    "dash or wind",
+    "fire attack",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 278,
+    "parts": 11173,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 21,
+    "lights": 0,
+    "sounds": 0,
+    "total": 16301
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 300
+   },
+   "install": "Insert asset 17290956157 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-04-26T12:52:05.603Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Volcano Lava Particle",
+   "asset_id": 256969126,
+   "pinned_version": "2015-06-08T16:57:49.04Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FF5500 on 2 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 200
+   },
+   "install": "Insert asset 256969126 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-06-08T16:57:49.04Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Rain (Particle)",
+   "asset_id": 483675631,
+   "pinned_version": "2016-08-19T16:14:26.893Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named ParticleEmitter colors #3B7CB9 #FFFFFF on 2 parts.",
+   "tags": [
+    "rain",
+    "vfx"
+   ],
+   "use_cases": [
+    "weather"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 200
+   },
+   "install": "Insert asset 483675631 with the Roblox Studio MCP. Check the store's last-updated time still equals 2016-08-19T16:14:26.893Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Particle Effects Kit",
+   "asset_id": 2646844007,
+   "pinned_version": "2018-12-14T02:36:18.217Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "85 effects (6 ParticleEmitter) named Button, Wave, ButtonBkg, Floaters colors #00FF00 #191919 #F00000 #FFB4B4 on 100 parts.",
+   "tags": [
+    "shockwave",
+    "vfx"
+   ],
+   "use_cases": [
+    "ground slam"
+   ],
+   "contains": {
+    "effects": 85,
+    "parts": 100,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 273
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 200
+   },
+   "install": "Insert asset 2646844007 with the Roblox Studio MCP. Check the store's last-updated time still equals 2018-12-14T02:36:18.217Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Sparks Effect",
+   "asset_id": 9373307685,
+   "pinned_version": "2024-03-18T19:57:10.73Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named Sparks, Core, MiniSparks, CoreMiniSparks colors #FFFF0A #FFFFFF on 1 part.",
+   "tags": [
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 6
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 200
+   },
+   "install": "Insert asset 9373307685 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-18T19:57:10.73Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "glitch effect",
+   "asset_id": 9402540088,
+   "pinned_version": "2022-04-18T10:15:39.403Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "12 effects (6 ParticleEmitter) named ParticleEmitterY, ParticleEmitterR, ParticleEmitterP colors #FF0000 #FF00FF #FFFF00 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 12,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 13
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 200
+   },
+   "install": "Insert asset 9402540088 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-04-18T10:15:39.403Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Black Holes with Particles",
+   "asset_id": 11778754364,
+   "pinned_version": "2023-04-04T03:24:04.583Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "53 effects (6 ParticleEmitter) named Wave2, Flare, Flare2, Aura colors #4B96FF on 7 parts.",
+   "tags": [
+    "aura",
+    "shockwave",
+    "space",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura",
+    "dark power",
+    "ground slam"
+   ],
+   "contains": {
+    "effects": 53,
+    "parts": 7,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 80
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 200
+   },
+   "install": "Insert asset 11778754364 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-04-04T03:24:04.583Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Light Explosion VFX",
+   "asset_id": 108812638060941,
+   "pinned_version": "2025-04-02T05:50:00.73Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "610 effects (6 ParticleEmitter) named StipeAir, Air, Light, StipeAirUp colors #000000 #FF5500 on 14 parts with 3 lights.",
+   "tags": [
+    "explosion",
+    "light",
+    "vfx"
+   ],
+   "use_cases": [
+    "explosion",
+    "glow"
+   ],
+   "contains": {
+    "effects": 610,
+    "parts": 14,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 3,
+    "sounds": 0,
+    "total": 815
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 200
+   },
+   "install": "Insert asset 108812638060941 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-04-02T05:50:00.73Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Blood Particles",
+   "asset_id": 247167380,
+   "pinned_version": "2015-05-10T18:29:45.643Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #9F0A0A on 0 parts.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 17,
+    "count": 100
+   },
+   "install": "Insert asset 247167380 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-05-10T18:29:45.643Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Water EFFECT",
+   "asset_id": 667303861,
+   "pinned_version": "2017-02-23T22:01:19.4Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Main1, Main2 colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 100
+   },
+   "install": "Insert asset 667303861 with the Roblox Studio MCP. Check the store's last-updated time still equals 2017-02-23T22:01:19.4Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Fire Effect",
+   "asset_id": 4732938279,
+   "pinned_version": "2020-02-26T01:10:47.057Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FF5500 on 1 part.",
+   "tags": [
+    "fire",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 100
+   },
+   "install": "Insert asset 4732938279 with the Roblox Studio MCP. Check the store's last-updated time still equals 2020-02-26T01:10:47.057Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Blood Effect",
+   "asset_id": 7351183223,
+   "pinned_version": "2021-08-28T15:35:13.217Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Blood colors #D90000 on 1 part.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 86,
+    "count": 100
+   },
+   "install": "Insert asset 7351183223 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-08-28T15:35:13.217Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Wind and Falling Leaves Effect",
+   "asset_id": 8137114049,
+   "pinned_version": "2022-08-25T20:47:51.887Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named ParticleEmitter colors #5C7D30 #FFFFFF on 3 parts.",
+   "tags": [
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 7
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 100
+   },
+   "install": "Insert asset 8137114049 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-08-25T20:47:51.887Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Realistic explosion particle",
+   "asset_id": 9135824362,
+   "pinned_version": "2022-03-18T21:24:12.237Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "explosion",
+    "vfx"
+   ],
+   "use_cases": [
+    "explosion"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 92,
+    "count": 100
+   },
+   "install": "Insert asset 9135824362 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-03-18T21:24:12.237Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "[FREE] Stylized Water Particles",
+   "asset_id": 9838221737,
+   "pinned_version": "2022-06-06T17:53:51.277Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named splash colors #FFFFFF on 3 parts.",
+   "tags": [
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 10
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 100
+   },
+   "install": "Insert asset 9838221737 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-06-06T17:53:51.277Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Low Poly Fire Particle",
+   "asset_id": 10034870671,
+   "pinned_version": "2022-06-26T18:40:29.397Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FF780A on 1 part.",
+   "tags": [
+    "fire",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 100
+   },
+   "install": "Insert asset 10034870671 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-06-26T18:40:29.397Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Galaxy Particle Effect",
+   "asset_id": 11372631359,
+   "pinned_version": "2022-10-25T00:54:57.883Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "11 effects (6 ParticleEmitter) named CenterVortexPiece, VortexPiece colors #6783FF #8AA0FF #8E59FF #92A1FF on 1 part.",
+   "tags": [
+    "space",
+    "vfx"
+   ],
+   "use_cases": [
+    "ambient"
+   ],
+   "contains": {
+    "effects": 11,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 14
+   },
+   "votes": {
+    "up_percent": 99,
+    "count": 100
+   },
+   "install": "Insert asset 11372631359 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-10-25T00:54:57.883Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "\"Realistic\" Fire VFX (+ metal impact particle uhh)",
+   "asset_id": 12136850996,
+   "pinned_version": "2024-10-21T18:05:16.617Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "18 effects (6 ParticleEmitter) named smoke, the beutiful particles colors #000000 #FF5500 on 4 parts with 1 light.",
+   "tags": [
+    "fire",
+    "impact",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "hit or damage",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 18,
+    "parts": 4,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 25
+   },
+   "votes": {
+    "up_percent": 99,
+    "count": 100
+   },
+   "install": "Insert asset 12136850996 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-10-21T18:05:16.617Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "glitch effect",
+   "asset_id": 12409973011,
+   "pinned_version": "2023-02-07T15:44:20.307Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "12 effects (6 ParticleEmitter) named ParticleEmitterY, ParticleEmitterR, ParticleEmitterP colors #FF0000 #FF00FF #FFFF00 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 12,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 13
+   },
+   "votes": {
+    "up_percent": 99,
+    "count": 100
+   },
+   "install": "Insert asset 12409973011 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-02-07T15:44:20.307Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Gojo Moveset (Particle)",
+   "asset_id": 13301586228,
+   "pinned_version": "2023-04-30T13:55:10.17Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "35 effects (6 ParticleEmitter) named white glow, purple outer glow, zappy zap, middle zappy zap, outer spinny thing colors #7700FF #C802FF #D400FF #FF00F2 on 7 parts.",
+   "tags": [
+    "glow",
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "glow",
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 35,
+    "parts": 7,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 80
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 100
+   },
+   "install": "Insert asset 13301586228 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-04-30T13:55:10.17Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hollow Purple VFX",
+   "asset_id": 13627331832,
+   "pinned_version": "2023-06-02T14:33:35.513Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "51 effects (5 ParticleEmitter, 1 Beam) named lightning, Darklightning, Dust, Dust2, Crescents colors #FF0000 on 3 parts with 3 lights.",
+   "tags": [
+    "beam",
+    "dark",
+    "dust",
+    "light",
+    "lightning",
+    "vfx"
+   ],
+   "use_cases": [
+    "dark power",
+    "dust or debris",
+    "electric attack",
+    "glow",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 51,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 3,
+    "sounds": 0,
+    "total": 97
+   },
+   "votes": {
+    "up_percent": 96,
+    "count": 100
+   },
+   "install": "Insert asset 13627331832 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-06-02T14:33:35.513Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Wind particles",
+   "asset_id": 14377639117,
+   "pinned_version": "2023-08-09T22:24:21.64Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #BEF0FF on 1 part.",
+   "tags": [
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 88,
+    "count": 100
+   },
+   "install": "Insert asset 14377639117 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-08-09T22:24:21.64Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Flipbook Explosion effect",
+   "asset_id": 15194550104,
+   "pinned_version": "2023-11-04T13:19:24.187Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Explosion colors #FFFFFF on 1 part.",
+   "tags": [
+    "explosion",
+    "vfx"
+   ],
+   "use_cases": [
+    "explosion"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 96,
+    "count": 100
+   },
+   "install": "Insert asset 15194550104 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-04T13:19:24.187Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Snow Effect Emitter",
+   "asset_id": 15528629762,
+   "pinned_version": "2023-12-02T22:56:56.067Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "50 effects (6 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "snow",
+    "vfx"
+   ],
+   "use_cases": [
+    "weather"
+   ],
+   "contains": {
+    "effects": 50,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 51
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 100
+   },
+   "install": "Insert asset 15528629762 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-12-02T22:56:56.067Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "particle flipbook",
+   "asset_id": 17190989199,
+   "pinned_version": "2024-04-18T18:46:42.677Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "55 effects (6 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 89 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 55,
+    "parts": 89,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 234
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 100
+   },
+   "install": "Insert asset 17190989199 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-04-18T18:46:42.677Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Axoie's Auras and vfxs! OFFICAL VERSION",
+   "asset_id": 17800318686,
+   "pinned_version": "2025-12-27T20:32:29.837Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "132 effects (6 ParticleEmitter) named 6, ParticleEmitter colors #737373 #FFFFFF on 64 parts with 5 lights.",
+   "tags": [
+    "aura",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura"
+   ],
+   "contains": {
+    "effects": 132,
+    "parts": 64,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 14,
+    "lights": 5,
+    "sounds": 0,
+    "total": 423
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 100
+   },
+   "install": "Insert asset 17800318686 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-12-27T20:32:29.837Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Black Flash VFX",
+   "asset_id": 102185762902096,
+   "pinned_version": "2024-11-15T14:03:16.67Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "5 effects (5 ParticleEmitter) named ParticleEmitter colors #FF0000 on 1 part with 1 light.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 8
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 100
+   },
+   "install": "Insert asset 102185762902096 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-11-15T14:03:16.67Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Sparkles Effect",
+   "asset_id": 4221608224,
+   "pinned_version": "2019-10-26T22:37:41.183Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Sparkle colors #FFFFFF on 1 part.",
+   "tags": [
+    "sparkle",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks",
+    "reward"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 92,
+    "count": 90
+   },
+   "install": "Insert asset 4221608224 with the Roblox Studio MCP. Check the store's last-updated time still equals 2019-10-26T22:37:41.183Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "explosion particles",
+   "asset_id": 13985868086,
+   "pinned_version": "2023-07-27T12:39:36.843Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "6 effects (6 ParticleEmitter) named sparks, smoke, orange, glow, shockwave colors #282828 #FF4B00 #FF6400 #FF8223 on 1 part.",
+   "tags": [
+    "explosion",
+    "glow",
+    "shockwave",
+    "smoke",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "explosion",
+    "glow",
+    "ground slam",
+    "hit sparks",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 6,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 8
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 90
+   },
+   "install": "Insert asset 13985868086 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-07-27T12:39:36.843Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Wind VFX",
+   "asset_id": 122486229235935,
+   "pinned_version": "2024-09-15T02:47:53.973Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "214 effects (6 ParticleEmitter) named hae, P2, Ripple, Mist colors #919191 #A9A9A9 #FFFFFF on 29 parts with 1 light.",
+   "tags": [
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind"
+   ],
+   "contains": {
+    "effects": 214,
+    "parts": 29,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 289
+   },
+   "votes": {
+    "up_percent": 99,
+    "count": 90
+   },
+   "install": "Insert asset 122486229235935 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-09-15T02:47:53.973Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "light particle",
+   "asset_id": 1023742674,
+   "pinned_version": "2017-09-03T15:55:17.66Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named GreenPoison , MatGreenPoison, Shine colors #959595 #ADADAD #B9B9B9 on 1 part.",
+   "tags": [
+    "light",
+    "poison",
+    "vfx"
+   ],
+   "use_cases": [
+    "glow",
+    "poison"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 80
+   },
+   "install": "Insert asset 1023742674 with the Roblox Studio MCP. Check the store's last-updated time still equals 2017-09-03T15:55:17.66Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Lightning Particles",
+   "asset_id": 16138018021,
+   "pinned_version": "2024-01-27T17:38:49.847Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Glow, ParticleEmitter colors #0059FF #00AAFF on 1 part.",
+   "tags": [
+    "glow",
+    "light",
+    "lightning",
+    "vfx"
+   ],
+   "use_cases": [
+    "electric attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 80
+   },
+   "install": "Insert asset 16138018021 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-01-27T17:38:49.847Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Free VFX Pack #1 By DogmathPan",
+   "asset_id": 8621531267,
+   "pinned_version": "2022-01-23T14:20:01.817Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "56 effects (6 ParticleEmitter) named middleBeams, Smoke, Residues, LowerBeams, Ground Radial Effect colors #66350D #FF5C10 #FF612C #FF8922 on 87 parts.",
+   "tags": [
+    "beam",
+    "shockwave",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "ground slam",
+    "laser or beam",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 56,
+    "parts": 87,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 0,
+    "total": 261
+   },
+   "votes": {
+    "up_percent": 99,
+    "count": 70
+   },
+   "install": "Insert asset 8621531267 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-01-23T14:20:01.817Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Realistic Smoke Particle",
+   "asset_id": 12778766895,
+   "pinned_version": "2023-03-13T20:18:02.233Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Smoke colors #FFFFFF on 1 part.",
+   "tags": [
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "smoke"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 88,
+    "count": 70
+   },
+   "install": "Insert asset 12778766895 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-03-13T20:18:02.233Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Dust Particle Effect",
+   "asset_id": 248986961,
+   "pinned_version": "2015-05-16T17:31:49.137Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named ParticleEmitter colors #FFD500 on 1 part.",
+   "tags": [
+    "dust",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 86,
+    "count": 60
+   },
+   "install": "Insert asset 248986961 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-05-16T17:31:49.137Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Gojo vfx pack",
+   "asset_id": 15300157819,
+   "pinned_version": "2023-11-08T15:30:59.82Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "13 effects (6 ParticleEmitter) named orb, ParticleEmitter colors #000000 #0000FF #3582FF #867DFF on 5 parts.",
+   "tags": [
+    "orb",
+    "slash",
+    "vfx"
+   ],
+   "use_cases": [
+    "projectile",
+    "sword swing"
+   ],
+   "contains": {
+    "effects": 13,
+    "parts": 5,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 24
+   },
+   "votes": {
+    "up_percent": 79,
+    "count": 60
+   },
+   "install": "Insert asset 15300157819 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-08T15:30:59.82Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Punch VFX",
+   "asset_id": 15467893863,
+   "pinned_version": "2023-11-26T06:59:25.723Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "30 effects (6 ParticleEmitter) named AirCresents3, Wind1, AirCresents2, Detail, Lightning1 colors #13ADFF #1D52FF #295BFF #FFFFFF on 8 parts with 1 light.",
+   "tags": [
+    "light",
+    "lightning",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind",
+    "electric attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 30,
+    "parts": 8,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 48
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 60
+   },
+   "install": "Insert asset 15467893863 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-26T06:59:25.723Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Speed Effect/Vfx",
+   "asset_id": 16703877340,
+   "pinned_version": "2024-03-10T19:03:38.027Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Shard2, Shard3 colors #000000 #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 60
+   },
+   "install": "Insert asset 16703877340 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-10T19:03:38.027Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX PACK (60 R$)",
+   "asset_id": 93841826456390,
+   "pinned_version": "2025-09-10T11:04:10.957Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1599 effects (6 ParticleEmitter) named 1, 2, 3, Upper, OUt colors #6D53FF on 75 parts with 14 lights.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1599,
+    "parts": 75,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 14,
+    "sounds": 3,
+    "total": 2069
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 60
+   },
+   "install": "Insert asset 93841826456390 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-09-10T11:04:10.957Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "zZzZ sleeping particles",
+   "asset_id": 4570146155,
+   "pinned_version": "2021-12-11T11:03:29.09Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #000000 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 50
+   },
+   "install": "Insert asset 4570146155 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-12-11T11:03:29.09Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Falling Leaves particle",
+   "asset_id": 8416979160,
+   "pinned_version": "2021-12-31T21:30:13.657Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #C5E5B0 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 90,
+    "count": 50
+   },
+   "install": "Insert asset 8416979160 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-12-31T21:30:13.657Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Spark Particles",
+   "asset_id": 10209144731,
+   "pinned_version": "2022-07-14T02:41:22.017Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Sparks colors #FFFF7F on 1 part with 1 light.",
+   "tags": [
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 50
+   },
+   "install": "Insert asset 10209144731 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-07-14T02:41:22.017Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Blood Particle",
+   "asset_id": 10375794405,
+   "pinned_version": "2022-07-27T09:36:02.25Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named ParticleEmitter colors #560000 #780000 #7C0000 on 1 part.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 50
+   },
+   "install": "Insert asset 10375794405 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-07-27T09:36:02.25Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Particle Emitter - Glow Dust Snow - Resize me!",
+   "asset_id": 14810258848,
+   "pinned_version": "2023-09-17T21:26:16.317Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter - Glow Dust Snow - Edit me! colors #BDBDBD on 1 part.",
+   "tags": [
+    "dust",
+    "glow",
+    "snow",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris",
+    "glow",
+    "weather"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 50
+   },
+   "install": "Insert asset 14810258848 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-09-17T21:26:16.317Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Bubble Particles",
+   "asset_id": 272005884,
+   "pinned_version": "2015-07-19T11:05:14.463Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Bubbles colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 40
+   },
+   "install": "Insert asset 272005884 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-07-19T11:05:14.463Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Sparkles Particle",
+   "asset_id": 688891088,
+   "pinned_version": "2017-03-10T18:34:28.26Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "5 effects (5 ParticleEmitter) named Sparkles Red, Sparkles Blue, Sparkles Purple, Sparkles Green, Sparkles Yellow colors #0000FF #55FF00 #AA00FF #FF0000 on 1 part.",
+   "tags": [
+    "sparkle",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks",
+    "reward"
+   ],
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 6
+   },
+   "votes": {
+    "up_percent": 85,
+    "count": 40
+   },
+   "install": "Insert asset 688891088 with the Roblox Studio MCP. Check the store's last-updated time still equals 2017-03-10T18:34:28.26Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Rasengan Vfx",
+   "asset_id": 10389871272,
+   "pinned_version": "2022-07-28T13:45:49.063Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "7 effects (6 ParticleEmitter) named circle waves blue (5), middle (6), inner golden barrier (2), blue ring (1), solid blue ring (1) colors #000CFF #003BFF #9BFAFF #A4FFF5 on 1 part.",
+   "tags": [
+    "shockwave",
+    "vfx"
+   ],
+   "use_cases": [
+    "ground slam"
+   ],
+   "contains": {
+    "effects": 7,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 10
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 40
+   },
+   "install": "Insert asset 10389871272 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-07-28T13:45:49.063Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "[FREE] Fire Effect",
+   "asset_id": 15219131218,
+   "pinned_version": "2026-08-26T18:16:40.556Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Fire, Smoke colors #000000 #FF5500 on 2 parts with 1 light.",
+   "tags": [
+    "fire",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 6
+   },
+   "votes": {
+    "up_percent": 85,
+    "count": 40
+   },
+   "install": "Insert asset 15219131218 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-08-26T18:16:40.556Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "microwave particle pack",
+   "asset_id": 16015861224,
+   "pinned_version": "2024-11-05T00:41:43.017Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "56 effects (6 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 94 parts.",
+   "tags": [
+    "shockwave",
+    "vfx"
+   ],
+   "use_cases": [
+    "ground slam"
+   ],
+   "contains": {
+    "effects": 56,
+    "parts": 94,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 252
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 40
+   },
+   "install": "Insert asset 16015861224 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-11-05T00:41:43.017Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Explosion effect",
+   "asset_id": 16603588667,
+   "pinned_version": "2024-03-03T04:15:16.63Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Explosion colors #FF7F29 on 1 part.",
+   "tags": [
+    "explosion",
+    "vfx"
+   ],
+   "use_cases": [
+    "explosion"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 96,
+    "count": 40
+   },
+   "install": "Insert asset 16603588667 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-03T04:15:16.63Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Water Particle Pack",
+   "asset_id": 103376765067835,
+   "pinned_version": "2025-01-10T08:26:53.203Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "22 effects (6 ParticleEmitter) named Water 4, Pulse, Water3, rainbow, water 7 colors #105CFF #1768FF #FFFFFF on 24 parts.",
+   "tags": [
+    "rain",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "water or splash",
+    "weather"
+   ],
+   "contains": {
+    "effects": 22,
+    "parts": 24,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 49
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 40
+   },
+   "install": "Insert asset 103376765067835 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-01-10T08:26:53.203Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX PACK ( V3 )",
+   "asset_id": 134852814183481,
+   "pinned_version": "2024-12-07T18:19:15.423Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "135 effects (6 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 135 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 135,
+    "parts": 135,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 409
+   },
+   "votes": {
+    "up_percent": 98,
+    "count": 40
+   },
+   "install": "Insert asset 134852814183481 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-12-07T18:19:15.423Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "awespme water particles",
+   "asset_id": 258794641,
+   "pinned_version": "2015-06-14T18:57:12.06Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named SquirtWater colors #79D0FF on 1 part.",
+   "tags": [
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 86,
+    "count": 30
+   },
+   "install": "Insert asset 258794641 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-06-14T18:57:12.06Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Wind Particle",
+   "asset_id": 304608657,
+   "pinned_version": "2015-10-09T19:51:29.58Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 64,
+    "count": 30
+   },
+   "install": "Insert asset 304608657 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-10-09T19:51:29.58Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Blood Effect",
+   "asset_id": 6542757999,
+   "pinned_version": "2021-04-03T15:58:26.893Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named Blood, Blood2, Blood3 colors #730000 #7C0000 #AA0000 on 1 part.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 85,
+    "count": 30
+   },
+   "install": "Insert asset 6542757999 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-04-03T15:58:26.893Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "blood particle 2",
+   "asset_id": 8224394874,
+   "pinned_version": "2021-12-23T10:46:01.663Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named BloodHit3, BloodHit2, BloodHit1 colors #220000 #6C1313 on 1 part.",
+   "tags": [
+    "blood",
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage",
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 90,
+    "count": 30
+   },
+   "install": "Insert asset 8224394874 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-12-23T10:46:01.663Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Star Particles",
+   "asset_id": 8288179978,
+   "pinned_version": "2021-12-19T08:15:26.783Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFAAB on 1 part.",
+   "tags": [
+    "stars",
+    "vfx"
+   ],
+   "use_cases": [
+    "reward"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 30
+   },
+   "install": "Insert asset 8288179978 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-12-19T08:15:26.783Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX PACK",
+   "asset_id": 8979997618,
+   "pinned_version": "2022-03-09T11:30:08.65Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "45 effects (6 ParticleEmitter) named Bolts, Bubble, ParticleEmitter, Wave, Hit2 colors #FFFF96 #FFFFFF on 339 parts.",
+   "tags": [
+    "impact",
+    "shockwave",
+    "vfx"
+   ],
+   "use_cases": [
+    "ground slam",
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 45,
+    "parts": 339,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 482
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 30
+   },
+   "install": "Insert asset 8979997618 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-03-09T11:30:08.65Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Black hole VFX",
+   "asset_id": 9067823342,
+   "pinned_version": "2022-03-11T11:01:06.54Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FF8C00 on 1 part.",
+   "tags": [
+    "space",
+    "vfx"
+   ],
+   "use_cases": [
+    "dark power"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 30
+   },
+   "install": "Insert asset 9067823342 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-03-11T11:01:06.54Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "dead guy whif blood effect",
+   "asset_id": 9412608091,
+   "pinned_version": "2022-04-19T14:35:00.737Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Blood colors #EF1111 on 17 parts.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 17,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 139
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 30
+   },
+   "install": "Insert asset 9412608091 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-04-19T14:35:00.737Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Beam VFX",
+   "asset_id": 9736118502,
+   "pinned_version": "2022-12-30T04:44:16.467Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "18 effects (6 Beam) named Beam colors #7BFFFF on 19 parts.",
+   "tags": [
+    "beam",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 18,
+    "parts": 19,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 65
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 30
+   },
+   "install": "Insert asset 9736118502 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-12-30T04:44:16.467Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Halloween Fountain [EFFECT]",
+   "asset_id": 11262883930,
+   "pinned_version": "2022-10-13T19:17:58.273Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "11 effects (6 ParticleEmitter) named ParticleEmitter, Blood colors #A10000 #EF1111 on 16 parts.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 11,
+    "parts": 16,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 30
+   },
+   "votes": {
+    "up_percent": 88,
+    "count": 30
+   },
+   "install": "Insert asset 11262883930 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-10-13T19:17:58.273Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "laser effect",
+   "asset_id": 14044497465,
+   "pinned_version": "2023-07-12T20:55:14.25Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (3 ParticleEmitter, 1 Beam) named ParticleEmitter, Beam colors #B3B3B3 #F4FFAB #FFF890 on 1 part.",
+   "tags": [
+    "beam",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 7
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 30
+   },
+   "install": "Insert asset 14044497465 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-07-12T20:55:14.25Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hit effect",
+   "asset_id": 15943117223,
+   "pinned_version": "2024-01-11T07:11:20.357Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named hit colors #FFFFFF on 1 part.",
+   "tags": [
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 90,
+    "count": 30
+   },
+   "install": "Insert asset 15943117223 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-01-11T07:11:20.357Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "fire vfx",
+   "asset_id": 16764566328,
+   "pinned_version": "2024-03-16T15:26:26.683Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "11 effects (6 ParticleEmitter) named Realistic_Contrast, core, spec1, spec2, spec2_dark colors #1B0B03 #FF5202 #FF5500 #FF6D0B on 1 part with 1 light.",
+   "tags": [
+    "dark",
+    "fire",
+    "glow",
+    "vfx"
+   ],
+   "use_cases": [
+    "dark power",
+    "fire attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 11,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 15
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 30
+   },
+   "install": "Insert asset 16764566328 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-16T15:26:26.683Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Laser Beam Effect",
+   "asset_id": 88687072714005,
+   "pinned_version": "2025-06-16T07:00:33.153Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "46 effects (4 Beam, 2 ParticleEmitter) named Sparks, Beam colors #004703 #009100 #5BB35B #6EDC7B on 14 parts.",
+   "tags": [
+    "beam",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 46,
+    "parts": 14,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 96
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 30
+   },
+   "install": "Insert asset 88687072714005 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-06-16T07:00:33.153Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Steam Particle",
+   "asset_id": 248413476,
+   "pinned_version": "2015-05-15T02:08:23.343Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 87,
+    "count": 20
+   },
+   "install": "Insert asset 248413476 with the Roblox Studio MCP. Check the store's last-updated time still equals 2015-05-15T02:08:23.343Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Leaf particles",
+   "asset_id": 2248426275,
+   "pinned_version": "2021-02-17T19:53:57.28Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "leaves",
+    "vfx"
+   ],
+   "use_cases": [
+    "ambient"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 90,
+    "count": 20
+   },
+   "install": "Insert asset 2248426275 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-02-17T19:53:57.28Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "shadow effect",
+   "asset_id": 3850926240,
+   "pinned_version": "2019-09-09T21:25:40.743Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #000000 on 1 part.",
+   "tags": [
+    "dark",
+    "vfx"
+   ],
+   "use_cases": [
+    "dark power"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 20
+   },
+   "install": "Insert asset 3850926240 with the Roblox Studio MCP. Check the store's last-updated time still equals 2019-09-09T21:25:40.743Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "sand effect for tanks",
+   "asset_id": 8235729825,
+   "pinned_version": "2021-12-12T12:08:25.36Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #8F7E5F on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 20
+   },
+   "install": "Insert asset 8235729825 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-12-12T12:08:25.36Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Water_Dripping_VFX",
+   "asset_id": 13355679491,
+   "pinned_version": "2023-06-02T22:11:18.877Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "6 effects (6 ParticleEmitter) named WaterDrip, Splashes, Mist colors #242424 #434343 #FFFFFF on 5 parts.",
+   "tags": [
+    "rain",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "water or splash",
+    "weather"
+   ],
+   "contains": {
+    "effects": 6,
+    "parts": 5,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 12
+   },
+   "votes": {
+    "up_percent": 88,
+    "count": 20
+   },
+   "install": "Insert asset 13355679491 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-06-02T22:11:18.877Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Jogo VFX By #####",
+   "asset_id": 14962517231,
+   "pinned_version": "2023-10-04T05:04:00.807Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "60 effects (6 ParticleEmitter) named 2, 3, wind, Flash, Sparks colors #000000 #FF4406 #FF4D06 #FF5500 on 4 parts with 5 lights.",
+   "tags": [
+    "sparks",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind",
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 60,
+    "parts": 4,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 5,
+    "sounds": 0,
+    "total": 78
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 20
+   },
+   "install": "Insert asset 14962517231 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-10-04T05:04:00.807Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Sword VFX",
+   "asset_id": 15168576332,
+   "pinned_version": "2023-10-25T17:47:36.65Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "114 effects (5 Beam, 1 ParticleEmitter) named Rays_Thin, Beam colors #D64312 #D6521D #D66214 #D66A1D on 91 parts with 12 lights.",
+   "tags": [
+    "beam",
+    "slash",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam",
+    "sword swing"
+   ],
+   "contains": {
+    "effects": 114,
+    "parts": 91,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 12,
+    "sounds": 0,
+    "total": 685
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 20
+   },
+   "install": "Insert asset 15168576332 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-10-25T17:47:36.65Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Realistic Explosion VFX",
+   "asset_id": 17771573488,
+   "pinned_version": "2024-06-08T11:11:48.803Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "9 effects (6 ParticleEmitter) named whitesmoke, sparks, explosionsmoke, rokdebris1, rokdebris12 colors #545454 #5E5E5E #FF7700 #FFFFFF on 0 parts.",
+   "tags": [
+    "debris",
+    "explosion",
+    "impact",
+    "smoke",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris",
+    "explosion",
+    "hit or damage",
+    "hit sparks",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 9,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 10
+   },
+   "votes": {
+    "up_percent": 59,
+    "count": 20
+   },
+   "install": "Insert asset 17771573488 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-06-08T11:11:48.803Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Red and Blue VFX Gojo !",
+   "asset_id": 17879749515,
+   "pinned_version": "2024-06-16T09:02:59.363Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "144 effects (6 ParticleEmitter) named orb, ParticleEmitter, Shape, C1, C2 colors #000000 #8B1C1C #AB5050 #FF0000 on 13 parts with 9 lights.",
+   "tags": [
+    "orb",
+    "vfx"
+   ],
+   "use_cases": [
+    "projectile"
+   ],
+   "contains": {
+    "effects": 144,
+    "parts": 13,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 9,
+    "sounds": 0,
+    "total": 228
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 20
+   },
+   "install": "Insert asset 17879749515 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-06-16T09:02:59.363Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Punch vfx",
+   "asset_id": 74270016807949,
+   "pinned_version": "2024-09-26T14:32:04.187Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "8 effects (6 ParticleEmitter) named Flash, Debris, Shards, Crecents, Dots colors #969095 #FFFFFF on 2 parts.",
+   "tags": [
+    "debris",
+    "dust",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris"
+   ],
+   "contains": {
+    "effects": 8,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 12
+   },
+   "votes": {
+    "up_percent": 90,
+    "count": 20
+   },
+   "install": "Insert asset 74270016807949 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-09-26T14:32:04.187Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Wind VFX Pack",
+   "asset_id": 88348191251190,
+   "pinned_version": "2026-01-01T08:21:40.21Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "10 effects (6 Beam) named Beam colors #FFFFFF on 72 parts.",
+   "tags": [
+    "beam",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 10,
+    "parts": 72,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 123
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 20
+   },
+   "install": "Insert asset 88348191251190 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-01-01T08:21:40.21Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Particle pack",
+   "asset_id": 98079419628831,
+   "pinned_version": "2025-01-05T19:12:32.51Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "34 effects (5 ParticleEmitter, 1 Beam) named ParticleEmitter, Eletric, Slash, Beam colors #0130FF #02FFF7 #FF0000 #FF00FF on 13 parts with 3 lights.",
+   "tags": [
+    "beam",
+    "slash",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam",
+    "sword swing"
+   ],
+   "contains": {
+    "effects": 34,
+    "parts": 13,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 3,
+    "sounds": 9,
+    "total": 84
+   },
+   "votes": {
+    "up_percent": 96,
+    "count": 20
+   },
+   "install": "Insert asset 98079419628831 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-01-05T19:12:32.51Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Fire slash attack VFX [Free]",
+   "asset_id": 107157303748652,
+   "pinned_version": "2026-05-22T07:37:44.196Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "8 effects (6 ParticleEmitter) named Moving Forward Line, New42, New90, New132 colors #962516 #EF3D25 #EF471E #F43218 on 2 parts with 1 light.",
+   "tags": [
+    "fire",
+    "slash",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "sword swing"
+   ],
+   "contains": {
+    "effects": 8,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 14
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 20
+   },
+   "install": "Insert asset 107157303748652 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-05-22T07:37:44.196Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Dismantle VFX",
+   "asset_id": 130271222383702,
+   "pinned_version": "2025-01-03T10:07:51.773Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named B, Cleave, Star colors #AAFFFF #FFFFFF on 1 part with 1 light.",
+   "tags": [
+    "stars",
+    "vfx"
+   ],
+   "use_cases": [
+    "reward"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 7
+   },
+   "votes": {
+    "up_percent": 97,
+    "count": 20
+   },
+   "install": "Insert asset 130271222383702 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-01-03T10:07:51.773Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Bubble Particle Emitter",
+   "asset_id": 479215759,
+   "pinned_version": "2016-08-13T17:01:38.08Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #5E91FF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 10
+   },
+   "install": "Insert asset 479215759 with the Roblox Studio MCP. Check the store's last-updated time still equals 2016-08-13T17:01:38.08Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Money Particles",
+   "asset_id": 688969483,
+   "pinned_version": "2017-03-10T19:40:18.783Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #CDF9FF on 0 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 53,
+    "count": 10
+   },
+   "install": "Insert asset 688969483 with the Roblox Studio MCP. Check the store's last-updated time still equals 2017-03-10T19:40:18.783Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Dust Particle",
+   "asset_id": 3489188704,
+   "pinned_version": "2020-07-20T15:04:17.567Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #C6A189 on 1 part.",
+   "tags": [
+    "dust",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 86,
+    "count": 10
+   },
+   "install": "Insert asset 3489188704 with the Roblox Studio MCP. Check the store's last-updated time still equals 2020-07-20T15:04:17.567Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Heavy Impact Debris (PARTICLES)",
+   "asset_id": 5524941122,
+   "pinned_version": "2020-08-09T04:00:03.443Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Debris colors #CFCAB8 on 1 part.",
+   "tags": [
+    "debris",
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris",
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 92,
+    "count": 10
+   },
+   "install": "Insert asset 5524941122 with the Roblox Studio MCP. Check the store's last-updated time still equals 2020-08-09T04:00:03.443Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hit Effect Particle",
+   "asset_id": 9658571035,
+   "pinned_version": "2022-05-18T01:34:14.82Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Cling thingy, HitEffect2 colors #FFAA00 #FFFFFF on 1 part.",
+   "tags": [
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 94,
+    "count": 10
+   },
+   "install": "Insert asset 9658571035 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-05-18T01:34:14.82Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Gold Particle",
+   "asset_id": 10357357337,
+   "pinned_version": "2022-07-25T19:34:26.88Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Rays_Thin, Rays_Thick colors #FFFF64 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 90,
+    "count": 10
+   },
+   "install": "Insert asset 10357357337 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-07-25T19:34:26.88Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Black Hole Particle effect",
+   "asset_id": 13328251594,
+   "pinned_version": "2023-05-02T22:44:24.443Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named ParticleEmitter colors #000000 #FF0000 on 1 part.",
+   "tags": [
+    "space",
+    "vfx"
+   ],
+   "use_cases": [
+    "dark power"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 92,
+    "count": 10
+   },
+   "install": "Insert asset 13328251594 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-05-02T22:44:24.443Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX pack",
+   "asset_id": 13428593337,
+   "pinned_version": "2023-05-13T10:47:26.513Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "14 effects (6 ParticleEmitter) named light, light2, light3, light4 colors #FFF159 #FFFB82 #FFFF80 #FFFF89 on 3 parts with 2 lights.",
+   "tags": [
+    "light",
+    "vfx"
+   ],
+   "use_cases": [
+    "glow"
+   ],
+   "contains": {
+    "effects": 14,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 2,
+    "sounds": 0,
+    "total": 23
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 10
+   },
+   "install": "Insert asset 13428593337 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-05-13T10:47:26.513Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Steam leak particle emitter",
+   "asset_id": 13593882457,
+   "pinned_version": "2023-05-30T00:37:12.683Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter1 colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 1,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 10
+   },
+   "install": "Insert asset 13593882457 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-05-30T00:37:12.683Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "glitch effect",
+   "asset_id": 14237433059,
+   "pinned_version": "2023-07-29T14:00:49.96Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "12 effects (6 ParticleEmitter) named ParticleEmitterY, ParticleEmitterR, ParticleEmitterP colors #FF0000 #FF00FF #FFFF00 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 12,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 13
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 10
+   },
+   "install": "Insert asset 14237433059 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-07-29T14:00:49.96Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX Auras",
+   "asset_id": 14628750884,
+   "pinned_version": "2023-08-30T21:22:16.263Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "30 effects (6 ParticleEmitter) named energy, Aura, Sparkle, energy2 colors #000000 #00FF00 #FFFFFF on 14 parts.",
+   "tags": [
+    "aura",
+    "energy",
+    "sparkle",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura",
+    "hit sparks",
+    "power up",
+    "reward"
+   ],
+   "contains": {
+    "effects": 30,
+    "parts": 14,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 77
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 10
+   },
+   "install": "Insert asset 14628750884 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-08-30T21:22:16.263Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Doors Rain Particles",
+   "asset_id": 15166520947,
+   "pinned_version": "2023-10-25T13:09:25.517Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named RainParticle colors #6F6E91 on 1 part.",
+   "tags": [
+    "rain",
+    "vfx"
+   ],
+   "use_cases": [
+    "weather"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 1,
+    "total": 7
+   },
+   "votes": {
+    "up_percent": 82,
+    "count": 10
+   },
+   "install": "Insert asset 15166520947 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-10-25T13:09:25.517Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Eye glint VFX",
+   "asset_id": 15412190128,
+   "pinned_version": "2023-11-20T13:35:22.577Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Glint colors #0000FF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 95,
+    "count": 10
+   },
+   "install": "Insert asset 15412190128 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-20T13:35:22.577Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "FLAME PILLAR FREE VFX",
+   "asset_id": 15545310259,
+   "pinned_version": "2023-12-04T15:36:11.333Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "7 effects (6 ParticleEmitter) named Main, smoke, gr, gr2, MainT colors #000000 #1D1D1D #434343 #FF1100 on 1 part.",
+   "tags": [
+    "fire",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 7,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 9
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 10
+   },
+   "install": "Insert asset 15545310259 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-12-04T15:36:11.333Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Particles / Auras",
+   "asset_id": 16089304930,
+   "pinned_version": "2024-01-23T18:48:42.527Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "28 effects (4 Beam, 2 ParticleEmitter) named ParticleEmitter, Beam colors #43FF43 #44FF41 #DB4CFF #FF41BD on 64 parts with 8 lights.",
+   "tags": [
+    "aura",
+    "beam",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 28,
+    "parts": 64,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 8,
+    "sounds": 0,
+    "total": 481
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 10
+   },
+   "install": "Insert asset 16089304930 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-01-23T18:48:42.527Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Lighting aura vfx",
+   "asset_id": 16382303266,
+   "pinned_version": "2024-02-15T22:01:07.853Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named FlipbookLightning colors #00FFFF #55FF7F #AA55FF on 3 parts.",
+   "tags": [
+    "aura",
+    "light",
+    "lightning",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura",
+    "electric attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 7
+   },
+   "votes": {
+    "up_percent": 93,
+    "count": 10
+   },
+   "install": "Insert asset 16382303266 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-02-15T22:01:07.853Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Gut punch vfx",
+   "asset_id": 17076842527,
+   "pinned_version": "2024-04-09T09:16:52.93Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named Dust2, Waves, Dust, Dots colors #969095 on 1 part.",
+   "tags": [
+    "dust",
+    "shockwave",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris",
+    "ground slam"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 6
+   },
+   "votes": {
+    "up_percent": 89,
+    "count": 10
+   },
+   "install": "Insert asset 17076842527 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-04-09T09:16:52.93Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX PACK ( wip )",
+   "asset_id": 79895252632035,
+   "pinned_version": "2024-12-07T16:37:24.793Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "90 effects (6 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 90 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 90,
+    "parts": 90,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 273
+   },
+   "votes": {
+    "up_percent": 91,
+    "count": 10
+   },
+   "install": "Insert asset 79895252632035 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-12-07T16:37:24.793Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Explosions VFx",
+   "asset_id": 88358016376585,
+   "pinned_version": "2025-12-05T09:00:19.41Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "108 effects (6 ParticleEmitter) named Explosion, ParticleEmitter, sparks, smoke, orange colors #282828 #FF4B00 #FF6400 #FFFFFF on 8 parts.",
+   "tags": [
+    "explosion",
+    "glow",
+    "smoke",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "explosion",
+    "glow",
+    "hit sparks",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 108,
+    "parts": 8,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 129
+   },
+   "votes": {
+    "up_percent": 92,
+    "count": 10
+   },
+   "install": "Insert asset 88358016376585 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-12-05T09:00:19.41Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Electro Vfx",
+   "asset_id": 95140283721084,
+   "pinned_version": "2024-10-16T18:26:25.907Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "24 effects (6 ParticleEmitter) named ParticleEmitter colors #1391FF #3D9BFF #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 24,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 27
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 10
+   },
+   "install": "Insert asset 95140283721084 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-10-16T18:26:25.907Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Falling Snow Particles",
+   "asset_id": 104277374165364,
+   "pinned_version": "2024-12-19T01:57:47.607Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Snowfall colors #FFFFFF on 1 part.",
+   "tags": [
+    "snow",
+    "vfx"
+   ],
+   "use_cases": [
+    "weather"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 77,
+    "count": 10
+   },
+   "install": "Insert asset 104277374165364 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-12-19T01:57:47.607Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Spark Effect",
+   "asset_id": 2953603543,
+   "pinned_version": "2024-10-16T00:34:43.503Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Sparks colors #FFE16E on 0 parts.",
+   "tags": [
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 43,
+    "count": 0
+   },
+   "install": "Insert asset 2953603543 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-10-16T00:34:43.503Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Galaxy Particle",
+   "asset_id": 7618029324,
+   "pinned_version": "2021-10-01T19:44:05.813Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Galaxy Particle colors #FFFFFF on 0 parts.",
+   "tags": [
+    "space",
+    "vfx"
+   ],
+   "use_cases": [
+    "ambient"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 7618029324 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-10-01T19:44:05.813Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "ambient particles",
+   "asset_id": 8002967094,
+   "pinned_version": "2021-11-15T00:32:20.097Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named FireParticle colors #FFFFFF on 1 part.",
+   "tags": [
+    "fire",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 75,
+    "count": 0
+   },
+   "install": "Insert asset 8002967094 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-11-15T00:32:20.097Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Glass Shattering Particle",
+   "asset_id": 8203897519,
+   "pinned_version": "2021-12-08T13:42:22.613Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named GlassShatter colors #FFFFFF on 0 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 8203897519 with the Roblox Studio MCP. Check the store's last-updated time still equals 2021-12-08T13:42:22.613Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "glitch particle",
+   "asset_id": 9158368457,
+   "pinned_version": "2022-03-21T00:01:07.213Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "12 effects (6 ParticleEmitter) named ParticleEmitter, ParticleEmitterB, ParticleEmitterG colors #000000 #0000FF #00FF00 on 0 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 12,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 12
+   },
+   "votes": {
+    "up_percent": 60,
+    "count": 0
+   },
+   "install": "Insert asset 9158368457 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-03-21T00:01:07.213Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "fire vfx",
+   "asset_id": 9598833354,
+   "pinned_version": "2022-05-11T02:13:18.177Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named ParticleEmitter colors #272727 #FF7505 on 1 part.",
+   "tags": [
+    "fire",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 67,
+    "count": 0
+   },
+   "install": "Insert asset 9598833354 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-05-11T02:13:18.177Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Particles",
+   "asset_id": 10004169680,
+   "pinned_version": "2022-06-23T22:06:30.64Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named ParticleEmitter colors #88FF00 #EBDC00 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 10004169680 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-06-23T22:06:30.64Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "pumpkin particle",
+   "asset_id": 10385711817,
+   "pinned_version": "2022-11-06T03:49:31.91Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named pumpkins colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 10385711817 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-11-06T03:49:31.91Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Dust/Pebble Particles",
+   "asset_id": 11459655073,
+   "pinned_version": "2022-11-03T21:08:30.887Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named ParticleEmitter colors #9B9FAE on 2 parts.",
+   "tags": [
+    "dust",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 11459655073 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-11-03T21:08:30.887Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Bullet Tracer Particles",
+   "asset_id": 11468320009,
+   "pinned_version": "2022-11-04T22:41:33.103Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named FlashFX[Flash] colors #FF5614 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 1,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 80,
+    "count": 0
+   },
+   "install": "Insert asset 11468320009 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-11-04T22:41:33.103Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Ceiling Light With Particles",
+   "asset_id": 11701268763,
+   "pinned_version": "2022-11-29T18:59:15.057Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named GreenPoison , MatGreenPoison, Shine colors #959595 #ADADAD #B9B9B9 on 3 parts with 1 light.",
+   "tags": [
+    "light",
+    "poison",
+    "vfx"
+   ],
+   "use_cases": [
+    "glow",
+    "poison"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 10
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 11701268763 with the Roblox Studio MCP. Check the store's last-updated time still equals 2022-11-29T18:59:15.057Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Glitch Effect (Good)",
+   "asset_id": 12380100370,
+   "pinned_version": "2023-02-04T18:53:45.393Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 71,
+    "count": 0
+   },
+   "install": "Insert asset 12380100370 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-02-04T18:53:45.393Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Realistic blood particle",
+   "asset_id": 12515739220,
+   "pinned_version": "2023-02-17T15:16:56.9Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named ParticleEmitter colors #7D0404 on 1 part.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 12515739220 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-02-17T15:16:56.9Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Official Crucifix Effect",
+   "asset_id": 12653113869,
+   "pinned_version": "2023-03-01T21:30:42.34Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "16 effects (4 Beam, 2 ParticleEmitter) named Spark, Lines, BeamFlat colors #54ACFF #89D0FF #9DD9FF on 7 parts with 4 lights.",
+   "tags": [
+    "beam",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 16,
+    "parts": 7,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 4,
+    "sounds": 0,
+    "total": 59
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 12653113869 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-03-01T21:30:42.34Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Ice Particle",
+   "asset_id": 14058438402,
+   "pinned_version": "2023-07-14T04:59:50.513Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (2 ParticleEmitter, 1 Trail) named Shards, Icedrops, Trail colors #AAFFFF #FFFFFF on 1 part.",
+   "tags": [
+    "ice",
+    "trail",
+    "vfx"
+   ],
+   "use_cases": [
+    "freeze",
+    "movement trail"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 88,
+    "count": 0
+   },
+   "install": "Insert asset 14058438402 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-07-14T04:59:50.513Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "fire beam vfx",
+   "asset_id": 14136287984,
+   "pinned_version": "2023-07-21T00:41:45.957Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named FLAMEPILLAR, SPIKES, GLOW, SPECKS colors #FF3503 #FF5411 #FF7410 #FF844B on 1 part.",
+   "tags": [
+    "beam",
+    "fire",
+    "glow",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "glow",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 88,
+    "count": 0
+   },
+   "install": "Insert asset 14136287984 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-07-21T00:41:45.957Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "cascada vfx",
+   "asset_id": 14986882526,
+   "pinned_version": "2023-10-07T00:56:45.65Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "5 effects (3 ParticleEmitter, 2 Beam) named Beam, MainSplash, Mist, WaterGeyser colors #98B9FF #A1D3FF #ABCBFF #B5D3FF on 4 parts.",
+   "tags": [
+    "beam",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "laser or beam",
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 5,
+    "parts": 4,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 15
+   },
+   "votes": {
+    "up_percent": 75,
+    "count": 0
+   },
+   "install": "Insert asset 14986882526 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-10-07T00:56:45.65Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Electric Particle",
+   "asset_id": 15128986039,
+   "pinned_version": "2023-10-21T12:28:46.967Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named ParticleEmitter colors #00FFFF on 1 part.",
+   "tags": [
+    "lightning",
+    "vfx"
+   ],
+   "use_cases": [
+    "electric attack"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 15128986039 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-10-21T12:28:46.967Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Fire vfx",
+   "asset_id": 15257058690,
+   "pinned_version": "2023-11-03T23:33:30.8Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named FIRE, GLOW, SPECKS colors #FF0004 #FF3503 #FF7410 on 1 part with 1 light.",
+   "tags": [
+    "fire",
+    "glow",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 6
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 15257058690 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-03T23:33:30.8Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Car Dirt Particle",
+   "asset_id": 15279574867,
+   "pinned_version": "2023-11-05T20:07:22.74Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 86,
+    "count": 0
+   },
+   "install": "Insert asset 15279574867 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-05T20:07:22.74Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "HollowPurple VFX",
+   "asset_id": 15439100851,
+   "pinned_version": "2023-11-23T17:27:07.02Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "60 effects (6 ParticleEmitter) named Purple Circle, Purple, Lightning One, Lightning Two, Dots 1 colors #A05CFF #AE5DFF #FF6FFF #FFFFFF on 1 part with 2 lights.",
+   "tags": [
+    "light",
+    "lightning",
+    "vfx"
+   ],
+   "use_cases": [
+    "electric attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 60,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 2,
+    "sounds": 0,
+    "total": 83
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 15439100851 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-23T17:27:07.02Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX",
+   "asset_id": 15447238641,
+   "pinned_version": "2023-11-24T15:21:33.55Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "8 effects (6 ParticleEmitter) named Sphere3, Sphere2, Sphere1, Sparks2, Sparks colors #914400 #FF370F #FF650C #FF8215 on 1 part with 1 light.",
+   "tags": [
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 8,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 12
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 15447238641 with the Roblox Studio MCP. Check the store's last-updated time still equals 2023-11-24T15:21:33.55Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hakari Vfx",
+   "asset_id": 16016400822,
+   "pinned_version": "2024-01-17T16:50:23.41Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "20 effects (3 Beam, 3 ParticleEmitter) named Beam, Smoke2, drip colors #00FF3C #20FF20 #3EFF3E #940000 on 1 part with 1 light.",
+   "tags": [
+    "beam",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 20,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 35
+   },
+   "votes": {
+    "up_percent": 88,
+    "count": 0
+   },
+   "install": "Insert asset 16016400822 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-01-17T16:50:23.41Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Kashimo Vfx",
+   "asset_id": 16241793823,
+   "pinned_version": "2024-02-04T14:25:48.477Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "28 effects (3 Beam, 3 ParticleEmitter) named Beam, Smoke2, drip colors #940000 #C800FF #E207FF #FF00EA on 1 part with 1 light.",
+   "tags": [
+    "beam",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 28,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 43
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 16241793823 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-02-04T14:25:48.477Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX + FIRE",
+   "asset_id": 16673329339,
+   "pinned_version": "2024-03-08T23:05:26.46Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "57 effects (6 ParticleEmitter) named Flames, Splatter, Lightning, Sparks, Shards colors #FF771C on 21 parts with 2 lights.",
+   "tags": [
+    "fire",
+    "light",
+    "lightning",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "electric attack",
+    "fire attack",
+    "glow",
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 57,
+    "parts": 21,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 2,
+    "sounds": 0,
+    "total": 97
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 16673329339 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-08T23:05:26.46Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "leaf and wind particles",
+   "asset_id": 16774310827,
+   "pinned_version": "2024-03-17T08:34:57.357Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "leaves",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "ambient",
+    "dash or wind"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 83,
+    "count": 0
+   },
+   "install": "Insert asset 16774310827 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-17T08:34:57.357Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "curious light particles",
+   "asset_id": 16807561898,
+   "pinned_version": "2024-03-20T15:25:55.403Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFEA00 on 1 part with 1 light.",
+   "tags": [
+    "light",
+    "vfx"
+   ],
+   "use_cases": [
+    "glow"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 16807561898 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-20T15:25:55.403Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hit / Punch VFX",
+   "asset_id": 16933763264,
+   "pinned_version": "2024-03-30T07:34:47.553Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "6 effects (6 ParticleEmitter) named ParticleEmitter, lines, stars colors #F3FEFF #FEFCFF #FF1F36 #FFFFFF on 1 part.",
+   "tags": [
+    "impact",
+    "stars",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit or damage",
+    "reward"
+   ],
+   "contains": {
+    "effects": 6,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 8
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 16933763264 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-03-30T07:34:47.553Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Parry Particle",
+   "asset_id": 17051070853,
+   "pinned_version": "2024-04-07T11:36:45.363Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "6 effects (6 ParticleEmitter) named Ring(2), Shield(1), Sparks(20), Smoke(2), Debris(20) colors #FFE66B #FFFFFF on 1 part.",
+   "tags": [
+    "debris",
+    "smoke",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris",
+    "hit sparks",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 6,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 8
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 17051070853 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-04-07T11:36:45.363Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Robux Particles",
+   "asset_id": 17118623858,
+   "pinned_version": "2024-04-12T20:27:06.66Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 17118623858 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-04-12T20:27:06.66Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Sparks Particles",
+   "asset_id": 17642947517,
+   "pinned_version": "2024-05-28T04:49:13.227Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Sparks colors #FFC822 on 1 part.",
+   "tags": [
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 17642947517 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-05-28T04:49:13.227Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Cool VFX Ball",
+   "asset_id": 70918806986877,
+   "pinned_version": "2026-04-26T03:40:29.965Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "179 effects (6 ParticleEmitter) named smoke, Particle_5, F colors #081326 #231735 #59429E #6F43FF on 1 part.",
+   "tags": [
+    "orb",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "projectile",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 179,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 190
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 70918806986877 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-04-26T03:40:29.965Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Maximum BLue Vfx",
+   "asset_id": 73250611544859,
+   "pinned_version": "2025-12-16T04:49:59.197Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "62 effects (6 ParticleEmitter) named Spinningcircle, glow, core, thing colors #213AAC #C8C8C8 on 1 part with 2 lights.",
+   "tags": [
+    "dust",
+    "glow",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris",
+    "glow"
+   ],
+   "contains": {
+    "effects": 62,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 2,
+    "sounds": 0,
+    "total": 67
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 73250611544859 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-12-16T04:49:59.197Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX",
+   "asset_id": 73953105304513,
+   "pinned_version": "2026-05-09T11:43:34.795Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "9 effects (4 Beam, 2 ParticleEmitter) named ParticleEmitter, Beam colors #8D60FF on 1 part with 2 lights.",
+   "tags": [
+    "beam",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 9,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 2,
+    "sounds": 0,
+    "total": 22
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 73953105304513 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-05-09T11:43:34.795Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Rocks VFX",
+   "asset_id": 74701434223592,
+   "pinned_version": "2025-12-05T08:52:51.04Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "2 effects (2 ParticleEmitter) named Rocks1, Smoke6 colors #443A33 #5D5552 on 1 part.",
+   "tags": [
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "smoke"
+   ],
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 74701434223592 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-12-05T08:52:51.04Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Lazer VFX by bidapsml",
+   "asset_id": 76504737937697,
+   "pinned_version": "2026-01-18T11:24:26.755Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "9 effects (3 ParticleEmitter, 3 Beam) named HIT EFFECTS 2, Images/2, Images/137584878259178_1, Beam, 74 colors #FFFFFF on 2 parts.",
+   "tags": [
+    "beam",
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit or damage",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 9,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 19
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 76504737937697 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-01-18T11:24:26.755Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Shovel VFX Pack",
+   "asset_id": 77052200980332,
+   "pinned_version": "2026-01-01T21:44:37.73Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "7 effects (6 ParticleEmitter) named ParticleEmitter, fr, Rune, Smoke colors #82FF97 #FF0000 on 50 parts.",
+   "tags": [
+    "glow",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "glow",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 7,
+    "parts": 50,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 63
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 77052200980332 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-01-01T21:44:37.73Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Electro vfx",
+   "asset_id": 78112627160786,
+   "pinned_version": "2026-06-23T19:43:12.197Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "17 effects (6 ParticleEmitter) named ParticleEmitter colors #FF0000 #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 17,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 19
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 78112627160786 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-06-23T19:43:12.197Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Blood VFX",
+   "asset_id": 80244455462932,
+   "pinned_version": "2026-09-06T08:33:51.466Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named Blood1, Blood2, Blood3 colors #820000 #F80000 on 1 part.",
+   "tags": [
+    "blood",
+    "vfx"
+   ],
+   "use_cases": [
+    "damage"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 80244455462932 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-09-06T08:33:51.466Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Gojo Pack VFX",
+   "asset_id": 80651485668670,
+   "pinned_version": "2025-04-27T10:19:40.143Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "12 effects (6 ParticleEmitter) named ParticleEmitter colors #005E8D #AF4A4A #FF9090 #FFFFFF on 5 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 12,
+    "parts": 5,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 22
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 80651485668670 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-04-27T10:19:40.143Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "water vfx",
+   "asset_id": 83578011033905,
+   "pinned_version": "2026-08-27T03:13:13.994Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Fire colors #8CB4FF on 0 parts.",
+   "tags": [
+    "fire",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "fire attack",
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 83578011033905 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-08-27T03:13:13.994Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Matrix aura NOT MINE THIS FROM VFX PACK BY SANZ",
+   "asset_id": 85311415646631,
+   "pinned_version": "2026-09-29T17:57:53.142Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "36 effects (4 Beam, 2 ParticleEmitter) named Beam3, Beam7, ui 1, Beam1, Beam5 colors #000000 #6DFF4C #71FF2F #8EFF59 on 16 parts with 1 light.",
+   "tags": [
+    "aura",
+    "beam",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 36,
+    "parts": 16,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 69
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 85311415646631 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-09-29T17:57:53.142Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "rain particles",
+   "asset_id": 85952396415094,
+   "pinned_version": "2025-11-22T05:12:35.54Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 0 parts.",
+   "tags": [
+    "rain",
+    "vfx"
+   ],
+   "use_cases": [
+    "weather"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 85952396415094 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-11-22T05:12:35.54Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hit vfx m1 boxing",
+   "asset_id": 86089736228455,
+   "pinned_version": "2025-07-08T17:45:20.947Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 0 parts.",
+   "tags": [
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 86089736228455 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-07-08T17:45:20.947Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Black Flash VFXs",
+   "asset_id": 86259146490757,
+   "pinned_version": "2026-02-18T20:47:51.644Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "49 effects (6 ParticleEmitter) named Lightning colors #000000 #AA0000 on 2 parts with 1 light.",
+   "tags": [
+    "light",
+    "lightning",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind",
+    "electric attack",
+    "glow"
+   ],
+   "contains": {
+    "effects": 49,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 57
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 86259146490757 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-02-18T20:47:51.644Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Red Shine Particle",
+   "asset_id": 86469312160174,
+   "pinned_version": "2025-02-16T17:43:23.54Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FF6666 on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 50,
+    "count": 0
+   },
+   "install": "Insert asset 86469312160174 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-02-16T17:43:23.54Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Water puddle ability vfx",
+   "asset_id": 86674594367980,
+   "pinned_version": "2026-07-17T04:19:29.325Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "41 effects (6 ParticleEmitter) named Crescent15, Basic Blurry Spec, Gap filled swirl, Water7, Whole swirl colors #0033BF #0051FF #0331FF #035BFF on 13 parts.",
+   "tags": [
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 41,
+    "parts": 13,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 68
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 86674594367980 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-07-17T04:19:29.325Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Event VFX",
+   "asset_id": 87444666916262,
+   "pinned_version": "2026-09-28T12:30:09.068Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "82 effects (6 ParticleEmitter) named Images/Cloud, Water Droplet, Images/Lightning Flipbook 4, HIT EFFECTS 1 colors #3964FF #484848 #6EB2FF #ABD2FF on 11 parts.",
+   "tags": [
+    "impact",
+    "light",
+    "lightning",
+    "rain",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "electric attack",
+    "glow",
+    "hit or damage",
+    "water or splash",
+    "weather"
+   ],
+   "contains": {
+    "effects": 82,
+    "parts": 11,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 116
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 87444666916262 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-09-28T12:30:09.068Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Golden VFX Pack (UNGROUP ME)",
+   "asset_id": 88123912973871,
+   "pinned_version": "2026-09-10T00:34:17.258Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "18 effects (6 ParticleEmitter) named coins, glow2, glow, aura colors #616161 #FFD84A #FFE355 #FFE659 on 3 parts.",
+   "tags": [
+    "aura",
+    "coin",
+    "glow",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura",
+    "glow",
+    "reward"
+   ],
+   "contains": {
+    "effects": 18,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 40
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 88123912973871 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-09-10T00:34:17.258Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Fire-VFX",
+   "asset_id": 89091612988653,
+   "pinned_version": "2025-12-04T02:18:58.39Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "28 effects (6 ParticleEmitter) named MainRed, g1, aurastar, auracenter, aurastar2 colors #FE5638 #FF3D0C on 2 parts.",
+   "tags": [
+    "aura",
+    "fire",
+    "stars",
+    "vfx"
+   ],
+   "use_cases": [
+    "character aura",
+    "fire attack",
+    "reward"
+   ],
+   "contains": {
+    "effects": 28,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 35
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 89091612988653 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-12-04T02:18:58.39Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Fire VFX",
+   "asset_id": 90044148912224,
+   "pinned_version": "2026-10-03T14:17:57.374Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "5 effects (3 Fire, 1 Smoke, 1 ParticleEmitter) named Fire, Smoke, ParticleEmitter colors #FFCC74 on 1 part with 1 light.",
+   "tags": [
+    "fire",
+    "smoke",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 9
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 90044148912224 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-10-03T14:17:57.374Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Charge Explode Emit VFX",
+   "asset_id": 90369868930247,
+   "pinned_version": "2025-03-01T18:09:56.167Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "7 effects (6 ParticleEmitter) named Light2, LightImpact, Smoke, Smokey, wind2 colors #D3D3D3 #EBEBEB #FFFFFF on 1 part.",
+   "tags": [
+    "charge",
+    "explosion",
+    "impact",
+    "light",
+    "smoke",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind",
+    "explosion",
+    "glow",
+    "hit or damage",
+    "power up",
+    "smoke"
+   ],
+   "contains": {
+    "effects": 7,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 10
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 90369868930247 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-03-01T18:09:56.167Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "wind particle aura",
+   "asset_id": 94826631061683,
+   "pinned_version": "2026-07-22T01:16:14.779Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "7 effects (6 ParticleEmitter) named WindGlow colors #8C71AC #CEA8FF on 7 parts.",
+   "tags": [
+    "aura",
+    "glow",
+    "slash",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "character aura",
+    "dash or wind",
+    "glow",
+    "sword swing"
+   ],
+   "contains": {
+    "effects": 7,
+    "parts": 7,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 15
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 94826631061683 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-07-22T01:16:14.779Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Old ROBLOX Fire Particle Effect",
+   "asset_id": 95903078811235,
+   "pinned_version": "2025-09-04T12:44:34.107Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Fire colors #EC8B46 on 0 parts.",
+   "tags": [
+    "fire",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 0,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 1
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 95903078811235 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-09-04T12:44:34.107Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Barrage VFX",
+   "asset_id": 97584216509815,
+   "pinned_version": "2026-01-27T14:28:29.347Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "12 effects (6 ParticleEmitter) named crash3, crash4, crash5, crash6, crash2 colors #CECECE on 3 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 12,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 19
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 97584216509815 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-01-27T14:28:29.347Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Glow/Light Particle",
+   "asset_id": 97865519163692,
+   "pinned_version": "2024-08-30T03:54:36.953Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #FFFFFF on 1 part.",
+   "tags": [
+    "glow",
+    "light",
+    "vfx"
+   ],
+   "use_cases": [
+    "glow"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 3
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 97865519163692 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-08-30T03:54:36.953Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "chief keef vfx",
+   "asset_id": 99818715515603,
+   "pinned_version": "2026-01-19T16:08:03.772Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named BlackHit, ember2, Hit2, Splash colors #0B79FF #574BFF #676AFF on 1 part.",
+   "tags": [
+    "impact",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "hit or damage",
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 7
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 99818715515603 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-01-19T16:08:03.772Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "cursed energy + red vfx VEXXED VFX GIVE CREDIT",
+   "asset_id": 99921266425731,
+   "pinned_version": "2025-01-02T20:23:33.063Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "169 effects (6 ParticleEmitter) named InnerCircle, votex again, InnerVortex, Little dot things, Black Flame colors #000000 #FF2C30 #FF4245 on 13 parts.",
+   "tags": [
+    "energy",
+    "fire",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "power up"
+   ],
+   "contains": {
+    "effects": 169,
+    "parts": 13,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 258
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 99921266425731 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-01-02T20:23:33.063Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "barrage vfx",
+   "asset_id": 102045397311677,
+   "pinned_version": "2026-01-19T12:38:55.362Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "9 effects (6 ParticleEmitter) named Hit1, ember2, sparks small, Hit2, ember3 colors #1B1B1B #FF5500 #FFC413 #FFFFFF on 1 part.",
+   "tags": [
+    "impact",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit or damage",
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 9,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 11
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 102045397311677 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-01-19T12:38:55.362Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Sand Particles",
+   "asset_id": 106654526542787,
+   "pinned_version": "2025-02-03T11:08:34.03Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named ParticleEmitter colors #BDB0FF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 106654526542787 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-02-03T11:08:34.03Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Dash VFX",
+   "asset_id": 109143292309339,
+   "pinned_version": "2025-03-05T21:58:46.413Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "14 effects (6 ParticleEmitter) named dash circles, lines, squares up, squares down, glow colors #EDFFFD on 3 parts.",
+   "tags": [
+    "debris",
+    "glow",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind",
+    "dust or debris",
+    "glow"
+   ],
+   "contains": {
+    "effects": 14,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 19
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 109143292309339 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-03-05T21:58:46.413Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "vfx firework",
+   "asset_id": 109497570650181,
+   "pinned_version": "2024-10-25T15:11:54.997Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "139 effects (6 ParticleEmitter) named ParticleEmitter, blue star 1, 5, 8, 3 colors #E5C300 on 12 parts.",
+   "tags": [
+    "fire",
+    "firework",
+    "stars",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "reward",
+    "win or celebrate"
+   ],
+   "contains": {
+    "effects": 139,
+    "parts": 12,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 164
+   },
+   "votes": {
+    "up_percent": 80,
+    "count": 0
+   },
+   "install": "Insert asset 109497570650181 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-10-25T15:11:54.997Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "tornado.vfx",
+   "asset_id": 113405326730173,
+   "pinned_version": "2025-03-22T18:34:53.633Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "66 effects (4 Beam, 2 ParticleEmitter) named ParticleEmitter, Beam colors #91FF8F #FFFFFF on 22 parts.",
+   "tags": [
+    "beam",
+    "vfx"
+   ],
+   "use_cases": [
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 66,
+    "parts": 22,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 91
+   },
+   "votes": {
+    "up_percent": 67,
+    "count": 0
+   },
+   "install": "Insert asset 113405326730173 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-03-22T18:34:53.633Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "treadmill VFX",
+   "asset_id": 113753181418473,
+   "pinned_version": "2026-09-16T11:51:42.258Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "30 effects (6 ParticleEmitter) named Impact1, Impact2, Ash1, Fire1, Core colors #000000 #8EFA00 #BA31FF #FF2903 on 121 parts with 1 light.",
+   "tags": [
+    "fire",
+    "impact",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "hit or damage"
+   ],
+   "contains": {
+    "effects": 30,
+    "parts": 121,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 5,
+    "lights": 1,
+    "sounds": 0,
+    "total": 192
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 113753181418473 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-09-16T11:51:42.258Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hit vfx",
+   "asset_id": 114108531858765,
+   "pinned_version": "2025-02-07T04:13:29.69Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "5 effects (5 ParticleEmitter) named SparkDebris, Charge1, Specs2, Specs1, Specs colors #C7C7C7 #FFFFFF on 1 part.",
+   "tags": [
+    "charge",
+    "debris",
+    "impact",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "dust or debris",
+    "hit or damage",
+    "hit sparks",
+    "power up"
+   ],
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 7
+   },
+   "votes": {
+    "up_percent": 25,
+    "count": 0
+   },
+   "install": "Insert asset 114108531858765 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-02-07T04:13:29.69Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Lazer Beams VFX",
+   "asset_id": 116212569702208,
+   "pinned_version": "2026-07-02T10:48:23.105Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "63 effects (6 ParticleEmitter) named Main, Ember, Spark, Specs, Gradient colors #00D0FF on 6 parts.",
+   "tags": [
+    "beam",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "hit sparks",
+    "laser or beam"
+   ],
+   "contains": {
+    "effects": 63,
+    "parts": 6,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 85
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 116212569702208 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-07-02T10:48:23.105Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "3rd move vfx",
+   "asset_id": 118610738823711,
+   "pinned_version": "2024-12-26T11:36:09.973Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "48 effects (6 ParticleEmitter) named SW4, SW3 colors #FFFFFF on 1 part.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 48,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 55
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 118610738823711 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-12-26T11:36:09.973Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX pack",
+   "asset_id": 119805364784218,
+   "pinned_version": "2026-04-26T19:52:38.141Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1599 effects (6 ParticleEmitter) named 1, 2, 3, Upper, OUt colors #6D53FF on 75 parts with 14 lights.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 1599,
+    "parts": 75,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 14,
+    "sounds": 3,
+    "total": 2069
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 119805364784218 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-04-26T19:52:38.141Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Goku SSJ Charge VFX",
+   "asset_id": 122448647810443,
+   "pinned_version": "2026-01-15T21:44:59.223Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "3 effects (3 ParticleEmitter) named 1, 5 colors #FFBA4A on 1 part.",
+   "tags": [
+    "charge",
+    "vfx"
+   ],
+   "use_cases": [
+    "power up"
+   ],
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 5
+   },
+   "votes": {
+    "up_percent": 0,
+    "count": 0
+   },
+   "install": "Insert asset 122448647810443 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-01-15T21:44:59.223Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Volcano VFX",
+   "asset_id": 123714799961994,
+   "pinned_version": "2025-06-10T18:24:14.74Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "53 effects (6 ParticleEmitter) named 15, 3, 5, 500 colors #FF4A03 #FFFFFF on 1 part with 1 light.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 53,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 56
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 123714799961994 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-06-10T18:24:14.74Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Gravity Field VFX",
+   "asset_id": 126521784338665,
+   "pinned_version": "2026-04-26T03:39:10.084Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "28 effects (6 ParticleEmitter) named Spec34, Basic Blurry Spec colors #644FFF on 2 parts with 1 light.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 28,
+    "parts": 2,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 1,
+    "sounds": 0,
+    "total": 36
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 126521784338665 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-04-26T03:39:10.084Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "[VFX] \u201cPulsar\u201d (Open Source)",
+   "asset_id": 126640336754171,
+   "pinned_version": "2026-02-10T21:21:01.443Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "182 effects (6 ParticleEmitter) named 0.5 colors #787EFF on 3 parts.",
+   "tags": [
+    "vfx"
+   ],
+   "use_cases": [
+    "general effect"
+   ],
+   "contains": {
+    "effects": 182,
+    "parts": 3,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 507
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 126640336754171 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-02-10T21:21:01.443Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Flame vfx",
+   "asset_id": 130057641542113,
+   "pinned_version": "2024-10-16T18:26:34.453Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "13 effects (6 ParticleEmitter) named ParticleEmitter colors #000000 #FF4800 on 1 part.",
+   "tags": [
+    "fire",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack"
+   ],
+   "contains": {
+    "effects": 13,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 16
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 130057641542113 with the Roblox Studio MCP. Check the store's last-updated time still equals 2024-10-16T18:26:34.453Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Red Trail Particle",
+   "asset_id": 133635077768158,
+   "pinned_version": "2025-02-16T22:32:52.513Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "1 effect (1 ParticleEmitter) named Fire colors #FF0000 on 1 part.",
+   "tags": [
+    "fire",
+    "trail",
+    "vfx"
+   ],
+   "use_cases": [
+    "fire attack",
+    "movement trail"
+   ],
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 2
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 133635077768158 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-02-16T22:32:52.513Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "VFX Water Exoplosion",
+   "asset_id": 134353112562828,
+   "pinned_version": "2025-06-13T19:30:09.463Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "4 effects (4 ParticleEmitter) named Pattern, ParticleEmitter, Boom, Smoke colors #00FFEE #FFFFFF on 1 part.",
+   "tags": [
+    "explosion",
+    "smoke",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "explosion",
+    "smoke",
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 8
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 134353112562828 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-06-13T19:30:09.463Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "black flash! (vfx)",
+   "asset_id": 137495970853354,
+   "pinned_version": "2026-08-01T18:07:28.871Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "14 effects (6 ParticleEmitter) named WhiteStar1, WhiteStar, WhiteSplash, Star1, Star colors #FF0400 #FF0E0E on 1 part.",
+   "tags": [
+    "impact",
+    "stars",
+    "vfx",
+    "water"
+   ],
+   "use_cases": [
+    "hit or damage",
+    "reward",
+    "water or splash"
+   ],
+   "contains": {
+    "effects": 14,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 17
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 137495970853354 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-08-01T18:07:28.871Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Animation / Dash & Geppo VFX Tutorial",
+   "asset_id": 137725942081281,
+   "pinned_version": "2026-02-01T01:48:37.079Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "9 effects (6 ParticleEmitter) named Circle, Black, Line2, Line1 colors #000000 #EDFFFD #FFFFFF on 16 parts.",
+   "tags": [
+    "sparks",
+    "vfx",
+    "wind"
+   ],
+   "use_cases": [
+    "dash or wind",
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 9,
+    "parts": 16,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 285
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 137725942081281 with the Roblox Studio MCP. Check the store's last-updated time still equals 2026-02-01T01:48:37.079Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  },
+  {
+   "name": "Hit EXPLOSION PARTICLE",
+   "asset_id": 137731919990336,
+   "pinned_version": "2025-02-19T15:41:46.503Z",
+   "status": "safe",
+   "scan_date": "2026-10-28",
+   "description": "6 effects (6 ParticleEmitter) named center ring (1), center spark 2 (1), center spark 3 (1), residue (20) colors #FF3300 #FF3F0F #FF7045 #FF7700 on 1 part.",
+   "tags": [
+    "explosion",
+    "impact",
+    "sparks",
+    "vfx"
+   ],
+   "use_cases": [
+    "explosion",
+    "hit or damage",
+    "hit sparks"
+   ],
+   "contains": {
+    "effects": 6,
+    "parts": 1,
+    "scripts": 0,
+    "remotes": 0,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 8
+   },
+   "votes": {
+    "up_percent": 100,
+    "count": 0
+   },
+   "install": "Insert asset 137731919990336 with the Roblox Studio MCP. Check the store's last-updated time still equals 2025-02-19T15:41:46.503Z; if not, don't use it until it is re-scanned. Strip any scripts, then move the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
+  }
+ ]
 }

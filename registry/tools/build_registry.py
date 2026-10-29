@@ -25,6 +25,10 @@ def expected():
     for item in index["items"]:
         for f in item["files"]:
             files[f["src"]] = ROOT / f["src"]
+    # Scanned Creator Store VFX, written by pipeline/vfx/export_safe.py. Kept here so a rebuild never wipes them.
+    for name in ("safe-vfx.json", "vfx-assets.json", "vfx-flagged.json", "vfx-rules.md"):
+        if (ROOT / name).is_file():
+            files[name] = ROOT / name
     return files
 
 

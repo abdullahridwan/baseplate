@@ -1,0 +1,2499 @@
+{
+ "scan_date": "2026-10-28",
+ "scanned": 300,
+ "notice": "Automated scan of each listed version on the date shown. Flagged means the model matched one or more written rules; it is not a finding about any person's intent. Assets change, so check the pinned version. Not affiliated with or endorsed by Roblox Corporation.",
+ "packs": [
+  {
+   "id": 13295712552,
+   "name": "Anime VFX Pack",
+   "pin": {
+    "updated": "2023-08-23T09:58:56.273Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 1367,
+    "parts": 1427,
+    "scripts": 29,
+    "remotes": 0,
+    "guis": 4,
+    "lights": 118,
+    "sounds": 30,
+    "total": 9543
+   },
+   "store_url": "https://create.roblox.com/store/asset/13295712552"
+  },
+  {
+   "id": 16612351416,
+   "name": "THE ULTRA VFX AND PARTICLES PACK",
+   "pin": {
+    "updated": "2024-03-03T16:12:01.213Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 743,
+    "parts": 1190,
+    "scripts": 64,
+    "remotes": 7,
+    "guis": 12,
+    "lights": 46,
+    "sounds": 36,
+    "total": 3573
+   },
+   "store_url": "https://create.roblox.com/store/asset/16612351416"
+  },
+  {
+   "id": 7575161326,
+   "name": "Dark Slash VFX pack remake",
+   "pin": {
+    "updated": "2021-09-26T19:23:07.9Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 7,
+    "parts": 12,
+    "scripts": 7,
+    "remotes": 1,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 106
+   },
+   "store_url": "https://create.roblox.com/store/asset/7575161326"
+  },
+  {
+   "id": 16106526018,
+   "name": "VFX PACK",
+   "pin": {
+    "updated": "2024-01-25T08:02:53.403Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 841,
+    "parts": 210,
+    "scripts": 10,
+    "remotes": 2,
+    "guis": 1,
+    "lights": 29,
+    "sounds": 4,
+    "total": 1505
+   },
+   "store_url": "https://create.roblox.com/store/asset/16106526018"
+  },
+  {
+   "id": 11247152592,
+   "name": "Roblox Jojo Pack ( VFX Only )",
+   "pin": {
+    "updated": "2022-10-12T02:34:02.517Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 40,
+    "parts": 113,
+    "scripts": 10,
+    "remotes": 0,
+    "guis": 2,
+    "lights": 1,
+    "sounds": 6,
+    "total": 2042
+   },
+   "store_url": "https://create.roblox.com/store/asset/11247152592"
+  },
+  {
+   "id": 15988704120,
+   "name": "Gojo vfx pack",
+   "pin": {
+    "updated": "2024-01-15T00:23:02.56Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 34,
+    "parts": 26,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 0,
+    "lights": 0,
+    "sounds": 0,
+    "total": 17666
+   },
+   "store_url": "https://create.roblox.com/store/asset/15988704120"
+  },
+  {
+   "id": 18327432110,
+   "name": "July small vfx pack",
+   "pin": {
+    "updated": "2024-07-04T06:07:01.227Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Attachment"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 7,
+    "parts": 5,
+    "scripts": 1,
+    "remotes": 0,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 0,
+    "total": 20
+   },
+   "store_url": "https://create.roblox.com/store/asset/18327432110"
+  },
+  {
+   "id": 70420841531999,
+   "name": "Cool VFX Ball Glass Sphere Orb Soccer Pack Effect",
+   "pin": {
+    "updated": "2026-10-13T00:34:19.018Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 179,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 599
+   },
+   "store_url": "https://create.roblox.com/store/asset/70420841531999"
+  },
+  {
+   "id": 70826051241308,
+   "name": "Hit VFX Pack Effect Particle Explosion Kit Impact",
+   "pin": {
+    "updated": "2026-10-13T17:27:07.211Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 415
+   },
+   "store_url": "https://create.roblox.com/store/asset/70826051241308"
+  },
+  {
+   "id": 73646885933237,
+   "name": "Angel Aura Divine Glow VFX Pack Halo Auras Effect",
+   "pin": {
+    "updated": "2026-10-13T03:09:07.469Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 526,
+    "parts": 96,
+    "scripts": 3,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 2,
+    "sounds": 1,
+    "total": 1523
+   },
+   "store_url": "https://create.roblox.com/store/asset/73646885933237"
+  },
+  {
+   "id": 73829144257461,
+   "name": "Big Vfx Pack Explosions Fireworks Magic Effects Ro",
+   "pin": {
+    "updated": "2026-03-19T00:34:24.619Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: fix"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 278,
+    "parts": 11173,
+    "scripts": 3,
+    "remotes": 0,
+    "guis": 21,
+    "lights": 0,
+    "sounds": 0,
+    "total": 16334
+   },
+   "store_url": "https://create.roblox.com/store/asset/73829144257461"
+  },
+  {
+   "id": 74400695294632,
+   "name": "Axoie's Auras and VFX Pack Effects Trail Axoie's",
+   "pin": {
+    "updated": "2026-10-13T02:25:52.653Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 6"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 132,
+    "parts": 64,
+    "scripts": 6,
+    "remotes": 3,
+    "guis": 17,
+    "lights": 5,
+    "sounds": 3,
+    "total": 1648
+   },
+   "store_url": "https://create.roblox.com/store/asset/74400695294632"
+  },
+  {
+   "id": 75779654972403,
+   "name": "Aura Pack Premium Sanzzzzz VFX Particle Auras Free",
+   "pin": {
+    "updated": "2026-10-13T17:34:08.104Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Beam"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 4"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 720,
+    "parts": 405,
+    "scripts": 4,
+    "remotes": 2,
+    "guis": 2,
+    "lights": 24,
+    "sounds": 2,
+    "total": 2249
+   },
+   "store_url": "https://create.roblox.com/store/asset/75779654972403"
+  },
+  {
+   "id": 78426407589659,
+   "name": "MASSIVE Vfx Pack Aura VFX Pack Lightning Strike VF",
+   "pin": {
+    "updated": "2026-10-17T17:55:20.768Z"
+   },
+   "observed": [
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: command, copy"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 1447,
+    "parts": 1448,
+    "scripts": 6,
+    "remotes": 0,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 0,
+    "total": 4368
+   },
+   "store_url": "https://create.roblox.com/store/asset/78426407589659"
+  },
+  {
+   "id": 79091519280182,
+   "name": "Fire-vfx Fire-vfx Particle Effects Flame Pack",
+   "pin": {
+    "updated": "2026-10-12T23:13:12.519Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 28,
+    "parts": 2,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 443
+   },
+   "store_url": "https://create.roblox.com/store/asset/79091519280182"
+  },
+  {
+   "id": 79757287842866,
+   "name": "Awespme Water Particles Pack VFX Kit Effect Splash",
+   "pin": {
+    "updated": "2026-10-13T02:48:07.291Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 410
+   },
+   "store_url": "https://create.roblox.com/store/asset/79757287842866"
+  },
+  {
+   "id": 82066967572306,
+   "name": "Snow Effects Particles Winter Flakes Kit Pack VFX",
+   "pin": {
+    "updated": "2026-10-15T23:46:13.279Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 4"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 31,
+    "parts": 1,
+    "scripts": 4,
+    "remotes": 2,
+    "guis": 2,
+    "lights": 0,
+    "sounds": 2,
+    "total": 848
+   },
+   "store_url": "https://create.roblox.com/store/asset/82066967572306"
+  },
+  {
+   "id": 82264754503181,
+   "name": "Sand Particles Pack Dust VFX Kit Effect Desert",
+   "pin": {
+    "updated": "2026-10-13T02:48:08.38Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 410
+   },
+   "store_url": "https://create.roblox.com/store/asset/82264754503181"
+  },
+  {
+   "id": 84474343993928,
+   "name": "VFX Pack Lightning Strike VFX 380+ VFX Pack",
+   "pin": {
+    "updated": "2026-10-17T17:55:21.4Z"
+   },
+   "observed": [
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 6"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: command, copy"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 0,
+    "parts": 214,
+    "scripts": 6,
+    "remotes": 0,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 0,
+    "total": 295
+   },
+   "store_url": "https://create.roblox.com/store/asset/84474343993928"
+  },
+  {
+   "id": 84761494954053,
+   "name": "Particle Pack Water Based Effects Kit Emitter VFX",
+   "pin": {
+    "updated": "2026-10-13T02:18:08.671Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 22,
+    "parts": 25,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 5,
+    "lights": 0,
+    "sounds": 4,
+    "total": 1685
+   },
+   "store_url": "https://create.roblox.com/store/asset/84761494954053"
+  },
+  {
+   "id": 84784801540245,
+   "name": "Fire Particles Pack Effect VFX Flame Embers",
+   "pin": {
+    "updated": "2026-10-12T23:13:09.168Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 3,
+    "parts": 1,
+    "scripts": 4,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 1,
+    "sounds": 2,
+    "total": 416
+   },
+   "store_url": "https://create.roblox.com/store/asset/84784801540245"
+  },
+  {
+   "id": 85271799917775,
+   "name": "VFX Pack R Particle Effects Neon Map Level Kit Big",
+   "pin": {
+    "updated": "2026-10-13T01:06:33.163Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 6"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1599,
+    "parts": 75,
+    "scripts": 6,
+    "remotes": 3,
+    "guis": 3,
+    "lights": 14,
+    "sounds": 6,
+    "total": 3294
+   },
+   "store_url": "https://create.roblox.com/store/asset/85271799917775"
+  },
+  {
+   "id": 85701085577063,
+   "name": "Ring Beam Light Neon Blue Circle Effect Particle",
+   "pin": {
+    "updated": "2026-10-13T01:12:47.493Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Attachment"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 414
+   },
+   "store_url": "https://create.roblox.com/store/asset/85701085577063"
+  },
+  {
+   "id": 86012541426707,
+   "name": "Particle Pack 5 VFX Effects Fire Smoke Sparkle Kit",
+   "pin": {
+    "updated": "2026-10-13T02:17:37.453Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 161,
+    "parts": 133,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 1345
+   },
+   "store_url": "https://create.roblox.com/store/asset/86012541426707"
+  },
+  {
+   "id": 88704915395429,
+   "name": "Laser Beam Pack Effects VFX Particle Lasers Beams",
+   "pin": {
+    "updated": "2026-10-15T23:56:07.43Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 34,
+    "parts": 6,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 4,
+    "lights": 0,
+    "sounds": 4,
+    "total": 1685
+   },
+   "store_url": "https://create.roblox.com/store/asset/88704915395429"
+  },
+  {
+   "id": 89909127187184,
+   "name": "VFX Pack Explosion Anime Model Mesh Neon",
+   "pin": {
+    "updated": "2026-10-13T03:07:24.221Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Decal"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 0,
+    "parts": 214,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 4,
+    "lights": 0,
+    "sounds": 4,
+    "total": 1914
+   },
+   "store_url": "https://create.roblox.com/store/asset/89909127187184"
+  },
+  {
+   "id": 90905357462206,
+   "name": "Rasengan VFX Anime Energy Ball Pack Effect Kit",
+   "pin": {
+    "updated": "2026-10-13T17:27:08.202Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a SpecialMesh"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 7,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 418
+   },
+   "store_url": "https://create.roblox.com/store/asset/90905357462206"
+  },
+  {
+   "id": 90920955300937,
+   "name": "Explosion Effect VFX Particle Blast Fire Bomb Pack",
+   "pin": {
+    "updated": "2026-10-13T01:14:20.599Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 1,
+    "sounds": 1,
+    "total": 415
+   },
+   "store_url": "https://create.roblox.com/store/asset/90920955300937"
+  },
+  {
+   "id": 91124400607010,
+   "name": "Massive VFX Pack Visual Effects Particles Roblox",
+   "pin": {
+    "updated": "2026-10-13T01:20:27.108Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1447,
+    "parts": 1448,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 4,
+    "lights": 0,
+    "sounds": 4,
+    "total": 5977
+   },
+   "store_url": "https://create.roblox.com/store/asset/91124400607010"
+  },
+  {
+   "id": 91389382107377,
+   "name": "Laser Beams Effect VFX Particles Lasers",
+   "pin": {
+    "updated": "2026-10-13T00:38:20.13Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 39,
+    "parts": 8,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 4,
+    "lights": 0,
+    "sounds": 4,
+    "total": 1696
+   },
+   "store_url": "https://create.roblox.com/store/asset/91389382107377"
+  },
+  {
+   "id": 93364346843353,
+   "name": "Gojo VFX Pack Jujutsu Kaisen Anime Effects Roblox",
+   "pin": {
+    "updated": "2026-10-13T01:20:17.853Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 13,
+    "parts": 5,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 4,
+    "lights": 0,
+    "sounds": 4,
+    "total": 1657
+   },
+   "store_url": "https://create.roblox.com/store/asset/93364346843353"
+  },
+  {
+   "id": 94525698073893,
+   "name": "Particle Pack VFX Effects Sparkle Fire Particles",
+   "pin": {
+    "updated": "2026-10-13T02:17:26.641Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Decal"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 762,
+    "parts": 789,
+    "scripts": 17,
+    "remotes": 4,
+    "guis": 16,
+    "lights": 18,
+    "sounds": 11,
+    "total": 4608
+   },
+   "store_url": "https://create.roblox.com/store/asset/94525698073893"
+  },
+  {
+   "id": 94864290912538,
+   "name": "Aura Hakari VFX Character Hakai Auras Pack Effect",
+   "pin": {
+    "updated": "2026-10-13T17:34:10.247Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Decal"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 17,
+    "parts": 7,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 480
+   },
+   "store_url": "https://create.roblox.com/store/asset/94864290912538"
+  },
+  {
+   "id": 95701579467078,
+   "name": "Tornado Particle Effect Storm Wind VFX Pack Kit",
+   "pin": {
+    "updated": "2026-10-16T00:14:09.967Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 412
+   },
+   "store_url": "https://create.roblox.com/store/asset/95701579467078"
+  },
+  {
+   "id": 98312478648919,
+   "name": "VFX PACK VFX Auras VFX Orb Pack 100+ Combat VFX Pa",
+   "pin": {
+    "updated": "2026-10-17T17:55:20.475Z"
+   },
+   "observed": [
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: command, copy"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 46,
+    "parts": 4,
+    "scripts": 6,
+    "remotes": 0,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 80
+   },
+   "store_url": "https://create.roblox.com/store/asset/98312478648919"
+  },
+  {
+   "id": 100309111190113,
+   "name": "VFX Pack Particle Effects Particles Explosion Fire",
+   "pin": {
+    "updated": "2026-10-13T01:20:18.398Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Decal"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 262,
+    "parts": 3237,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 14,
+    "lights": 0,
+    "sounds": 1,
+    "total": 6344
+   },
+   "store_url": "https://create.roblox.com/store/asset/100309111190113"
+  },
+  {
+   "id": 101084144431575,
+   "name": "Heart Particle Love Effect Pack Particles Hearts",
+   "pin": {
+    "updated": "2026-10-13T00:37:08.366Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 410
+   },
+   "store_url": "https://create.roblox.com/store/asset/101084144431575"
+  },
+  {
+   "id": 104139868939446,
+   "name": "Electro VFX Electric Box Pack Effect Kit Particle",
+   "pin": {
+    "updated": "2026-10-13T17:27:08.237Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 24,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 436
+   },
+   "store_url": "https://create.roblox.com/store/asset/104139868939446"
+  },
+  {
+   "id": 104367875282402,
+   "name": "Crucifix Effect Have Fun Doors Pack VFX Effects",
+   "pin": {
+    "updated": "2026-10-13T00:12:17.182Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 23,
+    "parts": 8,
+    "scripts": 10,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 1,
+    "sounds": 1,
+    "total": 483
+   },
+   "store_url": "https://create.roblox.com/store/asset/104367875282402"
+  },
+  {
+   "id": 104859511983534,
+   "name": "Steam Particle Blow Out VFX Effect Pack Particles",
+   "pin": {
+    "updated": "2026-10-13T17:31:03.308Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 3,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 2,
+    "total": 412
+   },
+   "store_url": "https://create.roblox.com/store/asset/104859511983534"
+  },
+  {
+   "id": 106358708446305,
+   "name": "Dash VFX Effect Particles Speed Movement Pack Free",
+   "pin": {
+    "updated": "2026-10-13T02:49:06.711Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 14,
+    "parts": 3,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 427
+   },
+   "store_url": "https://create.roblox.com/store/asset/106358708446305"
+  },
+  {
+   "id": 106411022141734,
+   "name": "Sparks Effect Sparkles Particle VFX Effects Kit",
+   "pin": {
+    "updated": "2026-10-13T17:31:18.938Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 414
+   },
+   "store_url": "https://create.roblox.com/store/asset/106411022141734"
+  },
+  {
+   "id": 106454517974927,
+   "name": "Maximum Blue VFX Lapse Particle Effects Pack Light",
+   "pin": {
+    "updated": "2026-10-13T01:20:25.083Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 62,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 2,
+    "sounds": 1,
+    "total": 475
+   },
+   "store_url": "https://create.roblox.com/store/asset/106454517974927"
+  },
+  {
+   "id": 107667004098957,
+   "name": "Glitch Effect Particle Kit Pack VFX Effects",
+   "pin": {
+    "updated": "2026-10-13T01:31:00.462Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 12,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 421
+   },
+   "store_url": "https://create.roblox.com/store/asset/107667004098957"
+  },
+  {
+   "id": 107877339567249,
+   "name": "Red Trail Particle Pack Particles Kit Effect VFX",
+   "pin": {
+    "updated": "2026-10-13T02:48:02.373Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 410
+   },
+   "store_url": "https://create.roblox.com/store/asset/107877339567249"
+  },
+  {
+   "id": 108705951101418,
+   "name": "Sukuna Slash Effect Anime VFX Cleave Particle",
+   "pin": {
+    "updated": "2026-10-13T01:55:50.581Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Decal"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 3,
+    "parts": 2,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 416
+   },
+   "store_url": "https://create.roblox.com/store/asset/108705951101418"
+  },
+  {
+   "id": 110270926843865,
+   "name": "Love VFX Pack Particle Effects Hearts Aura Kit",
+   "pin": {
+    "updated": "2026-10-13T17:27:06.404Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 6"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 31,
+    "parts": 11,
+    "scripts": 6,
+    "remotes": 3,
+    "guis": 3,
+    "lights": 0,
+    "sounds": 3,
+    "total": 1327
+   },
+   "store_url": "https://create.roblox.com/store/asset/110270926843865"
+  },
+  {
+   "id": 110654743298855,
+   "name": "Ppg's VFX Pack Particle Effects Explosion Neon Kit",
+   "pin": {
+    "updated": "2026-10-13T17:27:12.314Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 4"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 26,
+    "parts": 189,
+    "scripts": 4,
+    "remotes": 2,
+    "guis": 4,
+    "lights": 0,
+    "sounds": 2,
+    "total": 1127
+   },
+   "store_url": "https://create.roblox.com/store/asset/110654743298855"
+  },
+  {
+   "id": 115406461195191,
+   "name": "Red Aura Auras Pack Effect Particle Tool VFX Anime",
+   "pin": {
+    "updated": "2026-10-13T17:34:08.066Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 412
+   },
+   "store_url": "https://create.roblox.com/store/asset/115406461195191"
+  },
+  {
+   "id": 116198665004995,
+   "name": "Star Particles Effect VFX Pack Kit Stars Sparkle",
+   "pin": {
+    "updated": "2026-10-13T01:09:30.566Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 410
+   },
+   "store_url": "https://create.roblox.com/store/asset/116198665004995"
+  },
+  {
+   "id": 116879112264836,
+   "name": "Hakari VFX Pack Explosion Fire Anime Hakai Hatari",
+   "pin": {
+    "updated": "2026-10-13T17:27:06.43Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Beam"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 20,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 1,
+    "sounds": 1,
+    "total": 443
+   },
+   "store_url": "https://create.roblox.com/store/asset/116879112264836"
+  },
+  {
+   "id": 118426512462283,
+   "name": "Lazer VFX Pack Beam Gun Effect Lazers",
+   "pin": {
+    "updated": "2026-10-13T17:27:08.524Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Attachment"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 9,
+    "parts": 2,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 427
+   },
+   "store_url": "https://create.roblox.com/store/asset/118426512462283"
+  },
+  {
+   "id": 118507085111163,
+   "name": "Ambient Particles Pack Ambience VFX Kit Effect Fog",
+   "pin": {
+    "updated": "2026-10-13T02:48:07.41Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 1,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 410
+   },
+   "store_url": "https://create.roblox.com/store/asset/118507085111163"
+  },
+  {
+   "id": 118984079370790,
+   "name": "The Ultra VFX and Particles Pack Effects Magic",
+   "pin": {
+    "updated": "2026-10-13T03:08:09.926Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 743,
+    "parts": 1190,
+    "scripts": 72,
+    "remotes": 11,
+    "guis": 16,
+    "lights": 46,
+    "sounds": 40,
+    "total": 5195
+   },
+   "store_url": "https://create.roblox.com/store/asset/118984079370790"
+  },
+  {
+   "id": 121309518368080,
+   "name": "VFX Pack Particle Effects Neon Aura Combat",
+   "pin": {
+    "updated": "2026-10-13T01:20:25.298Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 841,
+    "parts": 210,
+    "scripts": 18,
+    "remotes": 6,
+    "guis": 5,
+    "lights": 29,
+    "sounds": 8,
+    "total": 3124
+   },
+   "store_url": "https://create.roblox.com/store/asset/121309518368080"
+  },
+  {
+   "id": 121602278420715,
+   "name": "Yba Level Up Particles Pack Kit Effect VFX Sparkle",
+   "pin": {
+    "updated": "2026-10-13T17:36:18.56Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 5,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 415
+   },
+   "store_url": "https://create.roblox.com/store/asset/121602278420715"
+  },
+  {
+   "id": 122115743660805,
+   "name": "Vfx",
+   "pin": {
+    "updated": "2026-04-24T04:51:30.808Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": false,
+   "contains": {
+    "effects": 1810,
+    "parts": 823,
+    "scripts": 87,
+    "remotes": 0,
+    "guis": 6,
+    "lights": 51,
+    "sounds": 0,
+    "total": 4769
+   },
+   "store_url": "https://create.roblox.com/store/asset/122115743660805"
+  },
+  {
+   "id": 124147460044917,
+   "name": "Particles Effects VFX Pack Decor FX Emitter Visual",
+   "pin": {
+    "updated": "2026-10-13T01:47:58.751Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 4"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 70,
+    "parts": 36,
+    "scripts": 4,
+    "remotes": 2,
+    "guis": 2,
+    "lights": 1,
+    "sounds": 2,
+    "total": 925
+   },
+   "store_url": "https://create.roblox.com/store/asset/124147460044917"
+  },
+  {
+   "id": 125454982228901,
+   "name": "Wind VFX Pack Effects Particles Breeze Roblox Free",
+   "pin": {
+    "updated": "2026-10-13T01:20:22.556Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Attachment"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 10,
+    "parts": 72,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 532
+   },
+   "store_url": "https://create.roblox.com/store/asset/125454982228901"
+  },
+  {
+   "id": 127398726142567,
+   "name": "Black Hole Particle Effect VFX Space Void Pack",
+   "pin": {
+    "updated": "2026-10-13T02:19:46Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 412
+   },
+   "store_url": "https://create.roblox.com/store/asset/127398726142567"
+  },
+  {
+   "id": 127942479145581,
+   "name": "Clock Aura Pack Clockwork VFX Auras Clocks Effect",
+   "pin": {
+    "updated": "2026-10-13T00:35:31.183Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Attachment"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 7,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 420
+   },
+   "store_url": "https://create.roblox.com/store/asset/127942479145581"
+  },
+  {
+   "id": 130672233376202,
+   "name": "Aura Pack Premium Sanzzzzz VFX Particle Auras",
+   "pin": {
+    "updated": "2026-10-13T02:23:02.929Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Beam"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 4"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 720,
+    "parts": 405,
+    "scripts": 4,
+    "remotes": 2,
+    "guis": 2,
+    "lights": 24,
+    "sounds": 2,
+    "total": 2249
+   },
+   "store_url": "https://create.roblox.com/store/asset/130672233376202"
+  },
+  {
+   "id": 131038800925311,
+   "name": "Aura4 Auras Pack Effect Particle VFX Model Player",
+   "pin": {
+    "updated": "2026-10-13T17:34:08.593Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 36,
+    "parts": 7,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 462
+   },
+   "store_url": "https://create.roblox.com/store/asset/131038800925311"
+  },
+  {
+   "id": 132882913413765,
+   "name": "Lightning Particles Effect VFX Storm Electric",
+   "pin": {
+    "updated": "2026-10-13T01:47:58.449Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 2,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 412
+   },
+   "store_url": "https://create.roblox.com/store/asset/132882913413765"
+  },
+  {
+   "id": 133116632455382,
+   "name": "Luvzr's VFX Luvzr's Particle Effects Visual Pack",
+   "pin": {
+    "updated": "2026-10-13T01:20:22.674Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Beam"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 4"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 378,
+    "parts": 208,
+    "scripts": 4,
+    "remotes": 2,
+    "guis": 10,
+    "lights": 5,
+    "sounds": 2,
+    "total": 1604
+   },
+   "store_url": "https://create.roblox.com/store/asset/133116632455382"
+  },
+  {
+   "id": 133816735884179,
+   "name": "VFX Mesh Pack Kit Red Explosion Meshes Shapes",
+   "pin": {
+    "updated": "2026-10-13T01:51:48.32Z"
+   },
+   "observed": [
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 0,
+    "parts": 79,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 4,
+    "lights": 0,
+    "sounds": 4,
+    "total": 1736
+   },
+   "store_url": "https://create.roblox.com/store/asset/133816735884179"
+  },
+  {
+   "id": 137231990856370,
+   "name": "Speed Line Effect VFX Particle Effects Kit Pack",
+   "pin": {
+    "updated": "2026-10-13T02:48:23.954Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 4,
+    "parts": 1,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 413
+   },
+   "store_url": "https://create.roblox.com/store/asset/137231990856370"
+  },
+  {
+   "id": 139000001096130,
+   "name": "Player Auras VFX Pack Particle Effects Particles",
+   "pin": {
+    "updated": "2026-10-13T17:28:07.424Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 2"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": false,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 148,
+    "parts": 37,
+    "scripts": 2,
+    "remotes": 1,
+    "guis": 1,
+    "lights": 0,
+    "sounds": 1,
+    "total": 787
+   },
+   "store_url": "https://create.roblox.com/store/asset/139000001096130"
+  },
+  {
+   "id": 139978468246233,
+   "name": "Animation Dash Geppo VFX Tutorial Play Pack R6",
+   "pin": {
+    "updated": "2026-10-13T02:49:06.8Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a SpecialMesh"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 6"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 9,
+    "parts": 16,
+    "scripts": 6,
+    "remotes": 3,
+    "guis": 3,
+    "lights": 0,
+    "sounds": 3,
+    "total": 1510
+   },
+   "store_url": "https://create.roblox.com/store/asset/139978468246233"
+  },
+  {
+   "id": 140155240517385,
+   "name": "Particle Pack VFX Kit Effects Particles Texture",
+   "pin": {
+    "updated": "2026-10-13T02:48:09.835Z"
+   },
+   "observed": [
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a ParticleEmitter"
+    },
+    {
+     "rule": "M3",
+     "observed": "A Script is placed inside a Decal"
+    },
+    {
+     "rule": "M6",
+     "observed": "Contains scripts together with RemoteEvent or RemoteFunction objects"
+    },
+    {
+     "rule": "M5",
+     "observed": "Listing says \u201cno scripts\u201d; the model contains 8"
+    },
+    {
+     "rule": "M4",
+     "observed": "Includes an on-screen window with the words: copy, command"
+    }
+   ],
+   "creator_removed": true,
+   "listing_says_no_scripts": true,
+   "contains": {
+    "effects": 56,
+    "parts": 112,
+    "scripts": 8,
+    "remotes": 4,
+    "guis": 4,
+    "lights": 3,
+    "sounds": 4,
+    "total": 1906
+   },
+   "store_url": "https://create.roblox.com/store/asset/140155240517385"
+  }
+ ]
+}

