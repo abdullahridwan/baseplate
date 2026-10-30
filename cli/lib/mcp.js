@@ -8,7 +8,7 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 
-const SERVER = { name: "baseplate", version: "0.3.1" };
+const SERVER = { name: "baseplate", version: "0.3.2" };
 const SUPPORTED = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
 const INSTRUCTIONS = `Baseplate is a component library for Roblox: effects and sounds your agent can find and add safely.

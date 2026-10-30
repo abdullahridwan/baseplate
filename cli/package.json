@@ -1,6 +1,6 @@
 {
   "name": "baseplate-cli",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Safe VFX and sounds for Roblox, as an MCP server your AI agent can search and add from. The files are copied in and you own them.",
   "type": "module",
   "bin": {
