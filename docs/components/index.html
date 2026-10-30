@@ -97,6 +97,7 @@ code{font-family:var(--mono);font-size:.86em;background:var(--plate);padding:2px
 .card .thumb.snd{display:grid;place-items:center}
 .card .thumb.snd svg{width:40px;height:40px;stroke:var(--stone-light);fill:none;stroke-width:1.6}
 .card .meta{padding:12px 14px}
+.card .meta small{display:block;margin-top:6px;font-size:12px;color:var(--stone-light)}
 .card b{display:block;font-family:var(--mono);font-size:14px;font-weight:500}
 .card span{font-size:13px;color:var(--stone)}
 
@@ -127,7 +128,7 @@ code{font-family:var(--mono);font-size:.86em;background:var(--plate);padding:2px
       baseplate
     </a>
     <nav aria-label="Main">
-      <a href="../">Games</a>
+      <a href="../">Home</a>
       <a class="on" href="./">Components</a>
     </nav>
     <button class="menu" id="menu" aria-expanded="false" aria-controls="side">Menu</button>
@@ -353,7 +354,7 @@ function sidebar() {
   const r = route();
   const link = (href, text) => `<li><a href="#/${href}" class="${r === href ? "on" : ""}">${text}</a></li>`;
   $("#side").innerHTML =
-    `<h4>Getting started</h4><ul>${link("intro", "Introduction")}${link("installation", "Installation")}${link("all", "All components")}</ul>` +
+    `<h4>Getting started</h4><ul>${link("intro", "Introduction")}${link("installation", "Installation")}${link("all", "All components")}${link("store", "Creator Store effects")}</ul>` +
     ["vfx", "sfx"].map((k) => `<h4>${label[k]}</h4>` + categories(k).map(([cat, items]) =>
       `<h5>${cat}</h5><ul>${items.map((i) => link(`${k}/${i.name}`, i.name)).join("")}</ul>`).join("")).join("");
 }
@@ -369,6 +370,7 @@ function introPage() {
       <li><b>You own the code.</b> Effects are plain Luau files with the particle settings spelled out. Tweak anything.</li>
       <li><b>Nothing shared to break.</b> Sounds are uploaded to your own Roblox account, so nobody can delete them out from under your game.</li>
       <li><b>Clean licenses.</b> Every sound is original and CC0. Effects and code are MIT.</li>
+      <li><b>Plus 600 Creator Store effects.</b> Free packs that passed our safety scan, split into single effects with agent names like <code>explosion/fire</code>. <a href="#/store" style="text-decoration:underline">Browse them</a>.</li>
       <li><b>Agent-native.</b> One file, <code>r/index.json</code>, describes everything. Point any agent at it.</li>
     </ul>
     <h3>Use it</h3>
@@ -384,7 +386,7 @@ function installPage() {
   return `
     <div class="crumb">Docs</div>
     <h1>Installation</h1>
-    <p class="lead">Works with any Rojo project. If you built your game from a Baseplate recipe, you're already set up.</p>
+    <p class="lead">Works with any Rojo project.</p>
     <h3>With your AI agent</h3>
     <p>Paste this into Claude Code, Cursor or Codex:</p>
     ${codeBlock(`Add coin_pickup and confetti from ${SITE_REGISTRY}`, "text")}
@@ -420,6 +422,23 @@ function allPage() {
     <input class="filter" id="filter" type="search" placeholder="Filter: coin, combat, egg, loop…" aria-label="Filter components">
     <section data-kind="vfx">${section("vfx")}</section>
     <section data-kind="sfx">${section("sfx")}</section>`;
+}
+
+let effects = null;
+async function storePage() {
+  effects ||= await (await fetch(REGISTRY + "vfx-effects.json")).json();
+  const groups = new Map();
+  for (const e of effects.effects) groups.set(e.category, [...(groups.get(e.category) || []), e]);
+  const card = (e) => `<a class="card" href="https://create.roblox.com/store/asset/${e.asset_id}" target="_blank" rel="noopener" data-search="${esc([e.name, e.description, e.pack].join(" ").toLowerCase())}">
+      <div class="meta"><b>${esc(e.name)}</b><span>${esc(e.description)}</span><small>From "${esc(e.pack)}"</small></div></a>`;
+  return `
+    <div class="crumb">Docs</div>
+    <h1>Creator Store effects</h1>
+    <p class="lead">${effects.effects.length} single effects from free Creator Store packs that passed our safety scan, each with an agent name. Your agent finds them with <code>find_vfx</code> and adds them with <code>add_vfx</code>, then plays one by name.</p>
+    ${codeBlock(`Juice.play("explosion/fire", part)`)}
+    <p><a href="../vfx-report.html" style="text-decoration:underline">How packs are checked</a>. Each card links to its pack on the Creator Store.</p>
+    <input class="filter" id="filter" type="search" placeholder="Filter: fire, confetti, portal, slash…" aria-label="Filter effects">
+    ${[...groups].map(([cat, items]) => `<div class="group"><h3>${cat}</h3><div class="grid">${items.map(card).join("")}</div></div>`).join("")}`;
 }
 
 async function itemPage(kind, name) {
@@ -466,9 +485,9 @@ async function render() {
   const r = route();
   const [kind, name] = r.split("/");
   $("#main").innerHTML =
-    r === "intro" ? introPage() : r === "installation" ? installPage() : r === "all" ? allPage()
+    r === "intro" ? introPage() : r === "installation" ? installPage() : r === "all" ? allPage() : r === "store" ? await storePage()
     : (kind === "vfx" || kind === "sfx") && name ? await itemPage(kind, name) : introPage();
-  document.title = (name || { intro: "Components", installation: "Installation", all: "All components" }[r] || "Components") + " · Baseplate";
+  document.title = (name || { intro: "Components", installation: "Installation", all: "All components", store: "Creator Store effects" }[r] || "Components") + " · Baseplate";
   window.scrollTo(0, 0);
 
   const fx = $("#fx");

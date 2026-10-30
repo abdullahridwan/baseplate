@@ -1,77 +1,42 @@
 <p align="center"><img src="brand/baseplate-mark-ink.svg" width="96" alt="Baseplate"></p>
 
 <h1 align="center">baseplate</h1>
-<p align="center"><b>Build better Roblox games.</b> The agent-native layer for Roblox.</p>
-<p align="center"><a href="https://baseplatehq.github.io/baseplate/">Website</a></p>
+<p align="center"><b>Your AI builds better Roblox games, faster and cheaper.</b></p>
+<p align="center"><a href="https://baseplatehq.github.io/baseplate/">Website</a> · <a href="https://www.npmjs.com/package/baseplate-cli">npm</a></p>
 
 ---
 
-Every Roblox game is half generic: saves, checkpoints, cash, remotes, leaderboards. Baseplate is a set of implementation specs that any AI agent can build from, so a fast, cheap model lays the foundation and you only spend frontier-model tokens on what makes your game yours.
+Baseplate is a component library for Roblox that AI agents use through MCP. Your agent searches in plain words and gets back short, agent-readable names, instead of hunting through Creator Store thumbnails.
 
-## Specs
-
-| Spec | What the generic 50% includes |
-|---|---|
-| [core](implementations/core/IMPLEMENTATION.md) | Rojo layout, DataStore saves with retries, rate-limited remotes, service and controller loaders |
-| [obby](implementations/obby/IMPLEMENTATION.md) | Saved stages, anti-skip checkpoints, kill bricks, respawn on your stage, stage HUD |
-| [tycoon](implementations/tycoon/IMPLEMENTATION.md) | Claimable plots, cash, purchase buttons, droppers, collector, saved progress |
-| [simulator](implementations/simulator/IMPLEMENTATION.md) | Click to collect, backpack capacity, sell zones, upgrades, rebirths |
-
-## Registry: VFX and sounds
-
-Good effects and sounds for a v0, like shadcn/ui: browse and preview them at [baseplate/components](https://baseplatehq.github.io/baseplate/components/), then copy them into your game and own them. Details in [registry](registry/README.md).
-
-```
-npx baseplate-cli add coin_pickup confetti
-```
-
-Or tell your agent:
-
-```
-Add coin_pickup and confetti from https://baseplatehq.github.io/baseplate/r/index.json
-```
-
-## Use it
-
-Point your agent (Claude Code, Cursor, Codex) at a spec:
-
-```
-Build the obby from https://github.com/baseplatehq/baseplate/blob/main/implementations/obby/IMPLEMENTATION.md
-```
-
-Each spec runs in strict order, with a **Done when** check after every step and an acceptance test at the end. It stops at the generic 50% and lists the extension points where your part begins.
-
-**Requirements:** Roblox Studio with API Services enabled, and [Rojo](https://rojo.space) 7+.
+- **600 Creator Store effects.** Free packs that passed a safety scan, split into single effects with agent names like `explosion/fire`, `celebrate/confetti` and `hazard/lava`. `add_vfx` checks the pack hasn't changed, pins it in `vfx.json`, and returns one snippet for the Roblox Studio MCP.
+- **Our own effects and sounds.** Copied into your project as files you own, like shadcn/ui. Browse them at [baseplate/components](https://baseplatehq.github.io/baseplate/components/).
+- **One runtime.** `Juice.play("explosion/fire", part)` plays either kind by name.
 
 ## Connect your AI (MCP)
-
-Baseplate runs as an MCP server, so Claude Code (or any MCP client) can pull recipes and add components itself:
 
 ```
 claude mcp add baseplate -- npx -y baseplate-cli mcp
 ```
 
-Tools: `list_recipes`, `get_recipe`, `list_components`, `search_components`, `get_component`, `add_component`.
+Then ask for what you need, for example "add an explosion when the rocket hits".
+
+Tools: `list_components`, `search_components`, `get_component`, `add_component`, `find_vfx`, `add_vfx`.
+
+Or use the CLI from your Rojo project root:
+
+```
+npx baseplate-cli add coin_pickup confetti
+```
 
 ## Repo
 
 ```
-implementations/   the specs, one folder per game type
-registry/          VFX and sounds (source of truth; published to docs/r/)
-cli/               npx baseplate-cli add
-brand/             logo files and brand guidelines
-docs/              the website (GitHub Pages)
+registry/   effects, sounds, the Juice runtime and the store effect index (published to docs/r/)
+pipeline/   the Creator Store scan and effect naming
+cli/        npx baseplate-cli and the MCP server
+docs/       the website (GitHub Pages)
+brand/      logo files
 ```
-
-## Roadmap
-
-Full plan in [PLAN.md](PLAN.md).
-
-- Music pack, effect previews, and packs per game type for the registry
-- More game types: tower defense, horror, fighting
-- One-command publishing (a fastlane for Roblox): build, upload, set metadata and go live, callable by agents
-- Store assets: generated game icons, thumbnails and descriptions
-- Cost and reliability benchmarks: frontier model from scratch vs. Baseplate
 
 ## License
 

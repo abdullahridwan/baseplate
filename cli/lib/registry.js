@@ -1,6 +1,6 @@
 // Shared by the CLI and the MCP server: read the Baseplate registry and install items into a project.
 // BASEPLATE_REGISTRY points at another registry: a URL or a local folder containing index.json.
-// BASEPLATE_SITE points at another site root (for recipes): a URL or a local folder.
+// BASEPLATE_SITE points at another site root : a URL or a local folder.
 
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -10,7 +10,6 @@ export const REGISTRY = process.env.BASEPLATE_REGISTRY || "https://baseplatehq.g
 export const SITE = process.env.BASEPLATE_SITE || "https://baseplatehq.github.io/baseplate/";
 export const SOUNDS_FILE = "src/shared/Juice/Sounds.luau";
 export const SAFE_VFX_FILE = "vfx.json";
-export const RECIPES = ["core", "obby", "tycoon", "simulator"];
 
 const isUrl = (s) => /^https?:\/\//.test(s);
 const withSlash = (s) => (s.endsWith("/") ? s : s + "/");
@@ -184,11 +183,6 @@ export async function writeVfxLock(root, effects) {
   await mkdir(dirname(path), { recursive: true });
   await writeFile(path, JSON.stringify(existing, null, 2) + "\n");
   return { added, already, path: SAFE_VFX_FILE };
-}
-
-export async function loadRecipe(name) {
-	if (!RECIPES.includes(name)) throw new Error(`no recipe named '${name}'. Recipes: ${RECIPES.join(", ")}`);
-	return fetchFrom(SITE, `recipes/${name}.md`);
 }
 
 // Items can share a name across kinds (coin_pickup is a vfx and an sfx); adding coin_pickup installs both.
