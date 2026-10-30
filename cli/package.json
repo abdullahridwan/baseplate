@@ -1,7 +1,7 @@
 {
   "name": "baseplate-cli",
   "version": "0.3.0",
-  "description": "Add Baseplate recipes, VFX and sounds to your Roblox game, from the terminal or as an MCP server for your AI agent. Like shadcn/ui: the files are copied in and you own them.",
+  "description": "Safe VFX and sounds for Roblox, as an MCP server your AI agent can search and add from. The files are copied in and you own them.",
   "type": "module",
   "bin": {
     "baseplate": "bin/baseplate.js",
@@ -23,5 +23,11 @@
     "mcp",
     "ai-agents"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://baseplatehq.github.io/baseplate/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baseplatehq/baseplate.git"
+  },
+  "author": "Baseplate <hello.baseplate@proton.me>"
 }

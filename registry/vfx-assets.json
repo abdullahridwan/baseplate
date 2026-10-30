@@ -1,6 +1,6 @@
 {
  "generated": "2026-10-28T04:12:00Z",
- "rules": "https://abdullahridwan.github.io/baseplate/r/vfx-rules.md",
+ "rules": "https://baseplatehq.github.io/baseplate/r/vfx-rules.md",
  "notice": "Automated scan of each listed version on the date shown. Flagged means the model matched one or more written rules; it is not a finding about any person's intent. Assets change, so check the pinned version. Not affiliated with or endorsed by Roblox Corporation.",
  "counts": {
   "safe": 188,

@@ -6,8 +6,8 @@ import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
-export const REGISTRY = process.env.BASEPLATE_REGISTRY || "https://abdullahridwan.github.io/baseplate/r/";
-export const SITE = process.env.BASEPLATE_SITE || "https://abdullahridwan.github.io/baseplate/";
+export const REGISTRY = process.env.BASEPLATE_REGISTRY || "https://baseplatehq.github.io/baseplate/r/";
+export const SITE = process.env.BASEPLATE_SITE || "https://baseplatehq.github.io/baseplate/";
 export const SOUNDS_FILE = "src/shared/Juice/Sounds.luau";
 export const SAFE_VFX_FILE = "vfx.json";
 export const RECIPES = ["core", "obby", "tycoon", "simulator"];

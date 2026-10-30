@@ -3,7 +3,7 @@
 Install as a plugin, instead of adding the MCP server by hand:
 
 ```
-/plugin marketplace add abdullahridwan/baseplate
+/plugin marketplace add baseplatehq/baseplate
 /plugin install baseplate@baseplate
 ```
 

@@ -4,7 +4,7 @@
   "version": "0.3.0",
   "description": "Agent-native VFX and sounds for Roblox. Search components by description and add them to your project, safely.",
   "author": {
-    "name": "Abdullah Ridwan"
+    "name": "Baseplate"
   },
   "server": {
     "type": "node",

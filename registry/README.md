@@ -4,7 +4,7 @@ Good effects and sounds for a v0 Roblox game, ready to use. Like shadcn/ui: noth
 
 ## Use it
 
-Browse and preview everything at https://abdullahridwan.github.io/baseplate/components/. Then run, from your Rojo project root:
+Browse and preview everything at https://baseplatehq.github.io/baseplate/components/. Then run, from your Rojo project root:
 
 ```
 npx baseplate-cli add coin_pickup confetti
@@ -13,7 +13,7 @@ npx baseplate-cli add coin_pickup confetti
 Or tell your agent:
 
 ```
-Add coin_pickup and confetti from https://abdullahridwan.github.io/baseplate/r/index.json
+Add coin_pickup and confetti from https://baseplatehq.github.io/baseplate/r/index.json
 ```
 
 Then in your code:

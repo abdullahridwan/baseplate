@@ -1,6 +1,6 @@
 # Baseplate direction: MVP
 
-Source of truth: this repository, `abdullahridwan/baseplate`, on `main`.
+Source of truth: this repository, `baseplatehq/baseplate`, on `main`.
 Claude built baseplate up to 2026-10-28. From 2026-10-28, Muse is taking over.
 No direction, feature, or data lives only on a local Desktop folder, in a chat,
 or in a demo artifact. If it is not in this repo, it is not shipped.

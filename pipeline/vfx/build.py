@@ -150,7 +150,7 @@ def main():
     REGISTRY.parent.mkdir(parents=True, exist_ok=True)
     REGISTRY.write_text(json.dumps({
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "rules": "https://abdullahridwan.github.io/baseplate/r/vfx-rules.md",
+        "rules": "https://baseplatehq.github.io/baseplate/r/vfx-rules.md",
         "notice": NOTICE,
         "counts": dict(tally),
         "assets": sorted(assets, key=lambda a: (a["verdict"] != "safe", -(a["votes"]["count"] or 0))),

@@ -128,7 +128,7 @@ def main():
         "scan_date": scan_date,
         "scanned": len(src["assets"]),
         "counts": src["counts"],
-        "recheck": "Request a re-check from the VFX report page: https://abdullahridwan.github.io/baseplate/vfx-report.html",
+        "recheck": "Request a re-check from the VFX report page: https://baseplatehq.github.io/baseplate/vfx-report.html",
         "packs": packs,
     }
     text = json.dumps(index, indent=1) + "\n"

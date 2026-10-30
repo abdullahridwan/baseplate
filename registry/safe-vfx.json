@@ -18,7 +18,7 @@
   "not_vfx": 20,
   "flagged": 70
  },
- "recheck": "Request a re-check from the VFX report page: https://abdullahridwan.github.io/baseplate/vfx-report.html",
+ "recheck": "Request a re-check from the VFX report page: https://baseplatehq.github.io/baseplate/vfx-report.html",
  "packs": [
   {
    "name": "Rei's Particle Pack",

@@ -2,7 +2,7 @@
 
 <h1 align="center">baseplate</h1>
 <p align="center"><b>Build better Roblox games.</b> The agent-native layer for Roblox.</p>
-<p align="center"><a href="https://abdullahridwan.github.io/baseplate/">Website</a></p>
+<p align="center"><a href="https://baseplatehq.github.io/baseplate/">Website</a></p>
 
 ---
 
@@ -19,7 +19,7 @@ Every Roblox game is half generic: saves, checkpoints, cash, remotes, leaderboar
 
 ## Registry: VFX and sounds
 
-Good effects and sounds for a v0, like shadcn/ui: browse and preview them at [baseplate/components](https://abdullahridwan.github.io/baseplate/components/), then copy them into your game and own them. Details in [registry](registry/README.md).
+Good effects and sounds for a v0, like shadcn/ui: browse and preview them at [baseplate/components](https://baseplatehq.github.io/baseplate/components/), then copy them into your game and own them. Details in [registry](registry/README.md).
 
 ```
 npx baseplate-cli add coin_pickup confetti
@@ -28,7 +28,7 @@ npx baseplate-cli add coin_pickup confetti
 Or tell your agent:
 
 ```
-Add coin_pickup and confetti from https://abdullahridwan.github.io/baseplate/r/index.json
+Add coin_pickup and confetti from https://baseplatehq.github.io/baseplate/r/index.json
 ```
 
 ## Use it
@@ -36,7 +36,7 @@ Add coin_pickup and confetti from https://abdullahridwan.github.io/baseplate/r/i
 Point your agent (Claude Code, Cursor, Codex) at a spec:
 
 ```
-Build the obby from https://github.com/abdullahridwan/baseplate/blob/main/implementations/obby/IMPLEMENTATION.md
+Build the obby from https://github.com/baseplatehq/baseplate/blob/main/implementations/obby/IMPLEMENTATION.md
 ```
 
 Each spec runs in strict order, with a **Done when** check after every step and an acceptance test at the end. It stops at the generic 50% and lists the extension points where your part begins.

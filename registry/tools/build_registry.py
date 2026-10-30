@@ -4,7 +4,7 @@
     python3 registry/tools/build_registry.py --check  # fail if docs/r/ is stale
 
 Copies index.json and every item file into docs/r/, so agents and the CLI
-fetch from https://abdullahridwan.github.io/baseplate/r/.
+fetch from https://baseplatehq.github.io/baseplate/r/.
 """
 
 import filecmp
@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT.parent / "docs" / "r"
-SITE = "https://abdullahridwan.github.io/baseplate/r/"
+SITE = "https://baseplatehq.github.io/baseplate/r/"
 
 
 def expected():

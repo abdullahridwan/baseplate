@@ -13,7 +13,7 @@ from gen_sfx import SOUNDS
 from gen_vfx import EFFECTS, preview
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://abdullahridwan.github.io/baseplate/r/"
+SITE = "https://baseplatehq.github.io/baseplate/r/"
 
 
 def sound_line(name, meta):

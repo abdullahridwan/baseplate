@@ -63,7 +63,7 @@ remote and public. Adding is local and owned by the user.
     the `/mcp` URL.
 - No sessions stored. Each MCP request is handled independently.
   No database. The only upstream fetch is the public registry index
-  at `https://abdullahridwan.github.io/baseplate/r/index.json`,
+  at `https://baseplatehq.github.io/baseplate/r/index.json`,
   which `cli/lib/registry.js` already fetches today.
 
 ### 1.2 Hosting and URL
@@ -274,7 +274,7 @@ users see a consistent story:
 
 File to create in this repo: `docs/privacy.html`
 Public URL once published via GitHub Pages:
-`https://abdullahridwan.github.io/baseplate/privacy.html`
+`https://baseplatehq.github.io/baseplate/privacy.html`
 
 That URL is the privacy policy URL submitted to the portal.
 Do not submit a placeholder URL. The page must exist and be
@@ -319,7 +319,7 @@ Sections, in order, with the exact commitments to state:
 ## 4. Documentation URL: exact page to create
 
 File to create in this repo: `docs/connectors.html`
-Public URL: `https://abdullahridwan.github.io/baseplate/connectors.html`
+Public URL: `https://baseplatehq.github.io/baseplate/connectors.html`
 
 That URL is the documentation URL submitted to the portal.
 It must exist, be public, and answer a reviewer in under 2
@@ -370,7 +370,7 @@ minutes. Sections, in order:
   a bold "B" or a bolt, no text smaller than the mark itself,
   no Roblox logo, no Claude logo, no third party trademark.
 - Public URL for the portal: 
-  `https://abdullahridwan.github.io/baseplate/icon.png`
+  `https://baseplatehq.github.io/baseplate/icon.png`
   The portal needs a custom URL if the host has no favicon,
   and this URL must be live before submission. Do not submit
   a local file path.
