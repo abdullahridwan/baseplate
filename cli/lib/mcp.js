@@ -3,14 +3,17 @@
 // Speaks newline-delimited JSON-RPC 2.0 on stdin/stdout. Never write anything else to stdout.
 
 import { createInterface } from "node:readline";
-import { SOUNDS_FILE, SAFE_VFX_FILE, install, loadIndex, fetchFile, loadSafeIndex, searchSafeVfx, writeVfxLock } from "./registry.js";
+import { SOUNDS_FILE, SAFE_VFX_FILE, install, loadIndex, fetchFile, loadEffects, searchEffects, storeUpdated, sameTime, insertSnippet, writeVfxLock } from "./registry.js";
+import { readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 
 const SERVER = { name: "baseplate", version: "0.3.1" };
 const SUPPORTED = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
 const INSTRUCTIONS = `Baseplate is a component library for Roblox: effects and sounds your agent can find and add safely.
 - To add juice: search_components, then add_component. Sounds must be uploaded to the user's Roblox account; tell them which files to upload and where the IDs go.
-- To add scanned Creator Store VFX: find_vfx, then add_vfx. find_vfx returns only safe packs; never offer or add a flagged pack. add_vfx writes vfx.json with the asset ID and the store update time it was scanned at. Before inserting with the Roblox Studio MCP, check that time still matches (add_vfx gives the URL), then strip any scripts in the pack.`;
+- For Creator Store VFX: find_vfx, then add_vfx. Effects have agent names like explosion/fire, hit/electric, aura/dark, celebrate/confetti: category/element-modifiers. Categories: hit, explosion, aura, projectile, trail, pickup, celebrate, ambient, hazard, magic, heal, dash, spawn, death, weather, fire, smoke. If you can guess the name, call add_vfx directly. Every effect comes from a scanned, safe pack. add_vfx returns one Luau snippet: run it with the Roblox Studio MCP's execute_luau, then play the effect with Juice.play(name, target).`;
 
 const TOOLS = [
 	{
@@ -53,7 +56,7 @@ const TOOLS = [
 	},
 	{
 		name: "find_vfx",
-		description: "Find safe, scanned Roblox VFX packs by what they are for, e.g. 'fire explosion'. Returns only safe packs, with a description, pinned asset ID and version, and scan date. Search is by description, tags, and use cases, not just title, so the agent does not need to review thumbnails.",
+		description: "Find Creator Store VFX by what they are for, e.g. 'fire explosion' or 'electric aura'. Returns up to 5 single effects from safe, scanned packs, each with its agent name (category/element-modifiers) and a one-line description.",
 		inputSchema: {
 			type: "object",
 			properties: { query: { type: "string" } },
@@ -62,11 +65,11 @@ const TOOLS = [
 	},
 	{
 		name: "add_vfx",
-		description: "Lock safe VFX packs into vfx.json. Writes the pinned asset ID and version for each pack, and tells the agent to insert that exact version with the Roblox Studio MCP and strip any scripts. Refuses flagged or unknown packs; it never adds them.",
+		description: "Add effects by agent name, e.g. ['explosion/fire', 'hit/electric']. Checks each pack is unchanged since its scan, adds the Juice runtime if missing, records the effects in vfx.json, and returns one Luau snippet to run with the Roblox Studio MCP's execute_luau. Refuses unknown or changed effects.",
 		inputSchema: {
 			type: "object",
 			properties: {
-				names: { type: "array", items: { type: "string" }, minItems: 1, description: "Safe pack names or asset IDs from find_vfx" },
+				names: { type: "array", items: { type: "string" }, minItems: 1, description: "Agent names from find_vfx" },
 				project_dir: { type: "string", description: "Rojo project root. Defaults to the current directory." },
 			},
 			required: ["names"],
@@ -139,42 +142,37 @@ const HANDLERS = {
 	},
 
 	async find_vfx({ query }) {
-		const safe = await loadSafeIndex();
-		const packs = searchSafeVfx(safe, query).slice(0, 5);
-		if (!safe.packs || safe.packs.length === 0) {
-			return "The safe VFX index is empty. No scan data has landed in safe-vfx.json yet, so no packs can be recommended. Do not invent an asset ID. See DIRECTION.md for the safe VFX data model and scan job.";
-		}
-		if (packs.length === 0) return `Nothing safe matches "${query}". Try a broader description, or call find_vfx with a use case like 'explosion', 'win', or 'damage'.`;
-		return packs.map((p) => [
-			`${p.name}: ${p.description}`,
-			`  Asset ID: ${p.asset_id} (pinned version: ${p.pinned_version})`,
-			`  Scan date: ${p.scan_date || "unknown"} | Tags: ${(p.tags || []).join(", ")} | Use cases: ${(p.use_cases || []).join(", ")}`,
-			`  Insert: check the store page's last-updated time still equals the pinned version (if it changed, don't use it), then insert the asset ID with the Roblox Studio MCP and strip any scripts. Check URL: https://apis.roblox.com/toolbox-service/v1/items/details?assetIds=${p.asset_id} (field asset.updatedUtc).`,
-		].join("\n")).join("\n\n");
+		const index = await loadEffects();
+		const found = searchEffects(index, query);
+		if (found.length === 0) return `Nothing matches "${query}". Try a category (${index.categories.join(", ")}) plus an element, e.g. 'explosion fire'.`;
+		return found.map((e) => `${e.name}: ${e.description} (from "${e.pack}")`).join("\n") + "\n\nAdd with add_vfx(names).";
 	},
 
 	async add_vfx({ names, project_dir }) {
-		const safe = await loadSafeIndex();
-		const safePacks = (safe.packs || []).filter((p) => p.status === "safe");
+		const root = project_dir || process.cwd();
+		const index = await loadEffects();
 		const picked = [];
-		const rejected = [];
+		const refused = [];
 		for (const n of names) {
-			const match = safePacks.find((p) => p.name === n || String(p.asset_id) === String(n));
-			if (match) picked.push(match);
-			else rejected.push(n);
+			const e = index.effects.find((x) => x.name === n);
+			if (!e) { refused.push(`${n} (no such effect; call find_vfx)`); continue; }
+			const now = await storeUpdated(e.asset_id);
+			if (now && !sameTime(now, e.pinned_version)) { refused.push(`${n} (its pack changed after the scan)`); continue; }
+			picked.push(e);
 		}
-		if (picked.length === 0) throw new Error(`no safe packs found for: ${names.join(", ")}. Call find_vfx first. Flagged or unknown packs are never added.`);
-		const r = await writeVfxLock(project_dir || process.cwd(), picked);
+		if (picked.length === 0) throw new Error(`nothing added: ${refused.join("; ")}`);
+		const juice = await install(["juice"], root);
+		const lock = await writeVfxLock(root, picked);
 		const out = [];
-		if (rejected.length) out.push(`Not added (not safe or not found): ${rejected.join(", ")}`, "");
-		if (r.added.length) out.push(`Locked in ${SAFE_VFX_FILE}:`, ...r.added.map((x) => `  ${x}`));
-		if (r.already.length) out.push(`Already locked: ${r.already.join(", ")}`);
-		out.push("", "Next steps for the agent:");
-		for (const p of picked) {
-			out.push(`  - GET https://apis.roblox.com/toolbox-service/v1/items/details?assetIds=${p.asset_id} and check asset.updatedUtc equals ${p.pinned_version}. If it matches, insert asset ${p.asset_id} with the Roblox Studio MCP.`);
+		if (refused.length) out.push(`Not added: ${refused.join("; ")}`);
+		if (juice.added.length) out.push(`Added the Juice runtime: ${juice.added.join(", ")}`);
+		const init = resolve(root, "src/shared/Juice/init.luau");
+		if (existsSync(init) && !(await readFile(init, "utf8")).includes("BaseplateVFX")) {
+			out.push("Your Juice runtime predates store effects. Replace src/shared/Juice/init.luau with the latest (add_component never overwrites it).");
 		}
-		out.push("  - Strip any scripts in the pack before use.");
-		out.push("  - If the last-updated time changed, the pack was edited after the scan: don't use it until it is re-scanned.");
+		out.push(`Locked in ${lock.path}: ${[...lock.added, ...lock.already].join(", ")}`);
+		out.push("", "Run this once with the Roblox Studio MCP's execute_luau (Edit mode):", "```lua", insertSnippet(picked), "```", "", "Then play them:");
+		for (const e of picked) out.push(`  Juice.${e.loops ? "attach" : "play"}("${e.name}", part)${e.loops ? "  -- loops; returns stop()" : ""}`);
 		return out.join("\n");
 	},
 };

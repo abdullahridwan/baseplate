@@ -5,9 +5,12 @@
 --   Juice.sfx("ui_click")             -- no target: plays flat (2D)
 --   local stop = Juice.attach("aura_fire", character)  -- looping effects; call stop() to end
 --   Juice.music("lobby")              -- crossfades to a looping track; Juice.music(nil) stops
--- Call from the client for best results. Effects live in Effects/, sound IDs in Sounds.luau.
+--   Juice.play("explosion/fire", part) -- a Creator Store effect added with add_vfx
+-- Call from the client for best results. Effects live in Effects/, sound IDs in Sounds.luau, and
+-- Creator Store effects in ReplicatedStorage.BaseplateVFX (put there by add_vfx's snippet).
 
 local Debris = game:GetService("Debris")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local SoundService = game:GetService("SoundService")
 local TweenService = game:GetService("TweenService")
 
@@ -49,13 +52,84 @@ local function resolveHost(target: Target): (BasePart?, boolean)
 	return nil, false
 end
 
+-- A Creator Store effect stored by add_vfx, if there is one with this name.
+local function storeEffect(name: string): Instance?
+	local store = ReplicatedStorage:FindFirstChild("BaseplateVFX")
+	return store and store:FindFirstChild(name)
+end
+
 local function loadEffect(name: string): any
 	local module = Effects and Effects:FindFirstChild(name)
-	if not module or not module:IsA("ModuleScript") then
-		warnOnce("vfx:" .. name, "no effect named '" .. name .. "'")
-		return nil
+	if module and module:IsA("ModuleScript") then
+		return require(module)
 	end
-	return require(module)
+	local template = storeEffect(name)
+	if template then
+		return { template = template, loop = template:GetAttribute("Loop") == true }
+	end
+	warnOnce("vfx:" .. name, "no effect named '" .. name .. "'")
+	return nil
+end
+
+-- Clones a store effect onto the host. Attachments keep their offsets; emitters that sat
+-- directly in a Part move onto the new attachment.
+local function cloneStoreEffect(template: Instance, host: BasePart, attachment: Attachment): { ParticleEmitter }
+	local emitters: { ParticleEmitter } = {}
+	local function take(e: Instance)
+		if e:IsA("ParticleEmitter") then
+			table.insert(emitters, e)
+		end
+		for _, d in e:GetDescendants() do
+			if d:IsA("ParticleEmitter") then
+				table.insert(emitters, d)
+			end
+		end
+	end
+	if template:IsA("Attachment") then
+		for _, c in template:GetChildren() do
+			local copy = c:Clone()
+			copy.Parent = attachment
+			take(copy)
+		end
+		attachment.CFrame = template.CFrame
+	else
+		for _, c in template:GetChildren() do
+			if c:IsA("Attachment") then
+				local copy = c:Clone()
+				copy.Name = attachment.Name .. "_" .. c.Name
+				copy.Parent = host
+				take(copy)
+			elseif c:IsA("ParticleEmitter") then
+				local copy = c:Clone()
+				copy.Parent = attachment
+				take(copy)
+			end
+		end
+	end
+	return emitters
+end
+
+-- Fires a store effect's emitters: bursts by their EmitCount/EmitDelay attributes, the rest keep running.
+local function playStoreEmitters(emitters: { ParticleEmitter }): number
+	local longest = 0
+	for _, emitter in emitters do
+		local count = emitter:GetAttribute("EmitCount")
+		local delay = emitter:GetAttribute("EmitDelay") or 0
+		if count then
+			emitter.Enabled = false
+			if delay > 0 then
+				task.delay(delay, function()
+					if emitter.Parent then
+						emitter:Emit(count)
+					end
+				end)
+			else
+				emitter:Emit(count)
+			end
+		end
+		longest = math.max(longest, delay + emitter.Lifetime.Max)
+	end
+	return longest
 end
 
 -- Builds the effect on the target. Burst emitters fire once; `rate` emitters keep running until stop() is called.
@@ -73,6 +147,23 @@ local function spawnEffect(name: string, target: Target): (() -> ())?
 	local attachment = Instance.new("Attachment")
 	attachment.Name = "Juice_" .. name
 	attachment.Parent = host
+
+	if definition.template then
+		local emitters = cloneStoreEffect(definition.template, host, attachment)
+		local longest = playStoreEmitters(emitters)
+		local stopped = false
+		return function()
+			if stopped then
+				return
+			end
+			stopped = true
+			for _, emitter in emitters do
+				emitter.Enabled = false
+				Debris:AddItem(emitter.Parent == host and emitter or emitter.Parent :: Instance, longest + 0.5)
+			end
+			Debris:AddItem(if temporary then host else attachment, longest + 0.5)
+		end
+	end
 
 	-- `surface` effects (auras) sit on the part itself so particles come from its whole volume
 	local emitterParent: Instance = if definition.surface then host else attachment
@@ -192,7 +283,7 @@ function Juice.sfx(name: string, target: Target?)
 end
 
 function Juice.play(name: string, target: Target?)
-	if target and Effects and Effects:FindFirstChild(name) then
+	if target and (Effects and Effects:FindFirstChild(name) or storeEffect(name)) then
 		Juice.vfx(name, target)
 	end
 	Juice.sfx(name, target)

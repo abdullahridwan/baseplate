@@ -9,9 +9,10 @@ These rules come from measuring the 40 most-voted free, script-free VFX packs on
 Creator Store (755 particle emitters and 123 beams, read on 2026-10-29). The numbers in
 brackets are how often popular packs do it.
 
-**Before you build anything:** call `find_vfx` from the Baseplate MCP. If a safe, pinned
-pack already fits, add it with `add_vfx` and tune it with the rules below. Build from
-scratch only when nothing fits.
+**Before you build anything:** call `find_vfx` from the Baseplate MCP. It returns single
+effects from safe, scanned Creator Store packs by agent name (`explosion/fire`,
+`hit/slash`, `aura/electric`). If one fits, add it with `add_vfx` and play it with
+`Juice.play(name, part)`. Build from scratch only when nothing fits, using the rules below.
 
 ## 1. One effect is a stack of layers, not one emitter
 
