@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Baseplate: better Roblox games with AI</title>
-<meta name="description" content="Your AI builds better Roblox games, faster and cheaper. 600 safe Creator Store effects plus our own effects and sounds, each with a name your agent understands.">
+<meta name="description" content="Your AI builds better Roblox games, faster and cheaper. 600 safety-scanned Creator Store effects, each with a name and description your agent understands.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 :root{--blue:#1F4BFF;--ink:#111111;--stone:#55534E;--seam:#E6E3DB;--plate:#F4F2EC;--mist:#F7F7F5;--white:#FFFFFF}
@@ -103,7 +103,7 @@ footer{margin-top:64px;padding:48px 0 32px}
     </a>
     <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
     <nav id="main-nav" aria-label="Main">
-      <a href="components/">Components</a>
+      <a href="components/">Effects</a>
       <a href="vfx-report.html">VFX report</a>
       <a href="#connect">Connect</a>
     </nav>
@@ -114,7 +114,7 @@ footer{margin-top:64px;padding:48px 0 32px}
   <section class="hero">
     <div class="wrap">
       <h1><span class="rise" style="--d:0.00s">Your</span> <span class="rise" style="--d:0.06s">AI</span> <span class="rise" style="--d:0.12s">builds</span> <span class="rise accent" style="--d:0.18s">better</span> <span class="rise" style="--d:0.24s">Roblox</span> <span class="rise" style="--d:0.30s">games,</span> <span class="rise" style="--d:0.36s">faster</span> <span class="rise" style="--d:0.42s">and</span> <span class="rise" style="--d:0.48s">cheaper.</span></h1>
-      <p class="lead fade-up" style="--d:0.55s">Baseplate gives your AI 600 safety-scanned Creator Store effects plus our own effects and sounds, each with a plain name like <code>explosion/fire</code>. One search finds the right one, instead of hunting through thumbnails, so you spend fewer tokens, less money, and less time.</p>
+      <p class="lead fade-up" style="--d:0.55s">Baseplate scans free Creator Store effect packs, splits them into 600 single effects, and gives each one a plain name like <code>explosion/fire</code> and a description your AI can read. One search finds the right one, instead of hunting through thumbnails, so you spend fewer tokens, less money, and less time.</p>
       <div class="ctas fade-up" style="--d:0.7s">
         <a class="btn blue" href="#connect">Add Baseplate to your AI</a>
         <a class="btn ghost" href="#example">See an example</a>
@@ -136,7 +136,7 @@ footer{margin-top:64px;padding:48px 0 32px}
       <div class="grid">
         <div class="card"><span class="num">01</span><p><b>Your agent connects</b></p><p>Your agent connects once, with one line. You do not set anything up for it.</p></div>
         <div class="card"><span class="num">02</span><p><b>Your agent finds it</b></p><p>Your agent searches in plain words and gets back at most five short answers, each with a name like <code>celebrate/confetti</code> or <code>hit/slash</code> and a one-line description. No thumbnails, no guessing.</p></div>
-        <div class="card"><span class="num">03</span><p><b>Your agent adds it</b></p><p>Creator Store effects go in through the Roblox Studio MCP, checked against the scan and pinned in <code>vfx.json</code>. Our own effects and sounds are copied in as files you own (sounds need a one-time upload to Roblox). Then one line plays it: <code>Juice.play("explosion/fire", part)</code>.</p></div>
+        <div class="card"><span class="num">03</span><p><b>Your agent adds it</b></p><p>Your agent adds the single effect through the Roblox Studio MCP, checked against the scan and pinned in <code>vfx.json</code>, with any scripts removed. Then one line plays it: <code>Juice.play("explosion/fire", part)</code>.</p></div>
       </div>
     </div>
   </section>
@@ -150,7 +150,7 @@ footer{margin-top:64px;padding:48px 0 32px}
       <div class="copybox">
         <p style="margin:0 0 12px;color:var(--ink)"><b>You:</b> Add an explosion when the rocket hits something.</p>
         <p style="margin:0;color:var(--ink)"><b>Your AI:</b> Searched for "fire explosion", picked <code>explosion/fire</code>, a scanned Creator Store effect, added it in one call, and wired up <code>Juice.play("explosion/fire", rocket)</code>. No thumbnail review, no extra tokens spent hunting for it.</p>
-        <p style="margin-top:16px"><a href="components/">Browse all effects and sounds</a>, including the 600 Creator Store effects, if you want to see what else is in the library, and <a href="vfx-report.html">read how scanned packs are checked</a>.</p>
+        <p style="margin-top:16px"><a href="components/">Browse all 600 effects</a> with their names and metadata, and <a href="vfx-report.html">read how scanned packs are checked</a>.</p>
       </div>
     </div>
   </section>
@@ -195,12 +195,12 @@ args = ["-y", "baseplate-cli", "mcp"]</pre>
           <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#1F4BFF"><circle cx="30" cy="70" r="17"/><circle cx="70" cy="70" r="17"/></g><g fill="none" stroke="#111111" stroke-width="11"><circle cx="30" cy="30" r="11.5"/><circle cx="70" cy="30" r="11.5"/></g></svg>
           baseplate
         </a>
-        <p>The component library for Roblox. VFX and sounds your agent can use safely.</p>
+        <p>Safe Creator Store effects your AI can find by name.</p>
       </div>
       <div>
         <h4>Product</h4>
         <ul>
-          <li><a href="components/">Components</a></li>
+          <li><a href="components/">Effects</a></li>
           <li><a href="vfx-report.html">VFX report</a></li>
           <li><a href="#connect">Connect your agent</a></li>
         </ul>
@@ -208,7 +208,7 @@ args = ["-y", "baseplate-cli", "mcp"]</pre>
       <div>
         <h4>Resources</h4>
         <ul>
-          <li><a href="components/">All components</a></li>
+          <li><a href="components/">All effects</a></li>
         </ul>
       </div>
     </div>

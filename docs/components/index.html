@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Components · Baseplate</title>
-<meta name="description" content="VFX and sounds for Roblox games. Copy them into your project and own them.">
+<title>Effects · Baseplate</title>
+<meta name="description" content="600 safety-scanned Creator Store effects, each with an agent name and description so your AI finds the right one in one search.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,6 +117,32 @@ code{font-family:var(--mono);font-size:.86em;background:var(--plate);padding:2px
   .stage{height:280px}
   h1{font-size:30px}
 }
+
+/* store effects */
+.card .thumb{height:150px;background:var(--plate);display:grid;place-items:center}
+.card .thumb img{width:100%;height:100%;object-fit:cover}
+.card .meta span{display:block;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.chip{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--plate);color:var(--stone)}
+.chip.cat{background:#E8EDFF;color:var(--stud-blue-deep)}
+.sw{display:inline-block;width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);vertical-align:-1px;margin-right:3px}
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 20px}
+.cats button{border:0;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:500;background:var(--plate);color:var(--stone)}
+.cats button.on{background:var(--ink);color:var(--white)}
+.count{font-size:14px;color:var(--stone);margin:0 0 16px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 8px}
+.vs > div{border-radius:14px;box-shadow:0 0 0 1px var(--seam);padding:18px}
+.vs .ours{box-shadow:0 0 0 2px var(--stud-blue)}
+.vs h3{margin:0 0 12px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--stone)}
+.vs .ours h3{color:var(--stud-blue)}
+.vs img{width:100%;max-width:220px;aspect-ratio:1;border-radius:10px;background:var(--plate);display:block;margin-bottom:12px}
+.vs p{font-size:14px;color:var(--stone);margin:0 0 8px}
+.vs .big{font-family:var(--mono);font-size:20px;color:var(--ink);margin:0 0 8px;word-break:break-all}
+table.meta{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 8px}
+table.meta td{padding:9px 0;border-bottom:1px solid var(--seam);vertical-align:top}
+table.meta td:first-child{color:var(--stone);width:170px;padding-right:16px}
+.ok{color:#137333;font-weight:600}
+@media (max-width:860px){.vs{grid-template-columns:1fr}table.meta td:first-child{width:120px}}
 </style>
 </head>
 <body>
@@ -129,14 +155,14 @@ code{font-family:var(--mono);font-size:.86em;background:var(--plate);padding:2px
     </a>
     <nav aria-label="Main">
       <a href="../">Home</a>
-      <a class="on" href="./">Components</a>
+      <a class="on" href="./">Effects</a>
     </nav>
     <button class="menu" id="menu" aria-expanded="false" aria-controls="side">Menu</button>
   </div>
 </header>
 
 <div class="layout">
-  <aside class="side" id="side" aria-label="Components"></aside>
+  <aside class="side" id="side" aria-label="Effects"></aside>
   <main id="main"><p class="lead">Loading…</p></main>
 </div>
 
@@ -144,18 +170,31 @@ code{font-family:var(--mono);font-size:.86em;background:var(--plate);padding:2px
 const REGISTRY = "../r/";
 const ICON_COPY = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
 const ICON_CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>';
-const ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-const ICON_WAVE = '<svg viewBox="0 0 48 48"><path d="M4 24h4M12 16v16M18 10v28M24 18v12M30 6v36M36 14v20M42 22v4"/></svg>';
+const COLORS = { white: "#F4F4F4", red: "#E5383B", blue: "#2F6BFF", orange: "#FF8A1F", black: "#1A1A1A", grey: "#8E8E8E", yellow: "#FFD43B", green: "#2FBF5B", purple: "#8B4DFF", cyan: "#22D3EE", pink: "#FF6FB5" };
+const CAT_INFO = {
+  hit: "Impacts, slashes and punches", explosion: "Bursts and blasts", aura: "Glows that stay on a character", projectile: "Things that fly",
+  trail: "Streaks behind movement", pickup: "Coins, gems and collectibles", celebrate: "Wins, confetti and fireworks", ambient: "Background atmosphere",
+  hazard: "Lava, acid and danger zones", magic: "Spells, portals and runes", heal: "Healing and buffs", dash: "Speed and dashes",
+  spawn: "Appear and teleport", death: "Defeat and disappear", weather: "Rain, snow and wind", fire: "Flames and burning", smoke: "Smoke and dust",
+};
 
-let index = null;
+let data = null, effects = [], byName = new Map(), packCount = new Map();
 const $ = (s) => document.querySelector(s);
-const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const thumb = (e) => `${REGISTRY}vfx-thumbs/${e.asset_id}.png`;
+const storeUrl = (e) => `https://create.roblox.com/store/asset/${e.asset_id}`;
+const kindLabel = (e) => (e.loops ? "loop" : "burst");
+const swatches = (e) => e.colors.map((c) => `<span class="sw" style="background:${COLORS[c] || "#ccc"}" title="${c}"></span>`).join("");
+const usage = (e) => e.loops
+  ? `local stop = Juice.attach("${e.name}", part) -- stays on\n-- later:\nstop()`
+  : `Juice.play("${e.name}", part) -- a BasePart, Model or Vector3`;
+const findLine = (e) => `${e.name}: ${e.description} (from "${e.pack}")`;
 
-/* ---------- Luau highlighting (just enough for our files) ---------- */
+/* ---------- Luau highlighting (just enough for our snippets) ---------- */
 function highlight(src, lang) {
-  if (lang === "sh") return esc(src).replace(/^(npx|baseplate|claude)/gm, '<span class="f">$1</span>');
+  if (lang === "sh") return esc(src).replace(/^(npx|claude)/gm, '<span class="f">$1</span>');
   if (lang === "text") return esc(src);
-  const re = /(--[^\n]*)|("(?:[^"\\]|\\.)*")|\b(local|function|return|end|if|then|else|elseif|for|in|do|while|not|and|or|nil|true|false)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Z][A-Za-z0-9]+)(?=\.)/g;
+  const re = /(--[^\n]*)|("(?:[^"\\]|\\.)*")|\b(local|function|return|end|if|then|else|for|in|do|not|and|or|nil|true|false)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Z][A-Za-z0-9]+)(?=\.)/g;
   let out = "", last = 0, m;
   while ((m = re.exec(src))) {
     out += esc(src.slice(last, m.index));
@@ -165,13 +204,12 @@ function highlight(src, lang) {
   }
   return out + esc(src.slice(last));
 }
-
+const codeStore = {};
 function codeBlock(src, lang = "lua") {
   const id = "c" + Math.random().toString(36).slice(2);
   codeStore[id] = src;
   return `<div class="code"><pre>${highlight(src, lang)}</pre><button class="copy" data-copy="${id}" aria-label="Copy">${ICON_COPY}</button></div>`;
 }
-const codeStore = {};
 document.addEventListener("click", async (e) => {
   const btn = e.target.closest("[data-copy]");
   if (!btn) return;
@@ -180,205 +218,110 @@ document.addEventListener("click", async (e) => {
   setTimeout(() => (btn.innerHTML = ICON_COPY), 1400);
 });
 
-function tabs(panels) {
-  const id = "t" + Math.random().toString(36).slice(2);
-  const heads = panels.map((p, i) => `<button role="tab" aria-selected="${i === 0}" data-tabs="${id}" data-i="${i}">${p.label}</button>`).join("");
-  const bodies = panels.map((p, i) => `<div role="tabpanel" data-panel="${id}" ${i ? "hidden" : ""}>${p.html}</div>`).join("");
-  return `<div class="tabs" role="tablist">${heads}</div>${bodies}`;
-}
-document.addEventListener("click", (e) => {
-  const b = e.target.closest("[data-tabs]");
-  if (!b) return;
-  document.querySelectorAll(`[data-tabs="${b.dataset.tabs}"]`).forEach((x) => x.setAttribute("aria-selected", x === b));
-  document.querySelectorAll(`[data-panel="${b.dataset.tabs}"]`).forEach((p, i) => (p.hidden = String(i) !== b.dataset.i));
-  window.dispatchEvent(new Event("resize"));
-});
-
-/* ---------- particle preview ----------
-   Animates each effect's "preview" block from r/index.json: the same numbers
-   gen_vfx.py writes into the Luau file, drawn in 2D. Units are studs. */
-const rand = (a, b) => a + Math.random() * (b - a);
-const curve = (pts, t) => {
-  for (let i = 1; i < pts.length; i++) if (t <= pts[i][0]) {
-    const [t0, v0] = pts[i - 1], [t1, v1] = pts[i];
-    return v0 + (v1 - v0) * ((t - t0) / (t1 - t0 || 1));
-  }
-  return pts[pts.length - 1][1];
-};
-const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-const gradAt = (stops, t) => {
-  if (stops.length === 1) return hex(stops[0]);
-  const x = Math.min(Math.max(t, 0), 1) * (stops.length - 1), i = Math.min(Math.floor(x), stops.length - 2);
-  const a = hex(stops[i]), b = hex(stops[i + 1]);
-  return a.map((v, k) => Math.round(v + (b[k] - v) * (x - i)));
-};
-// 2D stand-ins for EmissionDirection: Front/Back/Left/Right all read as sideways
-const DIRS = { Top: Math.PI / 2, Bottom: -Math.PI / 2, Front: 0, Right: 0, Back: Math.PI, Left: Math.PI };
-
-class Preview {
-  constructor(canvas, item, { scale = 1 } = {}) {
-    this.c = canvas; this.ctx = canvas.getContext("2d"); this.spec = item.preview;
-    this.scale = scale; this.parts = []; this.t = 0; this.flash = 0; this.alive = true;
-    this.carry = this.spec.emitters.map(() => 0);
-    // replay shortly after the longest particle dies, so quick effects don't leave a long empty gap
-    this.period = Math.max(...this.spec.emitters.map((e) => e.life[1])) + 0.35;
-    this.burst();
-    this.last = performance.now();
-    const tick = (now) => {
-      if (!this.alive || !this.c.isConnected) return;
-      const dt = Math.max(0, Math.min((now - this.last) / 1000, 0.05)); this.last = now; // rAF's first timestamp can predate performance.now()
-      if (this.paused) { requestAnimationFrame(tick); return; }
-      this.t += dt;
-      if (!this.spec.loop && this.t > this.period) this.replay();
-      this.spec.emitters.forEach((e, i) => {
-        if (!e.rate) return;
-        this.carry[i] += e.rate * dt;
-        for (; this.carry[i] >= 1; this.carry[i]--) this.spawn(e);
-      });
-      this.step(dt); this.draw();
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-  spawn(e) {
-    const spread = e.spread * Math.PI / 180;
-    const a = e.spread >= 180 ? rand(0, Math.PI * 2) : DIRS[e.direction] + rand(-1, 1) * spread;
-    const sp = rand(...e.speed);
-    this.parts.push({
-      // surface effects come from the whole part (a 2x2 stud root part), not its centre
-      e, x: this.spec.surface ? rand(-1, 1) : 0, y: this.spec.surface ? rand(-1, 1) : 0, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, age: 0, life: rand(...e.life),
-      rot: rand(0, Math.PI * 2), vr: e.spin ? rand(-Math.PI, Math.PI) : 0,
-    });
-  }
-  burst() {
-    for (const e of this.spec.emitters) {
-      if (!e.emit) continue;
-      const fire = () => { for (let i = 0; i < e.emit; i++) this.spawn(e); };
-      // staggered layers (smoke after the flash), same as Juice in game
-      if (e.delay) setTimeout(fire, e.delay * 1000); else fire();
-    }
-    this.flash = this.spec.light ? 1 : 0;
-  }
-  replay() { this.t = 0; this.burst(); }
-  step(dt) {
-    for (const p of this.parts) {
-      const drag = Math.exp(-p.e.drag * dt);
-      p.vx *= drag; p.vy *= drag; p.vy += p.e.acc * dt;
-      p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt; p.age += dt;
-    }
-    this.parts = this.parts.filter((p) => p.age < p.life);
-    this.flash = Math.max(0, this.flash - dt * 2.5);
-  }
-  draw() {
-    const { c, ctx } = this, dpr = window.devicePixelRatio || 1;
-    const w = c.clientWidth, h = c.clientHeight;
-    if (c.width !== Math.round(w * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, w, h);
-    const px = Math.min(w, h) / 15 * this.scale; // pixels per stud
-    // effects that shoot upward start lower so the whole column stays in frame
-    const rising = this.spec.emitters.some((e) => e.direction === "Top" && e.spread < 45 && e.speed[1] > 3);
-    const cx = w / 2, cy = h * (rising ? 0.86 : 0.58);
-
-    const glowAmt = this.spec.light ? (this.spec.loop ? 0.18 + Math.random() * 0.04 : this.flash * 0.35) : 0;
-    if (glowAmt > 0.01) {
-      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(w, h) * 0.6);
-      g.addColorStop(0, `rgba(${hex(this.spec.light)},${glowAmt.toFixed(3)})`);
-      g.addColorStop(1, `rgba(${hex(this.spec.light)},0)`);
-      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
-    }
-
-    for (const p of [...this.parts].sort((a, b) => (a.e.z || 0) - (b.e.z || 0))) {
-      const e = p.e, t = p.age / p.life;
-      const size = curve(e.size, t) * px, alpha = curve(e.alpha, t);
-      if (size <= 0.2 || alpha <= 0.002) continue;
-      const rgb = gradAt(e.color, t);
-      const rgba = (a) => `rgba(${rgb},${a.toFixed(3)})`;
-      ctx.globalCompositeOperation = e.add ? "lighter" : "source-over";
-      ctx.save(); ctx.translate(cx + p.x * px, cy - p.y * px);
-      if (e.ring) {
-        ctx.scale(1, 0.32); ctx.strokeStyle = rgba(alpha); ctx.lineWidth = Math.max(2, size * 0.06);
-        ctx.beginPath(); ctx.arc(0, 0, size / 2, 0, Math.PI * 2); ctx.stroke();
-      } else if (e.streak) {
-        const len = size * (1 + e.streak * Math.hypot(p.vx, p.vy) / 12);
-        ctx.rotate(Math.atan2(-p.vy, p.vx)); ctx.fillStyle = rgba(alpha);
-        ctx.beginPath(); ctx.ellipse(0, 0, len / 2, size / 4, 0, 0, Math.PI * 2); ctx.fill();
-      } else {
-        const soft = e.texture !== "spark" || (e.emit === 1 && e.speed[1] === 0);
-        const g = ctx.createRadialGradient(0, 0, 0, 0, 0, size / 2);
-        g.addColorStop(0, rgba(alpha)); g.addColorStop(soft ? 0.35 : 0.2, rgba(alpha * (soft ? 0.5 : 0.6))); g.addColorStop(1, rgba(0));
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, size / 2, 0, Math.PI * 2); ctx.fill();
-        if (!soft) { // the sparkle texture's star cross
-          ctx.rotate(p.rot); ctx.fillStyle = rgba(alpha);
-          ctx.fillRect(-size * 0.6, -size * 0.04, size * 1.2, size * 0.08);
-          ctx.fillRect(-size * 0.04, -size * 0.6, size * 0.08, size * 1.2);
-        }
-      }
-      ctx.restore();
-    }
-    ctx.globalCompositeOperation = "source-over";
-  }
-}
-let previews = [];
-// only animate thumbnails that are on screen
-const thumbs = new IntersectionObserver((entries) => entries.forEach((en) => { if (en.target._preview) en.target._preview.paused = !en.isIntersecting; }));
-const stopPreviews = () => { previews.forEach((p) => (p.alive = false)); previews = []; };
-
-/* ---------- sound preview ---------- */
-let audioCtx = null;
-const buffers = {};
-async function playSound(name) {
-  audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
-  if (!buffers[name]) {
-    const data = await (await fetch(`${REGISTRY}sfx/${name}.ogg`)).arrayBuffer();
-    buffers[name] = await audioCtx.decodeAudioData(data);
-  }
-  const src = audioCtx.createBufferSource();
-  src.buffer = buffers[name]; src.connect(audioCtx.destination); src.start();
-}
-
 /* ---------- pages ---------- */
-const byKind = (k) => index.items.filter((i) => i.kind === k);
-const label = { vfx: "Effects", sfx: "Sounds" };
-const GAME_TAGS = ["obby", "tycoon", "simulator", "core"]; // left over from recipes, not shown
-// [[category, items]] in catalog order
-const categories = (k) => {
-  const groups = new Map();
-  for (const i of byKind(k)) groups.set(i.category, [...(groups.get(i.category) || []), i]);
-  return [...groups];
-};
-const findItem = (kind, name) => index.items.find((i) => i.kind === kind && i.name === name);
-const route = () => location.hash.replace(/^#\/?/, "") || "intro";
+const route = () => decodeURIComponent(location.hash.replace(/^#\/?/, "")) || "all";
 
 function sidebar() {
   const r = route();
   const link = (href, text) => `<li><a href="#/${href}" class="${r === href ? "on" : ""}">${text}</a></li>`;
+  const count = (c) => effects.filter((e) => e.category === c).length;
   $("#side").innerHTML =
-    `<h4>Getting started</h4><ul>${link("intro", "Introduction")}${link("installation", "Installation")}${link("all", "All components")}${link("store", "Creator Store effects")}</ul>` +
-    ["vfx", "sfx"].map((k) => `<h4>${label[k]}</h4>` + categories(k).map(([cat, items]) =>
-      `<h5>${cat}</h5><ul>${items.map((i) => link(`${k}/${i.name}`, i.name)).join("")}</ul>`).join("")).join("");
+    `<h4>Getting started</h4><ul>${link("intro", "Introduction")}${link("installation", "Installation")}${link("all", `All effects (${effects.length})`)}</ul>` +
+    `<h4>Categories</h4><ul>${data.categories.filter(count).map((c) => link(`c/${c}`, `${c} <span style="color:var(--stone-light)">${count(c)}</span>`)).join("")}</ul>`;
+}
+
+function card(e) {
+  return `<a class="card" href="#/e/${e.name}" data-search="${esc([e.name, e.description, e.pack, e.category, ...e.colors, ...e.layers].join(" ").toLowerCase())}">
+    <div class="thumb"><img src="${thumb(e)}" alt="" loading="lazy" width="150" height="150"></div>
+    <div class="meta"><b>${esc(e.name)}</b><span>${esc(e.description.replace(/ Source: .*$/, ""))}</span>
+      <div class="chips"><span class="chip cat">${e.category}</span><span class="chip">${kindLabel(e)}</span><span class="chip">${e.size}</span><span class="chip">${swatches(e)}</span></div>
+      <small>From "${esc(e.pack)}"</small></div></a>`;
+}
+
+function listPage(cat) {
+  const list = cat ? effects.filter((e) => e.category === cat) : effects;
+  return `
+    <div class="crumb">Effects${cat ? " / " + cat : ""}</div>
+    <h1>${cat ? cat : "All effects"}</h1>
+    <p class="lead">${cat ? `${CAT_INFO[cat] || ""}. ` : ""}${list.length} effects from free Creator Store packs that passed our safety scan. Baseplate split each pack into single effects and gave every one an agent name and a plain description, so your AI finds the right one in one search.</p>
+    <input class="filter" id="filter" type="search" placeholder="Filter: fire, confetti, portal, blue, loop…" aria-label="Filter effects">
+    <p class="count" id="count">${list.length} effects</p>
+    <div class="grid">${list.map(card).join("")}</div>`;
+}
+
+function effectPage(name) {
+  const e = byName.get(name);
+  if (!e) return `<h1>Not found</h1><p>No effect named <code>${esc(name)}</code>. <a href="#/all" style="text-decoration:underline">See all effects</a>.</p>`;
+  const siblings = effects.filter((x) => x.asset_id === e.asset_id && x !== e);
+  const dur = e.duration ? `about ${e.duration}s${e.loops ? " per cycle" : ""}` : "unknown";
+  return `
+    <div class="crumb"><a href="#/c/${e.category}">${e.category}</a> / ${esc(e.name)}</div>
+    <h1 style="font-family:var(--mono);letter-spacing:-.02em">${esc(e.name)}</h1>
+    <p class="lead">${esc(e.description.replace(/ Source: .*$/, ""))}</p>
+
+    <div class="vs">
+      <div>
+        <h3>On the Creator Store</h3>
+        <img src="${thumb(e)}" alt="Creator Store thumbnail for ${esc(e.pack)}">
+        <p><b style="color:var(--ink)">${esc(e.pack)}</b></p>
+        <p>One thumbnail for the whole pack${packCount.get(e.asset_id) > 1 ? `, which holds ${packCount.get(e.asset_id)} usable effects` : ""}. No description of what each effect looks like or where it is inside.</p>
+        <p><a href="${storeUrl(e)}" target="_blank" rel="noopener" style="text-decoration:underline">View on the Creator Store</a></p>
+      </div>
+      <div class="ours">
+        <h3>In Baseplate</h3>
+        <p class="big">${esc(e.name)}</p>
+        <p>${esc(e.description)}</p>
+        <div class="chips" style="margin-bottom:12px"><span class="chip cat">${e.category}</span><span class="chip">${kindLabel(e)}</span><span class="chip">${e.size}</span>${e.layers.map((l) => `<span class="chip">${l}</span>`).join("")}</div>
+        <p>Your AI gets this single effect, not the whole pack, and plays it by name.</p>
+      </div>
+    </div>
+
+    <h2>Metadata</h2>
+    <table class="meta">
+      <tr><td>Agent name</td><td><code>${esc(e.name)}</code></td></tr>
+      <tr><td>Category</td><td><a href="#/c/${e.category}" style="text-decoration:underline">${e.category}</a></td></tr>
+      <tr><td>Element</td><td>${esc(e.element)}</td></tr>
+      <tr><td>Type</td><td>${e.loops ? "Loop: stays on until you stop it" : "Burst: plays once"}</td></tr>
+      <tr><td>Length</td><td>${dur}</td></tr>
+      <tr><td>Size</td><td>${e.size}</td></tr>
+      <tr><td>Colors</td><td>${e.colors.map((c) => `<span class="sw" style="background:${COLORS[c] || "#ccc"}"></span>${c}`).join(", ")}</td></tr>
+      <tr><td>Layers</td><td>${e.layers.join(", ")}</td></tr>
+      <tr><td>Particle emitters</td><td>${e.emitters}${e.fire.length ? ` (${e.fire.map((f) => `${esc(f.emitter)} ×${f.emit}`).join(", ")})` : ""}</td></tr>
+      <tr><td>Safety scan</td><td><span class="ok">Passed</span>: checked for scripts and hidden code before listing. Any scripts are removed when it is added. <a href="../vfx-report.html" style="text-decoration:underline">How</a></td></tr>
+      <tr><td>Pinned version</td><td>${e.pinned_version.slice(0, 10)}. <code>add_vfx</code> refuses the effect if the pack changes after this.</td></tr>
+      <tr><td>Source pack</td><td><a href="${storeUrl(e)}" target="_blank" rel="noopener" style="text-decoration:underline">${esc(e.pack)}</a>, asset ${e.asset_id}${e.votes ? `, ${e.votes} votes` : ""}</td></tr>
+      <tr><td>Path in pack</td><td><code>${esc(e.path)}</code></td></tr>
+    </table>
+
+    <h2>What your AI sees</h2>
+    <p>One line from <code>find_vfx</code>, instead of a page of thumbnails:</p>
+    ${codeBlock(findLine(e), "text")}
+
+    <h2>Add it</h2>
+    <p>Ask your AI (with Baseplate connected, see <a href="#/installation" style="text-decoration:underline">Installation</a>):</p>
+    ${codeBlock(`Use baseplate to add ${e.name}`, "text")}
+    <p>It calls <code>add_vfx</code>, which checks the pack is unchanged, records it in <code>vfx.json</code>, and gives your AI one snippet to run through the Roblox Studio MCP.</p>
+
+    <h2>Use it</h2>
+    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)\n\n${usage(e)}`)}
+    ${siblings.length ? `<h2>More from this pack</h2><div class="grid">${siblings.slice(0, 6).map(card).join("")}</div>` : ""}`;
 }
 
 function introPage() {
   return `
     <div class="crumb">Docs</div>
     <h1>Introduction</h1>
-    <p class="lead">Effects and sounds for Roblox games, ready for a v0. This isn't a package you install. You copy the files into your game and they're yours to change.</p>
-    <p>Every Roblox game needs juice: a sparkle when you grab a coin, a click when you press a button, music that isn't silence. The usual options are community assets of mixed quality and unclear licenses, or building it all yourself. Baseplate gives you one consistent set that your AI agent can add in seconds.</p>
-    <h3>How it's different</h3>
+    <p class="lead">The Creator Store has thousands of free effect packs, but each one is a single thumbnail and a vague title. An AI can't see thumbnails, and dropping in a whole pack to find one effect wastes tokens and can bring in hidden scripts.</p>
+    <h3>What Baseplate adds</h3>
     <ul>
-      <li><b>You own the code.</b> Effects are plain Luau files with the particle settings spelled out. Tweak anything.</li>
-      <li><b>Nothing shared to break.</b> Sounds are uploaded to your own Roblox account, so nobody can delete them out from under your game.</li>
-      <li><b>Clean licenses.</b> Every sound is original and CC0. Effects and code are MIT.</li>
-      <li><b>Plus 600 Creator Store effects.</b> Free packs that passed our safety scan, split into single effects with agent names like <code>explosion/fire</code>. <a href="#/store" style="text-decoration:underline">Browse them</a>.</li>
-      <li><b>Agent-native.</b> One file, <code>r/index.json</code>, describes everything. Point any agent at it.</li>
+      <li><b>Safety scan.</b> Every pack is checked for scripts and hidden code. Only packs that pass are listed.</li>
+      <li><b>Single effects.</b> Each pack is split into the effects inside it, ${effects.length} in all.</li>
+      <li><b>Agent names.</b> Every effect gets a name like <code>explosion/fire</code> or <code>celebrate/confetti</code>: category, then what it is. Names never change.</li>
+      <li><b>Descriptions.</b> Colors, layers, length, size and whether it loops, read from the effect's own settings.</li>
+      <li><b>Pinned versions.</b> If a pack is changed on the store, Baseplate refuses it until it's scanned again.</li>
     </ul>
     <h3>Use it</h3>
-    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)
-
-Juice.play("coin_pickup", coinPart) -- effect + sound together
-Juice.vfx("explosion", Vector3.new(0, 5, 0))
-Juice.sfx("ui_click") -- no target: plays flat (2D)`)}
+    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)\n\nJuice.play("explosion/fire", part)\nlocal stop = Juice.attach("hazard/lava", lavaPart)`)}
     <div class="pager"><span></span><a href="#/installation">Installation →</a></div>`;
 }
 
@@ -386,133 +329,40 @@ function installPage() {
   return `
     <div class="crumb">Docs</div>
     <h1>Installation</h1>
-    <p class="lead">Works with any Rojo project.</p>
-    <h3>With your AI agent</h3>
-    <p>Connect Baseplate once (<a href="../#connect" style="text-decoration:underline">other agents</a>):</p>
+    <p class="lead">Connect Baseplate to your AI once. You also need the Roblox Studio MCP, so your AI can put effects into your game.</p>
+    <h3>1. Connect</h3>
     ${codeBlock("claude mcp add baseplate -- npx -y baseplate-cli mcp", "sh")}
-    <p>Then ask for what you need:</p>
-    ${codeBlock("Use baseplate to add coin_pickup and confetti", "text")}
-    <h3>With the CLI</h3>
-    <p>From your project root (next to <code>default.project.json</code>):</p>
-    ${codeBlock("npx baseplate-cli add coin_pickup confetti", "sh")}
-    <p>See everything with <code>npx baseplate-cli list</code>.</p>
-    <h3>What gets added</h3>
-    ${codeBlock(`src/shared/Juice/init.luau          the runtime (once)
-src/shared/Juice/Sounds.luau        your sound IDs (once)
-src/shared/Juice/Effects/<name>.luau one per effect
-assets/sfx/<name>.ogg               one per sound, for you to upload`, "text")}
-    <h3>Sounds: one step from you</h3>
-    <p>Roblox only plays audio that's been uploaded as an asset. For each sound:</p>
+    <p>Using Codex, Cursor or another agent? <a href="../#connect" style="text-decoration:underline">See the setup for each</a>.</p>
+    <h3>2. Ask</h3>
+    ${codeBlock("Use baseplate to add an explosion when the rocket hits", "text")}
+    <h3>3. What your AI does</h3>
     <ol>
-      <li>Upload <code>assets/sfx/&lt;name&gt;.ogg</code> at <a href="https://create.roblox.com/dashboard/creations" style="text-decoration:underline">Creator Hub</a> (Upload asset → Audio).</li>
-      <li>Paste the asset ID into its <code>id = ""</code> in <code>Sounds.luau</code>.</li>
+      <li><code>find_vfx("fire explosion")</code> returns up to five agent names with descriptions.</li>
+      <li><code>add_vfx(["explosion/fire"])</code> checks the pack is unchanged, adds the Juice runtime, records it in <code>vfx.json</code>, and returns one snippet.</li>
+      <li>Your AI runs the snippet once through the Roblox Studio MCP. The effect is stored in <code>ReplicatedStorage.BaseplateVFX</code>, with any scripts removed.</li>
+      <li>Your game plays it with <code>Juice.play("explosion/fire", part)</code>.</li>
     </ol>
-    <p>Until then, Juice skips that sound with a single warning, so nothing breaks.</p>
-    <div class="pager"><a href="#/intro">← Introduction</a><a href="#/all">All components →</a></div>`;
+    <div class="pager"><a href="#/intro">← Introduction</a><a href="#/all">All effects →</a></div>`;
 }
 
-function allPage() {
-  const card = (i) => `<a class="card" href="#/${i.kind}/${i.name}" data-search="${[i.name, i.category, ...i.tags].join(" ").toLowerCase()}">
-      <div class="thumb ${i.kind === "sfx" ? "snd" : ""}">${i.kind === "vfx" ? `<canvas data-fx="${i.name}"></canvas>` : ICON_WAVE}</div>
-      <div class="meta"><b>${i.name}</b><span>${i.description}</span></div></a>`;
-  const section = (k) => `<h2>${label[k]}</h2>` + categories(k).map(([cat, items]) =>
-    `<div class="group"><h3>${cat}</h3><div class="grid">${items.map(card).join("")}</div></div>`).join("");
-  return `
-    <div class="crumb">Docs</div>
-    <h1>All components</h1>
-    <p class="lead">${byKind("vfx").length} effects and ${byKind("sfx").length} sounds, picked from what today's top Roblox games use. Items with the same name pair up: <code>Juice.play</code> fires both.</p>
-    <input class="filter" id="filter" type="search" placeholder="Filter: coin, combat, egg, loop…" aria-label="Filter components">
-    <section data-kind="vfx">${section("vfx")}</section>
-    <section data-kind="sfx">${section("sfx")}</section>`;
-}
-
-let effects = null;
-async function storePage() {
-  effects ||= await (await fetch(REGISTRY + "vfx-effects.json")).json();
-  const groups = new Map();
-  for (const e of effects.effects) groups.set(e.category, [...(groups.get(e.category) || []), e]);
-  const card = (e) => `<a class="card" href="https://create.roblox.com/store/asset/${e.asset_id}" target="_blank" rel="noopener" data-search="${esc([e.name, e.description, e.pack].join(" ").toLowerCase())}">
-      <div class="meta"><b>${esc(e.name)}</b><span>${esc(e.description)}</span><small>From "${esc(e.pack)}"</small></div></a>`;
-  return `
-    <div class="crumb">Docs</div>
-    <h1>Creator Store effects</h1>
-    <p class="lead">${effects.effects.length} single effects from free Creator Store packs that passed our safety scan, each with an agent name. Your agent finds them with <code>find_vfx</code> and adds them with <code>add_vfx</code>, then plays one by name.</p>
-    ${codeBlock(`Juice.play("explosion/fire", part)`)}
-    <p><a href="../vfx-report.html" style="text-decoration:underline">How packs are checked</a>. Each card links to its pack on the Creator Store.</p>
-    <input class="filter" id="filter" type="search" placeholder="Filter: fire, confetti, portal, slash…" aria-label="Filter effects">
-    ${[...groups].map(([cat, items]) => `<div class="group"><h3>${cat}</h3><div class="grid">${items.map(card).join("")}</div></div>`).join("")}`;
-}
-
-async function itemPage(kind, name) {
-  const item = findItem(kind, name);
-  if (!item) return `<h1>Not found</h1><p>No ${kind} named <code>${esc(name)}</code>. <a href="#/all" style="text-decoration:underline">See all components</a>.</p>`;
-  const twin = index.items.find((i) => i.name === name && i.kind !== kind && i.kind !== "runtime");
-  const src = item.files[0].src;
-  const source = kind === "vfx" ? await (await fetch(REGISTRY + src)).text() : null;
-
-  const preview = kind === "vfx"
-    ? `<div class="stage"><canvas id="fx"></canvas><span class="hint">Approximate 2D preview${item.preview.loop ? " · loops" : ""}</span>${item.preview.loop ? "" : `<button class="replay" id="replay">Replay</button>`}</div>`
-    : `<div class="stage"><button class="play" id="play" aria-label="Play ${name}">${ICON_PLAY}</button><span class="hint">${item.description}</span></div>`;
-  const panels = [{ label: "Preview", html: preview }];
-  if (source) panels.push({ label: "Code", html: codeBlock(source) });
-
-  const usage = item.preview?.loop ? `local stop = Juice.attach("${name}", character) -- stays on\n-- later:\nstop()`
-    : twin ? `Juice.play("${name}", part) -- effect and sound together\nJuice.${kind}("${name}", part) -- ${kind === "vfx" ? "effect" : "sound"} only`
-    : kind === "sfx" ? `Juice.sfx("${name}") -- 2D, or pass a part for 3D sound`
-    : `Juice.vfx("${name}", part) -- a BasePart, Model or Vector3`;
-  const all = ["vfx", "sfx"].flatMap((k) => categories(k).flatMap(([, items]) => items)); // sidebar order
-  const at = all.indexOf(item), prev = all[at - 1], next = all[at + 1];
-
-  return `
-    <div class="crumb">${label[kind]} / ${item.category}</div>
-    <h1>${name}</h1>
-    <p class="lead">${item.description}</p>
-    <p>${item.tags.filter((t) => !GAME_TAGS.includes(t)).map((t) => `<span class="tag">${t}</span>`).join("")}</p>
-    ${tabs(panels)}
-    <h2>Installation</h2>
-    ${tabs([
-      { label: "Your AI", html: codeBlock(`Use baseplate to add the ${name} ${kind === "vfx" ? "effect" : "sound"}`, "text") },
-      { label: "CLI", html: codeBlock(`npx baseplate-cli add ${name}`, "sh") },
-    ])}
-    ${kind === "sfx" ? `<p>Then upload <code>assets/sfx/${name}.ogg</code> to your Roblox account and paste its asset ID into <code>Sounds.luau</code>. <a href="#/installation" style="text-decoration:underline">How</a>.</p>` : ""}
-    <h2>Usage</h2>
-    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)\n\n${usage}`)}
-    ${twin ? `<p>Pairs with the <a href="#/${twin.kind}/${name}" style="text-decoration:underline">${name} ${twin.kind === "vfx" ? "effect" : "sound"}</a>.</p>` : ""}
-    <div class="pager">${prev ? `<a href="#/${prev.kind}/${prev.name}">← ${prev.name}</a>` : "<span></span>"}${next ? `<a href="#/${next.kind}/${next.name}">${next.name} →</a>` : ""}</div>`;
-}
-
-async function render() {
-  stopPreviews();
+function render() {
   sidebar();
   $("#side").classList.remove("open");
   const r = route();
-  const [kind, name] = r.split("/");
+  const cat = r.startsWith("c/") ? r.slice(2) : null;
   $("#main").innerHTML =
-    r === "intro" ? introPage() : r === "installation" ? installPage() : r === "all" ? allPage() : r === "store" ? await storePage()
-    : (kind === "vfx" || kind === "sfx") && name ? await itemPage(kind, name) : introPage();
-  document.title = (name || { intro: "Components", installation: "Installation", all: "All components", store: "Creator Store effects" }[r] || "Components") + " · Baseplate";
+    r === "intro" ? introPage() : r === "installation" ? installPage()
+    : r.startsWith("e/") ? effectPage(r.slice(2))
+    : listPage(cat);
+  document.title = (r.startsWith("e/") ? r.slice(2) : cat || { intro: "Introduction", installation: "Installation" }[r] || "Effects") + " · Baseplate";
   window.scrollTo(0, 0);
-
-  const fx = $("#fx");
-  if (fx) {
-    const p = new Preview(fx, findItem("vfx", name));
-    previews.push(p);
-    if ($("#replay")) $("#replay").onclick = () => p.replay();
-  }
-  document.querySelectorAll("[data-fx]").forEach((c) => {
-    const p = new Preview(c, findItem("vfx", c.dataset.fx), { scale: 1.2 });
-    p.paused = true;
-    thumbs.observe(c); c._preview = p;
-    previews.push(p);
-  });
   const filter = $("#filter");
   if (filter) filter.oninput = () => {
-    const q = filter.value.trim().toLowerCase();
-    document.querySelectorAll(".card").forEach((c) => (c.hidden = q && !c.dataset.search.includes(q)));
-    document.querySelectorAll(".group").forEach((g) => (g.hidden = !g.querySelector(".card:not([hidden])")));
+    const words = filter.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    let n = 0;
+    document.querySelectorAll("#main > .grid > .card").forEach((c) => { c.hidden = !words.every((w) => c.dataset.search.includes(w)); if (!c.hidden) n++; });
+    $("#count").textContent = `${n} effects`;
   };
-  const play = $("#play");
-  if (play) play.onclick = () => playSound(name).catch(() => (play.title = "Couldn't load audio"));
 }
 
 $("#menu").onclick = () => {
@@ -520,10 +370,16 @@ $("#menu").onclick = () => {
   $("#menu").setAttribute("aria-expanded", open);
 };
 
-fetch(REGISTRY + "index.json")
+fetch(REGISTRY + "vfx-effects.json")
   .then((r) => r.json())
-  .then((data) => { index = data; window.addEventListener("hashchange", render); render(); })
-  .catch(() => ($("#main").innerHTML = "<h1>Couldn't load the registry</h1><p>Try reloading the page.</p>"));
+  .then((d) => {
+    data = d;
+    effects = d.effects.slice().sort((a, b) => d.categories.indexOf(a.category) - d.categories.indexOf(b.category) || (b.votes || 0) - (a.votes || 0));
+    for (const e of effects) { byName.set(e.name, e); packCount.set(e.asset_id, (packCount.get(e.asset_id) || 0) + 1); }
+    window.addEventListener("hashchange", render);
+    render();
+  })
+  .catch(() => ($("#main").innerHTML = "<h1>Couldn't load the effects</h1><p>Try reloading the page.</p>"));
 </script>
 </body>
 </html>

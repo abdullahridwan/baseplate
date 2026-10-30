@@ -3,7 +3,7 @@
 // Speaks newline-delimited JSON-RPC 2.0 on stdin/stdout. Never write anything else to stdout.
 
 import { createInterface } from "node:readline";
-import { SOUNDS_FILE, SAFE_VFX_FILE, install, loadIndex, fetchFile, loadEffects, searchEffects, storeUpdated, sameTime, insertSnippet, writeVfxLock } from "./registry.js";
+import { install, loadEffects, searchEffects, storeUpdated, sameTime, insertSnippet, writeVfxLock } from "./registry.js";
 import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
@@ -11,49 +11,11 @@ import { resolve } from "node:path";
 const SERVER = { name: "baseplate", version: "0.3.2" };
 const SUPPORTED = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
-const INSTRUCTIONS = `Baseplate is a component library for Roblox: effects and sounds your agent can find and add safely.
-- To add juice: search_components, then add_component. Sounds must be uploaded to the user's Roblox account; tell them which files to upload and where the IDs go.
-- For Creator Store VFX: find_vfx, then add_vfx. Effects have agent names like explosion/fire, hit/electric, aura/dark, celebrate/confetti: category/element-modifiers. Categories: hit, explosion, aura, projectile, trail, pickup, celebrate, ambient, hazard, magic, heal, dash, spawn, death, weather, fire, smoke. If you can guess the name, call add_vfx directly. Every effect comes from a scanned, safe pack. add_vfx returns one Luau snippet: run it with the Roblox Studio MCP's execute_luau, then play the effect with Juice.play(name, target).`;
+const INSTRUCTIONS = `Baseplate gives you safe Creator Store VFX for Roblox, split into single effects with agent names.
+- find_vfx(query), then add_vfx(names). Names are category/element-modifiers, e.g. explosion/fire, hit/electric, aura/dark, celebrate/confetti. Categories: hit, explosion, aura, projectile, trail, pickup, celebrate, ambient, hazard, magic, heal, dash, spawn, death, weather, fire, smoke. If you can guess the name, call add_vfx directly.
+- Every effect comes from a scanned, safe pack. add_vfx returns one Luau snippet: run it with the Roblox Studio MCP's execute_luau in Edit mode, then play the effect with Juice.play(name, target), or Juice.attach(name, target) for loops.`;
 
 const TOOLS = [
-	{
-		name: "list_components",
-		description: "List Baseplate components: visual effects (vfx) and sounds (sfx) for Roblox games.",
-		inputSchema: {
-			type: "object",
-			properties: { kind: { type: "string", enum: ["vfx", "sfx"], description: "Only this kind" } },
-		},
-	},
-	{
-		name: "search_components",
-		description: "Find components by what they're for, e.g. 'coin', 'button click', 'win', 'damage'.",
-		inputSchema: {
-			type: "object",
-			properties: { query: { type: "string" } },
-			required: ["query"],
-		},
-	},
-	{
-		name: "get_component",
-		description: "Details for one component: description, files, usage, and for effects the full Luau source.",
-		inputSchema: {
-			type: "object",
-			properties: { name: { type: "string" } },
-			required: ["name"],
-		},
-	},
-	{
-		name: "add_component",
-		description: "Copy components (and what they need, like the Juice runtime) into the user's Rojo project. Existing files are never overwritten. Sounds are registered in Sounds.luau with an empty id until the user uploads them.",
-		inputSchema: {
-			type: "object",
-			properties: {
-				names: { type: "array", items: { type: "string" }, minItems: 1, description: "Component names, e.g. [\"coin_pickup\", \"ui_click\"]" },
-				project_dir: { type: "string", description: "Rojo project root (where default.project.json is). Defaults to the current directory." },
-			},
-			required: ["names"],
-		},
-	},
 	{
 		name: "find_vfx",
 		description: "Find Creator Store VFX by what they are for, e.g. 'fire explosion' or 'electric aura'. Returns up to 5 single effects from safe, scanned packs, each with its agent name (category/element-modifiers) and a one-line description.",
@@ -77,70 +39,7 @@ const TOOLS = [
 	},
 ];
 
-const summary = (i) => `${i.name} (${i.kind}): ${i.description}`;
-
 const HANDLERS = {
-	async list_components({ kind } = {}) {
-		const index = await loadIndex();
-		const items = index.items.filter((i) => (kind ? i.kind === kind : i.kind !== "runtime"));
-		return items.map(summary).join("\n");
-	},
-
-	async search_components({ query }) {
-		const index = await loadIndex();
-		const words = String(query).toLowerCase().split(/[\s,_-]+/).filter(Boolean);
-		const scored = index.items
-			.filter((i) => i.kind !== "runtime")
-			.map((i) => {
-				const hay = [i.name, i.description, ...(i.tags || [])].join(" ").toLowerCase();
-				return { i, score: words.filter((w) => hay.includes(w)).length };
-			})
-			.filter((x) => x.score > 0)
-			.sort((a, b) => b.score - a.score);
-		if (scored.length === 0) return `Nothing matches "${query}". Call list_components to see everything.`;
-		return scored.map((x) => summary(x.i)).join("\n");
-	},
-
-	async get_component({ name }) {
-		const index = await loadIndex();
-		const matches = index.items.filter((i) => i.name === name);
-		if (matches.length === 0) throw new Error(`no component named '${name}'. Call list_components to see them all.`);
-		const parts = [];
-		for (const item of matches) {
-			const lines = [
-				`## ${item.name} (${item.kind})`,
-				item.description,
-				`Usage: ${item.usage || "see the runtime"}`,
-				`Requires: ${item.requires.join(", ") || "nothing"}`,
-				`Files: ${item.files.map((f) => f.dest).join(", ")}`,
-				`License: ${item.license}`,
-			];
-			if (item.kind === "vfx") {
-				lines.push("", "```lua", (await fetchFile(item.files[0].src)).trimEnd(), "```");
-			}
-			parts.push(lines.join("\n"));
-		}
-		return parts.join("\n\n");
-	},
-
-	async add_component({ names, project_dir }) {
-		const r = await install(names, project_dir || process.cwd());
-		const out = [];
-		if (r.warnings.length) out.push(...r.warnings.map((w) => `Warning: ${w}`), "");
-		if (r.added.length) out.push("Added:", ...r.added.map((f) => `  ${f}`));
-		if (r.skipped.length) out.push("Already there (left unchanged):", ...r.skipped.map((f) => `  ${f}`));
-		if (r.edited.length) out.push("Edited:", ...r.edited.map((f) => `  ${f}`));
-		out.push("", "Use it:", 'local Juice = require(game.ReplicatedStorage.Shared.Juice)', ...names.map((n) => `Juice.play("${n}", part)`));
-		if (r.uploads.length) {
-			out.push(
-				"",
-				"Tell the user: Roblox only plays uploaded audio. Upload these as Audio at https://create.roblox.com/dashboard/creations, then put each asset ID into its id = \"\" in " + SOUNDS_FILE + ":",
-				...r.uploads.map((f) => `  ${f}`),
-			);
-		}
-			return out.join("\n");
-	},
-
 	async find_vfx({ query }) {
 		const index = await loadEffects();
 		const found = searchEffects(index, query);
@@ -168,7 +67,7 @@ const HANDLERS = {
 		if (juice.added.length) out.push(`Added the Juice runtime: ${juice.added.join(", ")}`);
 		const init = resolve(root, "src/shared/Juice/init.luau");
 		if (existsSync(init) && !(await readFile(init, "utf8")).includes("BaseplateVFX")) {
-			out.push("Your Juice runtime predates store effects. Replace src/shared/Juice/init.luau with the latest (add_component never overwrites it).");
+			out.push("Your Juice runtime predates store effects. Replace src/shared/Juice/init.luau with the latest (add_vfx never overwrites it).");
 		}
 		out.push(`Locked in ${lock.path}: ${[...lock.added, ...lock.already].join(", ")}`);
 		out.push("", "Run this once with the Roblox Studio MCP's execute_luau (Edit mode):", "```lua", insertSnippet(picked), "```", "", "Then play them:");

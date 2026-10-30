@@ -29,6 +29,8 @@ def expected():
     for name in ("safe-vfx.json", "vfx-effects.json", "vfx-assets.json", "vfx-flagged.json", "vfx-rules.md"):
         if (ROOT / name).is_file():
             files[name] = ROOT / name
+    for f in sorted((ROOT / "vfx-thumbs").glob("*.png")):
+        files[f"vfx-thumbs/{f.name}"] = f
     return files
 
 

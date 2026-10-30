@@ -6,11 +6,11 @@
 
 ---
 
-Baseplate is a component library for Roblox that AI agents use through MCP. Your agent searches in plain words and gets back short, agent-readable names, instead of hunting through Creator Store thumbnails.
+Baseplate scans free Creator Store effect packs for hidden scripts, splits the safe ones into single effects, and gives each effect an agent name and description. Your AI searches in plain words and gets back names like `explosion/fire`, `celebrate/confetti` and `hazard/lava`, instead of hunting through thumbnails.
 
-- **600 Creator Store effects.** Free packs that passed a safety scan, split into single effects with agent names like `explosion/fire`, `celebrate/confetti` and `hazard/lava`. `add_vfx` checks the pack hasn't changed, pins it in `vfx.json`, and returns one snippet for the Roblox Studio MCP.
-- **Our own effects and sounds.** Copied into your project as files you own, like shadcn/ui. Browse them at [baseplate/components](https://baseplatehq.github.io/baseplate/components/).
-- **One runtime.** `Juice.play("explosion/fire", part)` plays either kind by name.
+- **600 effects from 148 safe packs.** Browse them with their metadata at [baseplate/components](https://baseplatehq.github.io/baseplate/components/).
+- **Pinned and checked.** `add_vfx` refuses an effect if its pack changed since the scan, and records what you added in `vfx.json`.
+- **One line to play.** `Juice.play("explosion/fire", part)`, or `Juice.attach("hazard/lava", part)` for loops.
 
 ## Connect your AI (MCP)
 
@@ -18,21 +18,15 @@ Baseplate is a component library for Roblox that AI agents use through MCP. Your
 claude mcp add baseplate -- npx -y baseplate-cli mcp
 ```
 
-Then ask for what you need, for example "add an explosion when the rocket hits".
+Then ask, for example "use baseplate to add an explosion when the rocket hits". You also need the Roblox Studio MCP.
 
-Tools: `list_components`, `search_components`, `get_component`, `add_component`, `find_vfx`, `add_vfx`.
-
-Or use the CLI from your Rojo project root:
-
-```
-npx baseplate-cli add coin_pickup confetti
-```
+Tools: `find_vfx`, `add_vfx`.
 
 ## Repo
 
 ```
-registry/   effects, sounds, the Juice runtime and the store effect index (published to docs/r/)
-pipeline/   the Creator Store scan and effect naming
+registry/   the store effect index, pack thumbnails and the Juice runtime (published to docs/r/)
+pipeline/   the Creator Store scan, effect naming and thumbnails
 cli/        npx baseplate-cli and the MCP server
 docs/       the website (GitHub Pages)
 brand/      logo files

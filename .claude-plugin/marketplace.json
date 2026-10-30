@@ -7,7 +7,7 @@
     {
       "name": "baseplate",
       "source": "./plugins/baseplate",
-      "description": "Agent-native VFX and sounds for Roblox. Search components by description and add them to your project, safely.",
+      "description": "Safe Creator Store VFX for Roblox, split into 600 single effects with agent names your AI can find and add.",
       "version": "0.3.2"
     }
   ]
