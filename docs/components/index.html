@@ -142,7 +142,6 @@ code{font-family:var(--mono);font-size:.86em;background:var(--plate);padding:2px
 
 <script>
 const REGISTRY = "../r/";
-const SITE_REGISTRY = "https://baseplatehq.github.io/baseplate/r/index.json";
 const ICON_COPY = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
 const ICON_CHECK = '<svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>';
 const ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
@@ -154,7 +153,7 @@ const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">":
 
 /* ---------- Luau highlighting (just enough for our files) ---------- */
 function highlight(src, lang) {
-  if (lang === "sh") return esc(src).replace(/^(npx|baseplate)/gm, '<span class="f">$1</span>');
+  if (lang === "sh") return esc(src).replace(/^(npx|baseplate|claude)/gm, '<span class="f">$1</span>');
   if (lang === "text") return esc(src);
   const re = /(--[^\n]*)|("(?:[^"\\]|\\.)*")|\b(local|function|return|end|if|then|else|elseif|for|in|do|while|not|and|or|nil|true|false)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Z][A-Za-z0-9]+)(?=\.)/g;
   let out = "", last = 0, m;
@@ -341,6 +340,7 @@ async function playSound(name) {
 /* ---------- pages ---------- */
 const byKind = (k) => index.items.filter((i) => i.kind === k);
 const label = { vfx: "Effects", sfx: "Sounds" };
+const GAME_TAGS = ["obby", "tycoon", "simulator", "core"]; // left over from recipes, not shown
 // [[category, items]] in catalog order
 const categories = (k) => {
   const groups = new Map();
@@ -388,8 +388,10 @@ function installPage() {
     <h1>Installation</h1>
     <p class="lead">Works with any Rojo project.</p>
     <h3>With your AI agent</h3>
-    <p>Paste this into Claude Code, Cursor or Codex:</p>
-    ${codeBlock(`Add coin_pickup and confetti from ${SITE_REGISTRY}`, "text")}
+    <p>Connect Baseplate once (<a href="../#connect" style="text-decoration:underline">other agents</a>):</p>
+    ${codeBlock("claude mcp add baseplate -- npx -y baseplate-cli mcp", "sh")}
+    <p>Then ask for what you need:</p>
+    ${codeBlock("Use baseplate to add coin_pickup and confetti", "text")}
     <h3>With the CLI</h3>
     <p>From your project root (next to <code>default.project.json</code>):</p>
     ${codeBlock("npx baseplate-cli add coin_pickup confetti", "sh")}
@@ -454,8 +456,9 @@ async function itemPage(kind, name) {
   const panels = [{ label: "Preview", html: preview }];
   if (source) panels.push({ label: "Code", html: codeBlock(source) });
 
-  const usage = kind === "sfx" ? `Juice.sfx("${name}") -- 2D, or pass a part for 3D sound`
-    : item.preview.loop ? `local stop = Juice.attach("${name}", character) -- stays on\n-- later:\nstop()`
+  const usage = item.preview?.loop ? `local stop = Juice.attach("${name}", character) -- stays on\n-- later:\nstop()`
+    : twin ? `Juice.play("${name}", part) -- effect and sound together\nJuice.${kind}("${name}", part) -- ${kind === "vfx" ? "effect" : "sound"} only`
+    : kind === "sfx" ? `Juice.sfx("${name}") -- 2D, or pass a part for 3D sound`
     : `Juice.vfx("${name}", part) -- a BasePart, Model or Vector3`;
   const all = ["vfx", "sfx"].flatMap((k) => categories(k).flatMap(([, items]) => items)); // sidebar order
   const at = all.indexOf(item), prev = all[at - 1], next = all[at + 1];
@@ -464,16 +467,16 @@ async function itemPage(kind, name) {
     <div class="crumb">${label[kind]} / ${item.category}</div>
     <h1>${name}</h1>
     <p class="lead">${item.description}</p>
-    <p>${item.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</p>
+    <p>${item.tags.filter((t) => !GAME_TAGS.includes(t)).map((t) => `<span class="tag">${t}</span>`).join("")}</p>
     ${tabs(panels)}
     <h2>Installation</h2>
     ${tabs([
+      { label: "Your AI", html: codeBlock(`Use baseplate to add the ${name} ${kind === "vfx" ? "effect" : "sound"}`, "text") },
       { label: "CLI", html: codeBlock(`npx baseplate-cli add ${name}`, "sh") },
-      { label: "Agent", html: codeBlock(`Add ${name} from ${SITE_REGISTRY}`, "text") },
     ])}
     ${kind === "sfx" ? `<p>Then upload <code>assets/sfx/${name}.ogg</code> to your Roblox account and paste its asset ID into <code>Sounds.luau</code>. <a href="#/installation" style="text-decoration:underline">How</a>.</p>` : ""}
     <h2>Usage</h2>
-    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)\n\n${usage}${twin ? `\nJuice.play("${name}", part) -- with the matching ${twin.kind === "vfx" ? "effect" : "sound"}` : ""}`)}
+    ${codeBlock(`local Juice = require(game.ReplicatedStorage.Shared.Juice)\n\n${usage}`)}
     ${twin ? `<p>Pairs with the <a href="#/${twin.kind}/${name}" style="text-decoration:underline">${name} ${twin.kind === "vfx" ? "effect" : "sound"}</a>.</p>` : ""}
     <div class="pager">${prev ? `<a href="#/${prev.kind}/${prev.name}">← ${prev.name}</a>` : "<span></span>"}${next ? `<a href="#/${next.kind}/${next.name}">${next.name} →</a>` : ""}</div>`;
 }
