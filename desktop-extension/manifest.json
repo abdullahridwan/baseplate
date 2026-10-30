@@ -1,7 +1,7 @@
 {
   "dxt_version": "0.1",
   "name": "baseplate",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Safe Creator Store VFX for Roblox, split into 600 single effects with agent names your AI can find and add.",
   "author": {
     "name": "Baseplate"

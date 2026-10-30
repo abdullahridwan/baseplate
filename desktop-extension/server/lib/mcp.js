@@ -8,7 +8,7 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 
-const SERVER = { name: "baseplate", version: "0.3.2" };
+const SERVER = { name: "baseplate", version: "0.4.0" };
 const SUPPORTED = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
 const INSTRUCTIONS = `Baseplate gives you safe Creator Store VFX for Roblox, split into single effects with agent names.
