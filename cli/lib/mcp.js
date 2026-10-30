@@ -177,7 +177,7 @@ const HANDLERS = {
 			`${p.name}: ${p.description}`,
 			`  Asset ID: ${p.asset_id} (pinned version: ${p.pinned_version})`,
 			`  Scan date: ${p.scan_date || "unknown"} | Tags: ${(p.tags || []).join(", ")} | Use cases: ${(p.use_cases || []).join(", ")}`,
-			`  Insert: use the Roblox Studio MCP at exactly this pinned version, then strip any scripts in the pack.`,
+			`  Insert: check the store page's last-updated time still equals the pinned version (if it changed, don't use it), then insert the asset ID with the Roblox Studio MCP and strip any scripts.`,
 		].join("\n")).join("\n\n");
 	},
 
@@ -199,10 +199,10 @@ const HANDLERS = {
 		if (r.already.length) out.push(`Already locked: ${r.already.join(", ")}`);
 		out.push("", "Next steps for the agent:");
 		for (const p of picked) {
-			out.push(`  - Insert pack '${p.name}' (asset ${p.asset_id}, pinned version ${p.pinned_version}) with the Roblox Studio MCP.`);
+			out.push(`  - Check pack '${p.name}' still shows last-updated ${p.pinned_version} on its store page, then insert asset ${p.asset_id} with the Roblox Studio MCP.`);
 		}
 		out.push("  - Strip any scripts in the pack before use.");
-		out.push("  - Do not use a different version. If the version changes, re-check it first.");
+		out.push("  - If the last-updated time changed, the pack was edited after the scan: don't use it until it is re-scanned.");
 		return out.join("\n");
 	},
 };

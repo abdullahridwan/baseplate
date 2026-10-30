@@ -54,6 +54,32 @@ def tags_and_uses(entry):
     return sorted(set(tags)), sorted(set(uses)) or ["general effect"]
 
 
+def color_name(hex_color):
+    r, g, b = (int(hex_color[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    hi, lo = max(r, g, b), min(r, g, b)
+    if hi - lo < 0.15:
+        return "white" if hi > 0.8 else "black" if hi < 0.2 else "grey"
+    d = hi - lo
+    h = (60 * ((g - b) / d % 6) if hi == r else 60 * ((b - r) / d + 2) if hi == g else 60 * ((r - g) / d + 4))
+    for limit, name in ((15, "red"), (45, "orange"), (70, "yellow"), (160, "green"), (200, "cyan"), (255, "blue"), (290, "purple"), (335, "pink"), (360, "red")):
+        if h < limit:
+            return name
+
+
+def plain_description(entry, tags):
+    """What a person would say about the pack, so search words match."""
+    words = [t for t in tags if t != "vfx"]
+    kind = (", ".join(words[:-1]) + " and " + words[-1] if len(words) > 1 else words[0]) if words else "general"
+    colors = list(dict.fromkeys(color_name(e["color"]) for e in entry.get("effects", []) if e.get("color")))[:3]
+    n = (entry.get("contains") or {}).get("effects", 0)
+    text = f"A {kind} effects pack with {n} effect{'s' * (n != 1)}"
+    if colors:
+        text += ", in " + (", ".join(colors[:-1]) + " and " + colors[-1] if len(colors) > 1 else colors[0])
+    if any(e["class"] == "Beam" for e in entry.get("effects", [])):
+        text += ", including beams"
+    return text + "."
+
+
 def main():
     src = json.loads(Path(sys.argv[1]).read_text())
     scan_date = src["generated"][:10]
@@ -75,14 +101,15 @@ def main():
                 "pinned_version": a["pin"]["updated"],
                 "status": "safe",
                 "scan_date": scan_date,
-                "description": a["description"],
+                "description": plain_description(a, tags),
                 "tags": tags,
                 "use_cases": uses,
                 "contains": a.get("contains"),
                 "votes": a.get("votes"),
                 "install": (
-                    f"Insert asset {a['id']} with the Roblox Studio MCP. Check the store's last-updated time still equals "
-                    f"{a['pin']['updated']}; if not, don't use it until it is re-scanned. Strip any scripts, then move "
+                    f"Before inserting, check the store page's last-updated time still equals {a['pin']['updated']}; if it "
+                    f"changed, the pack was edited after the scan, so don't use it. Then insert asset {a['id']} with the "
+                    "Roblox Studio MCP. Strip any scripts, then move "
                     "the effects onto your Attachment. Burst emitters: keep Enabled off and call Emit(n)."
                 ),
             })
