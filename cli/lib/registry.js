@@ -46,7 +46,7 @@ export function searchSafeVfx(safe, query) {
       return { p, score: words.filter((w) => hay.includes(w)).length };
     })
     .filter((x) => x.score > 0)
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => b.score - a.score || ((b.p.votes || {}).count || 0) - ((a.p.votes || {}).count || 0));
   return scored.map((x) => x.p);
 }
 

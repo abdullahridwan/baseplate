@@ -342,12 +342,13 @@
    "pinned_version": "2015-06-08T16:57:49.04Z",
    "status": "safe",
    "scan_date": "2026-10-28",
-   "description": "A general effects pack with 1 effect, in orange.",
+   "description": "A lava effects pack with 1 effect, in orange.",
    "tags": [
+    "lava",
     "vfx"
    ],
    "use_cases": [
-    "general effect"
+    "lava or hazard"
    ],
    "contains": {
     "effects": 1,
@@ -5595,12 +5596,13 @@
    "pinned_version": "2025-06-10T18:24:14.74Z",
    "status": "safe",
    "scan_date": "2026-10-28",
-   "description": "A general effects pack with 53 effects, in orange and white.",
+   "description": "A lava effects pack with 53 effects, in orange and white.",
    "tags": [
+    "lava",
     "vfx"
    ],
    "use_cases": [
-    "general effect"
+    "lava or hazard"
    ],
    "contains": {
     "effects": 53,

@@ -1,7 +1,7 @@
 {
   "dxt_version": "0.1",
   "name": "baseplate",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Agent-native VFX and sounds for Roblox. Search components by description and add them to your project, safely.",
   "author": {
     "name": "Baseplate"

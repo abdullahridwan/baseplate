@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 VOCAB = {
     "fire": ("fire", "fire attack"), "flame": ("fire", "fire attack"), "burn": ("fire", "burning"),
     "explo": ("explosion", "explosion"), "boom": ("explosion", "explosion"), "blast": ("explosion", "explosion"),
+    "lava": ("lava", "lava or hazard"), "volcan": ("lava", "lava or hazard"), "magma": ("lava", "lava or hazard"),
     "smoke": ("smoke", "smoke"), "dust": ("dust", "dust or debris"), "debris": ("debris", "dust or debris"),
     "spark": ("sparks", "hit sparks"), "hit": ("impact", "hit or damage"), "impact": ("impact", "hit or damage"),
     "slash": ("slash", "sword swing"), "sword": ("slash", "sword swing"), "cut": ("slash", "sword swing"),

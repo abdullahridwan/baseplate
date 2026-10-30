@@ -3,31 +3,16 @@
 // Speaks newline-delimited JSON-RPC 2.0 on stdin/stdout. Never write anything else to stdout.
 
 import { createInterface } from "node:readline";
-import { RECIPES, SOUNDS_FILE, SAFE_VFX_FILE, install, loadIndex, loadRecipe, fetchFile, loadSafeIndex, searchSafeVfx, writeVfxLock } from "./registry.js";
+import { SOUNDS_FILE, SAFE_VFX_FILE, install, loadIndex, fetchFile, loadSafeIndex, searchSafeVfx, writeVfxLock } from "./registry.js";
 
-const SERVER = { name: "baseplate", version: "0.3.0" };
+const SERVER = { name: "baseplate", version: "0.3.1" };
 const SUPPORTED = ["2025-06-18", "2025-03-26", "2024-11-05"];
 
-const INSTRUCTIONS = `Baseplate is the agent-native layer for Roblox: recipes that build the generic half of a game, and components (effects and sounds) to drop in.
-- To build a game: call get_recipe for "core", then for the game type (obby, tycoon, simulator), and follow every step in order, checking each "Done when".
+const INSTRUCTIONS = `Baseplate is a component library for Roblox: effects and sounds your agent can find and add safely.
 - To add juice: search_components, then add_component. Sounds must be uploaded to the user's Roblox account; tell them which files to upload and where the IDs go.
-- To add scanned VFX: find_vfx, then add_vfx. find_vfx returns only safe packs. Never offer or add a flagged pack. add_vfx writes vfx.json with the pinned asset ID and version. After add_vfx, insert the pack with the Roblox Studio MCP at exactly that pinned version and strip any scripts in the pack before use.`;
+- To add scanned Creator Store VFX: find_vfx, then add_vfx. find_vfx returns only safe packs; never offer or add a flagged pack. add_vfx writes vfx.json with the asset ID and the store update time it was scanned at. Before inserting with the Roblox Studio MCP, check that time still matches (add_vfx gives the URL), then strip any scripts in the pack.`;
 
 const TOOLS = [
-	{
-		name: "list_recipes",
-		description: "List the Baseplate game recipes. A recipe is a step-by-step spec that builds the generic half of a Roblox game. Always build 'core' first.",
-		inputSchema: { type: "object", properties: {} },
-	},
-	{
-		name: "get_recipe",
-		description: "Get a recipe's full Markdown. Follow its steps in order and check every 'Done when' before moving on.",
-		inputSchema: {
-			type: "object",
-			properties: { name: { type: "string", enum: RECIPES, description: "Recipe name" } },
-			required: ["name"],
-		},
-	},
 	{
 		name: "list_components",
 		description: "List Baseplate components: visual effects (vfx) and sounds (sfx) for Roblox games.",
@@ -92,19 +77,6 @@ const TOOLS = [
 const summary = (i) => `${i.name} (${i.kind}): ${i.description}`;
 
 const HANDLERS = {
-	async list_recipes() {
-		return [
-			"core: project layout, saving player data, safe client/server messaging. Build this first.",
-			"obby: a playable starter course with checkpoints that save, hazards and a stage HUD.",
-			"tycoon (beta, needs a hand-built map): claimable plots, cash, purchase buttons, droppers and a collector.",
-			"simulator (beta, needs a hand-built map): click to collect, backpack capacity, selling, upgrades and rebirths.",
-		].join("\n");
-	},
-
-	async get_recipe({ name }) {
-		return loadRecipe(name);
-	},
-
 	async list_components({ kind } = {}) {
 		const index = await loadIndex();
 		const items = index.items.filter((i) => (kind ? i.kind === kind : i.kind !== "runtime"));
@@ -168,7 +140,7 @@ const HANDLERS = {
 
 	async find_vfx({ query }) {
 		const safe = await loadSafeIndex();
-		const packs = searchSafeVfx(safe, query);
+		const packs = searchSafeVfx(safe, query).slice(0, 5);
 		if (!safe.packs || safe.packs.length === 0) {
 			return "The safe VFX index is empty. No scan data has landed in safe-vfx.json yet, so no packs can be recommended. Do not invent an asset ID. See DIRECTION.md for the safe VFX data model and scan job.";
 		}
@@ -177,7 +149,7 @@ const HANDLERS = {
 			`${p.name}: ${p.description}`,
 			`  Asset ID: ${p.asset_id} (pinned version: ${p.pinned_version})`,
 			`  Scan date: ${p.scan_date || "unknown"} | Tags: ${(p.tags || []).join(", ")} | Use cases: ${(p.use_cases || []).join(", ")}`,
-			`  Insert: check the store page's last-updated time still equals the pinned version (if it changed, don't use it), then insert the asset ID with the Roblox Studio MCP and strip any scripts.`,
+			`  Insert: check the store page's last-updated time still equals the pinned version (if it changed, don't use it), then insert the asset ID with the Roblox Studio MCP and strip any scripts. Check URL: https://apis.roblox.com/toolbox-service/v1/items/details?assetIds=${p.asset_id} (field asset.updatedUtc).`,
 		].join("\n")).join("\n\n");
 	},
 
@@ -199,7 +171,7 @@ const HANDLERS = {
 		if (r.already.length) out.push(`Already locked: ${r.already.join(", ")}`);
 		out.push("", "Next steps for the agent:");
 		for (const p of picked) {
-			out.push(`  - Check pack '${p.name}' still shows last-updated ${p.pinned_version} on its store page, then insert asset ${p.asset_id} with the Roblox Studio MCP.`);
+			out.push(`  - GET https://apis.roblox.com/toolbox-service/v1/items/details?assetIds=${p.asset_id} and check asset.updatedUtc equals ${p.pinned_version}. If it matches, insert asset ${p.asset_id} with the Roblox Studio MCP.`);
 		}
 		out.push("  - Strip any scripts in the pack before use.");
 		out.push("  - If the last-updated time changed, the pack was edited after the scan: don't use it until it is re-scanned.");
